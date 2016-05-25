@@ -22,6 +22,31 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css">
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?1472b3d1766a00b8478c30f604739635";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+<script type="text/javascript">
+window.tctipConfig = {
+        staticPrefix:   "http://static.tctip.com",
+        buttonImageId:  1,
+        buttonTip:  "zanzhu",
+        list:{
+            alipay: {qrimg: "http://www.iherr.cn/img/alipay.jpg"},
+            weixin:{qrimg: "http://www.iherr.cn/img/wechatpay.jpg"},
+        }
+};
+</script>
+<script src="http://static.tctip.com/js/tctip.min.js"></script>
+
 </head>
 
 <body>
@@ -204,28 +229,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="runscript&#x4ECB;&#x7ECD;"><a href="#runscript&#x4ECB;&#x7ECD;" class="headerlink" title="runscript&#x4ECB;&#x7ECD;"></a>runscript&#x4ECB;&#x7ECD;</h3><p>&#x5728;&#x6211;&#x7406;&#x89E3;&#xFF0C;runscript&#x662F;&#x5728;app&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x901A;&#x77E5;xcode&#x989D;&#x5916;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;script&#x7F16;&#x5199;&#x811A;&#x672C;&#x6765;&#x5B9E;&#x73B0;&#x3002;</p>
-<h3 id="runscript&#x6848;&#x4F8B;1-appledoc"><a href="#runscript&#x6848;&#x4F8B;1-appledoc" class="headerlink" title="runscript&#x6848;&#x4F8B;1-appledoc"></a>runscript&#x6848;&#x4F8B;1-appledoc</h3><p>appledoc&#x662F;&#x6211;&#x4EEC;&#x8F83;&#x4E3A;&#x5E38;&#x7528;&#x7684;&#x6587;&#x6863;&#x751F;&#x6210;&#x5DE5;&#x5177;&#xFF0C;<a href="https://github.com/tomaz/appledoc" target="_blank" rel="external">&#x300E;github&#x5730;&#x5740;&#x4F20;&#x9001;&#x95E8;&#x300F;</a></p>
+<h3 id="runscript&#x6848;&#x4F8B;1-appledoc"><a href="#runscript&#x6848;&#x4F8B;1-appledoc" class="headerlink" title="runscript&#x6848;&#x4F8B;1-appledoc"></a>runscript&#x6848;&#x4F8B;1-appledoc</h3><p>appledoc&#x662F;&#x6211;&#x4EEC;&#x8F83;&#x4E3A;&#x5E38;&#x7528;&#x7684;&#x6587;&#x6863;&#x751F;&#x6210;&#x5DE5;&#x5177;&#xFF0C;<a href="https://github.com/tomaz/appledoc">&#x300E;github&#x5730;&#x5740;&#x4F20;&#x9001;&#x95E8;&#x300F;</a></p>
 <p>&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#x8BF7;&#x6267;&#x884C;&#xFF1A;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/tomaz/appledoc.git</span><br><span class="line">$ <span class="built_in">cd</span> appledoc</span><br><span class="line">$ sudo sh install-appledoc.sh</span><br></pre></td></tr></table></figure>
 <p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x60F3;&#x7740;&#x6BCF;&#x6B21;&#x5728;&#x7F16;&#x8BD1;ios app&#x65F6;&#xFF0C;&#x90FD;&#x80FD;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x6587;&#x6863;&#x3002;</p>
-<p>&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;target&#xFF0C;&#x9009;&#x62E9;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x7684;&#x7C7B;&#x522B;&#x3002;&#x8FD9;&#x6837;&#x4F1A;&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x591A;&#x51FA;&#x4E00;&#x4E2A;target&#x3002;</p>
-<p><img src="/2016/05/20/xcode-runsript&#x6848;&#x4F8B;/addtarget.png" alt=""></p>
-<p>&#x5BF9;&#x8BE5;target&#x7684;Build Phases&#x4E0A;&#x6DFB;&#x52A0;run script phrase&#x3002;</p>
-<p><img src="/2016/05/20/xcode-runsript&#x6848;&#x4F8B;/addrunscript.png" alt=""></p>
-<p>&#x4E3A;&#x4E86;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x6587;&#x6863;&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;appledoc&#x7684;&#x751F;&#x6210;&#x547D;&#x4EE4;&#xFF0C;&#x53EF;&#x4F9B;&#x7C98;&#x8D34;&#x3002;&#x5982;&#x679C;&#x5BF9;&#x547D;&#x4EE4;&#x4E0D;&#x719F;&#x7EC3;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;appledoc &#x2013;help&#x8FDB;&#x884C;&#x67E5;&#x770B;&#x3002;</p>
-<p><img src="/2016/05/20/xcode-runsript&#x6848;&#x4F8B;/addscript.png" alt=""></p>
-<p>script&#x811A;&#x672C;&#x5982;&#x4E0B;&#xFF0C;&#x4F9B;copy&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;outputPath&#xFF0C;&#x4E3A;&#x6587;&#x6863;&#x7684;&#x8F93;&#x51FA;&#x8DEF;&#x5F84;&#x3002;ignore&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4E0D;&#x751F;&#x6210;&#x67D0;&#x4E9B;&#x8DEF;&#x5F84;&#x4E0B;&#x7684;&#x6587;&#x6863;&#x3002;&#x6700;&#x540E;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x201D;{PROJECT_DIR}/runscript)&#x201D;&#xFF0C;&#x9700;&#x8981;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x751F;&#x6210;&#x7684;&#x9879;&#x76EE;&#x505A;&#x8C03;&#x6574;&#x3002;</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#appledoc Xcode script</span></span><br><span class="line"><span class="meta"># Start constants</span></span><br><span class="line">company=<span class="string">&quot;herr&quot;</span>;</span><br><span class="line">companyID=<span class="string">&quot;com.herr&quot;</span>;</span><br><span class="line">companyURL=<span class="string">&quot;http://iherr.cn&quot;</span>;</span><br><span class="line">target=<span class="string">&quot;iphoneos&quot;</span>;</span><br><span class="line"><span class="meta">#target=<span class="meta-string">&quot;macosx&quot;</span>;</span></span><br><span class="line">outputPath=<span class="string">&quot;${PROJECT_DIR}&quot;</span>/Doc;</span><br><span class="line"><span class="meta"># End constants</span></span><br><span class="line"></span><br><span class="line">/usr/local/bin/appledoc \</span><br><span class="line">--project-name <span class="string">&quot;${PROJECT_NAME}&quot;</span> \</span><br><span class="line">--project-company <span class="string">&quot;${company}&quot;</span> \</span><br><span class="line">--company-<span class="keyword">id</span> <span class="string">&quot;${companyID}&quot;</span> \</span><br><span class="line">--docset-atom-filename <span class="string">&quot;${company}.atom&quot;</span> \</span><br><span class="line">--docset-feed-url <span class="string">&quot;${companyURL}/${company}/%DOCSETATOMFILENAME&quot;</span> \</span><br><span class="line">--docset-package-url <span class="string">&quot;${companyURL}/${company}/%DOCSETPACKAGEFILENAME&quot;</span> \</span><br><span class="line">--docset-fallback-url <span class="string">&quot;${companyURL}/${company}&quot;</span> \</span><br><span class="line">--output <span class="string">&quot;${outputPath}&quot;</span> \</span><br><span class="line">--ignore <span class="string">&quot;${PROJECT_DIR}&quot;</span>/runscript/Libs \</span><br><span class="line">--publish-docset \</span><br><span class="line">--docset-platform-family <span class="string">&quot;${target}&quot;</span> \</span><br><span class="line">--logformat xcode \</span><br><span class="line">--keep-intermediate-files \</span><br><span class="line">--no-repeat-first-par \</span><br><span class="line">--no-warn-invalid-crossref \</span><br><span class="line">--exit-threshold <span class="number">2</span> \</span><br><span class="line"><span class="string">&quot;${PROJECT_DIR}&quot;</span>/runscript</span><br></pre></td></tr></table></figure>
-<p>&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x7F16;&#x8BD1;&#x8FD0;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;xcode&#x4E0A;&#x770B;&#x5230;&#x7F16;&#x8BD1;&#x7ED3;&#x679C;&#x3002;&#x91CC;&#x9762;&#x6709;run script&#x7684;&#x6267;&#x884C;&#x60C5;&#x51B5;&#xFF0C;&#x5F53;&#x7136;&#x53EF;&#x4EE5;&#x5728;script&#x4E2D;&#x4F7F;&#x7528;printf&#x6765;&#x6253;&#x5370;&#xFF0C;&#x4E5F;&#x540C;&#x6837;&#x4F1A;&#x5728;&#x8FD9;&#x91CC;&#x663E;&#x793A;&#x3002;</p>
-<p><img src="/2016/05/20/xcode-runsript&#x6848;&#x4F8B;/buildlog.png" alt=""></p>
-<p>&#x8FD9;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x9879;&#x76EE;&#x76EE;&#x5F55;&#x7684;doc&#x6587;&#x4EF6;&#x5939;&#x91CC;&#x627E;&#x5230;&#x751F;&#x6210;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x6216;&#x8005;&#x5230;xcode&#x7684;window&#x7684;Documentations and API Reference&#x91CC;&#x67E5;&#x770B;&#x3002;</p>
-<p>&#x53E6;&#x5916;&#xFF0C;&#x6587;&#x6863;&#x7684;&#x751F;&#x6210;&#x9700;&#x8981;&#x5E73;&#x65F6;&#x5BF9;&#x9879;&#x76EE;&#x7684;&#x6CE8;&#x91CA;&#x8FDB;&#x884C;&#x89C4;&#x8303;&#x4E66;&#x5199;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x3002;</p>
-<h3 id="runscript&#x6848;&#x4F8B;2-&#x5BF9;icon&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x53F7;&#x7B49;&#x4FE1;&#x606F;"><a href="#runscript&#x6848;&#x4F8B;2-&#x5BF9;icon&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x53F7;&#x7B49;&#x4FE1;&#x606F;" class="headerlink" title="runscript&#x6848;&#x4F8B;2-&#x5BF9;icon&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x53F7;&#x7B49;&#x4FE1;&#x606F;"></a>runscript&#x6848;&#x4F8B;2-&#x5BF9;icon&#x6DFB;&#x52A0;&#x7248;&#x672C;&#x53F7;&#x7B49;&#x4FE1;&#x606F;</h3><p>&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#xFF0C;&#x505A;&#x6D4B;&#x8BD5;&#x65F6;&#x90FD;&#x8981;&#x533A;&#x5206;&#x7248;&#x672C;&#x53F7;&#x3001;git&#x7684;&#x63D0;&#x4EA4;&#x5E8F;&#x5217;&#x3001;&#x670D;&#x52A1;&#x5668;&#x6D4B;&#x8BD5;&#x8FD8;&#x662F;&#x6B63;&#x5F0F;&#x73AF;&#x5883;&#x7B49;&#x95EE;&#x9898;&#xFF0C;&#x60F3;&#x7740;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x81EA;&#x52A8;&#x5C06;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x8D34;&#x5728;app&#x7684;icon&#x4E0A;&#x5C31;&#x597D;&#x4E86;&#x3002;&#x76F4;&#x5230;&#x5728;github&#x4E0A;&#x78B0;&#x5230;&#x4E86;&#x8FD9;&#x4E2A;&#x9879;&#x76EE;<a href="https://github.com/krzysztofzablocki/IconOverlaying" target="_blank" rel="external">&#x300E;github&#x5730;&#x5740;&#x4F20;&#x9001;&#x95E8;&#x300F;</a>&#x3002;</p>
-<p>&#x4F5C;&#x8005;&#x7F16;&#x5199;&#x4E86;&#x4E2A;&#x811A;&#x672C;&#xFF0C;&#x83B7;&#x53D6;&#x9879;&#x76EE;&#x7684;&#x7248;&#x672C;&#x53F7;&#x3001;git&#x7684;&#x63D0;&#x4EA4;&#x5E8F;&#x5217;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;<strong>imagemagick</strong>&#x548C;<strong>ghostscript</strong>&#x5C06;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x7ED8;&#x5236;&#x5728;&#x4E86;app&#x7684;icon&#x91CC;&#x3002;<br>&#x5982;&#x679C;&#x672C;&#x5730;&#x673A;&#x5668;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;brew&#x547D;&#x4EE4;&#x4E00;&#x952E;&#x5B89;&#x88C5;&#x3002;</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install imagemagick</span><br><span class="line">$ brew install ghostscript</span><br></pre></td></tr></table></figure>
-<p>&#x5F53;&#x4F7F;&#x7528;debug&#x6A21;&#x5F0F;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#x65F6;&#xFF0C;&#x5219;&#x4F1A;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x7684;logo&#x3002;&#x5F53;&#x7136;&#xFF0C;&#x5982;&#x679C;&#x662F;release&#x6A21;&#x5F0F;&#x6253;&#x5305;&#xFF0C;&#x5219;&#x4E0D;&#x4F1A;&#x51FA;&#x73B0;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;runscrip&#x811A;&#x672C;<a href="xcode-runsript&#x6848;&#x4F8B;/iconVersioning.sh">&#x300E;iconVersioning.sh&#x300F;</a><br><img src="/2016/05/20/xcode-runsript&#x6848;&#x4F8B;/screenshot.png" alt=""></p>
-<p>&#x5728;&#x6B64;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x53EF;&#x4EE5;&#x5C06;&#x5E94;&#x7528;&#x670D;&#x52A1;&#x5668;&#x6D4B;&#x8BD5;&#x8FD8;&#x662F;&#x6B63;&#x5F0F;&#x73AF;&#x5883;&#x7B49;&#x5176;&#x4ED6;&#x53C2;&#x6570;&#x90FD;&#x52A0;&#x5230;icon&#x4E0A;&#xFF0C;&#x65B9;&#x4FBF;&#x5BF9;&#x4EA7;&#x54C1;&#x8FDB;&#x884C;&#x6807;&#x793A;&#x3002;</p>
-
       
     </div>
     
@@ -238,6 +245,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/05/20/xcode-runsript案例/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -290,11 +301,6 @@
 <li>&#x521B;&#x610F;&#x7B80;&#x5386;&#x3001;&#x535A;&#x5BA2;&#xFF1A;&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x88C5;&#x903C;&#x624B;&#x6BB5;&#x5C31;&#x662F;&#x7528;markdown&#x6765;&#x7F16;&#x5199;&#x535A;&#x5BA2;&#x548C;&#x7B80;&#x5386;&#xFF0C;&#x90A3;&#x7EDD;&#x5BF9;&#x662F;&#x521B;&#x610F;&#x6765;&#x7740;&#x7684;&#x54E6;&#xFF0C;&#x9002;&#x5408;&#x7A0B;&#x5E8F;&#x5458;&#x3002;</li>
 </ul>
 </blockquote>
-<h3 id="Markdown&#x8BED;&#x6CD5;"><a href="#Markdown&#x8BED;&#x6CD5;" class="headerlink" title="Markdown&#x8BED;&#x6CD5;"></a>Markdown&#x8BED;&#x6CD5;</h3><p>&#x8BED;&#x6CD5;&#x8FD9;&#x73A9;&#x610F;&#xFF0C;&#x6211;&#x4E5F;&#x662F;&#x73B0;&#x5B66;&#xFF0C;&#x627E;&#x5230;&#x4E00;&#x7BC7;Markdown&#x7684;&#x6587;&#x7AE0;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">&#x300E;Markdown &#x8BED;&#x6CD5;&#x8BF4;&#x660E;&#x300F;</a></p>
-<h3 id="Markdown&#x5DE5;&#x5177;"><a href="#Markdown&#x5DE5;&#x5177;" class="headerlink" title="Markdown&#x5DE5;&#x5177;"></a>Markdown&#x5DE5;&#x5177;</h3><p>&#x63D0;&#x5230;Markdown&#x5DE5;&#x5177;&#xFF0C;&#x4F5C;&#x4E3A;&#x4E00;&#x540D;&#x7B80;&#x4E66;&#x63A7;&#xFF0C;&#x5E73;&#x5E38;&#x5199;&#x6587;&#x7AE0;&#x65F6;&#xFF0C;&#x4FBF;&#x4F7F;&#x7528;&#x7684;&#x7B80;&#x4E66;&#x5728;&#x7EBF;&#x7684;Markdown&#x7F16;&#x8F91;&#x5668;&#x4E86;&#x3002;&#x60F3;&#x5230;&#x8FD9;&#x73A9;&#x610F;&#x8FD8;&#x8981;&#x8054;&#x7F51;&#x5C31;&#x89C9;&#x5F97;&#x5199;&#x535A;&#x5BA2;&#x7684;&#x573A;&#x666F;&#x4E0D;&#x592A;&#x9002;&#x7528;&#x3002;&#x63A8;&#x8350;<a href="http://macdown.uranusjr.com" target="_blank" rel="external">&#x300E;MacDown&#x300F;</a>&#xFF0C;&#x8BD5;&#x4E86;&#x4E0B;&#x5BF9;&#x7167;&#x9884;&#x89C8;&#x3001;&#x63D2;&#x5165;&#x94FE;&#x63A5;&#x3001;&#x56FE;&#x7247;&#xFF0C;&#x90FD;&#x8FD8;&#x7B97;&#x65B9;&#x4FBF;&#x3002;&#x6211;&#x5728;&#x5199;&#x8FD9;&#x7BC7;&#x535A;&#x6587;&#x65F6;&#x7684;&#x4F7F;&#x7528;&#x622A;&#x56FE;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;</p>
-<p><img src="/2016/04/19/&#x521D;&#x8BC6;Markdown/macdown.png" alt=""></p>
-<p>&#x597D;&#x5566;&#xFF0C;&#x8FD9;&#x73A9;&#x610F;&#x591F;&#x7528;&#x5C31;&#x597D;&#x3002;&#x4E0D;&#x9700;&#x8981;&#x592A;&#x7CBE;&#x901A;&#x3002;</p>
-
       
     </div>
     
@@ -307,6 +313,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/19/初识Markdown/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -350,47 +360,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&#x7EC8;&#x4E8E;&#x7528;<a href="https://hexo.io/" target="_blank" rel="external">&#x300E;Hexo&#x300F;</a>&#x642D;&#x5EFA;&#x5B8C;&#x535A;&#x5BA2;&#xFF0C;&#x611F;&#x8C22;Litten&#x63D0;&#x4F9B;&#x7684;Yilia&#x4E3B;&#x9898;&#xFF0C;&#x771F;&#x662F;&#x7231;&#x4E0D;&#x91CA;&#x624B;&#x3002;&#x4EE5;&#x540E;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x6211;&#x7684;&#x5C0F;&#x7A9D;&#x5566;&#x3002;</p>
+        <p>&#x7EC8;&#x4E8E;&#x7528;<a href="https://hexo.io/">&#x300E;Hexo&#x300F;</a>&#x642D;&#x5EFA;&#x5B8C;&#x535A;&#x5BA2;&#xFF0C;&#x611F;&#x8C22;Litten&#x63D0;&#x4F9B;&#x7684;Yilia&#x4E3B;&#x9898;&#xFF0C;&#x771F;&#x662F;&#x7231;&#x4E0D;&#x91CA;&#x624B;&#x3002;&#x4EE5;&#x540E;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x6211;&#x7684;&#x5C0F;&#x7A9D;&#x5566;&#x3002;</p>
 <p>&#x5148;&#x628A;&#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#x68B3;&#x7406;&#x4E00;&#x904D;&#xFF0C;&#x7B97;&#x662F;&#x4E2A;hello world&#x5427;&#x3002;</p>
 <h3 id="&#x5B89;&#x88C5;Hexo"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</h3><p>&#x5B89;&#x88C5;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#xFF0C;blog&#x4E3A;&#x6587;&#x4EF6;&#x5939;&#x76EE;&#x5F55;&#xFF0C;&#x53EF;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x3002;<br>&#x5982;&#x679C;&#x63D0;&#x793A;npm&#x6CA1;&#x88C5;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;npm&#x3002;</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init blog</span><br><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="&#x6362;&#x4E2A;&#x4E3B;&#x9898;"><a href="#&#x6362;&#x4E2A;&#x4E3B;&#x9898;" class="headerlink" title="&#x6362;&#x4E2A;&#x4E3B;&#x9898;"></a>&#x6362;&#x4E2A;&#x4E3B;&#x9898;</h3><p>&#x8BF4;&#x5B9E;&#x8BDD;&#xFF0C;hexo&#x9ED8;&#x8BA4;&#x7ED9;&#x7684;&#x4E3B;&#x9898;&#xFF0C;&#x53EA;&#x80FD;&#x662F;&#x51D1;&#x6D3B;&#x3002;&#x5982;&#x679C;&#x8981;&#x903C;&#x683C;&#x9AD8;&#x4E00;&#x70B9;&#xFF0C;&#x90A3;&#x5C31;&#x5F97;&#x81EA;&#x5DF1;&#x52A8;&#x624B;&#x4E86;&#x3002;hexo&#x5B98;&#x7F51;&#x6709;&#x63A8;&#x8350;&#x4E00;&#x4E9B;<a href="https://hexo.io/themes/" target="_blank" rel="external">&#x300E;Theme&#x300F;</a>&#xFF0C;&#x53EF;&#x4EE5;&#x94FE;&#x63A5;&#x5230;github&#x4E0A;&#x4E0B;&#x8F7D;&#xFF0C;&#x73B0;&#x5728;&#x4F7F;&#x7528;&#x7684;<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">&#x300E;Yilia&#x4E3B;&#x9898;&#x300F;</a>&#x7684;&#x8D44;&#x6E90;&#x53EF;&#x4EE5;&#x70B9;&#x51FB;&#x67E5;&#x770B;&#x3002;&#x628A;&#x4ED6;clone&#x5230;&#x672C;&#x5730;&#xFF0C;&#x4FDD;&#x5B58;&#x5728;&#x76EE;&#x5F55;/themes&#x4E0B;&#x5373;&#x53EF;&#x3002;&#x4E0B;&#x56FE;&#x662F;&#x6211;&#x81EA;&#x5DF1;&#x76EE;&#x524D;&#x4FDD;&#x5B58;&#x7684;&#x4E00;&#x4E9B;&#x4E3B;&#x9898;&#x3002;</p>
-<p><img src="/2016/04/15/&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;/yilia.png" alt=""></p>
-<p>&#x90A3;&#x600E;&#x4E48;&#x5B9E;&#x65BD;&#x4E3B;&#x9898;&#x7684;&#x5207;&#x6362;&#x5462;&#xFF1F;&#x53EF;&#x6253;&#x5F00;&#x6839;&#x76EE;&#x5F55;&#x7684;_config.yml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x627E;&#x5230;&#x201C;theme: &#x201D;&#x8FD9;&#x4E00;&#x884C;&#xFF0C;&#x4FEE;&#x6539;&#x6210;/themes&#x7684;&#x5BF9;&#x5E94;&#x4E3B;&#x9898;&#x540D;&#x79F0;&#x5373;&#x53EF;&#x3002;&#x4F8B;&#x5982;&#x201C;theme: yilia&#x201D;&#x3002;</p>
-<h3 id="&#x6DFB;&#x52A0;&#x6587;&#x7AE0;"><a href="#&#x6DFB;&#x52A0;&#x6587;&#x7AE0;" class="headerlink" title="&#x6DFB;&#x52A0;&#x6587;&#x7AE0;"></a>&#x6DFB;&#x52A0;&#x6587;&#x7AE0;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">&#x300E;&#x6DFB;&#x52A0;&#x6587;&#x7AE0;&#x300F;</a></p>
-<h3 id="&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;"><a href="#&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;" class="headerlink" title="&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;"></a>&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<p>&#x547D;&#x4EE4;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F1A;&#x66F4;&#x65B0;public&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x90FD;&#x662F;&#x4E00;&#x4E9B;&#x9759;&#x6001;&#x7684;html&#x3001;css&#x3001;js&#x3001;img&#x4E4B;&#x7C7B;&#x7684;&#x3002;</p>
-<p><img src="/2016/04/15/&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;/static.png" alt=""></p>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">&#x300E;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;&#x300F;</a></p>
-<h3 id="&#x542F;&#x52A8;&#x672C;&#x5730;&#x670D;&#x52A1;"><a href="#&#x542F;&#x52A8;&#x672C;&#x5730;&#x670D;&#x52A1;" class="headerlink" title="&#x542F;&#x52A8;&#x672C;&#x5730;&#x670D;&#x52A1;"></a>&#x542F;&#x52A8;&#x672C;&#x5730;&#x670D;&#x52A1;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>&#x542F;&#x52A8;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F1A;&#x63D0;&#x793A;&#x60A8;&#x8BBF;&#x95EE;&#x7684;&#x5730;&#x5740;&#x4E3A;<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x6D4F;&#x89C8;&#x5668;&#x4E0A;&#x8BBF;&#x95EE;&#x5566;&#x3002;</p>
-<p><img src="/2016/04/15/&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;/server.png" alt=""></p>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">&#x300E;&#x542F;&#x52A8;&#x672C;&#x5730;&#x670D;&#x52A1;&#x300F;</a></p>
-<h3 id="&#x9759;&#x6001;&#x9875;&#x9762;&#x6258;&#x7BA1;&#x5230;GitHub-Pages"><a href="#&#x9759;&#x6001;&#x9875;&#x9762;&#x6258;&#x7BA1;&#x5230;GitHub-Pages" class="headerlink" title="&#x9759;&#x6001;&#x9875;&#x9762;&#x6258;&#x7BA1;&#x5230;GitHub Pages"></a>&#x9759;&#x6001;&#x9875;&#x9762;&#x6258;&#x7BA1;&#x5230;GitHub Pages</h3><p>&#x4EE5;&#x4E0A;&#xFF0C;&#x60A8;&#x53EA;&#x80FD;&#x5728;&#x672C;&#x5730;&#x6D4F;&#x89C8;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;&#xFF0C;&#x90A3;&#x5982;&#x679C;&#x9700;&#x8981;&#x653E;&#x5230;&#x7F51;&#x4E0A;&#x4F9B;&#x4ED6;&#x4EBA;&#x6D4F;&#x89C8;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#x8FD9;&#x91CC;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x5F88;&#x591A;&#xFF0C;&#x6BD4;&#x5982;&#x81EA;&#x5DF1;&#x5F04;&#x53F0;VPS&#x4E91;&#x670D;&#x52A1;&#x5668;&#x7B49;&#xFF0C;&#x4F46;&#x8FD9;&#x4E0D;&#x662F;&#x6709;&#x6210;&#x672C;&#x561B;&#x3002;&#x50CF;&#x963F;&#x91CC;&#x4E91;&#x6700;&#x4F4E;&#x914D;&#x7684;&#x57FA;&#x672C;&#x4E5F;&#x662F;&#x9700;&#x8981;100RMB/&#x6708;&#xFF0C;&#x653E;&#x535A;&#x5BA2;&#x4E0D;&#x5212;&#x7B97;&#x3002;</p>
-<p>&#x5176;&#x5B9E;&#x5927;&#x5BB6;&#x4E00;&#x822C;&#x90FD;&#x63A8;&#x8350;&#x4F7F;&#x7528;<a href="https://pages.github.com" target="_blank" rel="external">&#x300E;GitHub Pages&#x300F;</a>&#x6765;&#x8FDB;&#x884C;&#x6258;&#x7BA1;&#xFF0C;&#x65E0;&#x975E;&#x662F;&#x628A;&#x201C;&#x751F;&#x6210;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x201D;&#x6B65;&#x9AA4;&#x7684;&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5230;github&#x4E0A;&#x3002;&#x5177;&#x4F53;&#x7684;&#x6D41;&#x7A0B;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x5B98;&#x7F51;&#x3002;&#x552F;&#x4E00;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x6258;&#x7BA1;&#x7684;&#x9879;&#x76EE;&#x540D;&#x79F0;&#xFF0C;&#x5FC5;&#x987B;&#x4EE5;&#x4F60;&#x7684;github&#x7684;&#x7528;&#x6237;&#x540D;&#x8D77;&#xFF0C;&#x4F8B;&#x5982;&#x6211;&#x7684;github&#x7528;&#x6237;&#x540D;&#x662F;nisoch&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x7B80;&#x5386;&#x7684;&#x9879;&#x76EE;&#x540D;&#x5C31;&#x662F;nisoch.github.io&#xFF0C;&#x540E;&#x7EED;&#x4E0A;&#x4F20;&#x540E;&#x8BBF;&#x95EE;&#x7684;&#x5730;&#x5740;&#x4E5F;&#x662F;<a href="https://nisoch.github.io" target="_blank" rel="external">https://nisoch.github.io/</a>&#x3002;</p>
-<p>&#x597D;&#x5566;&#xFF0C;&#x53EF;&#x4EE5;&#x628A;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x53D1;&#x7ED9;&#x5C0F;&#x4F19;&#x4F34;&#xFF0C;&#x6216;&#x8005;&#x81EA;&#x5DF1;&#x8BBF;&#x95EE;&#x4E86;&#x3002;</p>
-<h3 id="&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"><a href="#&#x57DF;&#x540D;&#x8DF3;&#x8F6C;" class="headerlink" title="&#x57DF;&#x540D;&#x8DF3;&#x8F6C;"></a>&#x57DF;&#x540D;&#x8DF3;&#x8F6C;</h3><p>&#x770B;&#x5230;&#x5176;&#x4ED6;&#x5927;&#x795E;&#x7684;&#x535A;&#x5BA2;&#xFF0C;&#x90FD;&#x662F;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x57DF;&#x540D;&#xFF0C;&#x53EB;&#x4EBA;&#x597D;&#x751F;&#x7FA1;&#x6155;&#x3002;&#x90A3;&#x4E48;&#xFF0C;&#x4ECE;&#x54EA;&#x91CC;&#x624D;&#x80FD;&#x5F04;&#x5230;&#x5462;&#xFF1F;<br>&#x8FD9;&#x91CC;&#x4E0D;&#x662F;&#x505A;&#x5E7F;&#x544A;&#xFF0C;&#x800C;&#x662F;&#x6211;&#x81EA;&#x5DF1;&#x7684;&#x57DF;&#x540D;&#x662F;&#x4ECE;<a href="https://wanwang.aliyun.com" target="_blank" rel="external">&#x300E;&#x963F;&#x91CC;&#x4E91;&#x7684;&#x4E07;&#x7F51;&#x300F;</a>&#x4E70;&#x7684;&#xFF0C;&#x8D2D;&#x4E70;&#x57DF;&#x540D;&#x7684;&#x9014;&#x5F84;&#x4E5F;&#x5F88;&#x591A;&#x5176;&#x4ED6;&#x9014;&#x5F84;&#xFF0C;&#x5176;&#x5B9E;&#x6709;&#x4E00;&#x4E9B;&#x5F88;&#x597D;&#x7684;&#x56FD;&#x9645;&#x57DF;&#x540D;&#xFF0C;&#x4F8B;&#x5982;<a href="Godaddy.com">&#x300E;Godaddy&#x300F;</a>&#x3002;</p>
-<p>&#x57DF;&#x540D;&#x4E5F;&#x4E70;&#x5230;&#x4E86;&#xFF0C;&#x5F00;&#x59CB;&#x505A;&#x8DF3;&#x8F6C;&#x6307;&#x5411;&#x4E86;&#x3002;&#x65E0;&#x975E;&#x662F;&#x628A;&#x521A;&#x4E70;&#x7684;&#x5B9D;&#x8D1D;&#x57DF;&#x540D;&#xFF0C;&#x94FE;&#x63A5;&#x5230;GitHub Pages&#x7684;&#x57DF;&#x540D;&#x4E0A;&#x3002;</p>
-<p>&#x8FD8;&#x662F;&#x4EE5;&#x4E07;&#x7F51;&#x4E3E;&#x4F8B;&#xFF0C;&#x5BF9;CNAME&#x7C7B;&#x578B;&#xFF0C;&#x5C06;www&#x548C;@&#x90FD;&#x6307;&#x5411;&#x81EA;&#x5DF1;&#x7684;GitHub Pages&#x7684;&#x57DF;&#x540D;&#x3002;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#x3002;<br><img src="/2016/04/15/&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;/parse.png" alt=""></p>
-<p>&#x53E6;&#x5916;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;GitHub Pages&#x4E0A;&#x80FD;&#x591F;&#x8BC6;&#x522B;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x4E00;&#x4E2A;CNAME&#x6587;&#x4EF6;&#xFF0C;&#x6CA1;&#x6709;&#x540E;&#x7F00;&#xFF0C;&#x91CC;&#x9762;&#x7684;&#x5185;&#x5BB9;&#x4E3A;&#x6211;&#x4EEC;&#x8D2D;&#x4E70;&#x7684;&#x57DF;&#x540D;&#x5730;&#x5740;&#xFF0C;&#x4F8B;&#x5982;&#x6211;&#x7684;&#x5C31;&#x662F;iherr.cn&#x3002;</p>
-<p>&#x597D;&#x5566;&#xFF0C;&#x6253;&#x5B8C;&#x6536;&#x5DE5;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x4E2A;&#x6027;&#x57DF;&#x540D;&#x6765;&#x8BBF;&#x95EE;&#x4E86;&#xFF0C;&#x5FEB;&#x6765;&#x8BD5;&#x8BD5;&#x5427;&#x3002;</p>
-<h3 id="&#x8865;&#x5145;&#xFF1A;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x5904;&#x7406;"><a href="#&#x8865;&#x5145;&#xFF1A;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x5904;&#x7406;" class="headerlink" title="&#x8865;&#x5145;&#xFF1A;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x5904;&#x7406;"></a>&#x8865;&#x5145;&#xFF1A;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x5904;&#x7406;</h3><p>&#x521A;&#x5199;&#x4E24;&#x7BC7;&#xFF0C;&#x53D1;&#x73B0;&#x5904;&#x7406;&#x56FE;&#x7247;&#x7B49;&#x8D44;&#x6E90;&#x597D;&#x9EBB;&#x70E6;&#xFF0C;&#x6211;&#x5728;macdown&#x4E0A;&#x8FDB;&#x884C;&#x7F16;&#x8F91;&#x65F6;&#x9884;&#x89C8;&#x63D2;&#x5165;&#x56FE;&#x7247;&#xFF0C;hexo g&#x81EA;&#x52A8;&#x751F;&#x6210;&#x540E;&#xFF0C;&#x53D1;&#x73B0;&#x56FE;&#x7247;&#x6CA1;&#x6709;&#x5230;/public&#x91CC;&#x9762;&#x53BB;&#xFF0C;&#x5F53;&#x7136;&#x5728;&#x53D1;&#x5E03;&#x65F6;&#x8FD8;&#x9700;&#x8981;&#x624B;&#x52A8;&#x632A;&#x52A8;&#x56FE;&#x7247;&#xFF0C;&#x771F;&#x662F;&#x9C7C;&#x548C;&#x718A;&#x638C;&#x4E0D;&#x53EF;&#x517C;&#x5F97;&#x561B;&#xFF1F;</p>
-<p>&#x770B;&#x4E86;&#x4E0B;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x7684;<a href="https://hexo.io/docs/asset-folders.html" target="_blank" rel="external">&#x300E;asset-folders&#x300F;</a>&#xFF0C;&#x539F;&#x6765;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x65B9;&#x4FBF;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
-<ol>
-<li><p>&#x9996;&#x5148;&#x5728;_config.yml&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8BBE;&#x7F6E;&#x652F;&#x6301;post_asset_folder&#xFF0C;</p>
-<blockquote>
-<p>post_asset_folder: true&#x3002;</p>
-</blockquote>
-</li>
-<li><p>&#x9488;&#x5BF9;&#x4E4B;&#x524D;&#x6CA1;&#x6709;&#x914D;&#x7F6E;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x9700;&#x8981;&#x5728;source/_posts&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x624B;&#x52A8;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x540C;&#x540D;&#x6807;&#x9898;&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4F8B;&#x5982;md&#x6587;&#x4EF6;&#x4E3A;&#x201C;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;.md&#x201D;&#xFF0C;&#x90A3;&#x5C31;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x201C;&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x5BA2;&#x201D;&#x7684;&#x6587;&#x4EF6;&#x5939;&#x3002;</p>
-</li>
-<li><p>&#x9488;&#x5BF9;&#x540E;&#x7EED;&#x7684;&#x535A;&#x6587;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;hexo new &#x201C;xxx&#x201D;&#xFF0C;&#x5373;&#x53EF;&#x540C;&#x65F6;&#x751F;&#x6210;md&#x6587;&#x4EF6;&#x548C;&#x540C;&#x540D;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5C06;&#x8FD9;&#x7BC7;&#x535A;&#x6587;&#x6240;&#x6709;&#x7684;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x56FE;&#x7247;&#x653E;&#x5165;&#xFF0C;&#x5F15;&#x7528;&#x56FE;&#x7247;&#x65F6;&#xFF0C;&#x94FE;&#x63A5;&#x7684;&#x8DEF;&#x5F84;&#x4E3A;&#x201C;(&#x6587;&#x4EF6;&#x5939;&#x540D;/<em>*</em>.png)&#x201D;&#xFF0C;&#x6EE1;&#x8DB3;&#x672C;&#x5730;&#x5199;&#x4F5C;&#x65F6;&#x9884;&#x89C8;&#x7684;&#x9700;&#x8981;&#x3002;</p>
-</li>
-<li><p>&#x5F53;&#x53D1;&#x5E03;&#x65F6;&#xFF0C;hexo g&#x547D;&#x4EE4;&#x751F;&#x6210;&#x540E;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x4F1A;&#x81EA;&#x52A8;&#x5C06;&#x56FE;&#x7247;&#x653E;&#x5230;&#x53D1;&#x5E03;&#x7684;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x4E14;&#x56FE;&#x7247;&#x8DEF;&#x5F84;&#x6709;&#x4E86;&#x5B8C;&#x7F8E;&#x7684;&#x751F;&#x6210;&#x3002;</p>
-</li>
-</ol>
-
       
     </div>
     
@@ -403,6 +376,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/15/第一篇博客/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
