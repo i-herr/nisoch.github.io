@@ -10,25 +10,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
 证书制作流程图
-对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
-关于Provisioning">
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios开发证书技巧">
 <meta property="og:url" content="http://iherr.cn/2016/05/30/ios开发证书技巧/index.html">
 <meta property="og:site_name" content="iherr的博客">
 <meta property="og:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
 证书制作流程图
-对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
-关于Provisioning">
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』">
 <meta property="og:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
 <meta property="og:image" content="http://iherr.cn/ios开发证书技巧/certificate.png">
-<meta property="og:updated_time" content="2016-06-07T09:46:18.000Z">
+<meta property="og:updated_time" content="2017-01-19T08:27:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios开发证书技巧">
 <meta name="twitter:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
 证书制作流程图
-对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
-关于Provisioning">
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』">
 <meta name="twitter:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
@@ -58,21 +55,19 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="null" class="js-avatar">
+			<img src="/img/avatar.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">iherr</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">iherr的小窝</p>
+		<p class="header-subtitle">千帆之中，总有一叶伴偶漂流；三千弱水，岂无一瓢润俺心田？</p>
 		
 
 		<nav class="header-menu">
 			<ul>
 			
 				<li><a href="/">主页</a></li>
-	        
-				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -110,17 +105,15 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="null" class="js-avatar">
+				<img src="/img/avatar.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">iherr</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>iherr的小窝<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>千帆之中，总有一叶伴偶漂流；三千弱水，岂无一瓢润俺心田？<i class="icon icon-quo-right"></i></p>
 			
 			
-			
-				
 			
 				
 			
@@ -144,9 +137,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
-		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -184,12 +175,13 @@
         <p>开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。</p>
 <h3 id="证书制作流程图"><a href="#证书制作流程图" class="headerlink" title="证书制作流程图"></a>证书制作流程图</h3><p><img src="ios开发证书技巧/flow.png" alt=""></p>
 <p>对于概念不懂的同学，可以到这脑补下<a href="http://blog.csdn.net/phunxm/article/details/42685597" target="_blank" rel="external">『iOS Provisioning Profile(Certificate)与Code Signing详解』</a></p>
+<a id="more"></a>
 <h3 id="关于Provisioning-Profile供应配置管理"><a href="#关于Provisioning-Profile供应配置管理" class="headerlink" title="关于Provisioning Profile供应配置管理"></a>关于Provisioning Profile供应配置管理</h3><p>我们在项目配置时，虽然经常将Code Signing的Provisioning Profile配置成”Automatic”，但还是需要去developer.apple.com上下载所有的mobileprovision文件。如果这些文件经常变化，可以这样：</p>
 <ol>
-<li><p>首先cd到这些mobileprovision文件的目录”~/Library/MobileDevice/Provisioning Profiles”，然后删除所有的文件。<br>可使用命令</p>
-<pre><code class="bash">$ rm *.mobileprovision
-</code></pre>
-</li>
+<li>首先cd到这些mobileprovision文件的目录”~/Library/MobileDevice/Provisioning Profiles”，然后删除所有的文件。<br>可使用命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rm *.mobileprovision</div></pre></td></tr></table></figure>
+<ol>
 <li><p>这样再看Xcode的时候，就找不到任何provisioning profile了。这个时候不需要一个一个的添加。而是访问XCode的Preferences&gt; Accounts，在Apple IDs里面找到你的帐号，右下角有个View Details，这时，你就可以download下所有网站上配置的文件了。一个按钮搞定。</p>
 <p> <img src="ios开发证书技巧/certificate.png" alt=""></p>
 </li>
@@ -298,18 +290,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/06/19/代码版本控制/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          代码版本控制
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/05/20/xcode-runsript案例/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">xcode runsript案例</div>
+    <a href="/2016/05/30/nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx</div>
       <i class="icon-circle-right"></i>
     </a>
   
