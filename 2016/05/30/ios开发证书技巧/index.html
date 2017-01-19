@@ -18,15 +18,15 @@
 <meta property="og:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
 证书制作流程图
 对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』">
-<meta property="og:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
-<meta property="og:image" content="http://iherr.cn/ios开发证书技巧/certificate.png">
-<meta property="og:updated_time" content="2017-01-19T08:27:42.000Z">
+<meta property="og:image" content="http://iherr.cn/2016/05/30/ios开发证书技巧/flow.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/30/ios开发证书技巧/certificate.png">
+<meta property="og:updated_time" content="2017-01-19T09:30:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios开发证书技巧">
 <meta name="twitter:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
 证书制作流程图
 对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』">
-<meta name="twitter:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
+<meta name="twitter:image" content="http://iherr.cn/2016/05/30/ios开发证书技巧/flow.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -179,7 +179,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。</p>
-<h3 id="证书制作流程图"><a href="#证书制作流程图" class="headerlink" title="证书制作流程图"></a>证书制作流程图</h3><p><img src="ios开发证书技巧/flow.png" alt=""></p>
+<h3 id="证书制作流程图"><a href="#证书制作流程图" class="headerlink" title="证书制作流程图"></a>证书制作流程图</h3><p><img src="/2016/05/30/ios开发证书技巧/flow.png" alt=""></p>
 <p>对于概念不懂的同学，可以到这脑补下<a href="http://blog.csdn.net/phunxm/article/details/42685597" target="_blank" rel="external">『iOS Provisioning Profile(Certificate)与Code Signing详解』</a></p>
 <a id="more"></a>
 <h3 id="关于Provisioning-Profile供应配置管理"><a href="#关于Provisioning-Profile供应配置管理" class="headerlink" title="关于Provisioning Profile供应配置管理"></a>关于Provisioning Profile供应配置管理</h3><p>我们在项目配置时，虽然经常将Code Signing的Provisioning Profile配置成”Automatic”，但还是需要去developer.apple.com上下载所有的mobileprovision文件。如果这些文件经常变化，可以这样：</p>
@@ -189,7 +189,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ rm *.mobileprovision</div></pre></td></tr></table></figure>
 <ol>
 <li><p>这样再看Xcode的时候，就找不到任何provisioning profile了。这个时候不需要一个一个的添加。而是访问XCode的Preferences&gt; Accounts，在Apple IDs里面找到你的帐号，右下角有个View Details，这时，你就可以download下所有网站上配置的文件了。一个按钮搞定。</p>
-<p> <img src="ios开发证书技巧/certificate.png" alt=""></p>
+<p> <img src="/2016/05/30/ios开发证书技巧/certificate.png" alt=""></p>
 </li>
 </ol>
 
@@ -297,8 +297,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2016/05/30/nginx/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nginx</div>
+    <a href="/2016/05/20/xcode-runsript案例/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">xcode runsript案例</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -404,23 +404,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">SVN Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CocoaPods、iOS</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
             
             <div class="clearfix"></div>

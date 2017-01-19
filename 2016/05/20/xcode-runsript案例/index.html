@@ -20,19 +20,19 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
 runscript案例1-appledocappledoc是我们较为常用的文档生成工具，『github地址传送门』
 安装方法请执行：
 123$ git clone git://github.com/tomaz/appledoc.git$ cd appledoc$ s">
-<meta property="og:image" content="http://iherr.cn/xcode-runsript案例/addtarget.png">
-<meta property="og:image" content="http://iherr.cn/xcode-runsript案例/addrunscript.png">
-<meta property="og:image" content="http://iherr.cn/xcode-runsript案例/addscript.png">
-<meta property="og:image" content="http://iherr.cn/xcode-runsript案例/buildlog.png">
-<meta property="og:image" content="http://iherr.cn/xcode-runsript案例/screenshot.png">
-<meta property="og:updated_time" content="2016-05-25T05:51:11.000Z">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/addtarget.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/addrunscript.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/addscript.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/buildlog.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/screenshot.png">
+<meta property="og:updated_time" content="2017-01-19T09:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xcode runsript案例">
 <meta name="twitter:description" content="runscript介绍在我理解，runscript是在app编译时，通知xcode额外做的事情，可以通过script编写脚本来实现。
 runscript案例1-appledocappledoc是我们较为常用的文档生成工具，『github地址传送门』
 安装方法请执行：
 123$ git clone git://github.com/tomaz/appledoc.git$ cd appledoc$ s">
-<meta name="twitter:image" content="http://iherr.cn/xcode-runsript案例/addtarget.png">
+<meta name="twitter:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/addtarget.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -191,21 +191,21 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
 <p>安装完成后，我们想着每次在编译ios app时，都能自动生成文档。</p>
 <a id="more"></a>
 <p>在项目中新建一个target，选择如下图所示的类别。这样会在项目中多出一个target。</p>
-<p><img src="xcode-runsript案例/addtarget.png" alt=""></p>
+<p><img src="/2016/05/20/xcode-runsript案例/addtarget.png" alt=""></p>
 <p>对该target的Build Phases上添加run script phrase。</p>
-<p><img src="xcode-runsript案例/addrunscript.png" alt=""></p>
+<p><img src="/2016/05/20/xcode-runsript案例/addrunscript.png" alt=""></p>
 <p>为了自动生成文档，需要使用appledoc的生成命令，可供粘贴。如果对命令不熟练，也可以使用appledoc –help进行查看。</p>
-<p><img src="xcode-runsript案例/addscript.png" alt=""></p>
+<p><img src="/2016/05/20/xcode-runsript案例/addscript.png" alt=""></p>
 <p>script脚本如下，供copy。需要注意的是outputPath，为文档的输出路径。ignore，可以选择不生成某些路径下的文档。最后的参数，”{PROJECT_DIR}/runscript)”，需要根据自己需要生成的项目做调整。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#appledoc Xcode script</span></div><div class="line"><span class="meta"># Start constants</span></div><div class="line">company=<span class="string">"herr"</span>;</div><div class="line">companyID=<span class="string">"com.herr"</span>;</div><div class="line">companyURL=<span class="string">"http://iherr.cn"</span>;</div><div class="line">target=<span class="string">"iphoneos"</span>;</div><div class="line"><span class="meta">#target=<span class="meta-string">"macosx"</span>;</span></div><div class="line">outputPath=<span class="string">"$&#123;PROJECT_DIR&#125;"</span>/Doc;</div><div class="line"><span class="meta"># End constants</span></div><div class="line"></div><div class="line">/usr/local/bin/appledoc \</div><div class="line">--project-name <span class="string">"$&#123;PROJECT_NAME&#125;"</span> \</div><div class="line">--project-company <span class="string">"$&#123;company&#125;"</span> \</div><div class="line">--company-<span class="keyword">id</span> <span class="string">"$&#123;companyID&#125;"</span> \</div><div class="line">--docset-atom-filename <span class="string">"$&#123;company&#125;.atom"</span> \</div><div class="line">--docset-feed-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;/%DOCSETATOMFILENAME"</span> \</div><div class="line">--docset-package-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;/%DOCSETPACKAGEFILENAME"</span> \</div><div class="line">--docset-fallback-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;"</span> \</div><div class="line">--output <span class="string">"$&#123;outputPath&#125;"</span> \</div><div class="line">--ignore <span class="string">"$&#123;PROJECT_DIR&#125;"</span>/runscript/Libs \</div><div class="line">--publish-docset \</div><div class="line">--docset-platform-family <span class="string">"$&#123;target&#125;"</span> \</div><div class="line">--logformat xcode \</div><div class="line">--keep-intermediate-files \</div><div class="line">--no-repeat-first-par \</div><div class="line">--no-warn-invalid-crossref \</div><div class="line">--exit-threshold <span class="number">2</span> \</div><div class="line"><span class="string">"$&#123;PROJECT_DIR&#125;"</span>/runscript</div></pre></td></tr></table></figure>
 <p>完成后，编译运行，可以在xcode上看到编译结果。里面有run script的执行情况，当然可以在script中使用printf来打印，也同样会在这里显示。</p>
-<p><img src="xcode-runsript案例/buildlog.png" alt=""></p>
+<p><img src="/2016/05/20/xcode-runsript案例/buildlog.png" alt=""></p>
 <p>这样，我们可以在项目目录的doc文件夹里找到生成的文档，或者到xcode的window的Documentations and API Reference里查看。</p>
 <p>另外，文档的生成需要平时对项目的注释进行规范书写，这里不再赘述。</p>
 <h3 id="runscript案例2-对icon添加版本号等信息"><a href="#runscript案例2-对icon添加版本号等信息" class="headerlink" title="runscript案例2-对icon添加版本号等信息"></a>runscript案例2-对icon添加版本号等信息</h3><p>一直以来，做测试时都要区分版本号、git的提交序列、服务器测试还是正式环境等问题，想着在编译时，自动将这些信息贴在app的icon上就好了。直到在github上碰到了这个项目<a href="https://github.com/krzysztofzablocki/IconOverlaying" target="_blank" rel="external">『github地址传送门』</a>。</p>
 <p>作者编写了个脚本，获取项目的版本号、git的提交序列等信息，然后使用<strong>imagemagick</strong>和<strong>ghostscript</strong>将这些信息绘制在了app的icon里。<br>如果本地机器没有安装，则需要使用brew命令一键安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ brew install imagemagick</div><div class="line">$ brew install ghostscript</div></pre></td></tr></table></figure>
-<p>当使用debug模式进行编译时，则会出现如下的logo。当然，如果是release模式打包，则不会出现，具体可以参考runscrip脚本<a href="xcode-runsript案例/iconVersioning.sh">『iconVersioning.sh』</a><br><img src="xcode-runsript案例/screenshot.png" alt=""></p>
+<p>当使用debug模式进行编译时，则会出现如下的logo。当然，如果是release模式打包，则不会出现，具体可以参考runscrip脚本<a href="xcode-runsript案例/iconVersioning.sh">『iconVersioning.sh』</a><br><img src="/2016/05/20/xcode-runsript案例/screenshot.png" alt=""></p>
 <p>在此基础上，我们还可以将应用服务器测试还是正式环境等其他参数都加到icon上，方便对产品进行标示。</p>
 
       
@@ -311,11 +311,11 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
   
 <nav id="article-nav">
   
-    <a href="/2016/05/30/nginx/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/30/ios开发证书技巧/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          nginx
+          ios开发证书技巧
         
       </div>
     </a>
@@ -428,23 +428,19 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">SVN Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CocoaPods、iOS</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
             
             <div class="clearfix"></div>
