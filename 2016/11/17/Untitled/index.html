@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iherr.cn">
-  <title>Tag: iOS | iherr的博客</title>
+  <title>iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="nginxcd usr/local/src/tar -xvf nginx-1.11.6.tarhttps://github.com/arut/nginx-rtmp-modulegit clone https://github.com/arut/nginx-rtmp-module.git
+./configure –prefix=/usr/local/nginx  –add-module=/usr/l">
+<meta property="og:type" content="article">
 <meta property="og:title" content="iherr的博客">
-<meta property="og:url" content="http://iherr.cn/tags/iOS/index.html">
+<meta property="og:url" content="http://iherr.cn/2016/11/17/Untitled/index.html">
 <meta property="og:site_name" content="iherr的博客">
+<meta property="og:description" content="nginxcd usr/local/src/tar -xvf nginx-1.11.6.tarhttps://github.com/arut/nginx-rtmp-modulegit clone https://github.com/arut/nginx-rtmp-module.git
+./configure –prefix=/usr/local/nginx  –add-module=/usr/l">
+<meta property="og:updated_time" content="2016-11-18T07:16:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iherr的博客">
+<meta name="twitter:description" content="nginxcd usr/local/src/tar -xvf nginx-1.11.6.tarhttps://github.com/arut/nginx-rtmp-modulegit clone https://github.com/arut/nginx-rtmp-module.git
+./configure –prefix=/usr/local/nginx  –add-module=/usr/l">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -145,98 +152,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Untitled" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>nginx<br>cd usr/local/src/<br>tar -xvf nginx-1.11.6.tar<br><a href="https://github.com/arut/nginx-rtmp-module" target="_blank" rel="external">https://github.com/arut/nginx-rtmp-module</a><br>git clone <a href="https://github.com/arut/nginx-rtmp-module.git" target="_blank" rel="external">https://github.com/arut/nginx-rtmp-module.git</a></p>
+<p>./configure –prefix=/usr/local/nginx  –add-module=/usr/local/src/nginx-rtmp-module  –with-http_ssl_module –with-http_stub_status_module</p>
+<p>yum -y install pcre-devel</p>
+<p>make &amp;&amp; make install</p>
+<p>/usr/local/nginx/sbin/nginx<br>/usr/local/nginx/sbin/nginx -s stop<br>/usr/local/nginx/sbin/nginx -s quit<br>/usr/local/nginx/sbin/nginx -s reopen<br>/usr/local/nginx/sbin/nginx -s reload</p>
+<p> ps -elf|grep nginx</p>
+<p> netstat -antp</p>
+<p> service   iptables stop</p>
+<p> nginx -V 可以查看原来编译时都带了哪些参数</p>
+<p>原来的参数：<br>–prefix=/app/nginx</p>
+<p>添加的参数:<br>–with-http_stub_status_module –with-http_ssl_module –with-http_realip_module<br>步骤如下：</p>
+<ol>
+<li>使用参数重新配置:<br>./configure –prefix=/app/nginx -user=nobody -group=nobody –with-http_stub_status_module \<br>–with-http_ssl_module –with-http_realip_module \<br>–add-module=../nginx_upstream_hash-0.3.1/ \<br>–add-module=../gnosek-nginx-upstream-fair-2131c73/</li>
+<li>编译:<br>make<br>#不要make install，否则就是覆盖安装</li>
+</ol>
+<p><a href="https://github.com/arut/nginx-rtmp-module" target="_blank" rel="external">https://github.com/arut/nginx-rtmp-module</a></p>
+<ol>
+<li>替换nginx二进制文件:<br>cp /app/nginx/sbin/nginx /app/nginx/sbin/nginx.bak<br>cp ./objs/nginx /app/nginx/sbin/</li>
+</ol>
+<pre><code>location /stat { 
+    stub_status on;  
+    access_log   off;  
+    allow all;
+}
+</code></pre><p>./ffmpeg -re -i test.mp4 -c copy -f flv rtmp://192.168.3.9:1935/hls/test</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/30/ios开发证书技巧/" class="archive-article-date">
-  	<time datetime="2016-05-30T05:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/30/ios开发证书技巧/">ios开发证书技巧</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
+      
 
-          
-
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://iherr.cn/2016/11/17/Untitled/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/xcode-runsript案例/" class="archive-article-date">
-  	<time datetime="2016-05-20T03:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/xcode-runsript案例/">xcode runsript案例</a>
-    </h1>
+    <a href="/2016/12/19/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/10/一生要做的事/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一生要做的事</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Untitled" data-title="" data-url="http://iherr.cn/2016/11/17/Untitled/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"iherr"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -259,9 +342,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

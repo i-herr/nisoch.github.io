@@ -6,14 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iherr.cn">
-  <title>Tag: iOS | iherr的博客</title>
+  <title>ios开发证书技巧 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="iherr的博客">
-<meta property="og:url" content="http://iherr.cn/tags/iOS/index.html">
+  <meta name="description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
+证书制作流程图
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
+关于Provisioning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ios开发证书技巧">
+<meta property="og:url" content="http://iherr.cn/2016/05/30/ios开发证书技巧/index.html">
 <meta property="og:site_name" content="iherr的博客">
+<meta property="og:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
+证书制作流程图
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
+关于Provisioning">
+<meta property="og:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
+<meta property="og:image" content="http://iherr.cn/ios开发证书技巧/certificate.png">
+<meta property="og:updated_time" content="2016-06-07T09:46:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iherr的博客">
+<meta name="twitter:title" content="ios开发证书技巧">
+<meta name="twitter:description" content="开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。
+证书制作流程图
+对于概念不懂的同学，可以到这脑补下『iOS Provisioning Profile(Certificate)与Code Signing详解』
+关于Provisioning">
+<meta name="twitter:image" content="http://iherr.cn/ios开发证书技巧/flow.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -145,36 +161,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-ios开发证书技巧" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      ios开发证书技巧
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/30/ios开发证书技巧/" class="archive-article-date">
+
+        
+        <a href="/2016/05/30/ios开发证书技巧/" class="archive-article-date">
   	<time datetime="2016-05-30T05:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-30</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/30/ios开发证书技巧/">ios开发证书技巧</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。</p>
+<h3 id="证书制作流程图"><a href="#证书制作流程图" class="headerlink" title="证书制作流程图"></a>证书制作流程图</h3><p><img src="ios开发证书技巧/flow.png" alt=""></p>
+<p>对于概念不懂的同学，可以到这脑补下<a href="http://blog.csdn.net/phunxm/article/details/42685597" target="_blank" rel="external">『iOS Provisioning Profile(Certificate)与Code Signing详解』</a></p>
+<h3 id="关于Provisioning-Profile供应配置管理"><a href="#关于Provisioning-Profile供应配置管理" class="headerlink" title="关于Provisioning Profile供应配置管理"></a>关于Provisioning Profile供应配置管理</h3><p>我们在项目配置时，虽然经常将Code Signing的Provisioning Profile配置成”Automatic”，但还是需要去developer.apple.com上下载所有的mobileprovision文件。如果这些文件经常变化，可以这样：</p>
+<ol>
+<li><p>首先cd到这些mobileprovision文件的目录”~/Library/MobileDevice/Provisioning Profiles”，然后删除所有的文件。<br>可使用命令</p>
+<pre><code class="bash">$ rm *.mobileprovision
+</code></pre>
+</li>
+<li><p>这样再看Xcode的时候，就找不到任何provisioning profile了。这个时候不需要一个一个的添加。而是访问XCode的Preferences&gt; Accounts，在Apple IDs里面找到你的帐号，右下角有个View Details，这时，你就可以download下所有网站上配置的文件了。一个按钮搞定。</p>
+<p> <img src="ios开发证书技巧/certificate.png" alt=""></p>
+</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -186,57 +234,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://iherr.cn/2016/05/30/ios开发证书技巧/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/20/xcode-runsript案例/" class="archive-article-date">
-  	<time datetime="2016-05-20T03:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/20/xcode-runsript案例/">xcode runsript案例</a>
-    </h1>
+    <a href="/2016/06/19/代码版本控制/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          代码版本控制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/20/xcode-runsript案例/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">xcode runsript案例</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ios开发证书技巧" data-title="ios开发证书技巧" data-url="http://iherr.cn/2016/05/30/ios开发证书技巧/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"iherr"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">iOS</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -259,9 +365,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
