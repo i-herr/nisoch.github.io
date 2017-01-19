@@ -25,7 +25,7 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
 <meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/addscript.png">
 <meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/buildlog.png">
 <meta property="og:image" content="http://iherr.cn/2016/05/20/xcode-runsript案例/screenshot.png">
-<meta property="og:updated_time" content="2017-01-19T09:31:06.000Z">
+<meta property="og:updated_time" content="2017-01-19T09:59:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xcode runsript案例">
 <meta name="twitter:description" content="runscript介绍在我理解，runscript是在app编译时，通知xcode额外做的事情，可以通过script编写脚本来实现。
@@ -205,7 +205,8 @@ runscript案例1-appledocappledoc是我们较为常用的文档生成工具，�
 <h3 id="runscript案例2-对icon添加版本号等信息"><a href="#runscript案例2-对icon添加版本号等信息" class="headerlink" title="runscript案例2-对icon添加版本号等信息"></a>runscript案例2-对icon添加版本号等信息</h3><p>一直以来，做测试时都要区分版本号、git的提交序列、服务器测试还是正式环境等问题，想着在编译时，自动将这些信息贴在app的icon上就好了。直到在github上碰到了这个项目<a href="https://github.com/krzysztofzablocki/IconOverlaying" target="_blank" rel="external">『github地址传送门』</a>。</p>
 <p>作者编写了个脚本，获取项目的版本号、git的提交序列等信息，然后使用<strong>imagemagick</strong>和<strong>ghostscript</strong>将这些信息绘制在了app的icon里。<br>如果本地机器没有安装，则需要使用brew命令一键安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ brew install imagemagick</div><div class="line">$ brew install ghostscript</div></pre></td></tr></table></figure>
-<p>当使用debug模式进行编译时，则会出现如下的logo。当然，如果是release模式打包，则不会出现，具体可以参考runscrip脚本<a href="xcode-runsript案例/iconVersioning.sh">『iconVersioning.sh』</a><br><img src="/2016/05/20/xcode-runsript案例/screenshot.png" alt=""></p>
+<p>当使用debug模式进行编译时，则会出现如下的logo。当然，如果是release模式打包，则不会出现，具体可以参考runscrip脚本 <a href="iconVersioning.sh">『iconVersioning.sh』</a></p>
+<p><img src="/2016/05/20/xcode-runsript案例/screenshot.png" alt=""></p>
 <p>在此基础上，我们还可以将应用服务器测试还是正式环境等其他参数都加到icon上，方便对产品进行标示。</p>
 
       
