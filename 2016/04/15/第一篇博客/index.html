@@ -20,18 +20,18 @@
 先把整个流程梳理一遍，算是个hello world吧。
 安装Hexo安装可以参考如下命令，blog为文件夹目录，可自己定义。如果提示npm没装，需要先安装npm。
 12345$ npm install hexo-cli -g$ hexo init blog$ cd blog$ npm in">
-<meta property="og:image" content="http://iherr.cn/第一篇博客/yilia.png">
-<meta property="og:image" content="http://iherr.cn/第一篇博客/static.png">
-<meta property="og:image" content="http://iherr.cn/第一篇博客/server.png">
-<meta property="og:image" content="http://iherr.cn/第一篇博客/parse.png">
-<meta property="og:updated_time" content="2016-05-25T06:30:37.000Z">
+<meta property="og:image" content="http://iherr.cn/2016/04/15/第一篇博客/yilia.png">
+<meta property="og:image" content="http://iherr.cn/2016/04/15/第一篇博客/static.png">
+<meta property="og:image" content="http://iherr.cn/2016/04/15/第一篇博客/server.png">
+<meta property="og:image" content="http://iherr.cn/2016/04/15/第一篇博客/parse.png">
+<meta property="og:updated_time" content="2017-01-19T08:59:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一篇博客">
 <meta name="twitter:description" content="终于用『Hexo』搭建完博客，感谢Litten提供的Yilia主题，真是爱不释手。以后，这里就是我的小窝啦。
 先把整个流程梳理一遍，算是个hello world吧。
 安装Hexo安装可以参考如下命令，blog为文件夹目录，可自己定义。如果提示npm没装，需要先安装npm。
 12345$ npm install hexo-cli -g$ hexo init blog$ cd blog$ npm in">
-<meta name="twitter:image" content="http://iherr.cn/第一篇博客/yilia.png">
+<meta name="twitter:image" content="http://iherr.cn/2016/04/15/第一篇博客/yilia.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -73,6 +73,8 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/杂谈/">杂谈</a></li>
 	        
 			</ul>
 		</nav>
@@ -122,6 +124,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -142,7 +146,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/杂谈/">杂谈</a></li>
 		        
 				</ul>
 			</nav>
@@ -183,24 +189,24 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli -g</div><div class="line">$ hexo init blog</div><div class="line">$ <span class="built_in">cd</span> blog</div><div class="line">$ npm install</div><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h3><p>说实话，hexo默认给的主题，只能是凑活。如果要逼格高一点，那就得自己动手了。hexo官网有推荐一些<a href="https://hexo.io/themes/" target="_blank" rel="external">『Theme』</a>，可以链接到github上下载，现在使用的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">『Yilia主题』</a>的资源可以点击查看。把他clone到本地，保存在目录/themes下即可。下图是我自己目前保存的一些主题。</p>
-<p><img src="第一篇博客/yilia.png" alt=""></p>
+<p><img src="/2016/04/15/第一篇博客/yilia.png" alt=""></p>
 <p>那怎么实施主题的切换呢？可打开根目录的_config.yml配置文件，找到“theme: ”这一行，修改成/themes的对应主题名称即可。例如“theme: yilia”。</p>
 <h3 id="添加文章"><a href="#添加文章" class="headerlink" title="添加文章"></a>添加文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">『添加文章』</a></p>
 <h3 id="静态文件生成"><a href="#静态文件生成" class="headerlink" title="静态文件生成"></a>静态文件生成</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure>
 <p>命令执行完成后，会更新public目录下的文件，都是一些静态的html、css、js、img之类的。</p>
-<p><img src="第一篇博客/static.png" alt=""></p>
+<p><img src="/2016/04/15/第一篇博客/static.png" alt=""></p>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">『静态文件生成』</a></p>
 <h3 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure>
 <p>启动完成后，会提示您访问的地址为<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>，如下图所示，你就可以在浏览器上访问啦。</p>
-<p><img src="第一篇博客/server.png" alt=""></p>
+<p><img src="/2016/04/15/第一篇博客/server.png" alt=""></p>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">『启动本地服务』</a></p>
 <h3 id="静态页面托管到GitHub-Pages"><a href="#静态页面托管到GitHub-Pages" class="headerlink" title="静态页面托管到GitHub Pages"></a>静态页面托管到GitHub Pages</h3><p>以上，您只能在本地浏览自己的博客，那如果需要放到网上供他人浏览呢？其实这里的方法有很多，比如自己弄台VPS云服务器等，但这不是有成本嘛。像阿里云最低配的基本也是需要100RMB/月，放博客不划算。</p>
 <p>其实大家一般都推荐使用<a href="https://pages.github.com" target="_blank" rel="external">『GitHub Pages』</a>来进行托管，无非是把“生成静态文件”步骤的文件上传到github上。具体的流程可以参考官网。唯一需要注意的是，托管的项目名称，必须以你的github的用户名起，例如我的github用户名是nisoch，那么我简历的项目名就是nisoch.github.io，后续上传后访问的地址也是<a href="https://nisoch.github.io" target="_blank" rel="external">https://nisoch.github.io/</a>。</p>
 <p>好啦，可以把这个地址发给小伙伴，或者自己访问了。</p>
 <h3 id="域名跳转"><a href="#域名跳转" class="headerlink" title="域名跳转"></a>域名跳转</h3><p>看到其他大神的博客，都是有自己的域名，叫人好生羡慕。那么，从哪里才能弄到呢？<br>这里不是做广告，而是我自己的域名是从<a href="https://wanwang.aliyun.com" target="_blank" rel="external">『阿里云的万网』</a>买的，购买域名的途径也很多其他途径，其实有一些很好的国际域名，例如<a href="Godaddy.com">『Godaddy』</a>。</p>
 <p>域名也买到了，开始做跳转指向了。无非是把刚买的宝贝域名，链接到GitHub Pages的域名上。</p>
-<p>还是以万网举例，对CNAME类型，将www和@都指向自己的GitHub Pages的域名。如下图所示。<br><img src="第一篇博客/parse.png" alt=""></p>
+<p>还是以万网举例，对CNAME类型，将www和@都指向自己的GitHub Pages的域名。如下图所示。<br><img src="/2016/04/15/第一篇博客/parse.png" alt=""></p>
 <p>另外，为了保证GitHub Pages上能够识别，还需要一个CNAME文件，没有后缀，里面的内容为我们购买的域名地址，例如我的就是iherr.cn。</p>
 <p>好啦，打完收工，可以使用自己的个性域名来访问了，快来试试吧。</p>
 <h3 id="补充：图片等资源处理"><a href="#补充：图片等资源处理" class="headerlink" title="补充：图片等资源处理"></a>补充：图片等资源处理</h3><p>刚写两篇，发现处理图片等资源好麻烦，我在macdown上进行编辑时预览插入图片，hexo g自动生成后，发现图片没有到/public里面去，当然在发布时还需要手动挪动图片，真是鱼和熊掌不可兼得嘛？</p>
@@ -223,24 +229,6 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">baidu_tongji: <span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>新建 themes/yilia/layout/_partial/baidu_tongji.ejs,内容如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">	&lt;% <span class="keyword">if</span> (theme.baidu_tongji) &#123; %&gt;</div><div class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</div><div class="line">	<span class="comment">#申请的百度统计代码</span></div><div class="line">	&lt;/script&gt;</div><div class="line">	&lt;% &#125; %&gt;</div><div class="line">```	</div><div class="line">编辑themes/yilia/layout/_partial/head.ejs 在 &lt;/head&gt; 前添加</div><div class="line"></div><div class="line">``` bash</div><div class="line">	&lt;%- partial(<span class="string">"baidu_tongji"</span>) %&gt;</div></pre></td></tr></table></figure>
-<h3 id="添加打赏"><a href="#添加打赏" class="headerlink" title="添加打赏"></a>添加打赏</h3><p>擦，我的内心还是很不愿意加这个功能的，纯粹娱乐下。<br>参考github上的项目，<a href="https://github.com/greedying/tctip" target="_blank" rel="external">『github传送门』</a>。</p>
-<p>模仿刚刚百度统计的套路，增加了个award.ejs，然后同样在head.ejs里添加。award.ejs的代码如下：</p>
-<pre><code class="bash">&lt;% <span class="keyword">if</span> (theme.baidu_tongji) { %&gt;
-&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;
-window.tctipConfig = {
-    staticPrefix:   <span class="string">"http://static.tctip.com"</span>,
-    buttonImageId:  1,
-    buttonTip:  <span class="string">"zanzhu"</span>,
-    list:{
-        alipay: {qrimg: <span class="string">"http://tctip.com/img/alipayqr.png"</span>},
-        weixin:{qrimg: <span class="string">"http://littlebtc.com/images/yeshen.png"</span>},
-    }
-};
-&lt;/script&gt;
-&lt;script src=<span class="string">"http://static.tctip.com/js/tctip.min.js"</span>&gt;&lt;/script&gt;
-&lt;% } %&gt;
-</code></pre>
-
       
 
       
