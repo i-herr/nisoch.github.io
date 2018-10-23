@@ -149,6 +149,415 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Git版本控制管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/07/Git版本控制管理/">Git版本控制管理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/01/07/Git版本控制管理/" class="archive-article-date">
+  	<time datetime="2017-01-07T09:51:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Git概述"><a href="#一、Git概述" class="headerlink" title="一、Git概述"></a>一、Git概述</h2><p>版本控制系统（VCS）。目的：持续性的对代码或文档进行备份和存档，对变更进行追踪管理。</p>
+<p>Git，由大神Linus Torvalds发明，起初用来管理Linux内核的开发工作。<a href="https://git-scm.com/" target="_blank" rel="noopener">『网站传送门』</a> 之前用BitKeeper，然而需求是创新之母，需要额外的特性：  </p>
+<ul>
+<li>有助于分布式开发，允许独立且同时开发，离线开发  </li>
+<li>能胜任上千开发人员的规模  </li>
+<li>性能优异，解决网络传输瓶颈，保证执行速度  </li>
+<li>保持完整性和可靠性  </li>
+<li>强化责任  </li>
+<li>不可变性  </li>
+<li>原子事务  </li>
+<li>支持并鼓励基于分支的开发</li>
+<li>完整的版本库  </li>
+<li>一个清晰的内部设计  </li>
+<li>免费自由</li>
+</ul>
+<p>VCS发展进程：SCCS源码控制系统–&gt;RCS修订控制系统–&gt;CVS并行版本系统–&gt;Subversion（SVN）–&gt;Git</p>
+<p>Git进程：05年4月托管，Linux内核提交git，670万行代码。git本意是无用的人、饭桶，令人舒服的解释是Global Information Tracker。</p>
+<h2 id="二、Git起步"><a href="#二、Git起步" class="headerlink" title="二、Git起步"></a>二、Git起步</h2><blockquote>
+<p>安装</p>
+</blockquote>
+<p>windows cygwin版本的Git，或原生版本的msysGit。<br>mac自带。</p>
+<blockquote>
+<p>Git命令</p>
+</blockquote>
+<p><img src="/2017/01/07/Git版本控制管理/git_command.jpg" alt=""><br>1、通用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git  </span><br><span class="line">usage: git [--version] [--<span class="built_in">help</span>] [-C &lt;path&gt;] [-c name=value] [--<span class="built_in">exec</span>-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path] [-p | --paginate | --no-pager] [--no-replace-objects] [--bare] [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;] &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br></pre></td></tr></table></figure>
+<p>版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">git version 2.14.3 (Apple Git-98)</span><br></pre></td></tr></table></figure>
+<p>理解短和长选项命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"fixed bug"</span></span><br><span class="line">$ git commit --message <span class="string">"fixed bug"</span></span><br></pre></td></tr></table></figure>
+<p>2、创建初始版本库，并添加文件  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> test1</span><br><span class="line">$ git init  <span class="comment">#创建隐藏目录.git</span></span><br><span class="line">$ touch README.md</span><br><span class="line">$ git add README.md  <span class="comment">#将md文件添加到版本库</span></span><br><span class="line">$ git add .  <span class="comment">#或者将目录所有文件都添加到版本库</span></span><br><span class="line">$ git commit -m <span class="string">"first commit"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要推送到服务器端</span></span><br><span class="line">$ git remote rm origin <span class="comment">#没有可不操作</span></span><br><span class="line">$ git remote add origin http://iherr@127.0.0.1:8080/r/test.git <span class="comment">#关联到远程库</span></span><br><span class="line">$ git pull --rebase origin master <span class="comment">#获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）</span></span><br><span class="line">$ git push -u origin master <span class="comment">#本地库内容推送到远程，-u参数可使得以后只用git push即可</span></span><br></pre></td></tr></table></figure>
+<p>如果是远程库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://iherr@127.0.0.1:8080/r/test.git</span><br><span class="line"></span><br><span class="line">$ git remote -v</span><br><span class="line">origin	http://iherr@127.0.0.1:8080/r/test.git (fetch)</span><br><span class="line">origin	http://iherr@127.0.0.1:8080/r/test.git (push)</span><br><span class="line"></span><br><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin http://iherr@127.0.0.1:8080/r/test.git</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-FFmpeg入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/15/FFmpeg入门/">FFmpeg入门</a>
+    </h1>
+  
+
+        
+        <a href="/2016/12/15/FFmpeg入门/" class="archive-article-date">
+  	<time datetime="2016-12-15T03:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、FFmpeg简介"><a href="#一、FFmpeg简介" class="headerlink" title="一、FFmpeg简介"></a>一、FFmpeg简介</h2><p>FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。</p>
+<p><a href="https://ffmpeg.org/" target="_blank" rel="noopener">『FFmpeg官网传送门』</a>，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。</p>
+<h2 id="二、FFmpeg安装"><a href="#二、FFmpeg安装" class="headerlink" title="二、FFmpeg安装"></a>二、FFmpeg安装</h2><p>当然也可以自己编译到Android或者iOS平台。</p>
+<blockquote>
+<p>如果是Mac用户，可以通过brew安装</p>
+</blockquote>
+<p>有之前有安装过，版本或模块有问题，可先brew uninstall卸载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ffmpeg --with-libvpx --with-libvorbis --with-ffplay</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>linux 安装</p>
+</blockquote>
+<p>详细资料可参考官方文档，<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener">『文档传送门』</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖包</span></span><br><span class="line">$ yum install -y autoconf automake cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel</span><br><span class="line"></span><br><span class="line">$ mkdir ~/ffmpeg_sources</span><br><span class="line">$ <span class="built_in">cd</span> ~/ffmpeg_sources</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/FFmpeg/FFmpeg.git</span><br><span class="line">$ <span class="built_in">cd</span> FFmpeg</span><br><span class="line">$ <span class="built_in">export</span> PKG_CONFIG_PATH=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build/lib/pkgconfig"</span></span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build"</span> --extra-cflags=<span class="string">"-I<span class="variable">$HOME</span>/ffmpeg_build/include"</span> --extra-ldflags=<span class="string">"-L<span class="variable">$HOME</span>/ffmpeg_build/lib"</span> --bindir=<span class="string">"<span class="variable">$HOME</span>/bin"</span> --pkg-config-flags=<span class="string">"--static"</span> --<span class="built_in">enable</span>-gpl --<span class="built_in">enable</span>-nonfree --<span class="built_in">enable</span>-libfdk-aac --<span class="built_in">enable</span>-libfreetype --<span class="built_in">enable</span>-libmp3lame --<span class="built_in">enable</span>-libopus --<span class="built_in">enable</span>-libvorbis --<span class="built_in">enable</span>-libvpx --<span class="built_in">enable</span>-libx264 --<span class="built_in">enable</span>-libx265</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br><span class="line"></span><br><span class="line">$ make distclean</span><br><span class="line">$ <span class="built_in">hash</span> -r</span><br></pre></td></tr></table></figure>
+<h2 id="三、FFmpeg使用"><a href="#三、FFmpeg使用" class="headerlink" title="三、FFmpeg使用"></a>三、FFmpeg使用</h2><blockquote>
+<p>常用参数说明</p>
+</blockquote>
+<p>1、主要参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-i</td>
+<td>设定输入流</td>
+</tr>
+<tr>
+<td style="text-align:center">-f</td>
+<td>设定输出格式</td>
+</tr>
+<tr>
+<td style="text-align:center">-ss</td>
+<td>开始时间</td>
+</tr>
+<tr>
+<td style="text-align:center">-re</td>
+<td>按照帧率发送</td>
+</tr>
+</tbody>
+</table>
+<p>2、视频参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-b</td>
+<td>设定视频流量，默认为200Kbit/s</td>
+</tr>
+<tr>
+<td style="text-align:center">-r</td>
+<td>设定帧速率，默认为25</td>
+</tr>
+<tr>
+<td style="text-align:center">-s</td>
+<td>设定画面的宽与高</td>
+</tr>
+<tr>
+<td style="text-align:center">-aspect</td>
+<td>设定画面的比例</td>
+</tr>
+<tr>
+<td style="text-align:center">-vn</td>
+<td>不处理视频</td>
+</tr>
+<tr>
+<td style="text-align:center">-vcodec</td>
+<td>设定视频编解码器，默认与输入流相同</td>
+</tr>
+</tbody>
+</table>
+<p>3、音频参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-ar</td>
+<td>设定采样率</td>
+</tr>
+<tr>
+<td style="text-align:center">-ac</td>
+<td>设定声音的Channel数</td>
+</tr>
+<tr>
+<td style="text-align:center">-acodec</td>
+<td>设定声音编解码器，默认与输入流相同</td>
+</tr>
+<tr>
+<td style="text-align:center">-an</td>
+<td>不处理音频</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在Mac下面使用FFmpeg进行录屏</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -f avfoundation -list_devices <span class="literal">true</span> -i <span class="string">""</span></span><br><span class="line"><span class="comment"># 查看可输入设备id</span></span><br><span class="line">$ ffmpeg -y -loglevel warning -f avfoundation -i 1 -r 30 -s 480x320 -threads 2 -vcodec libx264  -f flv rtmp://127.0.0.1/live/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>推音频+视频</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"输入源"</span> -acodec copy -vcodec copy -f flv -y  <span class="string">"输出源"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i <span class="string">"http://127.0.0.1/live/1.mp4"</span> -acodec copy -vcodec copy -f flv -y  <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>推纯音频流或纯视频流，通过-an分离视频流，-vn分离音频流</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"输入源"</span> -acodec copy -vcodec copy -vn -f flv -y <span class="string">"输出源"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i <span class="string">"http://127.0.0.1/live/1.mp4"</span> -acodec copy -vcodec copy -vn -f flv -y <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>摄影机rtsp转rtmp推流</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"rtsp://admin:123456@123.0.0.1:554/h264/stream1"</span> -vcodec libx264 -acodec aac -f flv -r 25 -b 2097152 -s 1280x720 -an <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>rtmp拉流并推流</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"rtmp://127.0.0.1/live/test1"</span> -acodec copy -vcodec copy -f flv <span class="string">"rtmp://video-center.alivecdn.com/device/osmo1?vhost=tv.cctbn.com&amp;auth_key=1708959988-0-0-bb37263305651e25efd94c7335cd68b4"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>本地视频文件推流</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -vcodec libx264 -acodec aac -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -c copy -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、FFplay"><a href="#四、FFplay" class="headerlink" title="四、FFplay"></a>四、FFplay</h2><p>ffplay是ffmpeg的一个子工具，它具有强大的音视频解码播放能力，目前它广泛被各种流行播放器（QQ影音、暴风影音等）集成应用。作为一款开源软件，ffplay囊括Linux、Windows、iOS、Android等众多主流系统平台，十分适合进行二次开发。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffplay http://127.0.0.1/live/test.m3u8</span><br><span class="line">$ ffplay rtmp://127.0.0.1/live/<span class="built_in">test</span></span><br><span class="line">$ ffplay -vfscale=1920:1080 /usr/<span class="built_in">local</span>/ffmpeg/1.mp4</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Docker技术入门与实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/24/Docker技术入门与实战/">Docker技术入门与实战</a>
+    </h1>
+  
+
+        
+        <a href="/2016/10/24/Docker技术入门与实战/" class="archive-article-date">
+  	<time datetime="2016-10-24T05:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Docker简介"><a href="#一、Docker简介" class="headerlink" title="一、Docker简介"></a>一、Docker简介</h2><blockquote>
+<p>Docker和集装箱</p>
+</blockquote>
+<p>集装箱，港口运输业最伟大的发明。Docker，聪明的技术人员从传统的运输行业找到了答案。实现Build，Ship，and Run Any App，Anywhere，即任何应用都可以构建、发布、运行于任何环境。看看Docker的icon就明白了。基本使用Golang进行开发。<br><img src="/2016/10/24/Docker技术入门与实战/docker_icon.jpeg" alt=""></p>
+<blockquote>
+<p>下载安装</p>
+</blockquote>
+<p>去<a href="https://www.docker.com" target="_blank" rel="noopener">『Docker官网』</a>运行docker for mac安装，使用命令docker version验证安装版本。由于国内你懂的原因，可在preference里的Registry mirrors为使用镜像站点进行加速，推荐DaoCloud提供的免费国内镜像服务，需要注册。</p>
+<blockquote>
+<p>Docker优点</p>
+</blockquote>
+<p>Docker使用的基础技术，Linux的命名空间Namespace、控制组Control Group、分层文件系统、网络虚拟化等在Docker之前就存在很多年，但容器一直没有得到关注的原因，在于易用性，docker通过简单的指令或接口来维护容器，降低部署难度，提升维护效率。它提供一种统一的实践方法（维护一个Dockerfile文件或Compose的方式），供开发和运维团队来透明和合作，降低沟通和部署成本。</p>
+<ul>
+<li>快速上手新技术，不纠结于环境搭建的学习成本。  </li>
+<li>容器化的代码仓库，所有常用代码都可以以容器化的方式保存，并可以调出随时运行。  </li>
+<li>面向业务编程，使得软件工程师更加专注于业务需求，快速启用新技能。  </li>
+<li>使用Docker Hub发布开源项目。  </li>
+</ul>
+<blockquote>
+<p>容器化开发模式  </p>
+</blockquote>
+<p>工作流程比较<br><img src="/2016/10/24/Docker技术入门与实战/docker_workflow.jpg" alt=""></p>
+<p>开发、测试、运维协同<br><img src="/2016/10/24/Docker技术入门与实战/docker_flow.jpg" alt=""></p>
+<blockquote>
+<p>容器与云服务</p>
+</blockquote>
+<p>目前AWS、Google、Azure、Docker官方、腾讯、阿里、华为、UCloud等都推出了公有云的容器服务，来支撑企业级IT架构的云化与容器化、微服务化。</p>
+<p>有些甚至还推出了容器云服务（Container as a Service，CaaS）。按需提供容器化环境和应用服务，让开发和运维团队相互协作，构建和部署应用。从而使得容器成为生产主流。主要有网易蜂巢、时速云、Daocloud、数人云等。提供容器调度、服务发现、网络配置、安全配置、负载、数据持久、容错与高可用性等需求。</p>
+<blockquote>
+<p>容器与生产环境</p>
+</blockquote>
+<p>Docker还是个IT生产环境和基础设施的新成员，目前容器还存在一些分支和分歧，成立OCI（Open Container Initiative）组织来建立通用容器技术标准。传统数据库或有状态应用、网络吞吐性能高要求的应用还不适合容器化。因此需要考虑：  </p>
+<ul>
+<li>Docker出现不可控风险后的备选方案  </li>
+<li>Docker怎么做资源的限制  </li>
+<li>Docker对容器安全管理是否完善    </li>
+<li>内部私有仓库、镜像的管理是否解决  </li>
+</ul>
+<p>但是，有一句话还得送给大家，容器技术非常热门，未来将成为主流，那么你就应该尽快掌握。</p>
+<h2 id="二、Docker镜像-Image"><a href="#二、Docker镜像-Image" class="headerlink" title="二、Docker镜像(Image)"></a>二、Docker镜像(Image)</h2><blockquote>
+<p>获取镜像</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> pull NAME[:TAG]</span><br></pre></td></tr></table></figure>
+<p>其中，NAME是镜像仓库的名称，TAG是镜像的标签，例如ubuntu:14.04。如不指定TAG，则默认为latest标签，下载最新版本。</p>
+<p>默认使用官方注册服务器registry.hub.docker.com/ubuntu:14.04命令，如需从非官方仓库下载，可指定如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> pull hub.c.163.com/public/ubuntu:14.04</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>查看镜像信息</p>
+</blockquote>
+<p>1、列出本地主机上已有镜像的基本信息，字段包含归属仓库、镜像标签、镜像ID、创建时间和镜像大小</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> images</span><br></pre></td></tr></table></figure>
+<p><img src="/2016/10/24/Docker技术入门与实战/docker_images.png" alt=""></p>
+<p>2、使用tag命令添加标签镜像，可为本地镜像添加新的标签，他们都指向同一个镜像文件，只是有别名而已。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> tag nginx:latest mynginx:latest</span><br></pre></td></tr></table></figure>
+<p>3、使用inspect命令查看详细信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> inspect ubuntu:14.04</span><br></pre></td></tr></table></figure>
+<p>4、使用history查看镜像历史</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> <span class="built_in">history</span> ubuntu:14.04</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux服务器网络抓包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -716,6 +1125,7 @@
 <blockquote>
 <ul>
 <li>所有人都有追求幸福的权利，但大家都有“我过的不是很幸福”的感慨。</li>
+<li>我们要的不止是自己的幸福，还要比别人幸福。</li>
 <li>随着物质水平的提高，焦虑症和抑郁症的患病率急剧上升。我们过着以亿万富翁为目标的人生游戏，但财富带给我们的似乎是不幸福。 </li>
 <li>幸福好像很难获取？上帝给了每一个人幸福的机会，人们都知道，却不知如何得到它。之前接触的“成功学”，例如幸福的五大步骤、成功的三大秘密、找到完美爱人的四大法宝，全是空头承诺。</li>
 <li>成功一定能带来幸福嘛？人往往会被所谓“做到某件事就能幸福”的“幸福神话”所束缚。有没有曾经在实现了一个重要目标之后，却没有感到你期望的喜悦？成就感和喜悦慢慢消失，感到空虚和迷惘，不能带来持久的幸福。这时，你会灰心、绝望，因为没有目标你就失去了对幸福的指望。 </li>
@@ -878,295 +1288,6 @@
 
 
   
-    <article id="post-客户端屏幕适配方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/31/客户端屏幕适配方案/">客户端屏幕适配方案</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/31/客户端屏幕适配方案/" class="archive-article-date">
-  	<time datetime="2016-05-31T07:15:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>随着苹果发布两种新尺寸的大屏iPhone 6，iOS平台尺寸适配问题终于还是来了，加之原有混乱的android平台尺寸，移动设计全面进入“杂屏”时代。</p>
-<p>了解主流手机分辨率<br>主流手机相关数据，可以参考<a href="http://www.umindex.com" target="_blank" rel="noopener">友盟指数</a>相关报告，由于设备更新换代，建议查找近期的指数报告。<br><img src="/2016/05/31/客户端屏幕适配方案/fenbianlv.jpg" alt=""></p>
-<h2 id="二、相关概念"><a href="#二、相关概念" class="headerlink" title="二、相关概念"></a>二、相关概念</h2><p>像素(Pixel)：屏幕的成像单位，像素点的简称。</p>
-<blockquote>
-<p>iOS的几个概念</p>
-</blockquote>
-<p>1、像素密度(ppi)：「Pixels Per Inch」,每英寸的像素点数。<br>以iphone3gs来计算，</p>
-<p><img src="http://latex.codecogs.com/gif.latex?ppi=\frac{\sqrt{X^2+Y^2}}{inch}=\frac{\sqrt{320^2+480^2}}{3.5}=163ppi" title="公式"></p>
-<p>2、point，是指独立于物理设备的逻辑坐标单位（逻辑分辨率），在3GS上，1point=1px。在4上，1point=2px。在6p上，1point=3px。数值也等于与标准ppi（163px/inc）的比例。对于开发者来说，iOS绘制图形的API依然沿袭point。</p>
-<p>3、scale，缩放因子，scale=point/pixel，根据scale，图片的倍图对应成@1x,@2x,@3x。<br><img src="/2016/05/31/客户端屏幕适配方案/pt.jpg" alt=""><br>3、pt,磅，需要和point的简称区分开，是国际通行的印刷单位，是绝对长度单位，为1/72英寸，可用于UIFont设置字体大小，和photoshop里的px的换算规则为，1pt=72/96=3/4px。</p>
-<table>
-<thead>
-<tr>
-<th>ios设备</th>
-<th>屏幕物理分辨率(px)</th>
-<th>逻辑分辨率(px)</th>
-<th>像素密度(ppi)</th>
-<th>scale</th>
-<th>屏幕尺寸(宽×高)(inch)</th>
-<th>状态栏高度</th>
-<th>导航栏高度</th>
-<th>标签栏高度 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>iPhone6P、6SP、7P</td>
-<td>1242×2208</td>
-<td>414×736</td>
-<td>401</td>
-<td>@3x</td>
-<td>5.5(3.06×6.22 )</td>
-<td>60px</td>
-<td>132px</td>
-<td>146px</td>
-</tr>
-<tr>
-<td>iPhone6、6S、7</td>
-<td>750×1334</td>
-<td>375×667</td>
-<td>326</td>
-<td>@2x</td>
-<td>4.7(2.64×5.44)</td>
-<td>40px</td>
-<td>88px</td>
-<td>98px</td>
-</tr>
-<tr>
-<td>iPhone5、5C、5S</td>
-<td>640×1136</td>
-<td>320×568</td>
-<td>326</td>
-<td>@2x</td>
-<td>4.0(2.3×4.9)</td>
-<td>40px</td>
-<td>88px</td>
-<td>98px</td>
-</tr>
-<tr>
-<td>iPhone4、4S</td>
-<td>640×960</td>
-<td>320×480</td>
-<td>326</td>
-<td>@2x</td>
-<td>3.5(2.3×4.5)</td>
-<td>40px</td>
-<td>88px</td>
-<td>98px</td>
-</tr>
-<tr>
-<td>iPhone 3GS</td>
-<td>320×480</td>
-<td>320×480</td>
-<td>163</td>
-<td>@1x</td>
-<td>3.5(2.4×4.5)</td>
-<td>20px</td>
-<td>44px</td>
-<td>49px</td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2016/05/31/客户端屏幕适配方案/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/31/客户端屏幕适配方案/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Xcode的runsript案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/20/Xcode的runsript案例/">Xcode的runsript案例</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/20/Xcode的runsript案例/" class="archive-article-date">
-  	<time datetime="2016-05-20T03:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、runscript介绍"><a href="#一、runscript介绍" class="headerlink" title="一、runscript介绍"></a>一、runscript介绍</h2><p>在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。</p>
-<h2 id="二、runscript案例1-appledoc"><a href="#二、runscript案例1-appledoc" class="headerlink" title="二、runscript案例1-appledoc"></a>二、runscript案例1-appledoc</h2><p>appledoc是我们较为常用的文档生成工具，<a href="https://github.com/tomaz/appledoc" target="_blank" rel="noopener">『github地址传送门』</a></p>
-<p>安装方法请执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/tomaz/appledoc.git</span><br><span class="line">$ <span class="built_in">cd</span> appledoc</span><br><span class="line">$ sudo sh install-appledoc.sh</span><br></pre></td></tr></table></figure>
-<p>安装完成后，我们想着每次在编译ios app时，都能自动生成文档。</p>
-<p>在项目中新建一个target，选择如下图所示的类别。这样会在项目中多出一个target。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addtarget.jpg" alt=""></p>
-<p>对该target的Build Phases上添加run script phrase。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addrunscript.jpg" alt=""></p>
-<p>为了自动生成文档，需要使用appledoc的生成命令，可供粘贴。如果对命令不熟练，也可以使用appledoc –help进行查看。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addscript.jpg" alt=""></p>
-<p>script脚本如下，供copy。需要注意的是outputPath，为文档的输出路径。ignore，可以选择不生成某些路径下的文档。最后的参数，”{PROJECT_DIR}/runscript)”，需要根据自己需要生成的项目做调整。</p>
-        
-          <a class="article-more-a" href="/2016/05/20/Xcode的runsript案例/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/20/Xcode的runsript案例/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-iOS开发证书技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/iOS开发证书技巧/">iOS开发证书技巧</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/15/iOS开发证书技巧/" class="archive-article-date">
-  	<time datetime="2016-05-15T05:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。</p>
-<h2 id="一、证书制作流程图"><a href="#一、证书制作流程图" class="headerlink" title="一、证书制作流程图"></a>一、证书制作流程图</h2><p><img src="/2016/05/15/iOS开发证书技巧/flow.png" alt=""></p>
-<p>对于概念不懂的同学，可以到这脑补下<a href="http://blog.csdn.net/phunxm/article/details/42685597" target="_blank" rel="noopener">『iOS Provisioning Profile(Certificate)与Code Signing详解』</a></p>
-<h2 id="二、关于Provisioning-Profile供应配置管理"><a href="#二、关于Provisioning-Profile供应配置管理" class="headerlink" title="二、关于Provisioning Profile供应配置管理"></a>二、关于Provisioning Profile供应配置管理</h2><p>我们在项目配置时，虽然经常将Code Signing的Provisioning Profile配置成”Automatic”，但还是需要去developer.apple.com上下载所有的mobileprovision文件。如果这些文件经常变化，可以这样：</p>
-<p>1、首先cd到这些mobileprovision文件的目录”~/Library/MobileDevice/Provisioning Profiles”，然后删除所有的文件。<br>可使用命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm *.mobileprovision</span><br></pre></td></tr></table></figure>
-<p>2、这样再看Xcode的时候，就找不到任何provisioning profile了。这个时候不需要一个一个的添加。而是访问XCode的Preferences&gt; Accounts，在Apple IDs里面找到你的帐号，右下角有个View Details，这时，你就可以download下所有网站上配置的文件了。一个按钮搞定。</p>
-<p><img src="/2016/05/15/iOS开发证书技巧/certificate.png" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/15/iOS开发证书技巧/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1268,11 +1389,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">HTML5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,7 +1405,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTML5</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1296,15 +1425,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1324,19 +1457,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1344,7 +1465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1368,7 +1497,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1380,19 +1517,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySql</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
             
             <div class="clearfix"></div>
