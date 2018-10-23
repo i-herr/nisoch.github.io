@@ -278,125 +278,9 @@
 <p>linux 安装</p>
 </blockquote>
 <p>详细资料可参考官方文档，<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener">『文档传送门』</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖包</span></span><br><span class="line">$ yum install -y autoconf automake cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel</span><br><span class="line"></span><br><span class="line">$ mkdir ~/ffmpeg_sources</span><br><span class="line">$ <span class="built_in">cd</span> ~/ffmpeg_sources</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/FFmpeg/FFmpeg.git</span><br><span class="line">$ <span class="built_in">cd</span> FFmpeg</span><br><span class="line">$ <span class="built_in">export</span> PKG_CONFIG_PATH=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build/lib/pkgconfig"</span></span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build"</span> --extra-cflags=<span class="string">"-I<span class="variable">$HOME</span>/ffmpeg_build/include"</span> --extra-ldflags=<span class="string">"-L<span class="variable">$HOME</span>/ffmpeg_build/lib"</span> --bindir=<span class="string">"<span class="variable">$HOME</span>/bin"</span> --pkg-config-flags=<span class="string">"--static"</span> --<span class="built_in">enable</span>-gpl --<span class="built_in">enable</span>-nonfree --<span class="built_in">enable</span>-libfdk-aac --<span class="built_in">enable</span>-libfreetype --<span class="built_in">enable</span>-libmp3lame --<span class="built_in">enable</span>-libopus --<span class="built_in">enable</span>-libvorbis --<span class="built_in">enable</span>-libvpx --<span class="built_in">enable</span>-libx264 --<span class="built_in">enable</span>-libx265</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br><span class="line"></span><br><span class="line">$ make distclean</span><br><span class="line">$ <span class="built_in">hash</span> -r</span><br></pre></td></tr></table></figure>
-<h2 id="三、FFmpeg使用"><a href="#三、FFmpeg使用" class="headerlink" title="三、FFmpeg使用"></a>三、FFmpeg使用</h2><blockquote>
-<p>常用参数说明</p>
-</blockquote>
-<p>1、主要参数</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-i</td>
-<td>设定输入流</td>
-</tr>
-<tr>
-<td style="text-align:center">-f</td>
-<td>设定输出格式</td>
-</tr>
-<tr>
-<td style="text-align:center">-ss</td>
-<td>开始时间</td>
-</tr>
-<tr>
-<td style="text-align:center">-re</td>
-<td>按照帧率发送</td>
-</tr>
-</tbody>
-</table>
-<p>2、视频参数</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-b</td>
-<td>设定视频流量，默认为200Kbit/s</td>
-</tr>
-<tr>
-<td style="text-align:center">-r</td>
-<td>设定帧速率，默认为25</td>
-</tr>
-<tr>
-<td style="text-align:center">-s</td>
-<td>设定画面的宽与高</td>
-</tr>
-<tr>
-<td style="text-align:center">-aspect</td>
-<td>设定画面的比例</td>
-</tr>
-<tr>
-<td style="text-align:center">-vn</td>
-<td>不处理视频</td>
-</tr>
-<tr>
-<td style="text-align:center">-vcodec</td>
-<td>设定视频编解码器，默认与输入流相同</td>
-</tr>
-</tbody>
-</table>
-<p>3、音频参数</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">-ar</td>
-<td>设定采样率</td>
-</tr>
-<tr>
-<td style="text-align:center">-ac</td>
-<td>设定声音的Channel数</td>
-</tr>
-<tr>
-<td style="text-align:center">-acodec</td>
-<td>设定声音编解码器，默认与输入流相同</td>
-</tr>
-<tr>
-<td style="text-align:center">-an</td>
-<td>不处理音频</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>在Mac下面使用FFmpeg进行录屏</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -f avfoundation -list_devices <span class="literal">true</span> -i <span class="string">""</span></span><br><span class="line"><span class="comment"># 查看可输入设备id</span></span><br><span class="line">$ ffmpeg -y -loglevel warning -f avfoundation -i 1 -r 30 -s 480x320 -threads 2 -vcodec libx264  -f flv rtmp://127.0.0.1/live/<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>推音频+视频</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"输入源"</span> -acodec copy -vcodec copy -f flv -y  <span class="string">"输出源"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i <span class="string">"http://127.0.0.1/live/1.mp4"</span> -acodec copy -vcodec copy -f flv -y  <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>推纯音频流或纯视频流，通过-an分离视频流，-vn分离音频流</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"输入源"</span> -acodec copy -vcodec copy -vn -f flv -y <span class="string">"输出源"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i <span class="string">"http://127.0.0.1/live/1.mp4"</span> -acodec copy -vcodec copy -vn -f flv -y <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>摄影机rtsp转rtmp推流</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"rtsp://admin:123456@123.0.0.1:554/h264/stream1"</span> -vcodec libx264 -acodec aac -f flv -r 25 -b 2097152 -s 1280x720 -an <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>rtmp拉流并推流</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i <span class="string">"rtmp://127.0.0.1/live/test1"</span> -acodec copy -vcodec copy -f flv <span class="string">"rtmp://video-center.alivecdn.com/device/osmo1?vhost=tv.cctbn.com&amp;auth_key=1708959988-0-0-bb37263305651e25efd94c7335cd68b4"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>本地视频文件推流</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -vcodec libx264 -acodec aac -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -c copy -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
-<h2 id="四、FFplay"><a href="#四、FFplay" class="headerlink" title="四、FFplay"></a>四、FFplay</h2><p>ffplay是ffmpeg的一个子工具，它具有强大的音视频解码播放能力，目前它广泛被各种流行播放器（QQ影音、暴风影音等）集成应用。作为一款开源软件，ffplay囊括Linux、Windows、iOS、Android等众多主流系统平台，十分适合进行二次开发。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffplay http://127.0.0.1/live/test.m3u8</span><br><span class="line">$ ffplay rtmp://127.0.0.1/live/<span class="built_in">test</span></span><br><span class="line">$ ffplay -vfscale=1920:1080 /usr/<span class="built_in">local</span>/ffmpeg/1.mp4</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/#more">more >></a>
+        
       
 
       
@@ -1369,6 +1253,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -1381,23 +1273,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1425,11 +1309,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1497,6 +1381,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
@@ -1506,10 +1394,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">

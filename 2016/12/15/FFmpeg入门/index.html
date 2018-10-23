@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="iherr的博客">
 <meta property="og:description" content="一、FFmpeg简介FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。 『FFmpeg官网传送门』，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。 二、FFmpeg安装当然也可以自己编译到Android或者iOS平台。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T07:44:47.000Z">
+<meta property="og:updated_time" content="2018-10-23T10:59:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFmpeg入门">
 <meta name="twitter:description" content="一、FFmpeg简介FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。 『FFmpeg官网传送门』，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。 二、FFmpeg安装当然也可以自己编译到Android或者iOS平台。">
@@ -183,6 +183,7 @@
 <p>linux 安装</p>
 </blockquote>
 <p>详细资料可参考官方文档，<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener">『文档传送门』</a></p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖包</span></span><br><span class="line">$ yum install -y autoconf automake cmake freetype-devel gcc gcc-c++ git libtool make mercurial nasm pkgconfig zlib-devel</span><br><span class="line"></span><br><span class="line">$ mkdir ~/ffmpeg_sources</span><br><span class="line">$ <span class="built_in">cd</span> ~/ffmpeg_sources</span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/FFmpeg/FFmpeg.git</span><br><span class="line">$ <span class="built_in">cd</span> FFmpeg</span><br><span class="line">$ <span class="built_in">export</span> PKG_CONFIG_PATH=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build/lib/pkgconfig"</span></span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=<span class="string">"<span class="variable">$HOME</span>/ffmpeg_build"</span> --extra-cflags=<span class="string">"-I<span class="variable">$HOME</span>/ffmpeg_build/include"</span> --extra-ldflags=<span class="string">"-L<span class="variable">$HOME</span>/ffmpeg_build/lib"</span> --bindir=<span class="string">"<span class="variable">$HOME</span>/bin"</span> --pkg-config-flags=<span class="string">"--static"</span> --<span class="built_in">enable</span>-gpl --<span class="built_in">enable</span>-nonfree --<span class="built_in">enable</span>-libfdk-aac --<span class="built_in">enable</span>-libfreetype --<span class="built_in">enable</span>-libmp3lame --<span class="built_in">enable</span>-libopus --<span class="built_in">enable</span>-libvorbis --<span class="built_in">enable</span>-libvpx --<span class="built_in">enable</span>-libx264 --<span class="built_in">enable</span>-libx265</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line">$ make install</span><br><span class="line"></span><br><span class="line">$ make distclean</span><br><span class="line">$ <span class="built_in">hash</span> -r</span><br></pre></td></tr></table></figure>
 <h2 id="三、FFmpeg使用"><a href="#三、FFmpeg使用" class="headerlink" title="三、FFmpeg使用"></a>三、FFmpeg使用</h2><blockquote>
 <p>常用参数说明</p>
@@ -514,6 +515,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -526,23 +535,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,11 +571,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,6 +643,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
@@ -651,10 +656,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
