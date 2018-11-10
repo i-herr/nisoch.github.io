@@ -6,22 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iherr.cn">
-  <title>SpringBoot实战（5）数据访问 | iherr的博客</title>
+  <title>微服务架构（4）微服务日志 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Spring Data1、Spring Data是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。 常见项目包含：    项目名称 Maven坐标 org.springframework.data     Spring Data Jpa spring-data-jpa   Spring Data MongoDB spring-data-mong">
-<meta name="keywords" content="Java,SpringBoot,MyBatis">
+  <meta name="description" content="一、SpringBoot日志框架 默认使用  不推荐使用System.out.println()方式来输出的原因，一是输出到文件，二是采用异步多线程方式提高吞吐率。 SpringBoot使用Apache开源项目Commons Logging作为内部日志框架，默认集成了Logback，同时也提供Log4J等流行的日志实现。 日志分为5个级别：  ERROR，错误信息 WARN，警告信息 INFO，一">
+<meta name="keywords" content="Java,SpringBoot,MSA,ELK">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot实战（5）数据访问">
-<meta property="og:url" content="http://iherr.cn/2017/04/14/SpringBoot实战（5）数据访问/index.html">
+<meta property="og:title" content="微服务架构（4）微服务日志">
+<meta property="og:url" content="http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="一、Spring Data1、Spring Data是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。 常见项目包含：    项目名称 Maven坐标 org.springframework.data     Spring Data Jpa spring-data-jpa   Spring Data MongoDB spring-data-mong">
+<meta property="og:description" content="一、SpringBoot日志框架 默认使用  不推荐使用System.out.println()方式来输出的原因，一是输出到文件，二是采用异步多线程方式提高吞吐率。 SpringBoot使用Apache开源项目Commons Logging作为内部日志框架，默认集成了Logback，同时也提供Log4J等流行的日志实现。 日志分为5个级别：  ERROR，错误信息 WARN，警告信息 INFO，一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://iherr.cn/2017/04/14/SpringBoot实战（5）数据访问/catalog.jpg">
-<meta property="og:updated_time" content="2018-10-18T10:16:10.000Z">
+<meta property="og:image" content="http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/ELK.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/Logstash.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/Kibana.jpg">
+<meta property="og:updated_time" content="2018-11-10T04:07:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpringBoot实战（5）数据访问">
-<meta name="twitter:description" content="一、Spring Data1、Spring Data是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。 常见项目包含：    项目名称 Maven坐标 org.springframework.data     Spring Data Jpa spring-data-jpa   Spring Data MongoDB spring-data-mong">
-<meta name="twitter:image" content="http://iherr.cn/2017/04/14/SpringBoot实战（5）数据访问/catalog.jpg">
+<meta name="twitter:title" content="微服务架构（4）微服务日志">
+<meta name="twitter:description" content="一、SpringBoot日志框架 默认使用  不推荐使用System.out.println()方式来输出的原因，一是输出到文件，二是采用异步多线程方式提高吞吐率。 SpringBoot使用Apache开源项目Commons Logging作为内部日志框架，默认集成了Logback，同时也提供Log4J等流行的日志实现。 日志分为5个级别：  ERROR，错误信息 WARN，警告信息 INFO，一">
+<meta name="twitter:image" content="http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/ELK.jpg">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -153,177 +155,142 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SpringBoot实战（5）数据访问" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-微服务架构（4）微服务日志" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      SpringBoot实战（5）数据访问
+      微服务架构（4）微服务日志
     </h1>
   
 
         
-        <a href="/2017/04/14/SpringBoot实战（5）数据访问/" class="archive-article-date">
-  	<time datetime="2017-04-14T06:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-14</time>
+        <a href="/2017/09/28/微服务架构（4）微服务日志/" class="archive-article-date">
+  	<time datetime="2017-09-28T06:14:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Spring-Data"><a href="#一、Spring-Data" class="headerlink" title="一、Spring Data"></a>一、Spring Data</h2><p>1、Spring Data是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。</p>
-<p>常见项目包含：</p>
-<table>
-<thead>
-<tr>
-<th>项目名称</th>
-<th style="text-align:center">Maven坐标 org.springframework.data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Spring Data Jpa</td>
-<td style="text-align:center">spring-data-jpa</td>
-</tr>
-<tr>
-<td>Spring Data MongoDB</td>
-<td style="text-align:center">spring-data-mongodb</td>
-</tr>
-<tr>
-<td>Spring Data Redis</td>
-<td style="text-align:center">spring-data-redis</td>
-</tr>
-<tr>
-<td>Spring Data Solr</td>
-<td style="text-align:center">spring-data-solr</td>
-</tr>
-<tr>
-<td>Spring Data Hadoop</td>
-<td style="text-align:center">spring-data-hadoop</td>
-</tr>
-<tr>
-<td>Spring Data REST</td>
-<td style="text-align:center">spring-data-rest-webmvc</td>
-</tr>
-<tr>
-<td>Spring Data JDBC Ext</td>
-<td style="text-align:center">spring-data-oracle</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二、Spring-Data-JPA"><a href="#二、Spring-Data-JPA" class="headerlink" title="二、Spring Data JPA"></a>二、Spring Data JPA</h2><blockquote>
-<p>基本概念</p>
+        <h2 id="一、SpringBoot日志框架"><a href="#一、SpringBoot日志框架" class="headerlink" title="一、SpringBoot日志框架"></a>一、SpringBoot日志框架</h2><blockquote>
+<p>默认使用</p>
 </blockquote>
-<p>1、Hibernate主导了EJB3.0的JPA（Java Persistence API）规范。</p>
-<p>2、继承JpaRepository接口，即可拥有默认数据访问操作方法，如findAll，getOne等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Person</span>, <span class="title">Long</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、在Spring中，需要使用注解@EnableJPARepository来开启JPA支持。</p>
-<blockquote>
-<p>定义查询方法</p>
-</blockquote>
-<p>1、常规查询<br>根据属性名查询，使用findBy、Like、And、IsNull、In、OrderBy等关键字来定义查询方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Person <span class="title">findByNameAndAddress</span><span class="params">(String name,String address)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>通过top和first关键字来限制结果数量。</p>
-<p>2、JPA的NamedQuery查询</p>
-<p>Spring Data JPA支持用JPA的NamedQuery查询防范，即一个名称映射一个查询语句。</p>
-<p>3、@Query查询，直接将@Query注解在接口的方法上实现查询。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"select p from Person p where p.name= :name and p.address= :address"</span>)</span><br><span class="line"><span class="function">Person <span class="title">withNameAndAddressQuery</span><span class="params">(@Param(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"address"</span>)</span>String address)</span>;</span><br></pre></td></tr></table></figure>
-<p>4、排序与分页，提供了Sort类以及Page接口和Pageable接口。</p>
-<blockquote>
-<p>Spring Boot的支持</p>
-</blockquote>
-<p>1、JDBC的自动配置<br>在org.springframework.boot.autoconfigure.jdbc下。</p>
-<p>2、对JPA的自动配置<br>在org.springframework.boot.autoconfigure.orm.jpa下。其中JpaBaseConfiguration会自动扫描注解有@Entity的实体类。</p>
-<p>3、对Spring Data JPA的自动配置<br>在org.springframework.boot.autoconfigure.data.jpa下。JpaRepositoriesAutoConfiguration依赖于HibernateJpaAutoConfiguration配置。</p>
-<a id="more"></a>
-<p>4、Spring Boot下的Spring Data JPA<br>如需使用，maven依赖中添加spring-boot-starter-data-jpa，然后只需定义DataSource、实体类和数据访问层，并在需要使用数据访问的地方注入数据访问层的Bean即可。</p>
-<h2 id="三、Spring-data-REST"><a href="#三、Spring-data-REST" class="headerlink" title="三、Spring data REST"></a>三、Spring data REST</h2><p>Spring Boot通过SpringBootRepositoryRestMVCConfiguration类自动配置了RepositoryRestConfiguration，因此只需要引入依赖即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-data-rest&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>properties配置文件定制rest根路径api。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.data.rest.base-path= /api</span><br></pre></td></tr></table></figure>
-<p>使用注解自动实现REST接口，并定制节点路径people。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@RepositoryRestResource</span>(path = <span class="string">"people"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Person</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RestResource</span>(path = <span class="string">"nameStartsWith"</span>, rel = <span class="string">"nameStartsWith"</span>)</span><br><span class="line">	<span class="function">Person <span class="title">findByNameStartsWith</span><span class="params">(@Param(<span class="string">"name"</span>)</span>String name)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="四、声明式事务"><a href="#四、声明式事务" class="headerlink" title="四、声明式事务"></a>四、声明式事务</h2><blockquote>
-<p>所有的数据访问技术都有事务处理机制</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>数据访问技术</th>
-<th style="text-align:center">实现</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>JDBC</td>
-<td style="text-align:center">DataSourceTransactionManager</td>
-</tr>
-<tr>
-<td>JPA</td>
-<td style="text-align:center">JpaTransactionManager</td>
-</tr>
-<tr>
-<td>Hibernate</td>
-<td style="text-align:center">Hibernate TransactionManager</td>
-</tr>
-<tr>
-<td>JDO</td>
-<td style="text-align:center">JdoTransactionManager</td>
-</tr>
-<tr>
-<td>分布式事务</td>
-<td style="text-align:center">JtaTransactionManager</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>@Transactional注解</p>
-</blockquote>
-<p>Transactional（来自org.springframework.transaction.annotation包）基于AOP的实现操作，被注解的方法在被调用时开启事务。</p>
-<p>Spring提供一个@EnableTransactionManagement注解在配置类来开启声明式事务的支持，Spring容器会自动扫描注解@Transactional的方法和类。</p>
-<p>属性包括：<br>1、propagation生命周期，默认为REQUIRED。<br>2、isolation隔离级别确定了事务的完整性。默认为DEFAULT，使用数据库的默认隔离级别。Mysql是REPEATABLE_READ，Oracle是READ_COMMITTED。<br>3、readOnly，只读事务，默认false<br>4、timeout，事务过期时间<br>5、rollbackFor，noRollbackFor，指定哪些异常（不）可以引起事务回滚</p>
-<p>例如当捕获某个异常时进行回滚操作。<br>@Transactional(rollbackFor={IllegalArgumentException.class})</p>
-<blockquote>
-<p>Spring Boot的事务支持</p>
-</blockquote>
-<p>1、自动配置的事务管理器</p>
-<p>使用JDBC作为数据访问技术时，DataSourceTransactionManagerAutoConfiguration类定义了DataSourceTransactionManager的Bean。</p>
-<p>使用JPA作为数据访问技术时，or.jpa.JpaBaseConfiguration类定义了JpaTransactionManager的Bean。</p>
-<p>2、自动开启注解事务的支持<br>transaction.TransactionAutoConfiguration类，依赖于上面两个类。在Spring Boot中无须显示开启使用@EnableTransactionManagement注解。</p>
-<h2 id="五、Mybatis"><a href="#五、Mybatis" class="headerlink" title="五、Mybatis"></a>五、Mybatis</h2><p>ORM层基本就是两大阵营，JPA（Hibernate可看做是JPA规范的实现，Spring data JPA是spring提供的一套简化JPA开发的框架，底层还是使用了 Hibernate 的 JPA 技术实现）和Mybatis，至于两者优劣，各有之。有人喜欢轻量灵活用Mybatis，而从软件设计角度JPA更加符合规范。</p>
-<p>Mybatis项目添加的依赖如下：包含mysql连接和druid连接池。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">    &lt;scope&gt;runtime&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- alibaba的druid数据库连接池 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.1.9&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>yml文件配置如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    name: mysql</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">    #druid相关配置</span><br><span class="line">    druid:</span><br><span class="line">      #监控统计拦截的filters</span><br><span class="line">      filters: stat</span><br><span class="line">      driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">      #基本属性</span><br><span class="line">      url: jdbc:mysql://127.0.0.1:3306/auto?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true</span><br><span class="line">      username: root</span><br><span class="line">      password: 123</span><br><span class="line">      #配置初始化大小/最小/最大</span><br><span class="line">      initial-size: 1</span><br><span class="line">      min-idle: 1</span><br><span class="line">      max-active: 20</span><br><span class="line">      #获取连接等待超时时间</span><br><span class="line">      max-wait: 60000</span><br><span class="line">      #间隔多久进行一次检测，检测需要关闭的空闲连接</span><br><span class="line">      time-between-eviction-runs-millis: 60000</span><br><span class="line">      #一个连接在池中最小生存的时间</span><br><span class="line">      min-evictable-idle-time-millis: 300000</span><br><span class="line">      validation-query: SELECT 'x'</span><br><span class="line">      test-while-idle: true</span><br><span class="line">      test-on-borrow: false</span><br><span class="line">      test-on-return: false</span><br><span class="line">      pool-prepared-statements: false</span><br><span class="line">      max-pool-prepared-statement-per-connection-size: 20</span><br><span class="line"></span><br><span class="line">mybatis:</span><br><span class="line">  mapper-locations: classpath:mapping/*.xml  #对应mapper映射xml文件的所在路径</span><br><span class="line">  type-aliases-package: com.herr.model  #对应实体类的路径</span><br></pre></td></tr></table></figure>
-<p>相关代码目录如下：</p>
-<p><img src="/2017/04/14/SpringBoot实战（5）数据访问/catalog.jpg" alt=""><br>UserMapper.java，UserMapper.xml，user.Java文件可使用Mybatis插件自动生成。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;configurationFile&gt;<span class="variable">$&#123;basedir&#125;</span>/src/main/resources/generator/generatorConfig.xml&lt;/configurationFile&gt;</span><br><span class="line">        &lt;overwrite&gt;<span class="literal">true</span>&lt;/overwrite&gt;</span><br><span class="line">        &lt;verbose&gt;<span class="literal">true</span>&lt;/verbose&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>使用如下命令生成：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mybatis-generator:generate -e</span><br></pre></td></tr></table></figure>
-<h2 id="六、druid相关"><a href="#六、druid相关" class="headerlink" title="六、druid相关"></a>六、druid相关</h2><p><a href="https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter" target="_blank" rel="noopener">『druid-spring-boot-starter集成传送门』</a>：<br>可访问<a href="http://localhost:8080/druid/sql.html" target="_blank" rel="noopener">http://localhost:8080/druid/sql.html</a> 查看数据库连接池相关情况。</p>
-<blockquote>
-<p>数据源以及SpringBoot的自动配置原理</p>
-</blockquote>
-<p>找到org.springframework.boot.autoconfigure.jdbc包下的DataSourceConfiguration类，原理大概是如果在classpath下存在org.apache.tomcat.jdbc.pool.DataSource.class类，并且在配置文件中指定spring.datasource.type的值为org.apache.tomcat.jdbc.pool.DataSource，或者不写都会认为可以通过。只有通过才会进入这段配置代码，才能注入DataSourceBean。</p>
-<p>SpringBoot默认可以支持；</p>
-<p>org.apache.tomcat.jdbc.pool.DataSource、HikariDataSource、BasicDataSource等。通过以下方式可自定义数据源。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConditionalOnMissingBean</span>(DataSource.class)</span><br><span class="line">   <span class="meta">@ConditionalOnProperty</span>(name = <span class="string">"spring.datasource.type"</span>)</span><br><span class="line">   <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Generic</span> </span>&#123;</span><br><span class="line">       <span class="meta">@Bean</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> DataSource <span class="title">dataSource</span><span class="params">(DataSourceProperties properties)</span> </span>&#123;</span><br><span class="line">           <span class="comment">//使用DataSourceBuilder创建数据源，利用反射创建响应type的数据源，并且绑定相关属性</span></span><br><span class="line">           <span class="keyword">return</span> properties.initializeDataSourceBuilder().build();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>数据库连接池</p>
-</blockquote>
-<p>当我们使用了如上所述的默认数据源之后，那么已默认启用了数据库链接池。 </p>
-<p>Spring Boot为我们准备了最佳的数据库连接池方案，只需要在属性文件（例如application.properties）中配置需要的连接池参数即可。</p>
-<p>Tomcat7之前，Tomcat本质应用了DBCP连接池技术来实现的JDBC数据源，但在Tomcat7之后，Tomcat提供了新的JDBC连接池方案，作为DBCP的替换或备选方案，解决了许多之前使用DBCP的不利之处，并提高了性能。</p>
-<p>在引入spring-boot-starter-jdbc后，内部包含了tomcat-jdbc包，里面有tomcat连接池.然后通过自动配置DataSourceAutoConfigurer创建DataSource对象。</p>
-<p>SpringBoot创建默认DataSource时，规则如下：</p>
+<p>不推荐使用System.out.println()方式来输出的原因，一是输出到文件，二是采用异步多线程方式提高吞吐率。</p>
+<p>SpringBoot使用Apache开源项目Commons Logging作为内部日志框架，默认集成了Logback，同时也提供Log4J等流行的日志实现。</p>
+<p>日志分为5个级别：</p>
 <ul>
-<li>优先寻找创建Tomcat连接池</li>
-<li>如果没有Tomcat连接池，会查找创建HikariCP</li>
-<li>如果没有HikariCP连接池，会查找创建dbcp</li>
-<li>如果没有dbcp连接池，会查找创建dbcp2</li>
-<li>可以在yml使用spring.datasource.type属性指定连接池类型</li>
+<li>ERROR，错误信息</li>
+<li>WARN，警告信息</li>
+<li>INFO，一般信息</li>
+<li>DEBUG，调试信息</li>
+<li>TRACE，跟踪信息</li>
 </ul>
+<p>Logging插件默认输出到INFO级别。可通过如下配置进行修改</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging.level.root= ERROR</span><br><span class="line">logging.level.com.herr=DEBUG  ##指定com.herr包的日志输出级别为DEBUG。</span><br><span class="line">logging.file = $&#123;user.home&#125;/logs/hello.log</span><br></pre></td></tr></table></figure>
+<p>Logging插件无法关闭控制台中的输出。</p>
+<blockquote>
+<p>集成Log4J日志框架</p>
+</blockquote>
+<p>1、Maven配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-log4j2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、resources/log4j2.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">appenders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">File</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">fileName</span>=<span class="string">"$&#123;sys:user.home&#125;/logs/msa-hello.log"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">"%d&#123;HH:mm:ss,SSS&#125; %p %c (%L) - %m%n"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">File</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">appenders</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">loggers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"ERROR"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"file"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"demo.msa"</span> <span class="attr">level</span>=<span class="string">"DEBUG"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">loggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、docker容器外输出"><a href="#二、docker容器外输出" class="headerlink" title="二、docker容器外输出"></a>二、docker容器外输出</h2><p>1、直接通过Docker数据卷方式挂在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -v ~/logs:~/logs ***</span><br></pre></td></tr></table></figure>
+<p>2、Docker容器日志</p>
+<p>docker logs会监控容器操作系统的标准输出设备STDOUT，有数据时会传输到另一个“设备”（日志驱动）中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker info | grep <span class="string">"Logging Driver"</span></span><br><span class="line">Logging Driver: json-file</span><br></pre></td></tr></table></figure>
+<p>Docker的日志驱动类型：</p>
+<ul>
+<li>none，不输出日志。</li>
+<li>json-file (默认)，以JSON格式写入文件中。</li>
+<li>syslog，输出日志写入宿主机的Syslog中。</li>
+<li>…</li>
+</ul>
+<p>docker启动时设定日志驱动类型如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 80:80 --<span class="built_in">log</span>-driver json-file --<span class="built_in">log</span>-opt max-size=10m --<span class="built_in">log</span>-opt max-file=3 --name nginx1 nginx</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Syslog</p>
+</blockquote>
+<p>Syslog为Linux的默认日志系统，默认安装了Rsyslog软件包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ rsyslogd -v <span class="comment">#查看安装信息</span></span><br><span class="line">$ vi /etc/rsyslog.conf <span class="comment">#修改配置手工开启</span></span><br><span class="line">$ systemctl restart rsyslog <span class="comment">#重启Rsyslog服务</span></span><br><span class="line">$ netstat -anpt | grep 514 <span class="comment">#查看是否开启514端口</span></span><br><span class="line">$ docker run -d -p 80:80 --<span class="built_in">log</span>-driver syslog --<span class="built_in">log</span>-opt syslog-address=tcp://localhost:514 --<span class="built_in">log</span>-opt tag=nginx --name nginx1 nginx <span class="comment">#启动nginx容器，使用Syslog作为日志驱动，通过514端口将日志写入Rsyslog中</span></span><br><span class="line">$ tail -f /var/<span class="built_in">log</span>/messages <span class="comment">#可看到包含docker容器ID的日志，也可使用tag标识来识别</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、日志中心ELK"><a href="#三、日志中心ELK" class="headerlink" title="三、日志中心ELK"></a>三、日志中心ELK</h2><p>许多日志分析工具都可以从Syslog中获取日志，如流行的Elastic公司的ELK日志中心。<a href="https://www.elastic.co/cn/" target="_blank" rel="noopener">『官网地址传送门』</a></p>
+<p><img src="/2017/09/28/微服务架构（4）微服务日志/ELK.jpg" alt=""></p>
+<ul>
+<li>日志收集：Logstash</li>
+<li>日志存储：Elasticsearch</li>
+<li>日志查询：Kibana</li>
+</ul>
+<a id="more"></a>
+<blockquote>
+<p>日志存储Elasticssearch</p>
+</blockquote>
+<p>是一个可高度扩展的开源全文搜索与分析引擎，基于开源搜索引擎Lucene，提供REST API和集群能力。</p>
+<p>集群环境中，设置节点（Node）、分片（Shards）和副本（Replicas）的数量。</p>
+<p>docker命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 9200:9200 --name elasticsearch1 elasticsearch:6.4.1</span><br></pre></td></tr></table></figure>
+<p>通过下列API接口进行操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:9200</span><br><span class="line"></span><br><span class="line">PUT http://localhost:9200/customer <span class="comment">#创建索引</span></span><br><span class="line"></span><br><span class="line">GET http://localhost:9200/_cat/indices?v</span><br><span class="line">health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size</span><br><span class="line">yellow open   customer gRlHNIxrQPCPeTnZVpZs4w   5   1          0            0       810b           810b</span><br><span class="line"></span><br><span class="line">curl --data-binary <span class="string">'&#123;"name":"herr"&#125;'</span> -X PUT --compressed <span class="string">'http://localhost:9200/customer/external/1'</span></span><br><span class="line"><span class="comment"># 创建文档，索引是customer，类型为external，id为1</span></span><br><span class="line"></span><br><span class="line">GET http://localhost:9200/customer/external/1 <span class="comment">#查询文档</span></span><br><span class="line"></span><br><span class="line">curl --data-binary <span class="string">'&#123;"name":"herr2"&#125;'</span> --compressed <span class="string">'http://localhost:9200/customer/external/1'</span> <span class="comment">#更新数据</span></span><br><span class="line"></span><br><span class="line">DELETE http://localhost:9200/customer/external/1 <span class="comment">#删除文档</span></span><br><span class="line"></span><br><span class="line">DELETE http://localhost:9200/customer <span class="comment">#删除索引</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>日志收集Logstash</p>
+</blockquote>
+<p><img src="/2017/09/28/微服务架构（4）微服务日志/Logstash.jpg" alt=""></p>
+<p>Logstash提供了三个内部组件，分别是输入组件、过滤组件和输出组件，每个组件都提供了插件机制。</p>
+<p>1、输入组件</p>
+<ul>
+<li>file，文本文件</li>
+<li>syslog，读取Rsyslog</li>
+<li>redis，读取Redis消息队列</li>
+<li>beats，处理filebeat事件</li>
+<li>…<a href="https://www.elastic.co/guide/en/logstash/current/input-plugins.html" target="_blank" rel="noopener">『更多请查看官方』</a></li>
+</ul>
+<p>2、过滤组件</p>
+<ul>
+<li>grok，解析日志文本</li>
+<li>mutate，修改事件字段</li>
+<li>drop，删除事件</li>
+<li>clone，复制事件</li>
+<li>geoip，添加ip地理位置</li>
+<li>…<a href="https://www.elastic.co/guide/en/logstash/current/filter-plugins.html" target="_blank" rel="noopener">『更多请查看官方』</a></li>
+</ul>
+<p>3、输出组件</p>
+<ul>
+<li>elasticsearch，写入Elasticsearch</li>
+<li>file，写入文件</li>
+<li>graphite，写入Graphite</li>
+<li>statsd，写入Statsd</li>
+<li>…<a href="https://www.elastic.co/guide/en/logstash/current/output-plugins.html" target="_blank" rel="noopener">『更多请查看官方』</a></li>
+</ul>
+<p>4、编解码插件</p>
+<ul>
+<li>json，编解码为JSON格式</li>
+<li>multiline，合并多行文本</li>
+</ul>
+<p>docker安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm logstash -e <span class="string">'input &#123; stdin &#123; &#125; &#125; output &#123; stdout &#123; &#125; &#125;'</span></span><br></pre></td></tr></table></figure>
+<p>同时，可以进行如下设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#输入时增加两字段field1和field2</span><br><span class="line">input &#123;</span><br><span class="line">	stdin&#123;</span><br><span class="line">		add_field =&gt; &#123;</span><br><span class="line">			&quot;field1&quot; =&gt; &quot;name1&quot;</span><br><span class="line">			&quot;field2&quot; =&gt; &quot;name2&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">#过滤时移除field2</span><br><span class="line">filter &#123;</span><br><span class="line">	mutate &#123;</span><br><span class="line">		remove_field =&gt; [ &quot;field1&quot; ]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">#输出时使用rubydebug对日志进行格式化</span><br><span class="line">output &#123;</span><br><span class="line">	stdout&#123;</span><br><span class="line">		codec =&gt; rubydebug</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>日志查询Kibana</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm --name kibana1 -p 5601:5601 --link elasticsearch1:elasticsearch -e ELASTICSEARCH_URL=http://elasticsearch:9200 kibana:6.4.1</span><br></pre></td></tr></table></figure>
+<p>访问<a href="http://localhost:5601" target="_blank" rel="noopener">http://localhost:5601</a> </p>
+<p><img src="/2017/09/28/微服务架构（4）微服务日志/Kibana.jpg" alt=""></p>
+<blockquote>
+<p>ELK日志中心</p>
+</blockquote>
+<ul>
+<li>1、需要先启动Elasticsearch的日志存储系统</li>
+<li>2、再启动Rsyslog服务和Logstash容器来收集日志到Elasticsearch</li>
+<li>3、最后启动Kibana容器从Elasticsearch查询日志</li>
+<li>4、启动nginx容器来生产日志，然后查看Kibana页面</li>
+</ul>
+<p>如几个docker配置起来很费劲，可以直接使用第三方ELK的docker。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk</span><br></pre></td></tr></table></figure>
+<p><a href="https://elk-docker.readthedocs.io" target="_blank" rel="noopener">『ELK-docker使用文档』</a></p>
 
       
 
@@ -402,7 +369,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://iherr.cn/2017/04/14/SpringBoot实战（5）数据访问/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://iherr.cn/2017/09/28/微服务架构（4）微服务日志/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -416,18 +383,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/30/HTTP权威指南/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/10/02/微服务架构（5）微服务监控/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          HTTP权威指南
+          微服务架构（5）微服务监控
         
       </div>
     </a>
   
   
-    <a href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SpringBoot实战（4）SpringBoot核心</div>
+    <a href="/2017/09/26/微服务架构（3）微服务封装和部署/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微服务架构（3）微服务封装和部署</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -537,14 +504,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -557,11 +516,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,7 +532,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,6 +541,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -601,6 +568,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -613,23 +596,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,11 +604,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -665,19 +632,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">

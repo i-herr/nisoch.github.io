@@ -6,16 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iherr.cn">
-  <title>Tag: ZooKeeper | iherr的博客</title>
+  <title>微服务架构（6）微服务通信 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="前端,ios,android,html5,开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,Coder,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iherr的博客">
-<meta property="og:url" content="http://iherr.cn/tags/ZooKeeper/index.html">
+  <meta name="description" content="一、HTTP同步调用 服务器端  一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。 可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。  客户端-RestTemplate  客户端调用，可使用Spring的RestTemplate的getForO">
+<meta name="keywords" content="Java,SpringBoot,MSA,RPC,MQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务架构（6）微服务通信">
+<meta property="og:url" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/index.html">
 <meta property="og:site_name" content="iherr的博客">
+<meta property="og:description" content="一、HTTP同步调用 服务器端  一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。 可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。  客户端-RestTemplate  客户端调用，可使用Spring的RestTemplate的getForO">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/rpc.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_queue.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_topic.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_activemq.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_exchange.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_overview.png">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_queue.png">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_connections.png">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/rabbitmq_rpc.jpg">
+<meta property="og:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/mq_transactional.jpg">
+<meta property="og:updated_time" content="2018-11-05T15:07:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iherr的博客">
+<meta name="twitter:title" content="微服务架构（6）微服务通信">
+<meta name="twitter:description" content="一、HTTP同步调用 服务器端  一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。 可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。  客户端-RestTemplate  客户端调用，可使用Spring的RestTemplate的getForO">
+<meta name="twitter:image" content="http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/rpc.jpg">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -147,72 +162,383 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-微服务架构（6）微服务通信" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/18/微服务架构（2）微服务注册与发现/" class="archive-article-date">
-  	<time datetime="2017-09-18T09:27:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-18</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/18/微服务架构（2）微服务注册与发现/">微服务架构（2）微服务注册与发现</a>
+    <h1 class="article-title" itemprop="name">
+      微服务架构（6）微服务通信
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MSA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ZooKeeper</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2017/10/05/微服务架构（6）微服务通信/" class="archive-article-date">
+  	<time datetime="2017-10-05T06:40:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、HTTP同步调用"><a href="#一、HTTP同步调用" class="headerlink" title="一、HTTP同步调用"></a>一、HTTP同步调用</h2><blockquote>
+<p>服务器端</p>
+</blockquote>
+<p>一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。</p>
+<p>可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。</p>
+<blockquote>
+<p>客户端-RestTemplate</p>
+</blockquote>
+<p>客户端调用，可使用Spring的RestTemplate的getForObject、exchange等方法发起请求。</p>
+<blockquote>
+<p>客户端-OkHttp</p>
+</blockquote>
+<p>如在Android开发中，也可以使用Square公司的OkHttp来调用，依赖如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> OkHttpClient okHttpClient;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">    .get()</span><br><span class="line">    .url(String.format(<span class="string">"http://localhost/hello?name=%s"</span>, rootUri, name))</span><br><span class="line">    .build();</span><br><span class="line">Response response = okHttpClient.newCall(request).execute();</span><br><span class="line"><span class="keyword">return</span> response.body().string();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>客户端-Retrofit</p>
+</blockquote>
+<p>也可以使用Square公司的Retrofit来链式调用，在客户端中定义服务接口，通过注解的方式来绑定HTTP请求，依赖如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>retrofit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-scalars<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloClient.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> HelloService helloService;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">HelloClient</span><span class="params">(Retrofit retrofit)</span> </span>&#123;</span><br><span class="line">    helloService = retrofit.create(HelloService.class);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helloService.hello(name).execute().body();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloService.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@GET</span>(<span class="string">"/hello"</span>)</span><br><span class="line">  <span class="function">Call&lt;String&gt; <span class="title">say1</span><span class="params">(@Query(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、RPC同步调用"><a href="#二、RPC同步调用" class="headerlink" title="二、RPC同步调用"></a>二、RPC同步调用</h2><blockquote>
+<p>相关概念 </p>
+</blockquote>
+<p>远程过程调用RPC（Remote Procedure Call），基于TCP协议。通信过程在传输层完成（相比HTTP通信在应用层完成），因此更高效、支持更高并发。</p>
+<p>流行的RPC框架有Google的gRPC，Facebook的Thrift，Twitter的Finagle，阿里的Dubbo，新浪微博的Motan等。</p>
+<p>RPC的通信原理如下，两个端的Stub（存根）用于对数据进行序列化和反序列化，调用方式需要服务端和客户端建立Socket连接来实现二进制数据的交换。</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/rpc.jpg" alt=""></p>
+<blockquote>
+<p>gRPC</p>
+</blockquote>
+<p>gRPC使用Protocol Buffers来编写服务定义，拥有强大的二进制序列化工具集。两者都是Google的开源项目。</p>
+<p><a href="http://www.grpc.io/" target="_blank" rel="noopener">『gRPC官网传送门』</a></p>
+<a id="more"></a>
+<p>调用步骤：</p>
+<ul>
+<li>使用Protocol Buffers规范对RPC接口进行定义，生成所需Stub库。</li>
+<li>开发RPC服务端，继承Stub代码库中的抽象类完成业务逻辑实现，并且启动RPC服务。</li>
+<li>开发RPC客户端，使用Stub代码库构建Stub对象和RPC请求对象，通过Stub对象发送RPC请求，最终获取RPC响应对象。</li>
+<li>如需要通过SpringBoot集成gRPC，服务端可通过注解，自动扫描带有该注解的类，并且自动添加到ServerBuilder中。</li>
+</ul>
+<p>相关demo代码：</p>
+<p><a href="https://gitee.com/iherr/spring-boot-grpc" target="_blank" rel="noopener">『代码传送门』</a></p>
+<blockquote>
+<p>分布式RPC框架设计</p>
+</blockquote>
+<p>上个项目中，无法摆脱对gRPC代码层面的依赖，必须使用gRPC的API和生成的Stub库来实现业务逻辑，存在耦合，需要搭建分布式RPC框架。可满足以下特征：</p>
+<ul>
+<li>高性能、高并发、高可用性。</li>
+<li>客户端无法知道服务端的具体信息。</li>
+<li>客户端与服务端端均可面向接口编程。</li>
+</ul>
+<p>架构设计：</p>
+<ul>
+<li>使用Netty的NIO支持</li>
+<li>使用ZooKeeper来注册服务端的配置信息来满足高可用性</li>
+<li>使用Protostuff封装来完成序列化和反序列化工作，不再编写.proto文件，也无须通过Protocol Buffers来生成Stub代码库。只需编写Java接口即可。</li>
+</ul>
+<h2 id="三、MQ异步调用"><a href="#三、MQ异步调用" class="headerlink" title="三、MQ异步调用"></a>三、MQ异步调用</h2><p>并非所有场景都需要同步，客户端调用服务器不需要等待服务器做出响应，可使用异步调用方式。虽然HTTP和RPC通过改造也可实现异步调用，但基于MQ（Message Queue）消息队列的方式更容易实现服务间的异步调用。</p>
+<blockquote>
+<p>JMS和AMQP</p>
+</blockquote>
+<p>接触消息队列时，总是会提到如JMS、AMQP。</p>
+<p>JMS（Java Message Service，Java消息服务）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">JMS</th>
+<th style="text-align:center">AMQP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">定义</td>
+<td style="text-align:center">Java Message Service，Java消息服务</td>
+<td style="text-align:center">Wire-protocol</td>
+</tr>
+<tr>
+<td style="text-align:center">跨语言</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">跨平台</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">Model</td>
+<td style="text-align:center">两种消息模型：Peer-2-Peer，Pub/sub</td>
+<td style="text-align:center">五种消息模型：direct exchange，fanout exchange，topic change，headers exchange，system exchange</td>
+</tr>
+<tr>
+<td style="text-align:center">支持消息类型</td>
+<td style="text-align:center">TextMessage、MapMessage、BytesMessage、StreamMessage、ObjectMessage、Message （只有消息头和属性）</td>
+<td style="text-align:center">byte[]，当实际应用时，有复杂的消息，可以将消息序列化后发送。</td>
+</tr>
+<tr>
+<td style="text-align:center">综合评价</td>
+<td style="text-align:center">JMS 定义了JAVA API层面的标准；在java体系中，多个client均可以通过JMS进行交互，不需要应用修改代码，但是其对跨平台的支持较差；</td>
+<td style="text-align:center">AMQP定义了wire-level层的协议标准；天然具有跨平台、跨语言特性。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>ActiveMQ实现JMS异步调用</p>
+</blockquote>
+<p><a href="http://activemq.apache.org/" target="_blank" rel="noopener">『ActiveMQ』</a>是Java流行的开源消息中间件。</p>
+<p>ActiveMQ可支持JMS（Java Message Service，Java消息服务）技术规范，可直接接入Spring框架。SpringBoot也提供ActiveMQ的插件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 8161:8161 -p 61616:61616 -e ACTIVEMQ_ADMIN_LOGIN=admin -e ACTIVEMQ_ADMIN_PASSWORD=admin --name activemq webcenter/activemq</span><br></pre></td></tr></table></figure>
+<p>61616为ActiveMQ监听的TCP端口号。</p>
+<p>浏览器访问 <a href="http://localhost:8161" target="_blank" rel="noopener">http://localhost:8161</a> 打开控制台，功能菜单有</p>
+<ul>
+<li>Home，查看ActiveMQ基本信息</li>
+<li>Queue，查看管理的队列</li>
+<li>Topic，查看管理的主题</li>
+<li>Subscribes：查看主题的订阅者</li>
+<li>Connections，查看客户端的连接信息</li>
+<li>Network，查看网络信息</li>
+<li>Scheduled，查看运行的定时任务</li>
+<li>Send，通过表单向队列或主题发送具体消息</li>
+</ul>
+<p>Queue解决消息的“点对点（Peer 2 Peer）”通信，消息从生产者（Producer）发出后，进入ActiveMQ的Queue，然后将消息传送给其中一个消费者（Consumer）。</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_queue.jpg" alt=""></p>
+<p>Topic解决消息的“发布与订阅（Publish-Subscribe）”通信，生产者（Producer）发布到ActiveMQ的Topic上，然后分发给每个订阅者（Subscriber）。</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_topic.jpg" alt=""></p>
+<blockquote>
+<p>ActiveMQ和SpringBoot集成</p>
+</blockquote>
+<p>1、客户端（Producer）和服务端（Consumer）依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-activemq<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、客户端和服务端配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.activemq.broker-url=tcp://localhost:61616</span><br><span class="line">spring.activemq.user=admin</span><br><span class="line">spring.activemq.password=admin</span><br></pre></td></tr></table></figure>
+<p>3、服务端代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@JmsListener</span>(destination = <span class="string">"hello-queue"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    System.out.println(message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、客户端代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloClient.java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> JmsTemplate jmsTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    jmsTemplate.convertAndSend(<span class="string">"hello-queue"</span>, message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloClientApplication.java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> HelloClient helloClient;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@PostConstruct</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    StopWatch stopWatch = <span class="keyword">new</span> StopWatch();</span><br><span class="line">    stopWatch.start();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">      helloClient.send(<span class="string">"hello world"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    stopWatch.stop();</span><br><span class="line">    System.out.println(<span class="string">"time: "</span> + stopWatch.getTotalTimeMillis() + <span class="string">"ms"</span>); <span class="comment">// time: 56414ms</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(HelloClientApplication.class, args).close();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、测试</p>
+<ul>
+<li>docker启动ActiveMQ</li>
+<li>启动服务端</li>
+<li>启动客户端</li>
+<li>查看服务端Console日志打印信息</li>
+<li>浏览器登录控制台，可看到Queue有如下调用信息。</li>
+<li>可在控制台点击“Send to”发送消息，服务端也可接口消息并打印。</li>
+</ul>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_activemq.jpg" alt=""></p>
+<blockquote>
+<p>RabbitMQ实现AMQP异步调用</p>
+</blockquote>
+<p><a href="http://www.rabbitmq.com/" target="_blank" rel="noopener">『RabbitMQ』</a>不基于JMS规范，采用Erlang语言实现，性能更好。提供众多语言的客户端，能和Spring、SpringBoot进行整合。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=admin --name rabbitmq rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<p>5672为RabbitMQ监听的TCP端口号。Rabbit只有Queue，没有Topic，可通过Exchange与Queue来实现Topic的功能。</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_exchange.jpg" alt=""></p>
+<p>浏览器访问 <a href="http://localhost:15672" target="_blank" rel="noopener">http://localhost:15672</a> 打开控制台，功能菜单有</p>
+<ul>
+<li>Overview，查看RabbitMQ基本信息</li>
+<li>Connections，查看客户端的连接信息</li>
+<li>Channels，查看RabbitMQ的通道</li>
+<li>Exchanges：查看RabbitMQ的交换机</li>
+<li>Queue，查看RabbitMQ的队列</li>
+<li>Admin，管理用户、虚拟主机和策略等数据</li>
+</ul>
+<blockquote>
+<p>RabbitMQ和SpringBoot集成</p>
+</blockquote>
+<p>1、客户端（Producer）和服务端（Consumer）依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、客户端和服务端配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.addresses=localhost:5672</span><br><span class="line">spring.rabbitmq.username=admin</span><br><span class="line">spring.rabbitmq.password=admin</span><br></pre></td></tr></table></figure>
+<p>3、服务端代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloServerApplication.java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServerApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Queue <span class="title">helloQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"hello-queue"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Jackson2JsonMessageConverter <span class="title">messageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    SpringApplication.run(HelloServerApplication.class, args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloServer.java</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener</span>(queues = <span class="string">"hello-queue"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    System.out.println(message);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RabbitListener</span>(queues = <span class="string">"hello-queue"</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receive</span><span class="params">(Pojo pojo)</span> </span>&#123;</span><br><span class="line">    System.out.println(pojo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、客户端代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloClient.java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> RabbitTemplate rabbitTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">"hello-queue"</span>, message);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">send</span><span class="params">(Pojo pojo)</span> </span>&#123;</span><br><span class="line">    rabbitTemplate.convertAndSend(<span class="string">"hello-queue"</span>, pojo);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloClientApplication.java</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClientApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> HelloClient helloClient;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Queue <span class="title">helloQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Queue(<span class="string">"hello-queue"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Jackson2JsonMessageConverter <span class="title">messageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@PostConstruct</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		helloClient.send(<span class="string">"hello world"</span>);</span><br><span class="line">		Pojo pojo = <span class="keyword">new</span> Pojo();</span><br><span class="line">		pojo.setFoo(<span class="string">"a"</span>);</span><br><span class="line">		pojo.setBar(<span class="number">1</span>);</span><br><span class="line">		helloClient.send(pojo);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(HelloClientApplication.class, args).close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5、测试</p>
+<ul>
+<li>docker启动RabbitMQ</li>
+<li>启动服务端</li>
+<li>启动客户端</li>
+<li>查看服务端Console日志打印信息</li>
+<li>浏览器登录控制台，可看到Queue的overview菜单、queue菜单、connections菜单的截图如下。</li>
+</ul>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_overview.png" alt=""></p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_queue.png" alt=""></p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_rabbitmq_connections.png" alt=""></p>
+<blockquote>
+<p>Kafka实现异步调用<br>kafka是Linkedin于2010年12月份开源的消息发布订阅系统,它主要用于处理活跃的流式数据,大数据量的数据处理上。</p>
+</blockquote>
+<p>Kafka的使用方式类似于rabbitMQ。详情参考最下方代码。</p>
+<h2 id="四、请求应答模式实现RPC调用"><a href="#四、请求应答模式实现RPC调用" class="headerlink" title="四、请求应答模式实现RPC调用"></a>四、请求应答模式实现RPC调用</h2><blockquote>
+<p>请求应答模式（Request-Reply）</p>
+</blockquote>
+<p>消息不是从生产者到消费者这样的单向流动，而是一个消息闭环。步骤如下</p>
+<ul>
+<li>请求者发送请求消息至请求队列中</li>
+<li>应答者从请求队列中获取请求消息</li>
+<li>消费者发送应答消息至应答队列</li>
+<li>请求者从应答队列中获取应答消息</li>
+</ul>
+<p>在RabbitMQ中，每个消息分为3个部分：消息头部、消息属性和消息载荷。头部可自定义，属性只有12种，载荷是编码（序列化）后的数据。</p>
+<p>消息属性12种中，有correlation_id和replay_to，分别用于设置消息的关联ID和应答队列名称，可用于请求应答模式。本质上也是一种RPC调用。</p>
+<p>RabbitMQ简化了请求应答模式，请求消息与应答消息经历了同样的Exchange与Queue，降低了程序的复杂度。<br><img src="/2017/10/05/微服务架构（6）微服务通信/rabbitmq_rpc.jpg" alt=""></p>
+<blockquote>
+<p>RabbitMQ的RPC和SpringBoot集成</p>
+</blockquote>
+<p>参考下方代码。</p>
+<p><a href="https://gitee.com/iherr/spring-boot-mq" target="_blank" rel="noopener">『MQ代码传送门』</a></p>
+<h2 id="五、分布式事务"><a href="#五、分布式事务" class="headerlink" title="五、分布式事务"></a>五、分布式事务</h2><p>微服务架构下，当服务之间发生调用时，会产生分布式事务难题。JTA（Java Transaction API，Java事务API）等不轻量级，不跨平台，没必要使用JTA达到数据的“强一致性”，可使用Event-Sourcing（事件溯源）来实现数据的“最终一致性”。</p>
+<p>Event-Sourcing需要先进行事件记录，然后才能做到事件溯源。事件记录过程中，先操作模型表，再操作事件表。而事件溯源过程中，先操作事件表，再操作模型表。</p>
+<p>事件表字段包含：</p>
+<ul>
+<li>ID，标识Event ID，唯一。</li>
+<li>Event Type，事件类型，增删改查。</li>
+<li>Model Name，模型名称</li>
+<li>Model ID，模型对象ID</li>
+<li>Created Time，事件的具体时间</li>
+</ul>
+<p>以如下经典的分布式调用场景，有Foo Service和Bar Service两个服务，运行在不同进程中，Foo Service插入一条Foo对象到Foo Table中，随后通过MQ调用Bar Service插入一条Bar对象到Bar Table中。如Bar Service插入Bar对象异常，需要回滚Foo Service提交的事务。 通过MQ和Event-Soucing能够确保数据的最终一致性，分布式事务控制流程图如下：</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/mq_transactional.jpg" alt=""></p>
 
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://iherr.cn/2017/10/05/微服务架构（6）微服务通信/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/10/08/微服务架构（7）微服务测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          微服务架构（7）微服务测试
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/10/02/微服务架构（5）微服务监控/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微服务架构（5）微服务监控</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -235,9 +561,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -289,14 +615,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -309,11 +627,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -321,7 +643,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -330,6 +652,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -353,6 +679,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -365,23 +707,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -389,11 +715,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -417,19 +743,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>SpringCloud实战（1）配置中心 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、Spring Cloud ConfigSpring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，『官方文档传送门』 分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作">
+  <meta name="description" content="一、Spring Cloud 特点   约定优于配置 使用各种环境 隐藏组件复杂性，提供声明式、无xml配置方式 开箱即用 轻量级组件 组件丰富，功能齐全。 选型中立、丰富。 灵活。组成部分解耦。   版本  已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。以Release版本为初始版本，SR（Serv">
 <meta name="keywords" content="Java,SpringCloud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloud实战（1）配置中心">
 <meta property="og:url" content="http://iherr.cn/2018/07/03/SpringCloud实战（1）配置中心/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="一、Spring Cloud ConfigSpring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，『官方文档传送门』 分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作">
+<meta property="og:description" content="一、Spring Cloud 特点   约定优于配置 使用各种环境 隐藏组件复杂性，提供声明式、无xml配置方式 开箱即用 轻量级组件 组件丰富，功能齐全。 选型中立、丰富。 灵活。组成部分解耦。   版本  已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。以Release版本为初始版本，SR（Serv">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T08:34:06.000Z">
+<meta property="og:image" content="http://iherr.cn/2018/07/03/SpringCloud实战（1）配置中心/idea_param.png">
+<meta property="og:updated_time" content="2018-11-07T06:54:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud实战（1）配置中心">
-<meta name="twitter:description" content="一、Spring Cloud ConfigSpring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，『官方文档传送门』 分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作">
+<meta name="twitter:description" content="一、Spring Cloud 特点   约定优于配置 使用各种环境 隐藏组件复杂性，提供声明式、无xml配置方式 开箱即用 轻量级组件 组件丰富，功能齐全。 选型中立、丰富。 灵活。组成部分解耦。   版本  已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。以Release版本为初始版本，SR（Serv">
+<meta name="twitter:image" content="http://iherr.cn/2018/07/03/SpringCloud实战（1）配置中心/idea_param.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -171,9 +173,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、Spring-Cloud-Config"><a href="#一、Spring-Cloud-Config" class="headerlink" title="一、Spring Cloud Config"></a>一、Spring Cloud Config</h3><p>Spring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，<a href="http://cloud.spring.io/spring-cloud-config/single/spring-cloud-config.html" target="_blank" rel="noopener">『官方文档传送门』</a></p>
+        <h2 id="一、Spring-Cloud"><a href="#一、Spring-Cloud" class="headerlink" title="一、Spring Cloud"></a>一、Spring Cloud</h2><blockquote>
+<p>特点</p>
+</blockquote>
+<ul>
+<li>约定优于配置</li>
+<li>使用各种环境</li>
+<li>隐藏组件复杂性，提供声明式、无xml配置方式</li>
+<li>开箱即用</li>
+<li>轻量级组件</li>
+<li>组件丰富，功能齐全。</li>
+<li>选型中立、丰富。</li>
+<li>灵活。组成部分解耦。</li>
+</ul>
+<blockquote>
+<p>版本</p>
+</blockquote>
+<p>已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。<br>以Release版本为初始版本，SR（Service Release）代表Bug修复版本。如Dalston SR4，表示Dalston版本的第4次Bug修复版本。</p>
+<ul>
+<li>Dalston、Edgware都是基于Spring Boot 1.5.x构建，不兼容Spring Boot 2.0.x。</li>
+<li>Finchley基于Spring Boot 2.0.x构建，不兼容Spring Boot 1.x。</li>
+</ul>
+<blockquote>
+<p>子项目</p>
+</blockquote>
+<p>组件包含spring-cloud-aws、spring-cloud-bus、、spring-cloud-cli、spring-cloud-commons、spring-cloud-contract、spring-cloud-config、spring-cloud-netflix、spring-cloud-security、spring-cloud-cloudfoundry、spring-cloud-consul、spring-cloud-sleuth、spring-cloud-stream、spring-cloud-zookeeper、spring-cloud-task、spring-cloud-vault、spring-cloud-gateway、spring-boot等。</p>
+<h2 id="二、Spring-Cloud-Config"><a href="#二、Spring-Cloud-Config" class="headerlink" title="二、Spring Cloud Config"></a>二、Spring Cloud Config</h2><p>Spring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，<a href="http://cloud.spring.io/spring-cloud-config/single/spring-cloud-config.html" target="_blank" rel="noopener">『官方文档传送门』</a></p>
 <p>分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作。</p>
-<h3 id="二、Spring-Cloud-Config-Server"><a href="#二、Spring-Cloud-Config-Server" class="headerlink" title="二、Spring Cloud Config Server"></a>二、Spring Cloud Config Server</h3><blockquote>
+<h2 id="三、Spring-Cloud-Config-Server"><a href="#三、Spring-Cloud-Config-Server" class="headerlink" title="三、Spring Cloud Config Server"></a>三、Spring Cloud Config Server</h2><blockquote>
 <p>git配置文件</p>
 </blockquote>
 <p>首先需要在git上放置一些yml或properties文件，命名规则为：<br>{application}-{profile}.<em>*</em>。</p>
@@ -204,7 +231,7 @@
 <p>使用浏览器访问，查看数据是否正常，如有找不到的属性，会默认去{application}.<em>*</em>上找。</p>
 <p>访问规则如下:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">配置文件命名规则如下，这些路径可到启动日志中查看，会自动mapped映射一堆url路径：</span><br><span class="line"> * /&#123;application&#125;/&#123;profile&#125;[/&#123;label&#125;]</span><br><span class="line"> * /&#123;application&#125;-&#123;profile&#125;.yml</span><br><span class="line"> * /&#123;label&#125;/&#123;application&#125;-&#123;profile&#125;.yml</span><br><span class="line"> * /&#123;application&#125;-&#123;profile&#125;.properties</span><br><span class="line"> * /&#123;label&#125;/&#123;application&#125;-&#123;profile&#125;.properties</span><br><span class="line"></span><br><span class="line">按照以上规则，以下url都可以访问，如启用了密码，会弹出页面需要输入密码，默认用户名为user:</span><br><span class="line"></span><br><span class="line">http://localhost:8100/herr/dev/master</span><br><span class="line">http://localhost:8100/herr-dev.yml</span><br><span class="line">http://localhost:8100/master/herr-dev.yml</span><br><span class="line">http://localhost:8100/herr-pro.properties</span><br><span class="line">http://localhost:8100/master/herr-dev.properties</span><br></pre></td></tr></table></figure>
-<h3 id="三、Spring-Cloud-Config-Client"><a href="#三、Spring-Cloud-Config-Client" class="headerlink" title="三、Spring Cloud Config Client"></a>三、Spring Cloud Config Client</h3><blockquote>
+<h3 id="四、Spring-Cloud-Config-Client"><a href="#四、Spring-Cloud-Config-Client" class="headerlink" title="四、Spring Cloud Config Client"></a>四、Spring Cloud Config Client</h3><blockquote>
 <p>Client端搭建</p>
 </blockquote>
 <p>1、pom.xml依赖</p>
@@ -213,6 +240,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">public class HelloController &#123;</span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;profile&#125;&quot;)</span><br><span class="line">    private String profile;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/profile&quot;)</span><br><span class="line">    public String getProfile()&#123;</span><br><span class="line">        return this.profile;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3、提供默认application.yml文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8080</span><br><span class="line"></span><br><span class="line">profile: default</span><br><span class="line"></span><br><span class="line">#如果不需要bootstrap.yml，可将spring.cloud.config.uri在EditConfiguration中override parameter中设置，打开注释设置其余参数</span><br><span class="line">#spring:</span><br><span class="line">#  cloud:</span><br><span class="line">#    config:</span><br><span class="line">#      profile: dev #如不设置，则走default</span><br><span class="line">#      label: master</span><br><span class="line">#  application:</span><br><span class="line">#    name: herr</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/07/03/SpringCloud实战（1）配置中心/idea_param.png" alt=""></p>
 <p>4、提供初始化文件bootstrap.yml（名称不能改，默认），必须要这个文件，不然运行初始化时找不到server地址，会使用默认8888端口来获取server。</p>
 <p>如省略掉该环节，会发现启动Client模块出现错误，报错信息为：Fetching config from server at: <a href="http://localhost:8888" target="_blank" rel="noopener">http://localhost:8888</a> 等。SpringCloud里面有个“启动上下文”，主要是用于加载远端的配置，也就是加载Server里面的配置，默认加载顺序为：加载bootstrap.yml里面的配置 –&gt; 链接Server，加载远程配置 –&gt; 加载application.yml里面的配置；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  cloud:</span><br><span class="line">    config:</span><br><span class="line">      #uri: http://127.0.0.1:8100</span><br><span class="line">      uri: http://user:1a1a2b2b3c3c4d4d@127.0.0.1:8100</span><br><span class="line">      #区分是否输入密码，密码为server端配置</span><br><span class="line">      profile: pro #如不设置，则走default</span><br><span class="line">      label: master</span><br><span class="line">      #name: herr </span><br><span class="line">  application:</span><br><span class="line">    name: herr</span><br><span class="line">#取 herr-dev.yml 这个文件的 application 名字，即为 herr 名称#application.name和spring.cloud.config.name字段相同</span><br></pre></td></tr></table></figure>
@@ -231,7 +259,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ curl localhost:8080/encrypt -d mysecret</span><br><span class="line">720ed69f1afc0995af88f09d0e2502aaee861322e963a3e643db3a1b2079385a</span><br><span class="line"></span><br><span class="line">$ curl localhost:8080/decrypt -d 720ed69f1afc0995af88f09d0e2502aaee861322e963a3e643db3a1b2079385a</span><br><span class="line">mysecret</span><br></pre></td></tr></table></figure>
 <p>yml文件可这样填写，使用{cipher}开头并有单引号。但是properties文件不能有单引号。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    username: dbuser</span><br><span class="line">    password: <span class="string">'&#123;cipher&#125; 720ed69f1afc0995af88f09d0e2502aaee861322e963a3e643db3a1b2079385a'</span></span><br></pre></td></tr></table></figure>
-<h3 id="四、相关代码"><a href="#四、相关代码" class="headerlink" title="四、相关代码"></a>四、相关代码</h3><p><a href="https://gitee.com/iherr/spring-cloud-trip-config" target="_blank" rel="noopener">『代码传送门』</a></p>
+<h2 id="五、相关代码"><a href="#五、相关代码" class="headerlink" title="五、相关代码"></a>五、相关代码</h2><p><a href="https://gitee.com/iherr/spring-cloud-trip-config" target="_blank" rel="noopener">『代码传送门』</a></p>
 
       
 
@@ -445,14 +473,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -465,11 +485,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,7 +501,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -486,6 +510,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,6 +537,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -521,23 +565,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,11 +573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -573,19 +601,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">

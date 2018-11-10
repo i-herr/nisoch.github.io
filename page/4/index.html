@@ -149,6 +149,581 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-高性能MySQL（4）查询性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/31/高性能MySQL（4）查询性能优化/">高性能MySQL（4）查询性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/31/高性能MySQL（4）查询性能优化/" class="archive-article-date">
+  	<time datetime="2016-07-31T06:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、为什么查询速度会慢"><a href="#一、为什么查询速度会慢" class="headerlink" title="一、为什么查询速度会慢"></a>一、为什么查询速度会慢</h2><p>1、查询看作一个任务，由一系列子任务组成。优化查询，需要优化其子任务，消除或减少执行次数，或者运行更快。</p>
+<p>2、从查询的生命周期来讲，从客户端，到服务器，然后服务器上进行解析，生成执行计划，执行，并返回结果给客户端。其中“执行”最为重要，包含大量为了检索数据到存储引擎的调用以及调用后的数据处理，包括排序和分组等。  </p>
+<p>3、查询需要在不同的地方花费时间，包括网络，cpu计算，统计信息生成，执行计划，锁等待等操作，尤其是向底层存储引擎检索数据的调用操作，需要在内存操作、cpu操作和内存不足时导致的I/O操作上消耗时间。  </p>
+<h2 id="二、慢查询基础：优化数据访问"><a href="#二、慢查询基础：优化数据访问" class="headerlink" title="二、慢查询基础：优化数据访问"></a>二、慢查询基础：优化数据访问</h2><p>查询性能低下最基本的原因是访问的数据太多，增加网络开销、消耗cpu和内存资源等。  </p>
+<blockquote>
+<p>是否向数据库请求了不需要的数据  </p>
+</blockquote>
+<p>1、查询不需要的数据，MySQL会查询出全部的结果集再进行计算，客户端应用程序会接收全部结果集数据，然后抛弃其中大部分数据，这样会产生问题。解决方法是查询后面加上LIMIT。</p>
+<p>2、多表关联时返回全部列、总是取出全部列<br>禁止使用SELECT *的写法，会让优化器无法完成索引覆盖扫描这类优化，带来额外的I/O、内存和cpu的消耗。<br>3、重复查询相同的数据，针对相同的查询，可将数据缓存来使用。  </p>
+<blockquote>
+<p>MySQL是否在扫描额外的记录  </p>
+</blockquote>
+<p>衡量查询开销的三个指标：<br>1、响应时间：是一个表面上的值，但是仍然是最重要的指标。由服务时间和排队时间组成，服务时间是指数据库处理这个查询真正花了多长时间，排队时间是指服务器因为等待某些资源而没有真正执行查询的时间（I/O操作等待、行锁等待等），一般需要判断当前响应时间是不是一个合理的值，来区分是单个查询问题还是服务器问题。  </p>
+<p>2、扫描的行数和返回的行数<br>分析查询时，查看该查询扫描的行数，可以判断查询的效率高不高。理想情况下扫描的行数和返回的行数应该是相同的（不常见）。除非特殊情况，一般比例在1：1和10：1之间。  </p>
+<p>3、扫描的行数和访问类型<br>在EXPLAIN语句中的type列反应了访问类型，可能会是权标扫描、索引扫描、范围扫描、唯一索引查询、常数引用等，其中，扫描表（type：ALL）、扫描索引（type：ref）、范围访问和单值访问是速度从慢到快，扫描的行数也是从多到少。如果未使用索引进行where条件，Extra会体现“Using where”，表示MySQL将通过WHERE条件来筛选存储引擎返回的记录。<br>一般Mys能使用以下三种方式应用WHERE条件，从好到坏依次是：  </p>
+<ul>
+<li>在索引中使用WHERE条件来过滤不匹配的记录，在存储引擎层完成。  </li>
+<li>使用索引覆盖扫描（在Extra列中出现Using index）来返回记录，直接从索引中过滤不需要的记录并返回命中的结果，是在MySQL服务器层完成，无须再回表查询记录。  </li>
+<li>从数据表中返回数据，然后过滤不满足条件的记录（在Extra列中出现Using where），在服务器层完成，并需要先从数据表读出记录然后过滤。  </li>
+</ul>
+<blockquote>
+<p>如果发现查询需要扫描大量的数据，但只返回少数的行，可以这样来优化</p>
+</blockquote>
+<p>1、使用索引覆盖扫描，把所有需要用的列都放到索引中，这样存储引擎无须回表获取对应行就可以返回结果了。<br>2、改变库表结构，例如使用单独的汇总表</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/31/高性能MySQL（4）查询性能优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-高性能MySQL（3）创建高性能的索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/">高性能MySQL（3）创建高性能的索引</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/18/高性能MySQL（3）创建高性能的索引/" class="archive-article-date">
+  	<time datetime="2016-07-18T02:45:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、索引的定义"><a href="#一、索引的定义" class="headerlink" title="一、索引的定义"></a>一、索引的定义</h2><blockquote>
+<p>索引的定义</p>
+</blockquote>
+<p>索引（键key），是存储引擎用于快速找到记录的一种数据结构。不恰当的索引当数据量逐渐增大时，性能会急剧下降（传统非固态硬盘）。因此索引优化甚至优先于查询优化，是查询性能优化最有效的手段。<br>索引可包含一个或多个列的值，如果包含多个列，列的顺序也十分重要，MySQL只能高效地使用索引的最左前缀列。即便使用对象关系映射（ORM）工具，除非是基本的查询，否则很难生成适合索引的查询。<br>索引是存储引擎层实现的，而不是服务器层实现的。</p>
+<blockquote>
+<p>索引的优点</p>
+</blockquote>
+<p>1、大大减少了服务器需要扫描的数据量<br>2、可以帮助服务器避免排序和临时表<br>3、可以将随机I/O变为顺序I/O<br>索引并不总是最好的工具，只有当索引帮助存储引擎快速查找到记录带来的好处大于其带来的额外工作时，索引才是有效的。对于非常小的表，简单的全表扫描更高效。</p>
+<h2 id="二、索引的类型"><a href="#二、索引的类型" class="headerlink" title="二、索引的类型"></a>二、索引的类型</h2><blockquote>
+<p>B-Tree索引</p>
+</blockquote>
+<p>为默认索引，大多数引擎都支持，但可能使用不同的存储结构，例如InnoDB使用的是B+Tree。<br><img src="/2016/07/18/高性能MySQL（3）创建高性能的索引/btree.jpg" alt="B-Tree索引"><br>B-Tree所有的值都是按顺序存储，并且每一个叶子页到根的距离相同。索引从<strong>根节点</strong>开始搜索，根节点的槽中存放了指向<strong>子节点</strong>的指针，通过比较节点页的值和要查找的值，可以找到合适的指针进入下层子节点。<strong>叶子节点</strong>比较特别，它们的指针指向的不是其他的节点页，而是被索引的数据。树的深度和表的大小直接相关。  </p>
+<p>1、B-Tree索引适用于全键值、键值范围或键前缀查找（最左前缀）。 </p>
+<ul>
+<li>全值匹配：和索引的所有列进行匹配。  </li>
+<li>匹配最左前缀：只使用索引的第一列。  </li>
+<li>匹配列前缀：索引的第一列的开头部分。  </li>
+<li>匹配范围值：查找索引第一列的某个范围。  </li>
+<li>精确匹配某一列并范围匹配另外一列：即索引第一列全匹配，第二列范围匹配。  </li>
+<li>只访问索引的查询：不访问数据行，只需要访问索引。</li>
+<li>查询中的ORDER BY操作：索引树中的节点是有序的。  </li>
+</ul>
+<p>2、B-Tree的限制：  </p>
+<ul>
+<li>如果不是从最左列查找，则无法使用索引。  </li>
+<li>不能跳过索引中的列。</li>
+<li>如果查询中有某个列的范围查询，则其右侧所有列都无法使用索引优化查找。<br>以上的限制并非是B-Tree本身导致，而是MySQL优化器和存储引擎使用索引的方式导致。</li>
+</ul>
+<blockquote>
+<p>哈希索引<br>基于哈希表实现，只有精确匹配索引所有列的查询才有效。Memory存储引擎会对所有的索引列计算一个哈希码，支持非唯一哈希索引。<br>1、哈希索引的限制：</p>
+</blockquote>
+<ul>
+<li>只包含哈希值和行指针，而不存储字段值，因此不能使用索引中的值来避免读取行。  </li>
+<li>不是按照索引值顺序存储的，无法用于排序。</li>
+<li>不支持部分索引列匹配查找，因为哈希索引是使用索引列的全部内容来计算哈希值的。</li>
+<li>只支持等值比较查询。  </li>
+<li>可能会产生哈希冲突，即不同的索引列值却有相同的哈希值。有冲突时，需要遍历链表中所有的行指针，逐行比较。</li>
+<li>如果哈希冲突很多，一些索引维护操作的代价也会很高，比如删除表中一行时需要遍历冲突的每一行。</li>
+</ul>
+<p>2、InnoDB中有一个“自适应哈希索引”，会在内存中基于B-Tree索引上再创建一个哈希索引，比如快速的哈希查找。该功能无法控制或配置，可以关闭。  </p>
+<p>3、创建自定义哈希索引。<br>例如需要存储大量的URL，并且根据URL进行查找。可以删除URL列上的索引，然后新增一个被索引的url-crc列，使用CRC32做哈希。不要使用SHA1或MD5，因为强加密函数的哈希值很长，使用简单哈希函数，保证冲突控制在一个可以接受的范围即可。要避免冲突，需要WHERE条件中带入哈希值和对应列值，便可以使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">url</span> <span class="keyword">WHERE</span> <span class="keyword">url</span>=<span class="string">"http://www.baidu.com"</span></span><br><span class="line"><span class="keyword">AND</span> url_crc=<span class="keyword">CRC32</span>(<span class="string">"http://www.baidu.com"</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，需要手动维护哈希值，可以使用触发器，在插入和更新时维护url_crc列。</p>
+        
+          <a class="article-more-a" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-高性能MySQL（2）Schema与数据类型优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">高性能MySQL（2）Schema与数据类型优化</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/" class="archive-article-date">
+  	<time datetime="2016-07-07T07:11:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、选择优化的数据类型"><a href="#一、选择优化的数据类型" class="headerlink" title="一、选择优化的数据类型"></a>一、选择优化的数据类型</h2><blockquote>
+<p>原则  </p>
+</blockquote>
+<ul>
+<li>更小的通常更好。  </li>
+<li>简单就好。内建类型datetime来存储日期，而不是字符串。整型存储IP等。  </li>
+<li>尽量避免NULL。NULL的列会使用更多的存储空间。  </li>
+</ul>
+<blockquote>
+<p>整数类型  </p>
+</blockquote>
+<p>数字有两种：整数和实数。如果存储整数，可使用：TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,分别对应8、16、24、32、64位存储空间，存储的值得范围从-2^(N-1)到2^(N-1) -1。可选UNSIGNED属性，表示不允许负值。MySQL可以为整数类型指定宽度，例如INT(11)，但对于存储和计算来讲，INT(1)和INT(11)是相同的。</p>
+<blockquote>
+<p>实数类型  </p>
+</blockquote>
+<p>如果不只是为了存储实数的小数部分，可以使用DECIMAL存储币BIGINT还大的整数。 </p>
+<p>MySQL既支持精确类型，也支持不精确类型。DECIMAL用于存储精确的小数。CPU支持原生浮点计算，所以浮点运算更快，使用更少的空间。但CPU不支持DECIMAL的直接计算，需要MySQL服务器自身实现。FLOAT使用4个字节存储，DOUBLE占用8个，而DECIMAL(18,9)，由于每4个字节存储9个数字，因此需要4+4+1（小数点本身）=9个。因此针对DECIMAL，只有当需要对小数进行精确计算时才使用。但一般，可以将金额乘以一百万，可以达到存储数据精确到万分之一分，便可满足需要。  </p>
+<blockquote>
+<p>字符串类型  </p>
+</blockquote>
+<p>1、VARCHAR，用于存储可边长字符串，比定长节省空间，但需要使用1个（列长度在255个字节以内）或2个额外字节记录字符串的长度，例如VARCHAR(10)需要11个字节，VARCHAR(1000)需要1002个字节。VARCHAR使用情形：字符串列的最大长度，比平均长度大很多，且列的更新很少。<br>2、CHAR，用于存储定长，会根据定义的字符串长度分配足够的空间。CHAR适合存储很短的字符串。需要注意，当字符串末尾有空格时，插入会被截断。<br>使用VARCHAR(5)和VARCHAR(200)存储’hello’的空间开销是一样的，但是更长的列会消耗更多的内存，所以尽量只分配真正需要的空间。<br>3、BLOB和TEXT类型用于存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。BLOB没有排序规则或字符集，而TEXT类型有。<br>4、枚举类型ENUM，有时可代替字符串类型。但需要小心使用。</p>
+        
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-高性能MySQL（1）MySQL架构与历史" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">高性能MySQL（1）MySQL架构与历史</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/" class="archive-article-date">
+  	<time datetime="2016-07-03T08:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-MySQL逻辑架构"><a href="#1-MySQL逻辑架构" class="headerlink" title="1 MySQL逻辑架构"></a>1 MySQL逻辑架构</h2><blockquote>
+<p>MySql安装访问</p>
+</blockquote>
+<p>1、安装后忘记root密码，可使用脚本重置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/ext/reset_mysql_root_password.sh</span><br><span class="line">sh reset_mysql_root_password.sh</span><br></pre></td></tr></table></figure>
+<p>2、无法远程访问，添加权限，检查防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>3、修改密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">"123456"</span>) <span class="built_in">where</span> user=<span class="string">"root"</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>MySql逻辑架构</p>
+</blockquote>
+<p><img src="/2016/07/03/高性能MySQL（1）MySQL架构与历史/1_logical_architecture.jpg" alt="MySQL逻辑架构图">  </p>
+<p>1、最上层处理连接、授权认证、安全等。<br>（1）<strong>连接管理</strong>，每个连接都会在服务器进程中拥有一个线程，连接的查询只会在这个线程中执行，该线程只能轮流在某个CPU中运行。<br>（2）<strong>安全性</strong>，会进行用户名和密码认证，还会验证是否有操作权限，可进行主机信息校验（如ip等）。  </p>
+<p>2、第二层，MySQL核心服务功能都在这，包括查询解析、分析、优化、缓存以及所有内置喊出，所有跨存储引擎的功能都在这实现：存储过程、触发器、视图等。<br>MySQL会根据解析查询，创建内部数据结构（解析树），对其进行优化，如重写查询、表的读取数据、选择合适的索引等。用户可请求优化器解释（explain）知晓服务器的优化决策。<br>针对SELECT语句，在解析查询前会检查查询缓存并直接返回查询缓存中的结果集。</p>
+<p>3、第三层包含了存储引擎，负责MySQL中数据的存储和提取。上层通过API于存储引擎进行通信。</p>
+<h2 id="二、并发控制（锁机制）"><a href="#二、并发控制（锁机制）" class="headerlink" title="二、并发控制（锁机制）"></a>二、并发控制（锁机制）</h2><blockquote>
+<p>锁的类型</p>
+</blockquote>
+<p>在处理并发请求时，可以通过实现锁系统来解决。锁系统包含<strong>共享锁</strong>（<strong>读锁</strong>）和<strong>排他锁</strong>（<strong>写锁</strong>），读锁指查询，写锁指增删改。  </p>
+<blockquote>
+<p>锁的粒度</p>
+</blockquote>
+<p>在给定的资源上，锁定的数据量越少，则系统的并发程序越高，只要相互之间不发生冲突，另外加锁会消耗资源，因此，针对锁粒度，就是在锁的开销和数据的安全性之间寻求平衡。每种存储引擎都可以实现自己的锁策略和锁粒度。常用的锁粒度有：表锁、行级锁和页锁。<br>1、<strong>表锁</strong>是锁定整张表，基本的锁策略，开销也最小。表级锁是不会产生死锁问题的。InnoDB、MyISAM、BDB存储引擎都支持表锁。<br>2、<strong>行级锁</strong>可最大程度地支持并发，开销最大，且只在InnoDB和XtraDB等一些存储引擎中得到实现。行级锁定也最容易发生死锁。InnoDB存储引擎支持行级锁。<br>3、<strong>页级锁定</strong>是MySQL中比较独特的一种锁定级别，锁定颗粒度介于行级锁定与表级锁之间，所以获取锁定所需要的资源开销以及所能提供的并发处理能力也同样是介于二者之间。也会产生死锁问题。BDB存储引擎支持页级锁定。  </p>
+<blockquote>
+<p>一次性封锁与两段锁   </p>
+</blockquote>
+<p>1、<strong>一次性封锁</strong>：在sql语句的开始执行的时候，已经预先知道要涉及到那些数据，然后全部锁住，在执行完毕之后，再全部解锁！（myisam就是采用这样的锁协议）<br>两段锁： 是指每个事务的执行可以分为两个阶段：生长阶段（加锁阶段）和衰退阶段（解锁阶段）。  </p>
+<p>2、<strong>加锁阶段</strong>：在该阶段可以进行加锁操作。在对任何数据进行读操作之前要申请并获得S锁，在进行写操作之前要申请并获得X锁。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行；  </p>
+<p>3、<strong>解锁阶段</strong>：当事务释放了一个封锁以后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。 </p>
+<p>4、<strong>两段封锁法</strong>：事务开始后就处于加锁阶段，一直到执行ROLLBACK和COMMIT之前都是加锁阶段。ROLLBACK和COMMIT使事务进入解锁阶段，即在ROLLBACK和COMMIT模块中DBMS释放所有封锁。（innodb就是采取这样的锁协议） </p>
+<p>5、<strong>死锁</strong>：为两个或多个事务在同一资源上的相互占用，请求锁定对方占用的资源导致的恶性循环现象。InnoDB目前处理的方法是，将持有最少行级排他锁的事务进行回滚。  </p>
+<blockquote>
+<p>隐式锁和显式锁  </p>
+</blockquote>
+<p>1、<strong>隐式锁</strong>：当多个客户端并发访问同一个数据的时候，为了保证数据的一致性，数据库管理系统会自动的为该数据加锁、解锁，这种被称为隐式锁。隐式锁无需开发人员维护（包括锁粒度、加锁时机、解锁时机等） </p>
+<p>2、<strong>显式锁</strong>：当时在某些特殊的情况下需要开发人员手动的进行加锁、解锁，这种锁方式被称为显式锁。对于显式锁而言，开发人员不仅要确定锁的粒度，还需要确定加锁的时机（何时加锁）、解锁的时机（何时解锁）以及所的类型。例如SELECT … FOR UPDATE</p>
+<h2 id="三、事务"><a href="#三、事务" class="headerlink" title="三、事务"></a>三、事务</h2><blockquote>
+<p>事务是一组原子性的SQL查询，要么全部执行成功，要么全部执行失败。需要通过ACID测试。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-幸福的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/12/幸福的方法/">幸福的方法</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/12/幸福的方法/" class="archive-article-date">
+  	<time datetime="2016-06-12T08:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、关于幸福的几个问题"><a href="#一、关于幸福的几个问题" class="headerlink" title="一、关于幸福的几个问题"></a>一、关于幸福的几个问题</h2><blockquote>
+<ul>
+<li>你幸福嘛？</li>
+<li>你有哪些对幸福的疑惑，身边有哪些幸福的假象？</li>
+<li>幸福到底是<strong>什么</strong>？</li>
+<li><strong>为什么</strong>要追求幸福？</li>
+<li><strong>怎么</strong>追求幸福？</li>
+</ul>
+</blockquote>
+<p>1、常常会问，“你幸福吗？”<br>那么，我怎样才能判断自己是否幸福？幸福有统一的标准嘛？“我是否幸福”这个问题本身就暗示着对幸福的两极看法：要么幸福，要么不幸福。在这种理解中，幸福成为一个终点，一旦到达，我们对幸福的追求就结束了。实际上这个终点并不存在，这一误解的执着只会导致不满和挫败感。我们永远都可以更幸福，与其问自己是否幸福，不如去探求“怎样才能更幸福？”</p>
+<p>2、你有哪些对幸福的疑惑，身边有哪些幸福的假象？ </p>
+<blockquote>
+<ul>
+<li>所有人都有追求幸福的权利，但大家都有“我过的不是很幸福”的感慨。</li>
+<li>我们要的不止是自己的幸福，还要比别人幸福。</li>
+<li>随着物质水平的提高，焦虑症和抑郁症的患病率急剧上升。我们过着以亿万富翁为目标的人生游戏，但财富带给我们的似乎是不幸福。 </li>
+<li>幸福好像很难获取？上帝给了每一个人幸福的机会，人们都知道，却不知如何得到它。之前接触的“成功学”，例如幸福的五大步骤、成功的三大秘密、找到完美爱人的四大法宝，全是空头承诺。</li>
+<li>成功一定能带来幸福嘛？人往往会被所谓“做到某件事就能幸福”的“幸福神话”所束缚。有没有曾经在实现了一个重要目标之后，却没有感到你期望的喜悦？成就感和喜悦慢慢消失，感到空虚和迷惘，不能带来持久的幸福。这时，你会灰心、绝望，因为没有目标你就失去了对幸福的指望。 </li>
+<li>为了获得幸福必须经历痛苦？周围人生活得并不开心，他们沮丧、压力重重却并不在乎，只是努力的为了追求好成绩、高薪和晋升而奋斗。在追求和达成这些目标的过程中，很少能体会到发自内心的快乐，他们认定要成功就必须以经历痛苦作为代价。</li>
+<li>幸福的感悟，是不是和遗传特征有关，那还有没有方法变得更幸福？</li>
+</ul>
+</blockquote>
+<h2 id="二、幸福是什么？"><a href="#二、幸福是什么？" class="headerlink" title="二、幸福是什么？"></a>二、幸福是什么？</h2><blockquote>
+<p>幸福汉堡模型</p>
+</blockquote>
+<p>所谓幸福，即为充满快乐，能感受到人生意义的经验。快乐，代表现在的美好时光，属于当下的利益；意义则来自于目标，一种未来的利益。<br>以快乐（当下的利益）和意义（未来的利益）为轴心分为4类。先看这4种汉堡模型。    </p>
+<p><img src="/2016/06/12/幸福的方法/hanbao.jpg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>汉堡模型</th>
+<th style="text-align:center">过程重要</th>
+<th style="text-align:center">结果重要</th>
+<th style="text-align:center">目标感</th>
+<th style="text-align:center">幸福感</th>
+<th style="text-align:center">昨天今天明天</th>
+<th style="text-align:center">对幸福的理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>奔波忙碌型</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">为了未来而活</td>
+<td style="text-align:center">等考上大学/有好工作/退休了，就幸福了 </td>
+</tr>
+<tr>
+<td>享乐主义型</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">为了现在而活</td>
+<td style="text-align:center">寻找哪怕短暂的快乐，逃避痛苦，自以为得到幸福。</td>
+</tr>
+<tr>
+<td>虚无主义型</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">沉迷于过去而放弃现在和未来</td>
+<td style="text-align:center">无论自己做什么都无法得到幸福</td>
+</tr>
+<tr>
+<td>感悟幸福型</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">享受当下的快乐以及未来的幸福</td>
+<td style="text-align:center">现在和未来的利益有时是冲突的，但这是可以平衡的</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>奔波忙碌型  </p>
+</blockquote>
+<p>1、一分耕耘，一分收获。  </p>
+<p>2、观念  </p>
+<ul>
+<li>只有实现一个有价值的目标，才能换取未来的幸福，即使牺牲现在的快乐。  </li>
+<li>成功即是幸福，导致把目标实现后的放松和解脱当成幸福。这种解脱让我们感到快乐，但不等同于幸福。</li>
+</ul>
+<p>3、行为  </p>
+<p>我们习惯了去关注自己的目标，却不在意当下感受，最终导致盲目的追求。</p>
+<blockquote>
+<p>享乐主义型  </p>
+</blockquote>
+<p>1、人生得意须尽欢,莫使金樽空对月  </p>
+<p>2、观念</p>
+<ul>
+<li>快乐至上，只要不断的享受短暂的快乐，就算没有实现目标，也可以得到幸福。  </li>
+<li>寻找快乐，逃避痛苦。如果吸毒能带来快感，就会去吸毒；如果工作辛苦，就会逃避。将辛苦与痛苦、快感与幸福等同化。  </li>
+<li>没有目的和挑战，盲目地满足欲望，生活变得毫无意义。</li>
+</ul>
+<blockquote>
+<p>虚无主义型  </p>
+</blockquote>
+<p>1、极尽繁华,不过一掬细沙  </p>
+<p>2、观念  </p>
+<ul>
+<li>无论自己做什么都无法得到幸福。  </li>
+<li>做忙碌奔波型的人不快乐，做享乐主义的人不开心，于是空虚、痛苦。  </li>
+</ul>
+<p>3、行为：  </p>
+<ul>
+<li>放弃追求幸福，不再相信生活的意义。  </li>
+<li>当失败或无助时，选择放弃，感到绝望。</li>
+</ul>
+<blockquote>
+<p>感悟幸福型  </p>
+</blockquote>
+<p>1、观念：  </p>
+<ul>
+<li>如何才能享受当下的快乐以及未来的幸福？  </li>
+<li>眼前和未来的收益有时是冲突的，有些情况下会顾此失彼，但多数情况下是可以平衡的。  </li>
+</ul>
+<p>2、行为<br>    为考试而学习、为未来而攒钱、为实现目标而超时工作，会带来些许不快，但重点是，就算我们必须牺牲一些眼前的快乐，也不要忘记我们仍然可以从生活的方方面面尽可能的发掘幸福。</p>
+<h2 id="三、为什么要追求幸福？"><a href="#三、为什么要追求幸福？" class="headerlink" title="三、为什么要追求幸福？"></a>三、<strong>为什么</strong>要追求幸福？</h2><p>1、幸福是生命本身的意图和意义，是人类存在的目标和终点。幸福的人生产性更高，更长寿。而金钱和健康是人生的重要基础。因此，衡量商业成就时，金钱是终极财富；而衡量人生成就的标准，应该是幸福。</p>
+<p>2、幸福和成功：成功可以带来幸福，而幸福可以帮助人们在生活的方方面面都非常成功，包括婚姻、友谊、收入、工作和健康。他们之间有着强烈的相互作用。但是幸福不是成功的结果，它比成功先行。 </p>
+<p>3、幸福和金钱：金钱是实现幸福这个目标的一种手段，而不是以牺牲幸福（目标）来换取金钱（手段）。除了一些极为贫困连基本生活都得不到满足的地区外，幸福和财富的关联性非常低。我们习惯性的先考虑物质，主要是物质容易计算，而感情和意义则难以衡量。除了金钱以外，还有很多能让人幸福的东西。 </p>
+<p>4、幸福和快乐：情感会产生动机，但光有情感是不够的，如果要幸福，必须体验积极的情感，可能会有情绪的起伏，但会在整体上保持一种积极的人生态度。他经常被积极的情绪推动着，比如欢乐和爱，很少被愤怒这些负面情绪所控制。快乐是常态，而痛苦是小插曲，我们都应该为活着本身而感到由衷的快乐并感恩。期盼无时无刻的快乐只会带来失望和不满，并导致负面情绪的产生。  </p>
+<p>5、幸福和意义：当想到有意义的生活时，我们经常谈到目标，但有目标或者实现目标并不能保证我们必然感受到生命的意义。好成绩、大房子，这些目标实现后我们可能仍然感到空虚。我们要过真正有意义的生活，目标必须是自发的，而不是为了满足社会标准，或是迎合他人的期望。这种目标感，可被称为使命感，这才是生命的喜悦。</p>
+<p>6、幸福与潜力：对自己最有意义的生活时，需要同时考虑如何充分的发挥自身的潜力，真正令人满意的幸福总是伴随着充分发挥自身的才能来改变世界。 </p>
+<p>7、真正的幸福，推崇以现实为基础的理想主义。它并不代表对不安情绪或生活困难的免疫，幸福的人一样要去面对困难，克服生活里的种种障碍。</p>
+<p>8、幸福大萧条，当负面情绪持续时间和强度压倒了正面情绪，情感也会破产，例如抑郁。</p>
+<h1 id="那么，怎么追求幸福呢？"><a href="#那么，怎么追求幸福呢？" class="headerlink" title="那么，怎么追求幸福呢？"></a>那么，怎么追求幸福呢？</h1><h2 id="四、设定幸福目标"><a href="#四、设定幸福目标" class="headerlink" title="四、设定幸福目标"></a>四、设定幸福目标</h2><blockquote>
+<p>为什么要设定目标？  </p>
+</blockquote>
+<p>1、要得到幸福，人生目标是不可或缺的。目标的责任，是“解放我们”，摆脱“我现在在哪”的不安和“我该去哪”的忧虑，才能享受“当下”。<br>2、目标与成功，有目标的人的成功概率要比没有目标的人大很多，目标向我们传达了一种克服困难的信念。优秀的目标通常会更容易带来成功。如果是将经济或社会上的成功当做目标本身的话，会造成奔波忙碌型的模式。  </p>
+        
+          <a class="article-more-a" href="/2016/06/12/幸福的方法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/12/幸福的方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-客户端屏幕适配方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -633,580 +1208,9 @@
 
 
   
-    <article id="post-JavaScript高级程序设计（2）函数参数传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">JavaScript高级程序设计（2）函数参数传递</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/" class="archive-article-date">
-  	<time datetime="2016-03-06T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、两种不同数据类型的值"><a href="#一、两种不同数据类型的值" class="headerlink" title="一、两种不同数据类型的值"></a>一、两种不同数据类型的值</h2><p>1、基本类型值，指简单的数据段，对于undefined、null、boolean、number、string这5种简单数据类型可以直接操作保存在变量中的实际值，也就是按值访问。</p>
-<p>2、引用类型值，指那些可能由多个值构成的对象，只能操作对象的引用而不是实际的对象，所以要得到引用类型这种值只能按引用访问。</p>
-<p>3、ECMAScript中所有函数的参数都是按值传递的。</p>
-<h2 id="二、声明变量时不同的内存分配"><a href="#二、声明变量时不同的内存分配" class="headerlink" title="二、声明变量时不同的内存分配"></a>二、声明变量时不同的内存分配</h2><p>1、基本类型值：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>这是因为这些原始类型占据的空间是固定的，所以可将他们存储在较小的内存区域 — 栈中，这样存储便于迅速查寻变量的值。</p>
-<p>2、引用类型值：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存地址。<br>这是因为：引用值的大小会改变，所以不能把它放在栈中，否则会降低变量查寻的速度。相反，放在变量的栈空间中的值是该对象存储在堆中的地址。地址的大小是固定的，所以把它存储在栈中对变量性能无任何负面影响。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/stack_heap.png" alt="内存分配差异"></p>
-<p>3、不同的内存分配机制也带来了不同的访问机制：</p>
-<p>在ECMAScript中是不允许直接访问保存在堆内存中的对象的，所以在访问一个对象时，首先得到的是这个对象在堆内存中的地址，然后再按照这个地址去获得这个对象中的值，这就是按引用访问。而基本类型的值则是可以直接访问到的。</p>
-<h2 id="三、复制变量时的不同"><a href="#三、复制变量时的不同" class="headerlink" title="三、复制变量时的不同"></a>三、复制变量时的不同</h2><p>1、基本类型值：在将一个保存着基本类型值的变量复制给另一个变量时，会将原始值的副本赋值给新变量，此后这两个变量是完全独立的，他们只是拥有相同的value而已。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy1.png" alt="基本类型值复制"></p>
-<p>2、引用类型值：在将一个保存着对象内存地址的变量复制给另一个变量时，会把这个内存地址赋值给新变量（因为这个引用值只能按引用访问得到），也就是说这两个变量都指向了堆内存中的同一个对象，他们中任何一个作出的改变都会反映在另一个身上。<br>这里要理解的一点就是，复制对象时并不会在堆内存中新生成一个一模一样的对象，只是多了一个保存指向这个对象指针的变量罢了。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy2.png" alt="引用类型值复制"></p>
-<h2 id="四、函数参数的传递"><a href="#四、函数参数的传递" class="headerlink" title="四、函数参数的传递"></a>四、函数参数的传递</h2><p>现在是难理解的地方了，现在进入正题。<br>首先明确一点：ECMAScript中所有函数的参数都是按值来传递的。但是为什么涉及到基本数据类型与引用类型的值时仍然有区别呢，还不就是因为内存分配时的差别。</p>
-<p>1、基本类型值：只是把变量里的值传递给参数，之后参数和这个变量互不影响，这个很好理解，不再赘述。</p>
-<p>2、引用类型值：对象变量里面的值是这个对象在堆内存中的内存地址，因此它传递的值也就是这个内存地址，这也就是为什么函数内部对这个参数的修改会体现在外部的原因了，因为它们都指向同一个对象。</p>
-<p><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/transmit.png" alt="函数参数的传递"></p>
-<p>用代码解释可能理解更形象：<br>注：代码范例来自JS高程P71。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    obj.name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    obj.name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">setName(person); </span><br><span class="line"></span><br><span class="line"><span class="comment">//根据上述函数参数的特点，可以利用arguments对象来重写这个函数：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params"> </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将参数person传入setName函数，函数执行步骤入下：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=person; <span class="comment">//将arguments[0]和person指向同一个对象</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>; <span class="comment">//也即person.name="Nicholas"</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>; <span class="comment">//重新定义arguments[0]。这时，arguments[0]已经跟 person“脱钩”</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>; <span class="comment">//这行代码跟person已经没有关系了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果自然很明朗，没悬念</span></span><br><span class="line">alert(person.name); <span class="comment">// "Nicholas";</span></span><br></pre></td></tr></table></figure>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>在ECMAScript中，所谓参数按值传递就是，将形式参数初始化为实际参数的值。或者说将所传递的实际参数的值复制到函数内部的arguments数组中。对于基本类型值，就是在函数内部创建了一个该值的副本；对于引用类型值则复制了一个指向某个对象的指针。所传递的参数依次对应于arguments数组中的arguments[0],arguments[1]等元素。</p>
-<p>而按引用传递，则相当于将形式参数初始化为实际参数本身。</p>
-<p>注意：一个是只传递变量的值，一个是传递整个变量。这两者的内涵是完全不同的。<br>我们知道，ECMAScript中，每个变量都是一个用于保存值的占位符。如果参数是对像，则参数按值传递，意味着在函数内部，只能操作实际参数（对像）的属性和值，而不能操作实际参数（对像）本身。也就是说，你可以通过函数来改变函数外部所传入对像（参数）的属性和属性值；但你不能删除该变量，或改变此变量的引用对象。</p>
-<p>所以在对像参数传递时，最重要的是要理解，所谓的按值传递，意味着函数只能操作对像的属性和值，而不能操作对像本身。</p>
-<p>准确的说，JS中的基本类型按值传递，对象类型按<strong>共享传递</strong>的(call by sharing，也叫按对象传递、按对象共享传递)。最早由Barbara Liskov. 在1974年的GLU语言中提出。该求值策略被用于Python、Java、Ruby、JS等多种语言。<br>该策略的重点是：调用函数传参时，函数接受对象实参引用的副本(既不是按值传递的对象副本，也不是按引用传递的隐式引用)。它和按引用传递的不同在于：在共享传递中对函数形参的赋值，不会影响实参的值。如下面例子中，不可以通过修改形参o的值，来修改obj的值。虽然引用是副本，引用的对象是相同的。它们共享相同的对象，所以修改形参对象的属性值，也会影响到实参的属性值。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaScript高级程序设计（1）基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">JavaScript高级程序设计（1）基础语法</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/03/JavaScript高级程序设计（1）基础语法/" class="archive-article-date">
-  	<time datetime="2016-03-03T04:36:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、JavaScript简介"><a href="#一、JavaScript简介" class="headerlink" title="一、JavaScript简介"></a>一、JavaScript简介</h2><p><img src="/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png" alt="JS"></p>
-<p>1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。  </p>
-<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型）   </p>
-<p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
-<h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
-<p>语法</p>
-</blockquote>
-<p>区分大小写，标识符（变量、函数、参数、属性等）驼峰，单行多行注释，语句分号结尾，关键字和保留字，定义变量用var操作符。</p>
-<blockquote>
-<p>数据类型  </p>
-</blockquote>
-<p>Undefined、Null、Boolean、Number、String、Object  </p>
-<ul>
-<li>typeof操作符，返回多一个function  </li>
-<li>undefined派生自null值的，相等性测试返回true。  </li>
-<li>undefined、null、0/NaN、空字符串，转换成布尔为false。</li>
-<li>0代表八进制、0x代表十六进制，浮点计算会产生舍入误差。Number.MIN_VALUE和Number.MAX_VALUE为ECMAScript能保存的最大和最小值，超出了会转换成Infinity。isNaN用来判断是否是“非数值”。  </li>
-<li>数值转换，Number()用于任何类型、parseInt(string,int)和parseFloat()用于字符串转换，int默认为10进制。  </li>
-<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 .toString(int)将其他类型转换为字符串，int默认为10进制。  </li>
-<li>object，定义：var o =new Object();</li>
-</ul>
-<blockquote>
-<p>操作符</p>
-</blockquote>
-<p>1、一元操作符（递增和递减、加和减表示正负）</p>
-<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。<br>按位非 NOT（~）<br>按位与 AND（&amp;）<br>按位或 OR（|）<br>按位异或 XOR（^）<br>左移(&lt;&lt;)，不影响符号位<br>有符号的右移（&gt;&gt;），不影响符号位<br>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </p>
-<p>3、布尔操作符<br>逻辑非（!）<br>逻辑与（&amp;&amp;）<br>逻辑或（||）</p>
-<blockquote>
-<p>流控制语句</p>
-<p>函数</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法导论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/08/算法导论/">算法导论</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/08/算法导论/" class="archive-article-date">
-  	<time datetime="2016-01-08T10:17:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、算法在计算中的作用"><a href="#一、算法在计算中的作用" class="headerlink" title="一、算法在计算中的作用"></a>一、算法在计算中的作用</h2><p>1、算法，是任何良定义的计算过程，某个值或集合输入，产生某个值或集合的输出。</p>
-<p>2、算法，可以看成一种技术。计算机也许是快的，但它们不睡无限快。存储器也许是廉价的，但不是免费的。因此算法帮助我们有效的使用时间或空间等资源。</p>
-<h2 id="二、算法基础"><a href="#二、算法基础" class="headerlink" title="二、算法基础"></a>二、算法基础</h2><blockquote>
-<p>贝塞尔曲线</p>
-</blockquote>
-<p>下面我们就通过例子来了解一下如何用 de Casteljau 算法绘制一条贝塞尔曲线。</p>
-<p>在平面内任选 3 个不共线的点，依次用线段连接。</p>
-<p><img src="/2016/01/08/算法导论/bezier_1.png" alt=""></p>
-<p>在第一条线段上任选一个点 D。计算该点到线段起点的距离 AD，与该线段总长 AB 的比例。 <img src="/2016/01/08/算法导论/bezier_2.png" alt=""></p>
-<p>根据上一步得到的比例，从第二条线段上找出对应的点 E，使得 AD:AB = BE:BC。 <img src="/2016/01/08/算法导论/bezier_3.png" alt=""></p>
-<p>连接这两点 DE。 <img src="/2016/01/08/算法导论/bezier_4.png" alt=""></p>
-<p>从新的线段 DE 上再次找出相同比例的点 F，使得 DF:DE = AD:AB = BE:BC。 <img src="/2016/01/08/算法导论/bezier_5.png" alt=""></p>
-        
-          <a class="article-more-a" href="/2016/01/08/算法导论/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/08/算法导论/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mac常用开发软件问题汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/20/Mac常用开发软件问题汇总/">Mac常用开发软件问题汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2015/11/20/Mac常用开发软件问题汇总/" class="archive-article-date">
-  	<time datetime="2015-11-20T07:21:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、sublime-text"><a href="#一、sublime-text" class="headerlink" title="一、sublime text"></a>一、sublime text</h2><blockquote>
-<p>插件  </p>
-</blockquote>
-<p>（1）color highlighter显示颜色<br>（2）color picker拾取颜色，快捷键Command+Shift+C<br>（3）emmet，但需要pyv8插件。Tab键代码自动补全<br>（4）javascript completions，js代码补全<br>（5）ConvertToUTF8，字符集转换为UTF-8，避免汉字乱码，需要安装插件Codecs33<br>（6）LESS，用于支持LESS高亮显示<br>（7）Less2Css，用于支持LESS编译，需安装less(编译)和less-plugin-clean-css(压缩)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g less  </span><br><span class="line">$ npm install -g less-plugin-clean-css</span><br></pre></td></tr></table></figure>
-<p>（8）SASS，用于SASS高亮显示<br>（9）SASS Build，用于支持SASS编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin sass</span><br></pre></td></tr></table></figure>
-<p>如报错Error: Invalid US-ASCII character “\xC2” ，可在scss文件添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">"UTF-8"</span>;</span><br></pre></td></tr></table></figure>
-<p>如需要使用watch自动编译，则需要保证路径上无中文，否则会报错：incompatible character encodings: ASCII-8BIT and UTF-8 Backtrace</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch style.scss:style.css</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>中文无法open in browser </p>
-</blockquote>
-<p>安装插件SideBarEnhancements，绑定快捷键</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+1"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"safari"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+2"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"chrome"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+3"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"firefox"</span>&#125;  &#125;,</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2015/11/20/Mac常用开发软件问题汇总/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/20/Mac常用开发软件问题汇总/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/19/正则表达式/">正则表达式</a>
-    </h1>
-  
-
-        
-        <a href="/2015/09/19/正则表达式/" class="archive-article-date">
-  	<time datetime="2015-09-19T08:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>常用的元字符 </p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>匹配除换行符以外的任意字符</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配字母或数字或下划线或汉字</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意的空白符</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配数字</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开始</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结束</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>常用的限定符</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>重复零次或更多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>重复一次或更多次</td>
-</tr>
-<tr>
-<td>?</td>
-<td>重复零次或一次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>重复n次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>重复n次或更多次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>重复n到m次</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>分枝条件</p>
-</blockquote>
-<p>正则表达式里的分枝条件指的是有几种规则，如果满足其中任意一种规则都应该当成匹配，具体方法是用|把不同的规则分隔开。<br>使用分枝条件时，要注意各个条件的顺序。匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。  </p>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\</td>
-<td></td>
-<td>分枝</td>
-</tr>
-<tr>
-<td>()</td>
-<td>分组</td>
-</tr>
-<tr>
-<td>#</td>
-<td>注释</td>
-</tr>
-<tr>
-<td>.*</td>
-<td>贪婪匹配</td>
-</tr>
-<tr>
-<td>.*?</td>
-<td>懒惰匹配</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>常用的反义代码</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\W</td>
-<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td>[^x]</td>
-<td>匹配除了x以外的任意字符</td>
-</tr>
-<tr>
-<td>[^aeiou]</td>
-<td>匹配除了aeiou这几个字母以外的任意字符</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>懒惰限定符</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*?</td>
-<td>重复任意次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>+?</td>
-<td>重复1次或更多次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>??</td>
-<td>重复0次或1次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,m}?</td>
-<td>重复n到m次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,}?</td>
-<td>重复n次以上，但尽可能少重复</td>
-</tr>
-</tbody>
-</table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/19/正则表达式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -1285,14 +1289,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -1305,11 +1301,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1317,7 +1317,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1326,6 +1326,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1349,6 +1353,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -1361,23 +1381,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1385,11 +1389,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1413,19 +1417,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">

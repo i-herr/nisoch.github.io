@@ -149,6 +149,1017 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JavaScript高级程序设计（2）函数参数传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">JavaScript高级程序设计（2）函数参数传递</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/" class="archive-article-date">
+  	<time datetime="2016-03-06T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、两种不同数据类型的值"><a href="#一、两种不同数据类型的值" class="headerlink" title="一、两种不同数据类型的值"></a>一、两种不同数据类型的值</h2><p>1、基本类型值，指简单的数据段，对于undefined、null、boolean、number、string这5种简单数据类型可以直接操作保存在变量中的实际值，也就是按值访问。</p>
+<p>2、引用类型值，指那些可能由多个值构成的对象，只能操作对象的引用而不是实际的对象，所以要得到引用类型这种值只能按引用访问。</p>
+<p>3、ECMAScript中所有函数的参数都是按值传递的。</p>
+<h2 id="二、声明变量时不同的内存分配"><a href="#二、声明变量时不同的内存分配" class="headerlink" title="二、声明变量时不同的内存分配"></a>二、声明变量时不同的内存分配</h2><p>1、基本类型值：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>这是因为这些原始类型占据的空间是固定的，所以可将他们存储在较小的内存区域 — 栈中，这样存储便于迅速查寻变量的值。</p>
+<p>2、引用类型值：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存地址。<br>这是因为：引用值的大小会改变，所以不能把它放在栈中，否则会降低变量查寻的速度。相反，放在变量的栈空间中的值是该对象存储在堆中的地址。地址的大小是固定的，所以把它存储在栈中对变量性能无任何负面影响。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/stack_heap.png" alt="内存分配差异"></p>
+<p>3、不同的内存分配机制也带来了不同的访问机制：</p>
+<p>在ECMAScript中是不允许直接访问保存在堆内存中的对象的，所以在访问一个对象时，首先得到的是这个对象在堆内存中的地址，然后再按照这个地址去获得这个对象中的值，这就是按引用访问。而基本类型的值则是可以直接访问到的。</p>
+<h2 id="三、复制变量时的不同"><a href="#三、复制变量时的不同" class="headerlink" title="三、复制变量时的不同"></a>三、复制变量时的不同</h2><p>1、基本类型值：在将一个保存着基本类型值的变量复制给另一个变量时，会将原始值的副本赋值给新变量，此后这两个变量是完全独立的，他们只是拥有相同的value而已。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy1.png" alt="基本类型值复制"></p>
+<p>2、引用类型值：在将一个保存着对象内存地址的变量复制给另一个变量时，会把这个内存地址赋值给新变量（因为这个引用值只能按引用访问得到），也就是说这两个变量都指向了堆内存中的同一个对象，他们中任何一个作出的改变都会反映在另一个身上。<br>这里要理解的一点就是，复制对象时并不会在堆内存中新生成一个一模一样的对象，只是多了一个保存指向这个对象指针的变量罢了。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy2.png" alt="引用类型值复制"></p>
+<h2 id="四、函数参数的传递"><a href="#四、函数参数的传递" class="headerlink" title="四、函数参数的传递"></a>四、函数参数的传递</h2><p>现在是难理解的地方了，现在进入正题。<br>首先明确一点：ECMAScript中所有函数的参数都是按值来传递的。但是为什么涉及到基本数据类型与引用类型的值时仍然有区别呢，还不就是因为内存分配时的差别。</p>
+<p>1、基本类型值：只是把变量里的值传递给参数，之后参数和这个变量互不影响，这个很好理解，不再赘述。</p>
+<p>2、引用类型值：对象变量里面的值是这个对象在堆内存中的内存地址，因此它传递的值也就是这个内存地址，这也就是为什么函数内部对这个参数的修改会体现在外部的原因了，因为它们都指向同一个对象。</p>
+<p><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/transmit.png" alt="函数参数的传递"></p>
+<p>用代码解释可能理解更形象：<br>注：代码范例来自JS高程P71。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    obj.name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    obj.name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">setName(person); </span><br><span class="line"></span><br><span class="line"><span class="comment">//根据上述函数参数的特点，可以利用arguments对象来重写这个函数：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params"> </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将参数person传入setName函数，函数执行步骤入下：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=person; <span class="comment">//将arguments[0]和person指向同一个对象</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>; <span class="comment">//也即person.name="Nicholas"</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>; <span class="comment">//重新定义arguments[0]。这时，arguments[0]已经跟 person“脱钩”</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>; <span class="comment">//这行代码跟person已经没有关系了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果自然很明朗，没悬念</span></span><br><span class="line">alert(person.name); <span class="comment">// "Nicholas";</span></span><br></pre></td></tr></table></figure>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>在ECMAScript中，所谓参数按值传递就是，将形式参数初始化为实际参数的值。或者说将所传递的实际参数的值复制到函数内部的arguments数组中。对于基本类型值，就是在函数内部创建了一个该值的副本；对于引用类型值则复制了一个指向某个对象的指针。所传递的参数依次对应于arguments数组中的arguments[0],arguments[1]等元素。</p>
+<p>而按引用传递，则相当于将形式参数初始化为实际参数本身。</p>
+<p>注意：一个是只传递变量的值，一个是传递整个变量。这两者的内涵是完全不同的。<br>我们知道，ECMAScript中，每个变量都是一个用于保存值的占位符。如果参数是对像，则参数按值传递，意味着在函数内部，只能操作实际参数（对像）的属性和值，而不能操作实际参数（对像）本身。也就是说，你可以通过函数来改变函数外部所传入对像（参数）的属性和属性值；但你不能删除该变量，或改变此变量的引用对象。</p>
+<p>所以在对像参数传递时，最重要的是要理解，所谓的按值传递，意味着函数只能操作对像的属性和值，而不能操作对像本身。</p>
+<p>准确的说，JS中的基本类型按值传递，对象类型按<strong>共享传递</strong>的(call by sharing，也叫按对象传递、按对象共享传递)。最早由Barbara Liskov. 在1974年的GLU语言中提出。该求值策略被用于Python、Java、Ruby、JS等多种语言。<br>该策略的重点是：调用函数传参时，函数接受对象实参引用的副本(既不是按值传递的对象副本，也不是按引用传递的隐式引用)。它和按引用传递的不同在于：在共享传递中对函数形参的赋值，不会影响实参的值。如下面例子中，不可以通过修改形参o的值，来修改obj的值。虽然引用是副本，引用的对象是相同的。它们共享相同的对象，所以修改形参对象的属性值，也会影响到实参的属性值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript高级程序设计（1）基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">JavaScript高级程序设计（1）基础语法</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/03/JavaScript高级程序设计（1）基础语法/" class="archive-article-date">
+  	<time datetime="2016-03-03T04:36:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、JavaScript简介"><a href="#一、JavaScript简介" class="headerlink" title="一、JavaScript简介"></a>一、JavaScript简介</h2><p><img src="/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png" alt="JS"></p>
+<p>1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。  </p>
+<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型）   </p>
+<p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
+<h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
+<p>语法</p>
+</blockquote>
+<p>区分大小写，标识符（变量、函数、参数、属性等）驼峰，单行多行注释，语句分号结尾，关键字和保留字，定义变量用var操作符。</p>
+<blockquote>
+<p>数据类型  </p>
+</blockquote>
+<p>Undefined、Null、Boolean、Number、String、Object  </p>
+<ul>
+<li>typeof操作符，返回多一个function  </li>
+<li>undefined派生自null值的，相等性测试返回true。  </li>
+<li>undefined、null、0/NaN、空字符串，转换成布尔为false。</li>
+<li>0代表八进制、0x代表十六进制，浮点计算会产生舍入误差。Number.MIN_VALUE和Number.MAX_VALUE为ECMAScript能保存的最大和最小值，超出了会转换成Infinity。isNaN用来判断是否是“非数值”。  </li>
+<li>数值转换，Number()用于任何类型、parseInt(string,int)和parseFloat()用于字符串转换，int默认为10进制。  </li>
+<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 .toString(int)将其他类型转换为字符串，int默认为10进制。  </li>
+<li>object，定义：var o =new Object();</li>
+</ul>
+<blockquote>
+<p>操作符</p>
+</blockquote>
+<p>1、一元操作符（递增和递减、加和减表示正负）</p>
+<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。<br>按位非 NOT（~）<br>按位与 AND（&amp;）<br>按位或 OR（|）<br>按位异或 XOR（^）<br>左移(&lt;&lt;)，不影响符号位<br>有符号的右移（&gt;&gt;），不影响符号位<br>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </p>
+<p>3、布尔操作符<br>逻辑非（!）<br>逻辑与（&amp;&amp;）<br>逻辑或（||）</p>
+<blockquote>
+<p>流控制语句</p>
+<p>函数</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-也谈金融" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/22/也谈金融/">也谈金融</a>
+    </h1>
+  
+
+        
+        <a href="/2016/02/22/也谈金融/" class="archive-article-date">
+  	<time datetime="2016-02-22T04:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>金融的本质</p>
+</blockquote>
+<ul>
+<li>货币的时间价值</li>
+<li>未来的不确定性</li>
+</ul>
+<blockquote>
+<p>股指</p>
+</blockquote>
+<p>指数本身永远是货币现象。GDP自然增长和物价的增长，会让名义利润趋势性增加。在一个很中庸的假设下，2020年的上证7000点市盈率大约与2015年初的4000点类似。所以，6124点会不会突破，是个伪命题，不确定仅在于时间。</p>
+<blockquote>
+<p>国家金融策略</p>
+</blockquote>
+<ul>
+<li>把过往中国投资过剩的生产能力，通过“一带一路”释放到国外去。</li>
+<li>把过往中国如饥似渴的消费能力，通过“自贸区”吸收到国内来。</li>
+<li>把过往中国盲目乱窜的巨量货币，通过“股票市场”转移到实体去。</li>
+<li>把过往中国无处可去的外汇储备，通过“亚投行”投资到同盟国去。</li>
+</ul>
+<blockquote>
+<p>选股原则</p>
+</blockquote>
+<ul>
+<li>行业有好的变革</li>
+<li>企业有好的变革</li>
+<li>有稳定的现金流</li>
+<li>资金放量</li>
+<li>不易出现信用危机</li>
+<li>被低估</li>
+</ul>
+<blockquote>
+<p>个人金融底线</p>
+</blockquote>
+<p>巴菲特说过那句话，过去238年来，从来没有人因为做空自己的祖国而发财的。但是巴菲特老先生可能不太了解我们这个神奇的国度，在这个号称5000年历史的国度，有过无数因为出卖自己的祖国自己的同胞自己的党派而发财而大富大贵的先例。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/22/也谈金融/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-一生要做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/10/一生要做的事/">一生要做的事</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/10/一生要做的事/" class="archive-article-date">
+  	<time datetime="2016-01-10T11:21:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>我究竟要怎样过一生<br>设定那愿意消耗生命去做的事<br>努力去达成<br>保留你的体验<br>珍惜你的感悟</p>
+</blockquote>
+<h3 id="常回家看看"><a href="#常回家看看" class="headerlink" title="常回家看看"></a>常回家看看</h3><blockquote>
+<p>父母在<br>不言老<br>游必有方</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>每年给爸妈过生日/问候</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>帮爸妈完成梦想</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>带爸妈去旅游/自驾</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>给爸妈做可口的饭菜</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>给爸妈买保险</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>给爸妈安排体检</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>给爸妈过一次大寿</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>回家看望爸妈的次数</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>和爸妈一起吃年夜饭的次数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起浪漫"><a href="#一起浪漫" class="headerlink" title="一起浪漫"></a>一起浪漫</h3><blockquote>
+<p>浪漫<br>哪怕是小浪漫</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起坐摩天轮</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起看日出日落</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>一起看烟火</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起对着流星许愿</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起跳舞</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起数星星</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起在树下埋下约定</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起去海边放漂流瓶</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起露营</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td>一起坐邮轮</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起平淡"><a href="#一起平淡" class="headerlink" title="一起平淡"></a>一起平淡</h3><blockquote>
+<p>不够浪漫<br>那就陪伴 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起手牵手逛街</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起布置家</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>一起吃路边摊</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起骑脚踏车</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起堆雪人</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起养花种树</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起养动物</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起看场话剧</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起看场舞台剧</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td>一起看场舞蹈</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td>一起听场音乐会</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td>一起看场球赛</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td>一起听场相声</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td>一起参加电视节目</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td>一起晨练</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td>一起看书喝茶</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td>到站台送别</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td>一起学会游泳</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起成长"><a href="#一起成长" class="headerlink" title="一起成长"></a>一起成长</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起见对方的朋友</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起去趟博物馆</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>当一天陌生人</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起去养老院做义工</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起去孤儿院送礼物</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起为灾区募捐</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起做志愿者</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起到少数民族和外国人家中做客</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起给亲人和朋友挑礼物</td>
+</tr>
+</tbody>
+</table>
+        
+          <a class="article-more-a" href="/2016/01/10/一生要做的事/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/10/一生要做的事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-算法导论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/08/算法导论/">算法导论</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/08/算法导论/" class="archive-article-date">
+  	<time datetime="2016-01-08T10:17:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、算法在计算中的作用"><a href="#一、算法在计算中的作用" class="headerlink" title="一、算法在计算中的作用"></a>一、算法在计算中的作用</h2><p>1、算法，是任何良定义的计算过程，某个值或集合输入，产生某个值或集合的输出。</p>
+<p>2、算法，可以看成一种技术。计算机也许是快的，但它们不睡无限快。存储器也许是廉价的，但不是免费的。因此算法帮助我们有效的使用时间或空间等资源。</p>
+<h2 id="二、算法基础"><a href="#二、算法基础" class="headerlink" title="二、算法基础"></a>二、算法基础</h2><blockquote>
+<p>贝塞尔曲线</p>
+</blockquote>
+<p>下面我们就通过例子来了解一下如何用 de Casteljau 算法绘制一条贝塞尔曲线。</p>
+<p>在平面内任选 3 个不共线的点，依次用线段连接。</p>
+<p><img src="/2016/01/08/算法导论/bezier_1.png" alt=""></p>
+<p>在第一条线段上任选一个点 D。计算该点到线段起点的距离 AD，与该线段总长 AB 的比例。 <img src="/2016/01/08/算法导论/bezier_2.png" alt=""></p>
+<p>根据上一步得到的比例，从第二条线段上找出对应的点 E，使得 AD:AB = BE:BC。 <img src="/2016/01/08/算法导论/bezier_3.png" alt=""></p>
+<p>连接这两点 DE。 <img src="/2016/01/08/算法导论/bezier_4.png" alt=""></p>
+<p>从新的线段 DE 上再次找出相同比例的点 F，使得 DF:DE = AD:AB = BE:BC。 <img src="/2016/01/08/算法导论/bezier_5.png" alt=""></p>
+        
+          <a class="article-more-a" href="/2016/01/08/算法导论/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/08/算法导论/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mac常用开发软件问题汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/20/Mac常用开发软件问题汇总/">Mac常用开发软件问题汇总</a>
+    </h1>
+  
+
+        
+        <a href="/2015/11/20/Mac常用开发软件问题汇总/" class="archive-article-date">
+  	<time datetime="2015-11-20T07:21:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、sublime-text"><a href="#一、sublime-text" class="headerlink" title="一、sublime text"></a>一、sublime text</h2><blockquote>
+<p>插件  </p>
+</blockquote>
+<p>（1）color highlighter显示颜色<br>（2）color picker拾取颜色，快捷键Command+Shift+C<br>（3）emmet，但需要pyv8插件。Tab键代码自动补全<br>（4）javascript completions，js代码补全<br>（5）ConvertToUTF8，字符集转换为UTF-8，避免汉字乱码，需要安装插件Codecs33<br>（6）LESS，用于支持LESS高亮显示<br>（7）Less2Css，用于支持LESS编译，需安装less(编译)和less-plugin-clean-css(压缩)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g less  </span><br><span class="line">$ npm install -g less-plugin-clean-css</span><br></pre></td></tr></table></figure>
+<p>（8）SASS，用于SASS高亮显示<br>（9）SASS Build，用于支持SASS编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin sass</span><br></pre></td></tr></table></figure>
+<p>如报错Error: Invalid US-ASCII character “\xC2” ，可在scss文件添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">"UTF-8"</span>;</span><br></pre></td></tr></table></figure>
+<p>如需要使用watch自动编译，则需要保证路径上无中文，否则会报错：incompatible character encodings: ASCII-8BIT and UTF-8 Backtrace</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch style.scss:style.css</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中文无法open in browser </p>
+</blockquote>
+<p>安装插件SideBarEnhancements，绑定快捷键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+1"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"safari"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+2"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"chrome"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+3"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"firefox"</span>&#125;  &#125;,</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2015/11/20/Mac常用开发软件问题汇总/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/11/20/Mac常用开发软件问题汇总/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/19/正则表达式/">正则表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2015/09/19/正则表达式/" class="archive-article-date">
+  	<time datetime="2015-09-19T08:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>常用的元字符 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线或汉字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>常用的限定符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>重复零次或更多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>重复一次或更多次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>重复零次或一次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>重复n次或更多次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>分枝条件</p>
+</blockquote>
+<p>正则表达式里的分枝条件指的是有几种规则，如果满足其中任意一种规则都应该当成匹配，具体方法是用|把不同的规则分隔开。<br>使用分枝条件时，要注意各个条件的顺序。匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。  </p>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td></td>
+<td>分枝</td>
+</tr>
+<tr>
+<td>()</td>
+<td>分组</td>
+</tr>
+<tr>
+<td>#</td>
+<td>注释</td>
+</tr>
+<tr>
+<td>.*</td>
+<td>贪婪匹配</td>
+</tr>
+<tr>
+<td>.*?</td>
+<td>懒惰匹配</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>常用的反义代码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\W</td>
+<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td>[^x]</td>
+<td>匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td>[^aeiou]</td>
+<td>匹配除了aeiou这几个字母以外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>懒惰限定符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*?</td>
+<td>重复任意次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>+?</td>
+<td>重复1次或更多次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>??</td>
+<td>重复0次或1次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,m}?</td>
+<td>重复n到m次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,}?</td>
+<td>重复n次以上，但尽可能少重复</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/09/19/正则表达式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-加密算法比较" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -595,256 +1606,9 @@
 
 
   
-    <article id="post-HeadFirstHTML5Programming" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/01/HeadFirstHTML5Programming/">HeadFirstHTML5Programming</a>
-    </h1>
-  
-
-        
-        <a href="/2015/03/01/HeadFirstHTML5Programming/" class="archive-article-date">
-  	<time datetime="2015-03-01T14:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h2><p>XML可拓展标记语言<br>HTML 超文本标记语言<br>XHTML 可拓展超文本标记语言<br>DOM 文档对象模型，浏览器内部模型<br>CSS 层叠样式表(Cascading Style Sheets)</p>
-<p>HTML5 =标记+JavaScript API+CSS<br>默认为JavaScript+CSS  </p>
-<blockquote>
-<p>浏览器的内核引擎，基本上是四分天下</p>
-</blockquote>
-<ul>
-<li>Trident: IE 以Trident 作为内核引擎;  </li>
-<li>Gecko: Firefox 是基于 Gecko 开发;  </li>
-<li>WebKit: Safari, Google Chrome,傲游3,猎豹浏览器,百度浏览器 opera浏览器 基于 Webkit 开发。  </li>
-<li>Presto: Opera的内核，但由于市场选择问题，主要应用在手机平台–Opera mini</li>
-</ul>
-<p>注：2013年2月Opera宣布转向WebKit引擎<br>注：2013年4月Opera宣布放弃WEBKIT，跟随GOOGLE的新开发的blink引擎</p>
-<blockquote>
-<p>JS语法</p>
-</blockquote>
-<ul>
-<li>动态类型  </li>
-<li>区分大小写  </li>
-<li>变量不能有+-符号  </li>
-<li>基本类型：数字、布尔、串  </li>
-<li>undefined：变量未赋值，null：变量为空值</li>
-</ul>
-<blockquote>
-<p>函数：</p>
-</blockquote>
-<ul>
-<li>定义函数时指定形参，调用函数时提供实参。  </li>
-<li>基本类型，按值传递。数组或对象时，按指针传递。  </li>
-<li>函数外声明为全局变量，只要页面存在就活着。函数内声明为局部变量，函数结束就消失。</li>
-<li>构造函数，是创建对象的函数。首字母大写。</li>
-<li>赋给一个对象属性的函数成为方法。方法可以使用this来引用调用这个方法的对象。</li>
-<li>window对象、document对象，以及document.getElementById方法会返回一个元素对象。</li>
-</ul>
-<blockquote>
-<p>html5位置  </p>
-</blockquote>
-<p>navigator.geolocation包含3个方法，getCurrentPositon、watchPosition、clearWatch。  </p>
-<p>Position包含coords，Coordinates包含latitude, longitude, accuracy, altitude等  </p>
-<blockquote>
-<p>web交流</p>
-</blockquote>
-<p>XMLHttpRequest的open、onload(onreadystatechange)、send方法，和jsonp的区别<br>JSON的stringify和parse</p>
-<p>ajax和jsonp其实本质上是不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是动态添加script标签来调用服务器提供的js脚本。</p>
-<p>一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如script、img、iframe）；</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/03/01/HeadFirstHTML5Programming/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-初识Markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/19/初识Markdown/">初识Markdown</a>
-    </h1>
-  
-
-        
-        <a href="/2014/10/19/初识Markdown/" class="archive-article-date">
-  	<time datetime="2014-10-19T10:22:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Markdown使用场景"><a href="#Markdown使用场景" class="headerlink" title="Markdown使用场景"></a>Markdown使用场景</h3><p>以前只在github上接触了下md文件，遇到倒是简单，也通用。如今自己搭建博客，便得系统的了解下Markdown了。</p>
-<p>说到使用场景，基本有以下几种：</p>
-<blockquote>
-<ul>
-<li>需维护型文档：文档需要在多平台使用，如wiki平台、同事传阅、网站发布等。一般文档常用Word来写，但是如果文档一需要在网上发布就麻烦了，格式没有跟过来。如果一开始就是markdown语法，可以通用解决。</li>
-<li>项目文档：项目文档一般都是用md来写的，github的项目的Readme.md就是markdown文档。</li>
-<li>创意简历、博客：还有一种装逼手段就是用markdown来编写博客和简历，那绝对是创意来着的哦，适合程序员。</li>
-</ul>
-</blockquote>
-<h3 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h3><p>语法这玩意，我也是现学，找到一篇Markdown的文章，可以参考<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">『Markdown 语法说明』</a></p>
-        
-          <a class="article-more-a" href="/2014/10/19/初识Markdown/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/10/19/初识Markdown/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/15/第一篇博客/">第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2014/09/15/第一篇博客/" class="archive-article-date">
-  	<time datetime="2014-09-15T11:23:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>终于用<a href="https://hexo.io/" target="_blank" rel="noopener">『Hexo』</a>搭建完博客，感谢Litten提供的Yilia主题，真是爱不释手。以后，这里就是我的小窝啦。</p>
-<p>先把整个流程梳理一遍，算是个hello world吧。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>安装可以参考如下命令，blog为文件夹目录，可自己定义。<br>如果提示npm没装，需要先安装npm。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init [FOLDER_NAME]</span><br><span class="line">$ <span class="built_in">cd</span> [FOLDER_NAME]</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h3><p>说实话，hexo默认给的主题，只能是凑活。如果要逼格高一点，那就得自己动手了。hexo官网有推荐一些<a href="https://hexo.io/themes/" target="_blank" rel="noopener">『Theme』</a>，可以链接到github上下载，现在使用的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">『Yilia主题』</a>的资源可以点击查看。把他clone到本地，保存在目录/themes下即可。下图是我自己目前保存的一些主题。</p>
-<p><img src="/2014/09/15/第一篇博客/yilia.jpg" alt=""></p>
-        
-          <a class="article-more-a" href="/2014/09/15/第一篇博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2014/09/15/第一篇博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -923,14 +1687,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -943,11 +1699,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -955,7 +1715,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -964,6 +1724,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -987,6 +1751,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
@@ -999,23 +1779,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1023,11 +1787,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1051,19 +1815,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">RPC</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MQ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ZooKeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
