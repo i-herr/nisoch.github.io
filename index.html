@@ -149,45 +149,44 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-SpringCloud实战（5）熔断器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Python数据分析（3）Matplotlib" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/15/SpringCloud实战（5）熔断器/">SpringCloud实战（5）熔断器</a>
+      <a class="article-title" href="/2018/11/27/Python数据分析（3）Matplotlib/">Python数据分析（3）Matplotlib</a>
     </h1>
   
 
         
-        <a href="/2018/07/15/SpringCloud实战（5）熔断器/" class="archive-article-date">
-  	<time datetime="2018-07-15T10:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-15</time>
+        <a href="/2018/11/27/Python数据分析（3）Matplotlib/" class="archive-article-date">
+  	<time datetime="2018-11-27T09:14:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、雪崩效应和熔断器"><a href="#一、雪崩效应和熔断器" class="headerlink" title="一、雪崩效应和熔断器"></a>一、雪崩效应和熔断器</h2><blockquote>
-<p>雪崩效应</p>
-</blockquote>
-<p>在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。</p>
-<p>如果下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。</p>
-<p><img src="/2018/07/15/SpringCloud实战（5）熔断器/hystrix1.png" alt=""></p>
+        <p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>熔断器</p>
+<p>线状图</p>
 </blockquote>
-<p>熔断器的原理很简单，如同电力过载保护器。它可以实现快速失败，如果它在一段时间内侦测到许多类似的错误，会强迫其以后的多个调用快速失败，不再访问远程服务器，从而防止应用程序不断地尝试执行可能会失败的操作，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等到长时间的超时产生。熔断器也可以使应用程序能够诊断错误是否已经修正，如果已经修正，应用程序会再次尝试调用操作。</p>
-<p>熔断器模式就像是那些容易导致错误的操作的一种代理。这种代理能够记录最近调用发生错误的次数，然后决定使用允许操作继续，或者立即返回错误。</p>
-<p>熔断器开关相互转换的逻辑如下图：</p>
-<p><img src="/2018/07/15/SpringCloud实战（5）熔断器/hystrix2.png" alt=""></p>
-<h2 id="二、Hystrix配置-基于Ribbon"><a href="#二、Hystrix配置-基于Ribbon" class="headerlink" title="二、Hystrix配置-基于Ribbon"></a>二、Hystrix配置-基于Ribbon</h2><p>1、pom.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2、@EnableCircuitBreaker</p>
-<p>使用@EnableCircuitBreaker注解开启断路器功能</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/linear.png" alt=""></p>
+<blockquote>
+<p>条形图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/bar.png" alt=""></p>
+<blockquote>
+<p>直方图Histogram</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2018/07/15/SpringCloud实战（5）熔断器/#more">more >></a>
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/#more">more >></a>
         
       
 
@@ -199,7 +198,361 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/15/SpringCloud实战（5）熔断器/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python数据分析（2）Pandas" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/27/Python数据分析（2）Pandas/">Python数据分析（2）Pandas</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/27/Python数据分析（2）Pandas/" class="archive-article-date">
+  	<time datetime="2018-11-27T02:45:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>简介
+　　</p>
+<ul>
+<li>Pandas是Python的一个数据分析包，该工具为解决数据分析任务而创建。</li>
+<li>Pandas纳入大量库和标准数据模型，提供高效的操作数据集所需的工具。</li>
+<li>Pandas提供大量能使我们快速便捷地处理数据的函数和方法。</li>
+<li>Pandas是字典形式，基于NumPy创建，让NumPy为中心的应用变得更加简单。</li>
+<li>对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。</li>
+<li>Excel 2007及其以后的版本的最大行数是1048576，最大列数是16384，超过这个规模的数据可使用Pandas</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Series</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = pd.Series([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="number">0</span>    <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>    <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.0</span></span><br><span class="line"><span class="number">3</span>    NaN</span><br><span class="line"><span class="number">4</span>    <span class="number">6.0</span></span><br><span class="line"><span class="number">5</span>    <span class="number">8.0</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DataFrame</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates = pd.date_range(<span class="string">'20170101'</span>, periods=<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates</span><br><span class="line">DatetimeIndex([<span class="string">'2017-01-01'</span>, <span class="string">'2017-01-02'</span>, <span class="string">'2017-01-03'</span>, <span class="string">'2017-01-04'</span>,</span><br><span class="line">               <span class="string">'2017-01-05'</span>, <span class="string">'2017-01-06'</span>],</span><br><span class="line">              dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="string">'D'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.head(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.tail(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2 = pd.DataFrame(&#123; <span class="string">'A'</span> : <span class="number">1.</span>,</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'B'</span> : pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'C'</span> : pd.Series(<span class="number">1</span>,index=list(range(<span class="number">4</span>)),dtype=<span class="string">'float32'</span>), </span><br><span class="line"><span class="meta">... </span>                     <span class="string">'D'</span> : np.array([<span class="number">3</span>] * <span class="number">4</span>,dtype=<span class="string">'int32'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'E'</span> : pd.Categorical([<span class="string">"test"</span>,<span class="string">"train"</span>,<span class="string">"test"</span>,<span class="string">"train"</span>]),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'F'</span> : <span class="string">'foo'</span> &#125;) </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2</span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.dtypes</span><br><span class="line">A           float64</span><br><span class="line">B    datetime64[ns]</span><br><span class="line">C           float32</span><br><span class="line">D             int32</span><br><span class="line">E          category</span><br><span class="line">F            object</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.columns <span class="comment">#列的序号名字</span></span><br><span class="line">Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>], dtype=<span class="string">'object'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.index <span class="comment">#行的序号</span></span><br><span class="line">Int64Index([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=<span class="string">'int64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.values <span class="comment">#把每个值进行打印出来</span></span><br><span class="line">array([[<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>]],</span><br><span class="line">      dtype=object)</span><br><span class="line">      </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.describe() <span class="comment">#数字总结</span></span><br><span class="line">         A    C    D</span><br><span class="line">count  <span class="number">4.0</span>  <span class="number">4.0</span>  <span class="number">4.0</span></span><br><span class="line">mean   <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">std    <span class="number">0.0</span>  <span class="number">0.0</span>  <span class="number">0.0</span></span><br><span class="line">min    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">25</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">50</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">75</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">max    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.T <span class="comment">#翻转数据</span></span><br><span class="line">                     <span class="number">0</span>         ...                             <span class="number">3</span></span><br><span class="line">A                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">B  <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>         ...           <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">C                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">D                    <span class="number">3</span>         ...                             <span class="number">3</span></span><br><span class="line">E                 test         ...                         train</span><br><span class="line">F                  foo         ...                           foo</span><br><span class="line"></span><br><span class="line">[<span class="number">6</span> rows x <span class="number">4</span> columns]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于1按列进行排序 如ABCDEFG 然后ascending倒叙进行显示</span></span><br><span class="line">     F      E  D    C          B    A</span><br><span class="line"><span class="number">0</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">3</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">0</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于0按行进行排序 如0123 然后ascending倒叙进行显示</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_values(by=<span class="string">'E'</span>) <span class="comment">#按值进行排序</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（2）Pandas/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（2）Pandas/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python数据分析（1）Numpy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/23/Python数据分析（1）Numpy/">Python数据分析（1）Numpy</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/23/Python数据分析（1）Numpy/" class="archive-article-date">
+  	<time datetime="2018-11-23T03:45:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Numpy是python科学计算的基础包，它提供以下功能：</p>
+<ul>
+<li>快速高效的多维数组对象ndarray </li>
+<li>用于对数组执行元素级计算以及直接对数组执行数学运算的函数</li>
+<li>用于读写硬盘上基于数组的数据集的工具</li>
+<li>线性代数运算、傅里叶变换，以及随机数生成</li>
+<li>用于将C、C++、Fortran代码集成到python的工具</li>
+</ul>
+<blockquote>
+<p>Basic</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</span><br><span class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</span><br><span class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape <span class="comment">#数组的dimentsions，对应matrix的rows和columns</span></span><br><span class="line">(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.ndim <span class="comment">#数组的维度dimensions数量，numpy也叫axes，线性代数中矩阵的秩</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype.name  <span class="comment">#元素的type</span></span><br><span class="line"><span class="string">'int64'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.itemsize <span class="comment">#每个元素的字节数</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.size <span class="comment">#元素总数</span></span><br><span class="line"><span class="number">15</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(a)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">numpy</span>.<span class="title">ndarray</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Array Creation</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、array创建，参数为数组</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=np.array([<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">array([<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(b)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">numpy</span>.<span class="title">ndarray</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">b</span>.<span class="title">dtype</span></span></span><br><span class="line"><span class="class"><span class="title">dtype</span><span class="params">(<span class="string">'int64'</span>)</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line">&gt;&gt;&gt; c = np.array([(1.5,2,3), (4,5,6)])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.dtype <span class="comment">#元素中有float</span></span><br><span class="line">dtype(<span class="string">'float64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = np.array( [ [<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>] ], dtype=complex ) <span class="comment">#创建复数，包括实数和虚数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d</span><br><span class="line">array([[ <span class="number">1.</span>+<span class="number">0.j</span>,  <span class="number">2.</span>+<span class="number">0.j</span>],</span><br><span class="line">       [ <span class="number">3.</span>+<span class="number">0.j</span>,  <span class="number">4.</span>+<span class="number">0.j</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment">#2、特定方法，参数为shape，一维：2，二维：(3,4)，三维：(2,3,4)  </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e=np.zeros( (<span class="number">3</span>,<span class="number">4</span>) )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e</span><br><span class="line">array([[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.dtype</span><br><span class="line">dtype(<span class="string">'float64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f=np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),dtype=np.int32)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f</span><br><span class="line">array([[[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line"></span><br><span class="line">       [[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]]], dtype=int32)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g=np.empty((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g</span><br><span class="line">array([[<span class="number">-0.00000000e+000</span>,  <span class="number">2.32035699e+077</span>,  <span class="number">1.48219694e-323</span>],</span><br><span class="line">       [ <span class="number">0.00000000e+000</span>,  <span class="number">6.94117506e-310</span>,  <span class="number">4.17201348e-309</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment">#3、arange函数，设置开始、结束和步长。linspace函数，设置开始、结束和数量</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h=np.arange( <span class="number">10</span>, <span class="number">30</span>, <span class="number">5</span> )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h</span><br><span class="line">array([<span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>j=np.arange( <span class="number">0</span>, <span class="number">2</span>, <span class="number">0.3</span> ) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>j</span><br><span class="line">array([<span class="number">0.</span> , <span class="number">0.3</span>, <span class="number">0.6</span>, <span class="number">0.9</span>, <span class="number">1.2</span>, <span class="number">1.5</span>, <span class="number">1.8</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>k=np.linspace( <span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span> )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>k</span><br><span class="line">array([<span class="number">0.</span>  , <span class="number">0.25</span>, <span class="number">0.5</span> , <span class="number">0.75</span>, <span class="number">1.</span>  , <span class="number">1.25</span>, <span class="number">1.5</span> , <span class="number">1.75</span>, <span class="number">2.</span>  ])</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/11/23/Python数据分析（1）Numpy/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/23/Python数据分析（1）Numpy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringCloud实战（6）配置中心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/16/SpringCloud实战（6）配置中心/">SpringCloud实战（6）配置中心</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/16/SpringCloud实战（6）配置中心/" class="archive-article-date">
+  	<time datetime="2018-07-16T02:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、统一管理微服务配置"><a href="#一、统一管理微服务配置" class="headerlink" title="一、统一管理微服务配置"></a>一、统一管理微服务配置</h2><p>微服务的配置管理，一般有以下需求</p>
+<ul>
+<li>集中管理配置</li>
+<li>不同环境，不同配置。</li>
+<li>运行期间可动态调整。如动态调整数据源连接池大小或熔断阈值。</li>
+<li>配置修改后可自动更新。</li>
+</ul>
+<p>Spring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，<a href="http://cloud.spring.io/spring-cloud-config/single/spring-cloud-config.html" target="_blank" rel="noopener">『官方文档传送门』</a></p>
+<p>分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作。</p>
+<h2 id="二、Config-Server"><a href="#二、Config-Server" class="headerlink" title="二、Config Server"></a>二、Config Server</h2><blockquote>
+<p>git配置文件</p>
+</blockquote>
+<p>首先需要在git上放置一些yml或properties文件，命名规则为：<br>{application}-{profile}.<em>*</em>。</p>
+<ul>
+<li><strong>application</strong> 用于Client端连接时配置的spring.application.name，用于过滤配置文件。</li>
+<li><strong>profile</strong> 用于Client端连接时配置的spring.cloud.config.profile，用于区分生产测试等不同环境。</li>
+<li><strong>label</strong> 一般都是master，代表分支。</li>
+</ul>
+<p>我们配置了3个yml文件如下(也可使用properties文件)：</p>
+<p>1、herr.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port: 8082</span><br><span class="line">#远程配置，默认8082</span><br><span class="line"></span><br><span class="line">profile: herr-default</span><br></pre></td></tr></table></figure>
+<p>2、herr-dev.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#server.port=8082</span><br><span class="line">#不设置server.port，则以herr.yml的8082为default</span><br><span class="line"></span><br><span class="line">profile: herr-dev</span><br></pre></td></tr></table></figure>
+<p>3、herr-pro.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server.port: 8086</span><br><span class="line"></span><br><span class="line">profile: herr-pro</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Server端搭建</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2018/07/16/SpringCloud实战（6）配置中心/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/16/SpringCloud实战（6）配置中心/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringCloud实战（5）断路器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/15/SpringCloud实战（5）断路器/">SpringCloud实战（5）断路器</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/15/SpringCloud实战（5）断路器/" class="archive-article-date">
+  	<time datetime="2018-07-15T10:24:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、雪崩效应和断路器"><a href="#一、雪崩效应和断路器" class="headerlink" title="一、雪崩效应和断路器"></a>一、雪崩效应和断路器</h2><blockquote>
+<p>雪崩效应</p>
+</blockquote>
+<p>在微服务架构中通常会有多个服务层调用，基础服务的故障可能会导致级联故障，进而造成整个系统不可用的情况，这种现象被称为服务雪崩效应。服务雪崩效应是一种因“服务提供者”的不可用导致“服务消费者”的不可用,并将不可用逐渐放大的过程。</p>
+<p>如果下图所示：A作为服务提供者，B为A的服务消费者，C和D是B的服务消费者。A不可用引起了B的不可用，并将不可用像滚雪球一样放大到C和D时，雪崩效应就形成了。</p>
+<p><img src="/2018/07/15/SpringCloud实战（5）断路器/hystrix1.png" alt=""></p>
+<p>解决方案：</p>
+<ul>
+<li>为网络请求设置超时，避免资源耗尽</li>
+<li>使用断路器</li>
+</ul>
+<blockquote>
+<p>断路器</p>
+</blockquote>
+<p>断路器的原理很简单，如同电力过载保护器。正常情况下，断路器关闭，可正常请求服务。</p>
+<p>在一段时间内请求失败率达到一定阈值（错误率/每分钟错误次数等），会打开断路器，其以后的多个调用快速失败，不再访问远程服务器，使得应用程序继续执行而不用等待修正错误，或者浪费CPU时间去等到长时间的超时产生。</p>
+<p>断路器打开一段时间后，会自动进入半开状态。允许一个请求访问，如调用成功则关闭断路器。否则继续打开。</p>
+<p>断路器开关相互转换的逻辑如下图：</p>
+<p><img src="/2018/07/15/SpringCloud实战（5）断路器/hystrix2.png" alt=""></p>
+<blockquote>
+<p>Hystrix介绍</p>
+</blockquote>
+<p><a href="https://github.com/Netflix/Hystrix" target="_blank" rel="noopener">『Hystrix』</a>是Netflix开源的一个延迟和容错库，用于隔离访问远程系统、服务或第三方库，防止级联失败，提升系统可用性和容错性。</p>
+<p>通过以下几点实现延迟和容错：</p>
+<ul>
+<li>包裹请求，使用HystrixCommand包裹对依赖的调用逻辑，在独立线程中执行。</li>
+<li>跳闸机制</li>
+<li>资源隔离，为每个依赖都维护了一个小型的线程池，如线程池已满则会立即拒绝。隔离策略分为线程隔离（THREAD）和信号量隔离（SEMAPHORE）。</li>
+<li>监控</li>
+<li>回退机制，基于Ribbon时可在回退方法增加Throwable参数，而在Feign上可使用注解@FeignClient的fallbackFactory属性。</li>
+<li>自我修复</li>
+</ul>
+<h2 id="二、Hystrix配置-基于Ribbon"><a href="#二、Hystrix配置-基于Ribbon" class="headerlink" title="二、Hystrix配置-基于Ribbon"></a>二、Hystrix配置-基于Ribbon</h2><p>1、pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、@EnableCircuitBreaker</p>
+<p>使用@EnableCircuitBreaker注解开启断路器功能</p>
+        
+          <a class="article-more-a" href="/2018/07/15/SpringCloud实战（5）断路器/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/15/SpringCloud实战（5）断路器/">展开全文 >></a>
         </p>
       
 
@@ -251,8 +604,24 @@
       
         <h2 id="一、API网关"><a href="#一、API网关" class="headerlink" title="一、API网关"></a>一、API网关</h2><p>API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。</p>
 <p><img src="/2018/07/10/SpringCloud实战（4）API网关/gateway.png" alt=""></p>
-<p>Spring Cloud Zuul只是API Gateway的一种实现，其他的还有Nginx Plus、Kong等等。</p>
-<h2 id="二、-项目基础配置"><a href="#二、-项目基础配置" class="headerlink" title="二、 项目基础配置"></a>二、 项目基础配置</h2><p>为实现API网关，需要几个基础的module，请参考上一节实战（3）。配置不变。</p>
+<p>如果客户端直接和各个微服务通信，会有如下问题：</p>
+<ul>
+<li>客户端会多次请求不同的微服务，增加客户端复杂性</li>
+<li>跨域请求</li>
+<li>认证复杂</li>
+<li>难以重构</li>
+</ul>
+<h2 id="二、-项目基础配置"><a href="#二、-项目基础配置" class="headerlink" title="二、 项目基础配置"></a>二、 项目基础配置</h2><p>Zuul是Netflix开源的微服务网关，只是API Gateway的一种实现，其他的还有Nginx Plus、Kong等等。SpringCloud对Zuul进行了整合和增强，Zuul的核心是一系列过滤器：</p>
+<ul>
+<li>身份认证与安全</li>
+<li>审查与监控</li>
+<li>动态路由</li>
+<li>压力测试</li>
+<li>负载分配</li>
+<li>静态响应处理</li>
+<li>多区域弹性</li>
+</ul>
+<p>为实现Zuul网关，需要几个基础的module，请参考上一节实战（3）。配置不变。</p>
 <ul>
 <li>eureka-server，作为eureka的server服务注册中心</li>
 <li>service-provider-1，eureka-client端，连接到eureka-server成为服务提供者1。</li>
@@ -439,7 +808,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、服务发现（注册中心）"><a href="#一、服务发现（注册中心）" class="headerlink" title="一、服务发现（注册中心）"></a>一、服务发现（注册中心）</h2><p>微服务系列，而它必不可缺少的组件就是服务发现组件。目前市面上组件有eureka,consul,zooKeeper,etcd，那该如何选型？</p>
+        <h2 id="一、服务发现（注册中心、服务注册）"><a href="#一、服务发现（注册中心、服务注册）" class="headerlink" title="一、服务发现（注册中心、服务注册）"></a>一、服务发现（注册中心、服务注册）</h2><p>微服务系列，而它必不可缺少的组件就是服务发现组件。提到的目前市面上组件有eureka,consul,zooKeeper,etcd，那该如何选型？</p>
 <table>
 <thead>
 <tr>
@@ -530,7 +899,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="二、Eureka配置"><a href="#二、Eureka配置" class="headerlink" title="二、Eureka配置"></a>二、Eureka配置</h2><p>我们根据第一个项目spring-cloud-trip-config作为基础，增加eureka作为服务注册中心，分为3个module</p>
+<h2 id="二、Eureka配置"><a href="#二、Eureka配置" class="headerlink" title="二、Eureka配置"></a>二、Eureka配置</h2><p><a href="https://github.com/Netflix/Eureka" target="_blank" rel="noopener">『Eureka』</a>是Netflix开源的服务发现组件。</p>
+<p>Eureka通过集群同步、心跳检查、客户端缓存等机制，提高系统的灵活性、可收缩性和可用性。</p>
+<p>我们根据第一个项目spring-cloud-trip-config作为基础，增加eureka作为服务注册中心，分为3个module</p>
 <ul>
 <li>eureka-server，作为eureka的server服务注册中心</li>
 <li>eureka-config-server，注册为config-server和eureka-client端，连接到eureka-server成为服务提供者。</li>
@@ -543,7 +914,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <p>2、application入口类添加注解@EnableEurekaServer</p>
 <p>3、application.yml配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  security:</span><br><span class="line">    user:</span><br><span class="line">      name: user                # 配置登录的账号是user</span><br><span class="line">      password: pwd     # 配置登录的密码是pwd</span><br><span class="line">server:</span><br><span class="line">  port: 8761                    # 指定该Eureka实例的端口</span><br><span class="line">eureka:</span><br><span class="line">  client:             #用于连接发送心跳包，以及集群互联</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://user:pwd@localhost:8761/eureka/</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  security:</span><br><span class="line">    user:</span><br><span class="line">      # 配置登录的账号是user</span><br><span class="line">      name: user</span><br><span class="line">      # 配置登录的密码是pwd</span><br><span class="line">      password: pwd</span><br><span class="line">server:</span><br><span class="line">  # 指定该Eureka实例的端口</span><br><span class="line">  port: 8761</span><br><span class="line">eureka:</span><br><span class="line">  # 用于连接发送心跳包，以及集群互联</span><br><span class="line">  client:</span><br><span class="line">    # 是否要将自己注册到Eureka Server</span><br><span class="line">    registerWithEureka: false</span><br><span class="line">    # 是否从Eureka Server获取注册信息</span><br><span class="line">    fetchRegistry: false</span><br><span class="line">    serviceUrl:</span><br><span class="line">      # 设置与Eureka Server交互的地址，多个地址间用逗号分隔</span><br><span class="line">      defaultZone: http://user:pwd@localhost:8761/eureka/</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2018/07/04/SpringCloud实战（2）服务发现/#more">more >></a>
         
@@ -587,128 +958,19 @@
 
 
   
-    <article id="post-SpringCloud实战（1）配置中心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-招靠谱的同事（1）基础篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/SpringCloud实战（1）配置中心/">SpringCloud实战（1）配置中心</a>
+      <a class="article-title" href="/2018/01/14/招靠谱的同事（1）基础篇/">招靠谱的同事（1）基础篇</a>
     </h1>
   
 
         
-        <a href="/2018/07/03/SpringCloud实战（1）配置中心/" class="archive-article-date">
-  	<time datetime="2018-07-03T02:16:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Spring-Cloud"><a href="#一、Spring-Cloud" class="headerlink" title="一、Spring Cloud"></a>一、Spring Cloud</h2><blockquote>
-<p>特点</p>
-</blockquote>
-<ul>
-<li>约定优于配置</li>
-<li>使用各种环境</li>
-<li>隐藏组件复杂性，提供声明式、无xml配置方式</li>
-<li>开箱即用</li>
-<li>轻量级组件</li>
-<li>组件丰富，功能齐全。</li>
-<li>选型中立、丰富。</li>
-<li>灵活。组成部分解耦。</li>
-</ul>
-<blockquote>
-<p>版本</p>
-</blockquote>
-<p>已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。<br>以Release版本为初始版本，SR（Service Release）代表Bug修复版本。如Dalston SR4，表示Dalston版本的第4次Bug修复版本。</p>
-<ul>
-<li>Dalston、Edgware都是基于Spring Boot 1.5.x构建，不兼容Spring Boot 2.0.x。</li>
-<li>Finchley基于Spring Boot 2.0.x构建，不兼容Spring Boot 1.x。</li>
-</ul>
-<blockquote>
-<p>子项目</p>
-</blockquote>
-<p>组件包含spring-cloud-aws、spring-cloud-bus、、spring-cloud-cli、spring-cloud-commons、spring-cloud-contract、spring-cloud-config、spring-cloud-netflix、spring-cloud-security、spring-cloud-cloudfoundry、spring-cloud-consul、spring-cloud-sleuth、spring-cloud-stream、spring-cloud-zookeeper、spring-cloud-task、spring-cloud-vault、spring-cloud-gateway、spring-boot等。</p>
-<h2 id="二、Spring-Cloud-Config"><a href="#二、Spring-Cloud-Config" class="headerlink" title="二、Spring Cloud Config"></a>二、Spring Cloud Config</h2><p>Spring Cloud Config为Spring Cloud子项目，提供一套分布式的配置管理方案，<a href="http://cloud.spring.io/spring-cloud-config/single/spring-cloud-config.html" target="_blank" rel="noopener">『官方文档传送门』</a></p>
-<p>分为服务端Config Server和客户端Config Client，其中Server端连接git或svn，并对外提供配置信息服务。Client端从Server端获取配置信息。当配置变更时，只需要借助git的push操作来触发更新操作。</p>
-<h2 id="三、Spring-Cloud-Config-Server"><a href="#三、Spring-Cloud-Config-Server" class="headerlink" title="三、Spring Cloud Config Server"></a>三、Spring Cloud Config Server</h2><blockquote>
-<p>git配置文件</p>
-</blockquote>
-<p>首先需要在git上放置一些yml或properties文件，命名规则为：<br>{application}-{profile}.<em>*</em>。</p>
-<ul>
-<li><strong>application</strong> 用于Client端连接时配置的spring.application.name，用于过滤配置文件。</li>
-<li><strong>profile</strong> 用于Client端连接时配置的spring.cloud.config.profile，用于区分生产测试等不同环境。</li>
-<li><strong>label</strong> 一般都是master，代表分支。</li>
-</ul>
-<p>我们配置了3个yml文件如下(也可使用properties文件)：</p>
-<p>1、herr.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">server.port: 8082</span><br><span class="line">#远程配置，默认8082</span><br><span class="line"></span><br><span class="line">profile: herr-default</span><br></pre></td></tr></table></figure>
-<p>2、herr-dev.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#server.port=8082</span><br><span class="line">#不设置server.port，则以herr.yml的8082为default</span><br><span class="line"></span><br><span class="line">profile: herr-dev</span><br></pre></td></tr></table></figure>
-<p>3、herr-pro.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">server.port: 8086</span><br><span class="line"></span><br><span class="line">profile: herr-pro</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Server端搭建</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/07/03/SpringCloud实战（1）配置中心/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/03/SpringCloud实战（1）配置中心/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-招靠谱的同事（2）基础篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/14/招靠谱的同事（2）基础篇/">招靠谱的同事（1）基础篇</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/14/招靠谱的同事（2）基础篇/" class="archive-article-date">
+        <a href="/2018/01/14/招靠谱的同事（1）基础篇/" class="archive-article-date">
   	<time datetime="2018-01-14T07:30:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-14</time>
 </a>
         
@@ -764,7 +1026,7 @@
 <p>技术能力认可情况下的加减分项</p>
 </blockquote>
         
-          <a class="article-more-a" href="/2018/01/14/招靠谱的同事（2）基础篇/#more">more >></a>
+          <a class="article-more-a" href="/2018/01/14/招靠谱的同事（1）基础篇/#more">more >></a>
         
       
 
@@ -776,7 +1038,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/14/招靠谱的同事（2）基础篇/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/14/招靠谱的同事（1）基础篇/">展开全文 >></a>
         </p>
       
 
@@ -873,357 +1135,6 @@
 
 
   
-    <article id="post-微服务架构（7）微服务测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/08/微服务架构（7）微服务测试/">微服务架构（7）微服务测试</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/08/微服务架构（7）微服务测试/" class="archive-article-date">
-  	<time datetime="2017-10-08T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、SpringBoot单元测试"><a href="#一、SpringBoot单元测试" class="headerlink" title="一、SpringBoot单元测试"></a>一、SpringBoot单元测试</h2><p>单元测试，用来配合敏捷开发中的TDD（Test-Driven Development，测试驱动开发）。</p>
-<p>添加pom依赖。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">  &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>使用JUnit的Assert.assertXxx()断言方法来验证期望和实际是否一致。SpringBoot支持AssertJ类库。</p>
-<table>
-<thead>
-<tr>
-<th>JUnit断言</th>
-<th>AssertJ断言</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Assert.assertNotNull(“product is null”, product);</td>
-<td>Assertions.assertThat(product).isNotNull();</td>
-</tr>
-<tr>
-<td>Assert.assertEquals(“product.price is wrong”, 9000, product.getPrice());</td>
-<td>Assertions.assertThat(product.getPrice()).isEqualTo(9000);</td>
-</tr>
-<tr>
-<td>Assert.assertTrue(“delete failure”, result);</td>
-<td>Assertions.assertThat(result).isTrue();</td>
-</tr>
-<tr>
-<td>Assert.assertEquals(“productList.size is wrong”, 3, productList.size());</td>
-<td>Assertions.assertThat(productList).hasSize(3);</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>测试时使用的注解</p>
-</blockquote>
-<ul>
-<li>@RunWith(SpringRunner.class)</li>
-<li>@SpringBootTest，和RunWith一起使用Junit和SpringBoot框架。</li>
-<li>@FixMethodOrder(MethodSorters.NAME_ASCENDING)，测试顺序按照字符升序方式</li>
-<li>@Test ，每个单元测试的方法都带有</li>
-<li>@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)，随机暴露端口号，而不是默认的8080。</li>
-</ul>
-<blockquote>
-<p>REST API测试</p>
-</blockquote>
-<p>使用TestRestTemplate的getForObject、postForObject、exchange等方法进行API接口调用。</p>
-<p>针对JSON断言，可使用JSONAssert来实现。</p>
-<h2 id="二、自动化测试"><a href="#二、自动化测试" class="headerlink" title="二、自动化测试"></a>二、自动化测试</h2><blockquote>
-<p>Postman</p>
-</blockquote>
-<p>有人说Postman是个手工的测试工具呀，其实里面还是有些脚本化的东东的。</p>
-<p>1、环境变量</p>
-<p>新建一个url的环境，设置r1的变量值为“localhost:8080”，即可使用“”来用。</p>
-<p>另外提供了timestamp、guid、randomInt等全局变量，当然也可自己新建全局变量。</p>
-<p><img src="/2017/10/08/微服务架构（7）微服务测试/postman_environment.png" alt=""></p>
-<p>2、测试脚本</p>
-<p>请求地址栏下方有Pre-request Script和Tests选项卡，分别用于在发送请求前后执行。</p>
-<p>在Pre-request Script前置脚本中，可以设置一些环境变量或全局变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//设置环境变量</span><br><span class="line">postman.setEnvironmentVariable(&quot;var_key&quot;,&quot;var_value&quot;);</span><br><span class="line">//清除环境变量</span><br><span class="line">postman.clearEnvironmentVariable(&quot;var_key&quot;);</span><br><span class="line">//设置全局变量</span><br><span class="line">postman.setGlobalVariable(&quot;var_key&quot;,&quot;var_value&quot;);</span><br><span class="line">//清除全局变量</span><br><span class="line">postman.clearGlobalVariable(&quot;var_key&quot;);</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/10/08/微服务架构（7）微服务测试/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/08/微服务架构（7）微服务测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微服务架构（6）微服务通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/05/微服务架构（6）微服务通信/">微服务架构（6）微服务通信</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/05/微服务架构（6）微服务通信/" class="archive-article-date">
-  	<time datetime="2017-10-05T06:40:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、HTTP同步调用"><a href="#一、HTTP同步调用" class="headerlink" title="一、HTTP同步调用"></a>一、HTTP同步调用</h2><blockquote>
-<p>服务器端</p>
-</blockquote>
-<p>一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。</p>
-<p>可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。</p>
-<blockquote>
-<p>客户端-RestTemplate</p>
-</blockquote>
-<p>客户端调用，可使用Spring的RestTemplate的getForObject、exchange等方法发起请求。</p>
-<blockquote>
-<p>客户端-OkHttp</p>
-</blockquote>
-<p>如在Android开发中，也可以使用Square公司的OkHttp来调用，依赖如下。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> OkHttpClient okHttpClient;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">    .get()</span><br><span class="line">    .url(String.format(<span class="string">"http://localhost/hello?name=%s"</span>, rootUri, name))</span><br><span class="line">    .build();</span><br><span class="line">Response response = okHttpClient.newCall(request).execute();</span><br><span class="line"><span class="keyword">return</span> response.body().string();</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>客户端-Retrofit</p>
-</blockquote>
-<p>也可以使用Square公司的Retrofit来链式调用，在客户端中定义服务接口，通过注解的方式来绑定HTTP请求，依赖如下。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>retrofit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-scalars<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloClient.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> HelloService helloService;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">HelloClient</span><span class="params">(Retrofit retrofit)</span> </span>&#123;</span><br><span class="line">    helloService = retrofit.create(HelloService.class);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helloService.hello(name).execute().body();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloService.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@GET</span>(<span class="string">"/hello"</span>)</span><br><span class="line">  <span class="function">Call&lt;String&gt; <span class="title">say1</span><span class="params">(@Query(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二、RPC同步调用"><a href="#二、RPC同步调用" class="headerlink" title="二、RPC同步调用"></a>二、RPC同步调用</h2><blockquote>
-<p>相关概念 </p>
-</blockquote>
-<p>远程过程调用RPC（Remote Procedure Call），基于TCP协议。通信过程在传输层完成（相比HTTP通信在应用层完成），因此更高效、支持更高并发。</p>
-<p>流行的RPC框架有Google的gRPC，Facebook的Thrift，Twitter的Finagle，阿里的Dubbo，新浪微博的Motan等。</p>
-<p>RPC的通信原理如下，两个端的Stub（存根）用于对数据进行序列化和反序列化，调用方式需要服务端和客户端建立Socket连接来实现二进制数据的交换。</p>
-<p><img src="/2017/10/05/微服务架构（6）微服务通信/rpc.jpg" alt=""></p>
-<blockquote>
-<p>gRPC</p>
-</blockquote>
-<p>gRPC使用Protocol Buffers来编写服务定义，拥有强大的二进制序列化工具集。两者都是Google的开源项目。</p>
-<p><a href="http://www.grpc.io/" target="_blank" rel="noopener">『gRPC官网传送门』</a></p>
-        
-          <a class="article-more-a" href="/2017/10/05/微服务架构（6）微服务通信/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/05/微服务架构（6）微服务通信/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微服务架构（5）微服务监控" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/02/微服务架构（5）微服务监控/">微服务架构（5）微服务监控</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/02/微服务架构（5）微服务监控/" class="archive-article-date">
-  	<time datetime="2017-10-02T03:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Spring-Boot-Actuator应用监控"><a href="#一、Spring-Boot-Actuator应用监控" class="headerlink" title="一、Spring Boot Actuator应用监控"></a>一、Spring Boot Actuator应用监控</h2><p>SpringBoot有一个Actuator的插件，用来输出应用程序的端点（Endpoint），包括健康检查（/health）、运行指标（/metrics）、线程信息（/dump）等。</p>
-<p>1、pom.xml依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>2、配置文件，暴露所有Endpoints</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=*</span><br></pre></td></tr></table></figure>
-<p>3、以Spring Boot 2.x版本为例，访问路径/actuator可查看所有endpoints的路径。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">端点路径</th>
-<th>应用程序说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">/actuator/info</td>
-<td>基本信息</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/health</td>
-<td>健康状况</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/metrics</td>
-<td>运行指标</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/env</td>
-<td>环境变量</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/loggers</td>
-<td>日志级别配置</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/dump</td>
-<td>线程信息</td>
-</tr>
-<tr>
-<td style="text-align:center">/actuator/httptrace</td>
-<td>请求调用轨迹信息</td>
-</tr>
-</tbody>
-</table>
-<p>但是以上信息都是以数据形式直接访问，需要通过用户界面的方式呈现数据。</p>
-<h2 id="二、Spring-Boot-Admin开源的应用监控系统"><a href="#二、Spring-Boot-Admin开源的应用监控系统" class="headerlink" title="二、Spring Boot Admin开源的应用监控系统"></a>二、Spring Boot Admin开源的应用监控系统</h2><p>Spring Boot Admin包含了服务端和客户端。功能包括</p>
-<ul>
-<li>查看健康状态</li>
-<li>查看JVM和内存指标</li>
-<li>查看计数器与计量表指标</li>
-<li>查看数据源指标</li>
-<li>查看缓存指标</li>
-<li>查看系统构建信息</li>
-<li>查看并下载日志文件</li>
-<li>查看JVM系统属性与环境变量</li>
-<li>查看线程堆栈信息</li>
-<li>查看调用轨迹信息</li>
-<li>查看状态变更日志</li>
-<li>修改Logback日志级别管理</li>
-<li>修改JMX参数</li>
-<li>下载JVM堆内存文件</li>
-<li>通知状态变更（邮件等）</li>
-</ul>
-<p><a href="https://github.com/codecentric/spring-boot-admin" target="_blank" rel="noopener">『源码传送门』</a></p>
-<p><a href="http://codecentric.github.io/spring-boot-admin/2.0.1/" target="_blank" rel="noopener">『官方文档传送门』</a></p>
-<blockquote>
-<p>admin端</p>
-</blockquote>
-<p>1、pom.xml依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-starter-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-server-ui&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<p>2、应用主类中使用@EnableAdminServer注解</p>
-<p>3、浏览器访问 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 可查看到2.0新的vue页面。目前Application为0，需要添加client。</p>
-        
-          <a class="article-more-a" href="/2017/10/02/微服务架构（5）微服务监控/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/02/微服务架构（5）微服务监控/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1238,7 +1149,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1325,15 +1236,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1345,15 +1248,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1361,7 +1264,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1369,19 +1272,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1393,7 +1292,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1425,6 +1336,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -1441,14 +1356,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -1458,6 +1365,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

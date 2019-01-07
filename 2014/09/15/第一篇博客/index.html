@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://iherr.cn/2014/09/15/第一篇博客/static.jpg">
 <meta property="og:image" content="http://iherr.cn/2014/09/15/第一篇博客/server.jpg">
 <meta property="og:image" content="http://iherr.cn/2014/09/15/第一篇博客/parse.jpg">
-<meta property="og:updated_time" content="2018-11-07T07:53:13.000Z">
+<meta property="og:updated_time" content="2018-11-13T06:45:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一篇博客">
 <meta name="twitter:description" content="终于用『Hexo』搭建完博客，感谢Litten提供的Yilia主题，真是爱不释手。以后，这里就是我的小窝啦。 先把整个流程梳理一遍，算是个hello world吧。 安装Hexo安装可以参考如下命令，blog为文件夹目录，可自己定义。如果提示npm没装，需要先安装npm。 12345$ npm install hexo-cli -g$ hexo init [FOLDER_NAME]$ cd [FO">
@@ -178,51 +178,47 @@
       
         <p>终于用<a href="https://hexo.io/" target="_blank" rel="noopener">『Hexo』</a>搭建完博客，感谢Litten提供的Yilia主题，真是爱不释手。以后，这里就是我的小窝啦。</p>
 <p>先把整个流程梳理一遍，算是个hello world吧。</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>安装可以参考如下命令，blog为文件夹目录，可自己定义。<br>如果提示npm没装，需要先安装npm。</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>安装可以参考如下命令，blog为文件夹目录，可自己定义。<br>如果提示npm没装，需要先安装npm。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init [FOLDER_NAME]</span><br><span class="line">$ <span class="built_in">cd</span> [FOLDER_NAME]</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h3 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h3><p>说实话，hexo默认给的主题，只能是凑活。如果要逼格高一点，那就得自己动手了。hexo官网有推荐一些<a href="https://hexo.io/themes/" target="_blank" rel="noopener">『Theme』</a>，可以链接到github上下载，现在使用的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">『Yilia主题』</a>的资源可以点击查看。把他clone到本地，保存在目录/themes下即可。下图是我自己目前保存的一些主题。</p>
+<h2 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h2><p>说实话，hexo默认给的主题，只能是凑活。如果要逼格高一点，那就得自己动手了。hexo官网有推荐一些<a href="https://hexo.io/themes/" target="_blank" rel="noopener">『Theme』</a>，可以链接到github上下载，现在使用的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">『Yilia主题』</a>的资源可以点击查看。把他clone到本地，保存在目录/themes下即可。下图是我自己目前保存的一些主题。</p>
 <p><img src="/2014/09/15/第一篇博客/yilia.jpg" alt=""></p>
 <a id="more"></a>
 <p>那怎么实施主题的切换呢？可打开根目录的_config.yml配置文件，找到“theme: ”这一行，修改成/themes的对应主题名称即可。例如“theme: yilia”。</p>
-<h3 id="添加文章"><a href="#添加文章" class="headerlink" title="添加文章"></a>添加文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加文章"><a href="#添加文章" class="headerlink" title="添加文章"></a>添加文章</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">『添加文章』</a></p>
-<h3 id="静态文件生成"><a href="#静态文件生成" class="headerlink" title="静态文件生成"></a>静态文件生成</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="静态文件生成"><a href="#静态文件生成" class="headerlink" title="静态文件生成"></a>静态文件生成</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
 <p>命令执行完成后，会更新public目录下的文件，都是一些静态的html、css、js、img之类的。</p>
 <p><img src="/2014/09/15/第一篇博客/static.jpg" alt=""></p>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">『静态文件生成』</a></p>
-<h3 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="启动本地服务"><a href="#启动本地服务" class="headerlink" title="启动本地服务"></a>启动本地服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
 <p>启动完成后，会提示您访问的地址为<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>，如下图所示，你就可以在浏览器上访问啦。</p>
 <p><img src="/2014/09/15/第一篇博客/server.jpg" alt=""></p>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">『启动本地服务』</a></p>
-<h3 id="静态页面托管到GitHub-Pages"><a href="#静态页面托管到GitHub-Pages" class="headerlink" title="静态页面托管到GitHub Pages"></a>静态页面托管到GitHub Pages</h3><p>以上，您只能在本地浏览自己的博客，那如果需要放到网上供他人浏览呢？其实这里的方法有很多，比如自己弄台VPS云服务器等，但这不是有成本嘛。像阿里云最低配的基本也是需要100RMB/月，放博客不划算。</p>
+<h2 id="静态页面托管到GitHub-Pages"><a href="#静态页面托管到GitHub-Pages" class="headerlink" title="静态页面托管到GitHub Pages"></a>静态页面托管到GitHub Pages</h2><p>以上，您只能在本地浏览自己的博客，那如果需要放到网上供他人浏览呢？其实这里的方法有很多，比如自己弄台VPS云服务器等，但这不是有成本嘛。像阿里云最低配的基本也是需要100RMB/月，放博客不划算。</p>
 <p>其实大家一般都推荐使用<a href="https://pages.github.com" target="_blank" rel="noopener">『GitHub Pages』</a>来进行托管，无非是把“生成静态文件”步骤的文件上传到github上。具体的流程可以参考官网。唯一需要注意的是，托管的项目名称，必须以你的github的用户名起，例如我的github用户名是nisoch，那么我简历的项目名就是nisoch.github.io，后续上传后访问的地址也是<a href="https://nisoch.github.io" target="_blank" rel="noopener">https://nisoch.github.io/</a>。</p>
 <p>好啦，可以把这个地址发给小伙伴，或者自己访问了。</p>
-<h3 id="域名跳转"><a href="#域名跳转" class="headerlink" title="域名跳转"></a>域名跳转</h3><p>看到其他大神的博客，都是有自己的域名，叫人好生羡慕。那么，从哪里才能弄到呢？<br>这里不是做广告，而是我自己的域名是从<a href="https://wanwang.aliyun.com" target="_blank" rel="noopener">『阿里云的万网』</a>买的，购买域名的途径也很多其他途径，其实有一些很好的国际域名，例如<a href="Godaddy.com">『Godaddy』</a>。</p>
+<h2 id="域名跳转"><a href="#域名跳转" class="headerlink" title="域名跳转"></a>域名跳转</h2><p>看到其他大神的博客，都是有自己的域名，叫人好生羡慕。那么，从哪里才能弄到呢？<br>这里不是做广告，而是我自己的域名是从<a href="https://wanwang.aliyun.com" target="_blank" rel="noopener">『阿里云的万网』</a>买的，购买域名的途径也很多其他途径，其实有一些很好的国际域名，例如<a href="Godaddy.com">『Godaddy』</a>。</p>
 <p>域名也买到了，开始做跳转指向了。无非是把刚买的宝贝域名，链接到GitHub Pages的域名上。</p>
 <p>还是以万网举例，对CNAME类型，将www和@都指向自己的GitHub Pages的域名。如下图所示。<br><img src="/2014/09/15/第一篇博客/parse.jpg" alt=""></p>
 <p>另外，为了保证GitHub Pages上能够识别，还需要一个CNAME文件，没有后缀，里面的内容为我们购买的域名地址，例如我的就是iherr.cn。</p>
 <p>好啦，打完收工，可以使用自己的个性域名来访问了，快来试试吧。</p>
-<h3 id="补充：图片等资源处理"><a href="#补充：图片等资源处理" class="headerlink" title="补充：图片等资源处理"></a>补充：图片等资源处理</h3><p>刚写两篇，发现处理图片等资源好麻烦，我在macdown上进行编辑时预览插入图片，hexo g自动生成后，发现图片没有到/public里面去，当然在发布时还需要手动挪动图片，真是鱼和熊掌不可兼得嘛？</p>
+<h2 id="补充：图片等资源处理"><a href="#补充：图片等资源处理" class="headerlink" title="补充：图片等资源处理"></a>补充：图片等资源处理</h2><p>刚写两篇，发现处理图片等资源好麻烦，我在macdown上进行编辑时预览插入图片，hexo g自动生成后，发现图片没有到/public里面去，当然在发布时还需要手动挪动图片，真是鱼和熊掌不可兼得嘛？</p>
 <p>看了下官方文档的<a href="https://hexo.io/docs/asset-folders.html" target="_blank" rel="noopener">『asset-folders』</a>，原来提供了一种方便的方式。</p>
-<ol>
-<li><p>首先在_config.yml配置文件中设置支持post_asset_folder，</p>
+<p>1、首先在_config.yml配置文件中设置支持post_asset_folder，</p>
 <blockquote>
 <p>post_asset_folder: true。</p>
 </blockquote>
-</li>
-<li><p>针对之前没有配置的文档，需要在source/_posts目录下，手动新建一个同名标题的文件夹，例如md文件为“第一篇博客.md”，那就新建一个“第一篇博客”的文件夹。</p>
-</li>
-<li><p>针对后续的博文，直接使用hexo new “xxx”，即可同时生成md文件和同名文件夹，将这篇博文所有的需要用到的图片放入，引用图片时，链接的路径为“(文件夹名/<em>*</em>.jpg)”，满足本地写作时预览的需要。</p>
-</li>
-<li><p>当发布时，hexo g命令生成后，会发现会自动将图片放到发布的静态文件夹，且图片路径有了完美的生成。</p>
-</li>
-</ol>
-<h3 id="添加百度统计"><a href="#添加百度统计" class="headerlink" title="添加百度统计"></a>添加百度统计</h3><p>真是拿做商业网站的规则来写博客呀，还是加个百度统计吧，虽然也没多少人看，也不需要分析。</p>
+<p>2、针对之前没有配置的文档，需要在source/_posts目录下，手动新建一个同名标题的文件夹，例如md文件为“第一篇博客.md”，那就新建一个“第一篇博客”的文件夹。</p>
+<p>3、针对后续的博文，直接使用hexo new “xxx”，即可同时生成md文件和同名文件夹，将这篇博文所有的需要用到的图片放入，引用图片时，链接的路径为“(文件夹名/<em>*</em>.jpg)”，满足本地写作时预览的需要。</p>
+<p>4、当发布时，hexo g命令生成后，会发现会自动将图片放到发布的静态文件夹，且图片路径有了完美的生成。</p>
+<h2 id="添加百度统计"><a href="#添加百度统计" class="headerlink" title="添加百度统计"></a>添加百度统计</h2><p>真是拿做商业网站的规则来写博客呀，还是加个百度统计吧，虽然也没多少人看，也不需要分析。</p>
 <p>编辑文件 themes/yilia/_config.yml,添加一行配置，可以删除原来的google analytics</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">baidu_tongji: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>新建 themes/yilia/layout/_partial/baidu_tongji.ejs,内容如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	&lt;% <span class="keyword">if</span> (theme.baidu_tongji) &#123; %&gt;</span><br><span class="line">	&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="comment">#申请的百度统计代码</span></span><br><span class="line">	&lt;/script&gt;</span><br><span class="line">	&lt;% &#125; %&gt;</span><br><span class="line">```	</span><br><span class="line">编辑themes/yilia/layout/_partial/head.ejs 在 &lt;/head&gt; 前添加</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">	&lt;%- partial(<span class="string">"baidu_tongji"</span>) %&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>npm install –save hexo-deployer-git</p>
+<p>新建themes/yilia/layout/_partial/baidu_tongji.ejs，内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.baidu_tongji) &#123; %&gt;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="comment">#申请的百度统计代码</span></span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<p>编辑themes/yilia/layout/_partial/head.ejs，在head尾部标签前添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%- partial(<span class="string">"baidu_tongji"</span>) %&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
 
       
 
@@ -364,7 +360,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -451,15 +447,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,15 +459,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,7 +475,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,19 +483,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +503,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -551,6 +547,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -567,14 +567,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -584,6 +576,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

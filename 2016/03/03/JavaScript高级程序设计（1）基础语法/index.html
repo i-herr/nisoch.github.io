@@ -17,7 +17,7 @@
 <meta property="og:description" content="一、JavaScript简介 1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。   2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png">
-<meta property="og:updated_time" content="2018-10-18T08:27:48.000Z">
+<meta property="og:updated_time" content="2019-01-07T10:14:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（1）基础语法">
 <meta name="twitter:description" content="一、JavaScript简介 1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。   2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、">
@@ -179,8 +179,17 @@
 <p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
 <h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
 <p>语法</p>
+<p>JS语法</p>
 </blockquote>
-<p>区分大小写，标识符（变量、函数、参数、属性等）驼峰，单行多行注释，语句分号结尾，关键字和保留字，定义变量用var操作符。</p>
+<ul>
+<li>动态类型，定义变量用var操作符</li>
+<li>undefined：变量未赋值，null：变量为空值  </li>
+<li>区分大小写  </li>
+<li>标识符（变量、函数、参数、属性等）驼峰 </li>
+<li>基本类型：数字、布尔、串  </li>
+<li>单行多行注释</li>
+<li>语句分号结尾</li>
+</ul>
 <blockquote>
 <p>数据类型  </p>
 </blockquote>
@@ -202,8 +211,16 @@
 <p>3、布尔操作符<br>逻辑非（!）<br>逻辑与（&amp;&amp;）<br>逻辑或（||）</p>
 <blockquote>
 <p>流控制语句</p>
-<p>函数</p>
+<p>函数：</p>
 </blockquote>
+<ul>
+<li>定义函数时指定形参，调用函数时提供实参。  </li>
+<li>基本类型，按值传递。数组或对象时，按指针传递。  </li>
+<li>函数外声明为全局变量，只要页面存在就活着。函数内声明为局部变量，函数结束就消失。</li>
+<li>构造函数，是创建对象的函数。首字母大写。</li>
+<li>赋给一个对象属性的函数成为方法。方法可以使用this来引用调用这个方法的对象。</li>
+<li>window对象、document对象，以及document.getElementById方法会返回一个元素对象。</li>
+</ul>
 
       
 
@@ -350,7 +367,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -437,15 +454,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -457,15 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,7 +482,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,19 +490,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -505,7 +510,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,6 +554,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -553,14 +574,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -570,6 +583,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

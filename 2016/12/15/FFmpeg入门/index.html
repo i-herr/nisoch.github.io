@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="iherr的博客">
 <meta property="og:description" content="一、FFmpeg简介FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。 『FFmpeg官网传送门』，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。 二、FFmpeg安装当然也可以自己编译到Android或者iOS平台。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T10:59:38.000Z">
+<meta property="og:updated_time" content="2019-01-02T07:00:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FFmpeg入门">
 <meta name="twitter:description" content="一、FFmpeg简介FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。 『FFmpeg官网传送门』，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。 二、FFmpeg安装当然也可以自己编译到Android或者iOS平台。">
@@ -301,6 +301,14 @@
 <p>本地视频文件推流</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -vcodec libx264 -acodec aac -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br><span class="line"></span><br><span class="line">$ ffmpeg -re -i /usr/<span class="built_in">local</span>/ffmpeg/1.mp4 -c copy -f flv <span class="string">"rtmp://127.0.0.1/live/test"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将m3u8回放保存到本地</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i <span class="string">"rtmp://127.0.0.1/live/test1.m3u8"</span> -bsf:a aac_adtstoasc -acodec copy -vcodec copy -f mp4 output.mp4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>合并多个flv</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -f concat -i **all.txt** -c copy output.mp4</span><br><span class="line"></span><br><span class="line"><span class="comment">#all.txt内容如下：</span></span><br><span class="line">file <span class="string">'/usr/local/video/1.flv'</span></span><br><span class="line">file <span class="string">'/usr/local/video/2.flv'</span></span><br><span class="line">file <span class="string">'/usr/local/video/3.flv'</span></span><br><span class="line">file <span class="string">'/usr/local/video/4.flv'</span></span><br></pre></td></tr></table></figure>
 <h2 id="四、FFplay"><a href="#四、FFplay" class="headerlink" title="四、FFplay"></a>四、FFplay</h2><p>ffplay是ffmpeg的一个子工具，它具有强大的音视频解码播放能力，目前它广泛被各种流行播放器（QQ影音、暴风影音等）集成应用。作为一款开源软件，ffplay囊括Linux、Windows、iOS、Android等众多主流系统平台，十分适合进行二次开发。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ffplay http://127.0.0.1/live/test.m3u8</span><br><span class="line">$ ffplay rtmp://127.0.0.1/live/<span class="built_in">test</span></span><br><span class="line">$ ffplay -vfscale=1920:1080 /usr/<span class="built_in">local</span>/ffmpeg/1.mp4</span><br></pre></td></tr></table></figure>
       
@@ -448,7 +456,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -535,15 +543,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,15 +555,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,7 +571,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,19 +579,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,7 +599,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,6 +643,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -651,14 +663,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -668,6 +672,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

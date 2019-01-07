@@ -149,6 +149,780 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-架构、框架和设计模式（3）设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/20/架构、框架和设计模式（3）设计模式/">架构、框架和设计模式（3）设计模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/20/架构、框架和设计模式（3）设计模式/" class="archive-article-date">
+  	<time datetime="2017-04-20T03:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、六大设计原则"><a href="#一、六大设计原则" class="headerlink" title="一、六大设计原则"></a>一、六大设计原则</h2><blockquote>
+<p>SRP-单一职责原则（Single Responsibility Principle）</p>
+</blockquote>
+<p>定义：</p>
+<p>There should never be more than one reason for a class to change.</p>
+<p>就一个类而言，应该仅有一个引起它变化的原因。</p>
+<p>But,This is sometimes hard to see.</p>
+<p>单一职责，适用于接口、类，同时也适用于方法。</p>
+<p>优点：</p>
+<ul>
+<li>类的复杂度降低</li>
+<li>可读性提高</li>
+<li>变更引起的风险降低</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>人为制造复杂性</li>
+<li>类的剧增，维护不一定简单</li>
+<li>纯理论，有实现的难处</li>
+</ul>
+<blockquote>
+<p>LSP-里氏替换原则（Liskov Substitution Principle）</p>
+</blockquote>
+<p>定义：</p>
+<p>Functions that use pointer or references to base classes must be able to use objects of derived classes without knowing it.</p>
+<p>所有引用基类的地方，必须能透明地使用其子类的对象。</p>
+<p>即子类是特殊的基类。大象是动物。但反过来未必能适应。</p>
+<p>子类继承父类，从整体上看，利大于弊。利在于提高代码重用，提高扩展性。弊在于继承是侵入性的，增强耦合性。引入里氏替换，发挥利的作用，减少弊的麻烦。该原则定义了良好的继承的规范，增强程序的健壮性。</p>
+<ul>
+<li>子类必须完全实现父类的方法，否则可考虑使用依赖、聚集、组合灯关系代替继承</li>
+<li>子类可以有自己的个性（最佳实践中尽量避免个性）</li>
+<li>覆盖或实现父类的方法时输入参数可以被放大</li>
+<li>覆盖或实现父类的方法时输出结果可以被缩小</li>
+</ul>
+<blockquote>
+<p>DIP-依赖倒置原则（Dependence Inversion Principle）</p>
+</blockquote>
+<p>含义：</p>
+<ul>
+<li>高层模块不应该依赖低层模块，两者都应该依赖其抽象。</li>
+<li>抽象不应该依赖细节</li>
+<li>细节应该依赖抽象</li>
+</ul>
+<p>以java为例，不可分割的原子逻辑是低层模块，再组装就是高层模块。<br>抽象是指接口或抽象类，两者都不能被实例化。细节就是实现类，实现接口或继承抽象类而产生的类就是细节。可被实例化。</p>
+<p>精简的定义就是面向接口的编程OOD，它是面向对象设计的精髓之一。本质是，通过抽象使各个类或模块的实现彼此独立，实现松耦合。</p>
+<p>依赖的三种写法：</p>
+<ul>
+<li>构造函数传递依赖对象</li>
+<li>setter方法传递依赖对象</li>
+<li>接口声明传递依赖对象</li>
+</ul>
+<blockquote>
+<p>ISP-接口隔离原则（Interface Segregation Principle）</p>
+</blockquote>
+<p>定义：</p>
+<ul>
+<li>客户端不应该依赖它不需要的接口</li>
+<li>类间的依赖关系应该建立在最小的接口上</li>
+</ul>
+<p>保证接口的纯洁性</p>
+<ul>
+<li>接口尽量小，但必须满足单一职责原则，不要无限拆分。</li>
+<li>接口要高内聚，减少对外的交互</li>
+<li>通过定制实现接口拆分</li>
+<li>接口设计是有限度的，根据实践、经验和领悟来把握粒度。</li>
+</ul>
+<blockquote>
+<p>LoD-迪米特法则（Law of Demeter），也叫最少知识原则</p>
+</blockquote>
+<p>Only talk to your immediate friends.</p>
+<ul>
+<li>一个类只和朋友交流</li>
+<li>朋友间也是有距离的，不要暴露太多的方法或属性，尽量内敛</li>
+<li>是自己的就是自己的</li>
+<li>谨慎使用Serializable</li>
+</ul>
+<p>核心观念：类间解耦，弱耦合，提高类的复用率。结果是产生了大量的跳转类，导致系统复杂性提高。</p>
+<blockquote>
+<p>OCP-开闭原则（Open Close Principle）</p>
+</blockquote>
+<p>Software entities like classes,modules and functions should be open for extension but closed for modifications。</p>
+<p>软件实体应该对扩展开放，对修改关闭。即尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来完成变化。保持历史代码的纯洁性，提高系统的稳定性。</p>
+<p>优点：</p>
+<p>开闭原则是基础，是抽象类，其他五大原则是具体的实现类</p>
+<ul>
+<li>开闭原则对测试的影响，修改后原有的测试不需要重新测试，新增加的类和方法单独测试就好。</li>
+<li>提高复用性</li>
+<li>提高可维护性</li>
+<li>面向对象开发的要求</li>
+</ul>
+<p>如果使用：</p>
+<ul>
+<li>抽象约束。通过接口或抽象类来约束拓展，参数类型和引用对象尽量使用接口或抽象类，抽象层尽量保证稳定。</li>
+<li>元数据控制模块行为。通过修改配置文件来完成业务变化。</li>
+<li>制定项目规范，约定优于配置。</li>
+<li>封装变化，23个设计模式都是从不同角度对变化进行封装。</li>
+</ul>
+<h2 id="二、设计模式"><a href="#二、设计模式" class="headerlink" title="二、设计模式"></a>二、设计模式</h2><blockquote>
+<p>定义</p>
+</blockquote>
+<ul>
+<li>模式：问题及解决方案共同的本质；</li>
+<li>设计模式:是一套被反复使用，多数人知晓的，经过分类编目的，代码设计经验的总结；</li>
+<li>是由四人帮设计的23种设计模式；</li>
+<li>想让程序具有某种特性，就借鉴某种模式即可；</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/04/20/架构、框架和设计模式（3）设计模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/20/架构、框架和设计模式（3）设计模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-架构、框架和设计模式（2）框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/17/架构、框架和设计模式（2）框架/">架构、框架和设计模式（2）框架</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/17/架构、框架和设计模式（2）框架/" class="archive-article-date">
+  	<time datetime="2017-04-17T07:15:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、框架"><a href="#一、框架" class="headerlink" title="一、框架"></a>一、框架</h2><blockquote>
+<p>使用框架技术的优势</p>
+</blockquote>
+<ul>
+<li>不用考虑公共问题，框架已经为我们做好了  </li>
+<li>可以专心在业务逻辑上，保证核心业务逻辑的开发质量  </li>
+<li>结构统一，便于学习，维护  </li>
+<li>最重要的一点：框架中集成了前人的经验，可以帮助新手写出稳健。性能优良而且结构优美的高质量程序</li>
+</ul>
+<blockquote>
+<p>什么是框架（Framework）</p>
+</blockquote>
+<ul>
+<li>框架是一个提供了可重用的公共结构的半成品。一方面提供了可以拿来就用的工具，也提供了可重用的设计  </li>
+<li>框架使混乱的东西变得结构化  </li>
+<li>框架是一组协同工作的组件 </li>
+</ul>
+<p>MVC：Model-View-Controller（数据模型+视图+控制器），仅存在于三层架构的展现层。</p>
+<h2 id="二、java框架"><a href="#二、java框架" class="headerlink" title="二、java框架"></a>二、java框架</h2><blockquote>
+<p>java中的主流框架：Struts框架</p>
+</blockquote>
+<p>1、Struts框架，是MVC设计模式的体现。Struts定义了通用的Controller（控制器），通过配置文件（一般是struts.config.xml）隔离了Model(模型)和View(视图)，以Action的概念对用户请求做了封装，使代码更清晰易读。Struts还提供了自动将请求的数据填充到对象中及页面标签等简化编码的工具。</p>
+<p>2、Struts2以webwork为内核，吸收了struts框架的核心，提供了更加简洁的MVC设计模式实现的web应用程序框架。它引入了几个新的框架特性：从逻辑中分离出横切关注点的拦截器，减少或消除配置文件，贯穿整个框架的强大表达式语言，支持可变更和可重用的基于MVC模式的标签API，Struts2充分利用了从其他MVC框架学到的经验和教训，是框架更加清晰，灵活；</p>
+<p>3、Struts的优点:</p>
+<ul>
+<li>最大的优点：开源；</li>
+<li>实现了MVC模式，并有丰富的tag标签可用；</li>
+<li>通过一个配置文件，即可把握整个系统各部分之间的联系，并提供Exception处理机制，数据库连接池还支持I18N</li>
+<li>Struts框架使开发者在构建基于Java Servlet和JSP技术的web应用时更加容易，并且提供了一个统一的标准框架；</li>
+</ul>
+<p>4、缺点：</p>
+<ul>
+<li>Struts的Action必须是线程安全的，它仅仅允许一个实例去处理所有的请求。所以Action用到的所有资源都必须统一同步，这就引起了线程安全问题；</li>
+<li>Struts适用范围有限，它是基于web的MVC解决方案，所以 必须用到HTML，JSP和Servlet来实现它；</li>
+</ul>
+<blockquote>
+<p>java中的主流框架：Hidbernate框架</p>
+</blockquote>
+<p>1、java是面向对象的，而主流的数据库是面向关系的数据库表，Hibernate框架就是处理对象和数据库表之间的转换的问题的；<br>2、Hibernate是开源持久化的框架，负责简化将对象数据保存到数据库中或从数据库中读取数据并封装到对象的工作。通过简单配置和编码即可替代JDBC繁琐的程序代码。<br>使程序员使用面向对象的编程思维来操作数据库；<br>Hibernate可以应用到C/S或B/S结构中，Struts只能用在B/S程序；</p>
+<blockquote>
+<p>java中的主流框架：Spring框架、Spring Boot框架</p>
+</blockquote>
+<p>1、是轻量级的框架，渗透了JavaEE 技术的各方面，它主要作为依赖注入容器和AOP，还提供了声明式事物，对DAO层的支持等简化开发的功能。</p>
+<p>Spring还可以和Struts,Struts2,Hibernate等技术集成；构成了比较流行的SSH架构；</p>
+<p>2、Spring优点：</p>
+<ul>
+<li>低侵入式设计，代码污染极低；</li>
+<li>独立于各种应用服务器，可以真正实现 Write Once，Run Anywhere(一次编写到处运行)</li>
+<li>Spring的DI机制（依赖注入）降低了业务对象替换的复杂性；</li>
+<li>Spring开发并不完全依赖于Spring所有组件，开发者可以自由选择使用Spring框架的部分或全部组件；</li>
+</ul>
+<p>SSH架构就是使用Spring部分组件，然后与Struts和Hibernate进行整合；<br>此外还有DWR框架（Ajax框架），jQuery框架等；</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/17/架构、框架和设计模式（2）框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-架构、框架和设计模式（1）架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/14/架构、框架和设计模式（1）架构/">架构、框架和设计模式（1）架构</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/14/架构、框架和设计模式（1）架构/" class="archive-article-date">
+  	<time datetime="2017-04-14T06:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、架构"><a href="#一、架构" class="headerlink" title="一、架构"></a>一、架构</h2><p>软件架构是系统的一个草图，阐述了各个组件之间的通信，层次划分，一旦系统开始详细设计，架构蓝图就很难甚至无法改变。</p>
+<ul>
+<li>传统三层架构</li>
+<li>前后端分离架构</li>
+<li>微服务架构</li>
+</ul>
+<blockquote>
+<p>三层架构 </p>
+</blockquote>
+<p>三层架构是一种设计软件架构的思想。</p>
+<p>通常意义上的三层架构就是将整个业务应用划分为展现层（表示层）（User Interface  Layer）、业务逻辑层（Buesiness Logic Layer）、数据访问层（Data Access Layer）。区分层次的目的是为了体现“高内聚，低耦合”的思想。</p>
+<p>1.展现层（表示层）</p>
+<p>表示层位于最外层（最上层），最接近于用户。用于显示数据和接收用户输入的数据为用户提供一种交互式的操作界面。</p>
+<p>2.业务逻辑层</p>
+<p>业务逻辑层无疑是系统架构中体现核心价值的部分。他的关注点主要集中在业务规则的制定、业务流程的实现等与业务需求相关的系统设计上，也就是说，他与系统所对应的领域（Domain）逻辑有关，很多时候，也将业务逻辑层称为领域层。</p>
+<p>业务逻辑层在体系架构中的位置很关键，他处于数据访问层与表示层中间起到了数据交换中承上启下的作用。对于数据访问层而言，他是调用者；对于表示层而言，他却是被调用者。</p>
+<p>3、数据访问层</p>
+<p>数据访问层有时候也称为持久层，其功能主要是负责数据库的访问，可以访问数据库系统、二进制文件、文本文档、或是XML文档。简单的说法就是实现对数据表的Select、Insert、Update和Delete操作。</p>
+<h2 id="二、微服务架构"><a href="#二、微服务架构" class="headerlink" title="二、微服务架构"></a>二、微服务架构</h2><p>Martin Fowler于2014年提出的Micro Service概念，谈论多年的SOA（Service-Oriented Architecture，面向服务的架构）终于有了新的解决方案，不再需要ESB（Enterprise Service Bus，企业服务总线），并随着Docker的普及，一个轻量级SOA架构MSA诞生。</p>
+<blockquote>
+<p>传统应用架构</p>
+</blockquote>
+<p>若干业务模块打包封装到一个war包。单块架构/单体应用架构</p>
+<p>单体应用架构：尽管已经进行了模块化，但UI和若干业务都被打包在一个war包中，该war包包含了整个系统所有的业务功能。</p>
+<p><img src="/2017/04/14/架构、框架和设计模式（1）架构/Traditional.jpg" alt=""></p>
+<p>缺点在于：</p>
+<ul>
+<li>复杂性高。模块多、边界模糊、依赖不清晰、代码质量参差不齐。</li>
+<li>技术债务。随着时间推移、需求变更、人员更迭，导致不坏不修，且代码难以被修改。</li>
+<li>部署频率低。构建和部署时间增加，全量部署耗时长、风险高。</li>
+<li>可靠性差。某个应用bug，如死循环、OOM等导致整个应用崩溃。</li>
+<li>拓展能力受限。有些模块计算密集，有些IO密集，导致在cpu、内存等硬件选择上无法兼顾。</li>
+<li>阻碍技术创新。</li>
+</ul>
+        
+          <a class="article-more-a" href="/2017/04/14/架构、框架和设计模式（1）架构/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/14/架构、框架和设计模式（1）架构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot实战（4）SpringBoot核心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/">SpringBoot实战（4）SpringBoot核心</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/" class="archive-article-date">
+  	<time datetime="2017-04-11T06:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、核心功能"><a href="#一、核心功能" class="headerlink" title="一、核心功能"></a>一、核心功能</h2><blockquote>
+<p>核心功能（优点）</p>
+</blockquote>
+<p>1、快速构建项目（提供starter简化Maven配置）<br>2、主流开发框架的无配置集成（自动配置Spring）<br>3、可以jar包方式独立运行，无须依赖Servlet容器，内嵌Servlet容器（Tomcat、Jetty、Undertow）<br>4、提供运行时的应用监控<br>5、极大提高了开发和部署效率（无代码生成和xml配置，通过注解配置和java配置，自动化配置）<br>6、与云计算的天然集成，提供生产级特性actuator</p>
+<blockquote>
+<p>快速集成</p>
+</blockquote>
+<p>1、可到<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a> 快速配置下载demo<br>2、idea自带的Spring Initializr或eclipse的Spring Tool Suite<br>3、Spring Boot CLI命令行生成<br>4、Maven手工创建</p>
+<ul>
+<li>添加Spring Boo通的父级依赖</li>
+<li>添加web支持的starter pom（spring-boot-starter-web）</li>
+<li>添加编译插件</li>
+</ul>
+<h2 id="二、基本配置"><a href="#二、基本配置" class="headerlink" title="二、基本配置"></a>二、基本配置</h2><blockquote>
+<p>入口类和@SpringBootApplication</p>
+</blockquote>
+<p>有名为*Application的入口类，包含一个main方法，用来启动SpringBoot应用项目。</p>
+<p>@SpringBootApplication是核心的组合注解，组合了@Configuration、@EnableAutoConfiguration、@ComponentScan这3个注解。</p>
+<blockquote>
+<p>banner默认启动图案</p>
+</blockquote>
+<p>可通过在src/main/resources新建banner.txt覆盖。也可在main里禁用。</p>
+<p><img src="/2017/04/11/SpringBoot实战（4）SpringBoot核心/banner.png" alt=""></p>
+<blockquote>
+<p>配置文件</p>
+</blockquote>
+<p>SpringBoot使用资源目录下的全局的配置文件application.properties（常规properties配置文件）或application.yml（yaml语言）。</p>
+<p>SpringBoot提倡零xml配置，如特殊情况需要使用，可使用@ImportResource来加载。</p>
+<p>如tomcat端口和访问路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#properties版本</span></span><br><span class="line">server.port=9090</span><br><span class="line">server.servlet.context-path=/iherr</span><br><span class="line"></span><br><span class="line"><span class="comment">#yml版本</span></span><br><span class="line">server:</span><br><span class="line">	port: 9090</span><br><span class="line">	server.servlet.context-path: /iherr</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>starter pom</p>
+</blockquote>
+<p>提供了大多数场景的starter pom，包括官方和第三方，列举部分：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring-boot-starter</td>
+<td style="text-align:center">核心starter，包含自动配置、日志、yaml配置文件等支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-amqp</td>
+<td style="text-align:center">使用spring-rabbit支持AMQP</td>
+</tr>
+<tr>
+<td>spring-boot-starter-aop</td>
+<td style="text-align:center">使用spring-aop和AspectJ支持切面</td>
+</tr>
+<tr>
+<td>spring-boot-starter-jpa</td>
+<td style="text-align:center">对JPA支持，包含spring-data-jpa、spring-orm和Hibernate</td>
+</tr>
+<tr>
+<td>spring-boot-starter-freemarker</td>
+<td style="text-align:center">对freemarker模板引擎支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-thymeleaf</td>
+<td style="text-align:center">对thymeleaf模板引擎支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-volocity</td>
+<td style="text-align:center">对volocity模板引擎支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-jdbc</td>
+<td style="text-align:center">对JDBC数据库的支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-test</td>
+<td style="text-align:center">对常用测试框架JUnit、Hamcrest等支持，包含spring-test模块</td>
+</tr>
+<tr>
+<td>spring-boot-starter-web</td>
+<td style="text-align:center">对Web项目开发的支持，包含Tomcat和spring-webmvc</td>
+</tr>
+<tr>
+<td>spring-boot-starter-Tomcat</td>
+<td style="text-align:center">默认的Servlet容器Tomcat</td>
+</tr>
+<tr>
+<td>spring-boot-starter-Jetty</td>
+<td style="text-align:center">使用Jetty作为Servlet容器替换Tomcat</td>
+</tr>
+<tr>
+<td>spring-boot-starter-Undertow</td>
+<td style="text-align:center">使用Undertow作为Servlet容器替换Tomcat</td>
+</tr>
+<tr>
+<td>spring-boot-starter-logging</td>
+<td style="text-align:center">默认的日志框架Logback</td>
+</tr>
+<tr>
+<td>spring-boot-starter-log4j</td>
+<td style="text-align:center">支持使用Log4J日志框架</td>
+</tr>
+</tbody>
+</table>
+        
+          <a class="article-more-a" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot实战（3）SpringMVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">SpringBoot实战（3）SpringMVC</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/07/SpringBoot实战（3）SpringMVC/" class="archive-article-date">
+  	<time datetime="2017-04-07T03:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-MVC原理"><a href="#一、Spring-MVC原理" class="headerlink" title="一、Spring MVC原理"></a>一、Spring MVC原理</h2><p><img src="/2017/04/07/SpringBoot实战（3）SpringMVC/springmvc.jpeg" alt=""></p>
+<blockquote>
+<p>DispatcherServlet（前端控制器）</p>
+</blockquote>
+<p>DispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet的存在降低了组件之间的耦合性。</p>
+<blockquote>
+<p>HandlerMapping（处理器映射器）</p>
+</blockquote>
+<p>HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等，推荐使用注解开发。</p>
+<blockquote>
+<p>Handler（处理器）</p>
+</blockquote>
+<p>Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</p>
+<blockquote>
+<p>HandlerAdapter（处理器适配器）</p>
+</blockquote>
+<p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
+<blockquote>
+<p>ViewResolver（视图解析器）</p>
+</blockquote>
+<p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p>
+<h2 id="二、Spring-Boot的Web开发"><a href="#二、Spring-Boot的Web开发" class="headerlink" title="二、Spring Boot的Web开发"></a>二、Spring Boot的Web开发</h2><p>Spring Boot提供了springboot-starter-web为Web开发予以支持。提供了嵌入的Tomcat以及Spring MVC的依赖。Web相关的自动配置存储在spring-boot-autoconfigure.jar的org.springframework.boot.autoconfigure.web下。</p>
+<blockquote>
+<p>模板引擎  </p>
+</blockquote>
+<p>jsp在内嵌的Servlet的容器中有问题，tomcat和jetty不支持以jar形式运行jsp，undertow不支持jsp，因此Spring Boot提供了大量模板引擎，有Freemarker、Groovy、Thymeleaf、Velocity等。  </p>
+<blockquote>
+<p>Thymeleaf</p>
+</blockquote>
+<p>Thymeleaf<a href="http://www.thymeleaf.org" target="_blank" rel="noopener">『官网传送门』</a>是一个java类库，是xml/xhtml/html5的模板引擎，作为MVC的Web应用的View层。<br></p>
+        
+          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot实战（2）数据访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/SpringBoot实战（2）数据访问/">SpringBoot实战（2）数据访问</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/03/SpringBoot实战（2）数据访问/" class="archive-article-date">
+  	<time datetime="2017-04-03T10:25:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-Data"><a href="#一、Spring-Data" class="headerlink" title="一、Spring Data"></a>一、Spring Data</h2><blockquote>
+<p>Spring Data</p>
+</blockquote>
+<p>是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。</p>
+<p>常见项目包含：</p>
+<table>
+<thead>
+<tr>
+<th>项目名称</th>
+<th style="text-align:center">Maven坐标 org.springframework.data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spring Data Jpa</td>
+<td style="text-align:center">spring-data-jpa</td>
+</tr>
+<tr>
+<td>Spring Data MongoDB</td>
+<td style="text-align:center">spring-data-mongodb</td>
+</tr>
+<tr>
+<td>Spring Data Redis</td>
+<td style="text-align:center">spring-data-redis</td>
+</tr>
+<tr>
+<td>Spring Data Solr</td>
+<td style="text-align:center">spring-data-solr</td>
+</tr>
+<tr>
+<td>Spring Data Hadoop</td>
+<td style="text-align:center">spring-data-hadoop</td>
+</tr>
+<tr>
+<td>Spring Data REST</td>
+<td style="text-align:center">spring-data-rest-webmvc</td>
+</tr>
+<tr>
+<td>Spring Data JDBC Ext</td>
+<td style="text-align:center">spring-data-oracle</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>JDBC相关</p>
+</blockquote>
+<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc2.jpg" alt=""></p>
+<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc1.jpg" alt=""></p>
+<h2 id="二、Spring-Data-JPA"><a href="#二、Spring-Data-JPA" class="headerlink" title="二、Spring Data JPA"></a>二、Spring Data JPA</h2><blockquote>
+<p>基本概念</p>
+</blockquote>
+<p>1、Hibernate主导了EJB3.0的JPA（Java Persistence API）规范。</p>
+<p>2、继承JpaRepository接口，即可拥有默认数据访问操作方法，如findAll，getOne等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Person</span>, <span class="title">Long</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、在Spring中，需要使用注解@EnableJPARepository来开启JPA支持。</p>
+<blockquote>
+<p>定义查询方法</p>
+</blockquote>
+<p>1、常规查询<br>根据属性名查询，使用findBy、Like、And、IsNull、In、OrderBy等关键字来定义查询方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Person <span class="title">findByNameAndAddress</span><span class="params">(String name,String address)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>通过top和first关键字来限制结果数量。</p>
+<p>2、JPA的NamedQuery查询</p>
+<p>Spring Data JPA支持用JPA的NamedQuery查询防范，即一个名称映射一个查询语句。</p>
+<p>3、@Query查询，直接将@Query注解在接口的方法上实现查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"select p from Person p where p.name= :name and p.address= :address"</span>)</span><br><span class="line"><span class="function">Person <span class="title">withNameAndAddressQuery</span><span class="params">(@Param(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"address"</span>)</span>String address)</span>;</span><br></pre></td></tr></table></figure>
+<p>4、排序与分页，提供了Sort类以及Page接口和Pageable接口。</p>
+<blockquote>
+<p>Spring Boot的支持</p>
+</blockquote>
+<p>1、JDBC的自动配置<br>在org.springframework.boot.autoconfigure.jdbc下。</p>
+<p>2、对JPA的自动配置<br>在org.springframework.boot.autoconfigure.orm.jpa下。其中JpaBaseConfiguration会自动扫描注解有@Entity的实体类。</p>
+<p>3、对Spring Data JPA的自动配置<br>在org.springframework.boot.autoconfigure.data.jpa下。JpaRepositoriesAutoConfiguration依赖于HibernateJpaAutoConfiguration配置。</p>
+        
+          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-SpringBoot实战（1）入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -347,9 +1121,16 @@
 <p>一些路，只有你走过了、走错了、走进死胡同了，你才知道这条路是不能走的，这样并不影响你的速度，因为，生活和速度无关，和终点无关，和路程上的风景、和陪你的人、和走路的心情息息相关。</p>
 <p>明明两点之间最短的距离是线段，上帝为什么让你绕着走？后来随着成长，我开始明白，两点之间的线段虽然最短，但是那条曲线是最美的。</p>
 <p>从前有个少年，后来他长大了。</p>
+<p>很多时候，道理虽是对的，但时代错了。</p>
 <p>人生有三次成长，第一次是在发现自己不是世界中心的时候，第二次是在发现即使再怎么努力，终究还是有些事令人无能为力的时候，第三次是在明知道有些事情可能会无能为力，但还是会努力争取的时候。</p>
 <p>别指望所有的人都能懂你，因为萝卜白菜，各有所爱。你做了萝卜，自然就做不成白菜。</p>
 <p>什么是成熟？小时候我认为成熟是像大人一样做什么事都很稳妥，叛逆期我又认为成熟不过是苟且的另一种说法，现在呢我认为成熟是一种释怀，是一种对生命的释然。</p>
+<p>那个喝冰镇汽水的少年，终将拿起保温杯。</p>
+<p>像我们这样的人，再不努力和坚持就什么也不是了。努力了不见得会成功，不见得一定会得到自己想要的。很有可能我们努力奋斗一生的，却是别人一出生就拥有的。但是努力一定会有回报，也许是美好的生活，也许只是给自己一个交代。</p>
+<p>我未曾见过一个早起、勤奋、谨慎、诚实的人抱怨命运不好。良好的品格，优良的习惯，坚强的意志，是不会被假设所谓的命运击败的。</p>
+<p>人生苦难重重。这是个伟大的真理，它的伟大之处在于，只要我们真正理解并接受这一点，那么我们就再也不会对人生的苦难耿耿于怀了。</p>
+<p>世界其实无比简单，所有的复杂都是感官上的迷惑、大脑的想象和对未来的恐惧。</p>
+<p>小时候听故事，总是急着问：“后来呢？”后来，原来并非全然美好。人生是一场盛筵，初见总是琳琅满目热气腾腾，之后酒冷茶凉。悲伤的，不是这残羹冷炙，是这似水流年。</p>
 <h2 id="二、爱情篇"><a href="#二、爱情篇" class="headerlink" title="二、爱情篇"></a>二、爱情篇</h2><p>冰心赠葛洛的一首诗中说，爱在左，情在右，在生命的两旁，随时撒种，随时开花，将这一径长途点缀得花香弥漫，使得穿花拂叶的行人，踏着荆棘，不觉痛苦，有泪可挥，不觉悲凉。</p>
 <p>来路或许不易，命运或许不公，人生或许悲苦，但是请你足够相信。无论是生活困顿，抑或身体抱恙，都会有“爱” 与“情” 相伴。</p>
 <p>有多少人，以朋友的名义，默默爱着，有多少人，以夫妻的名义，凑合过着。</p>
@@ -534,559 +1315,6 @@
 
 
   
-    <article id="post-Git版本控制管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/07/Git版本控制管理/">Git版本控制管理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/07/Git版本控制管理/" class="archive-article-date">
-  	<time datetime="2017-01-07T09:51:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Git概述"><a href="#一、Git概述" class="headerlink" title="一、Git概述"></a>一、Git概述</h2><p>版本控制系统（VCS）。目的：持续性的对代码或文档进行备份和存档，对变更进行追踪管理。</p>
-<p>Git，由大神Linus Torvalds发明，起初用来管理Linux内核的开发工作。<a href="https://git-scm.com/" target="_blank" rel="noopener">『网站传送门』</a> 之前用BitKeeper，然而需求是创新之母，需要额外的特性：  </p>
-<ul>
-<li>有助于分布式开发，允许独立且同时开发，离线开发  </li>
-<li>能胜任上千开发人员的规模  </li>
-<li>性能优异，解决网络传输瓶颈，保证执行速度  </li>
-<li>保持完整性和可靠性  </li>
-<li>强化责任  </li>
-<li>不可变性  </li>
-<li>原子事务  </li>
-<li>支持并鼓励基于分支的开发</li>
-<li>完整的版本库  </li>
-<li>一个清晰的内部设计  </li>
-<li>免费自由</li>
-</ul>
-<p>VCS发展进程：SCCS源码控制系统–&gt;RCS修订控制系统–&gt;CVS并行版本系统–&gt;Subversion（SVN）–&gt;Git</p>
-<p>Git进程：05年4月托管，Linux内核提交git，670万行代码。git本意是无用的人、饭桶，令人舒服的解释是Global Information Tracker。</p>
-<h2 id="二、Git起步"><a href="#二、Git起步" class="headerlink" title="二、Git起步"></a>二、Git起步</h2><blockquote>
-<p>安装</p>
-</blockquote>
-<p>windows cygwin版本的Git，或原生版本的msysGit。<br>mac自带。</p>
-<blockquote>
-<p>Git命令</p>
-</blockquote>
-<p><img src="/2017/01/07/Git版本控制管理/git_command.jpg" alt=""><br>1、通用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git  </span><br><span class="line">usage: git [--version] [--<span class="built_in">help</span>] [-C &lt;path&gt;] [-c name=value] [--<span class="built_in">exec</span>-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path] [-p | --paginate | --no-pager] [--no-replace-objects] [--bare] [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;] &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br></pre></td></tr></table></figure>
-<p>版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git --version</span><br><span class="line">git version 2.14.3 (Apple Git-98)</span><br></pre></td></tr></table></figure>
-<p>理解短和长选项命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"fixed bug"</span></span><br><span class="line">$ git commit --message <span class="string">"fixed bug"</span></span><br></pre></td></tr></table></figure>
-<p>2、创建初始版本库，并添加文件  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> test1</span><br><span class="line">$ git init  <span class="comment">#创建隐藏目录.git</span></span><br><span class="line">$ touch README.md</span><br><span class="line">$ git add README.md  <span class="comment">#将md文件添加到版本库</span></span><br><span class="line">$ git add .  <span class="comment">#或者将目录所有文件都添加到版本库</span></span><br><span class="line">$ git commit -m <span class="string">"first commit"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要推送到服务器端</span></span><br><span class="line">$ git remote rm origin <span class="comment">#没有可不操作</span></span><br><span class="line">$ git remote add origin http://iherr@127.0.0.1:8080/r/test.git <span class="comment">#关联到远程库</span></span><br><span class="line">$ git pull --rebase origin master <span class="comment">#获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）</span></span><br><span class="line">$ git push -u origin master <span class="comment">#本地库内容推送到远程，-u参数可使得以后只用git push即可</span></span><br></pre></td></tr></table></figure>
-<p>如果是远程库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> http://iherr@127.0.0.1:8080/r/test.git</span><br><span class="line"></span><br><span class="line">$ git remote -v</span><br><span class="line">origin	http://iherr@127.0.0.1:8080/r/test.git (fetch)</span><br><span class="line">origin	http://iherr@127.0.0.1:8080/r/test.git (push)</span><br><span class="line"></span><br><span class="line">$ git remote rm origin</span><br><span class="line">$ git remote add origin http://iherr@127.0.0.1:8080/r/test.git</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-FFmpeg入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/FFmpeg入门/">FFmpeg入门</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/15/FFmpeg入门/" class="archive-article-date">
-  	<time datetime="2016-12-15T03:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、FFmpeg简介"><a href="#一、FFmpeg简介" class="headerlink" title="一、FFmpeg简介"></a>一、FFmpeg简介</h2><p>FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。</p>
-<p><a href="https://ffmpeg.org/" target="_blank" rel="noopener">『FFmpeg官网传送门』</a>，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。</p>
-<h2 id="二、FFmpeg安装"><a href="#二、FFmpeg安装" class="headerlink" title="二、FFmpeg安装"></a>二、FFmpeg安装</h2><p>当然也可以自己编译到Android或者iOS平台。</p>
-<blockquote>
-<p>如果是Mac用户，可以通过brew安装</p>
-</blockquote>
-<p>有之前有安装过，版本或模块有问题，可先brew uninstall卸载。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ffmpeg --with-libvpx --with-libvorbis --with-ffplay</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>linux 安装</p>
-</blockquote>
-<p>详细资料可参考官方文档，<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener">『文档传送门』</a></p>
-        
-          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker技术入门与实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/24/Docker技术入门与实战/">Docker技术入门与实战</a>
-    </h1>
-  
-
-        
-        <a href="/2016/10/24/Docker技术入门与实战/" class="archive-article-date">
-  	<time datetime="2016-10-24T05:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Docker简介"><a href="#一、Docker简介" class="headerlink" title="一、Docker简介"></a>一、Docker简介</h2><blockquote>
-<p>Docker和集装箱</p>
-</blockquote>
-<p>集装箱，港口运输业最伟大的发明。Docker，聪明的技术人员从传统的运输行业找到了答案。实现Build，Ship，and Run Any App，Anywhere，即任何应用都可以构建、发布、运行于任何环境。看看Docker的icon就明白了。基本使用Golang进行开发。<br><img src="/2016/10/24/Docker技术入门与实战/docker_icon.jpeg" alt=""></p>
-<blockquote>
-<p>下载安装</p>
-</blockquote>
-<p>去<a href="https://www.docker.com" target="_blank" rel="noopener">『Docker官网』</a>运行docker for mac安装，使用命令docker version验证安装版本。由于国内你懂的原因，可在preference里的Registry mirrors为使用镜像站点进行加速，推荐DaoCloud提供的免费国内镜像服务，需要注册。</p>
-<blockquote>
-<p>Docker优点</p>
-</blockquote>
-<p>Docker使用的基础技术，Linux的命名空间Namespace、控制组Control Group、分层文件系统、网络虚拟化等在Docker之前就存在很多年，但容器一直没有得到关注的原因，在于易用性，docker通过简单的指令或接口来维护容器，降低部署难度，提升维护效率。它提供一种统一的实践方法（维护一个Dockerfile文件或Compose的方式），供开发和运维团队来透明和合作，降低沟通和部署成本。</p>
-<ul>
-<li>快速上手新技术，不纠结于环境搭建的学习成本。  </li>
-<li>容器化的代码仓库，所有常用代码都可以以容器化的方式保存，并可以调出随时运行。  </li>
-<li>面向业务编程，使得软件工程师更加专注于业务需求，快速启用新技能。  </li>
-<li>使用Docker Hub发布开源项目。  </li>
-</ul>
-<blockquote>
-<p>容器化开发模式  </p>
-</blockquote>
-<p>工作流程比较<br><img src="/2016/10/24/Docker技术入门与实战/docker_workflow.jpg" alt=""></p>
-<p>开发、测试、运维协同<br><img src="/2016/10/24/Docker技术入门与实战/docker_flow.jpg" alt=""></p>
-<blockquote>
-<p>容器与云服务</p>
-</blockquote>
-<p>目前AWS、Google、Azure、Docker官方、腾讯、阿里、华为、UCloud等都推出了公有云的容器服务，来支撑企业级IT架构的云化与容器化、微服务化。</p>
-<p>有些甚至还推出了容器云服务（Container as a Service，CaaS）。按需提供容器化环境和应用服务，让开发和运维团队相互协作，构建和部署应用。从而使得容器成为生产主流。主要有网易蜂巢、时速云、Daocloud、数人云等。提供容器调度、服务发现、网络配置、安全配置、负载、数据持久、容错与高可用性等需求。</p>
-<blockquote>
-<p>容器与生产环境</p>
-</blockquote>
-<p>Docker还是个IT生产环境和基础设施的新成员，目前容器还存在一些分支和分歧，成立OCI（Open Container Initiative）组织来建立通用容器技术标准。传统数据库或有状态应用、网络吞吐性能高要求的应用还不适合容器化。因此需要考虑：  </p>
-<ul>
-<li>Docker出现不可控风险后的备选方案  </li>
-<li>Docker怎么做资源的限制  </li>
-<li>Docker对容器安全管理是否完善    </li>
-<li>内部私有仓库、镜像的管理是否解决  </li>
-</ul>
-<p>但是，有一句话还得送给大家，容器技术非常热门，未来将成为主流，那么你就应该尽快掌握。</p>
-<h2 id="二、Docker镜像-Image"><a href="#二、Docker镜像-Image" class="headerlink" title="二、Docker镜像(Image)"></a>二、Docker镜像(Image)</h2><blockquote>
-<p>获取镜像</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> pull NAME[:TAG]</span><br></pre></td></tr></table></figure>
-<p>其中，NAME是镜像仓库的名称，TAG是镜像的标签，例如ubuntu:14.04。如不指定TAG，则默认为latest标签，下载最新版本。</p>
-<p>默认使用官方注册服务器registry.hub.docker.com/ubuntu:14.04命令，如需从非官方仓库下载，可指定如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> pull hub.c.163.com/public/ubuntu:14.04</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>查看镜像信息</p>
-</blockquote>
-<p>1、列出本地主机上已有镜像的基本信息，字段包含归属仓库、镜像标签、镜像ID、创建时间和镜像大小</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> images</span><br></pre></td></tr></table></figure>
-<p><img src="/2016/10/24/Docker技术入门与实战/docker_images.png" alt=""></p>
-<p>2、使用tag命令添加标签镜像，可为本地镜像添加新的标签，他们都指向同一个镜像文件，只是有别名而已。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> tag nginx:latest mynginx:latest</span><br></pre></td></tr></table></figure>
-<p>3、使用inspect命令查看详细信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> inspect ubuntu:14.04</span><br></pre></td></tr></table></figure>
-<p>4、使用history查看镜像历史</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$docker</span> <span class="built_in">history</span> ubuntu:14.04</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Maven实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/30/Maven实战/">Maven实战</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/30/Maven实战/" class="archive-article-date">
-  	<time datetime="2016-09-30T08:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Maven简介"><a href="#一、Maven简介" class="headerlink" title="一、Maven简介"></a>一、Maven简介</h2><p>Maven翻译为“专家”，是Apache下的一款跨平台的开源项目管理工具。主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
-<blockquote>
-<p>构建工具（Build）</p>
-</blockquote>
-<p>每天除了编写源码，程序员相当一部分时间花在编译、运行单元测试，生产文档，打包和部署等构建工作上。Maven可抽象构建声明周期模型，并标准化构建过程。</p>
-<blockquote>
-<p>依赖管理工具</p>
-</blockquote>
-<p>提供中央仓库，自动下载构建（artifact），Maven可有序的管理依赖，并且管理原本分散在项目各个角落的项目信息。并提供了大把现成的插件。</p>
-<p>敏捷开发之极限编程（XP）中，Maven的价值：</p>
-<ul>
-<li>简单</li>
-<li>测试驱动开发（TDD）</li>
-<li>十分钟构建（清理、编译、测试、打包、部署、产品）</li>
-<li>持续集成（CI）</li>
-</ul>
-<p>其他构建工具有Make（makefile脚本），Ant（build.xml）。而Maven使用pom.xml，pom作为项目对象模型。</p>
-<h2 id="二、Maven概念"><a href="#二、Maven概念" class="headerlink" title="二、Maven概念"></a>二、Maven概念</h2><blockquote>
-<p>坐标</p>
-</blockquote>
-<p>Maven通过groupId、artifactId、version、packaging等元素来构成坐标。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.herr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>依赖</p>
-</blockquote>
-<p>1、配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">version</span>&gt;</span>...<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">type</span>&gt;</span>...<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>...<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>...<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">exclisions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">exclision</span>&gt;</span></span><br><span class="line">				...</span><br><span class="line">				<span class="tag">&lt;/<span class="name">exclision</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">exclisions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2、scope依赖范围</p>
-<p>classpath有3套，分别是编译classpath、测试classpath、运行classpath。Maven的依赖范围scope对应关系如下：</p>
-<ul>
-<li>compile，默认，三种classpath都有效。</li>
-<li>test，只对于测试classpath有效。比如JUnit。</li>
-<li>provided，对编译和测试classpath有效，如servlet-api。</li>
-<li>runtime，对于测试和运行classpath有效。如JDBC驱动</li>
-<li>system，和provided依赖范围一致，但通过systemPath指定依赖文件路径。</li>
-</ul>
-<p>3、传递型依赖</p>
-<p>依赖范围影响传递性依赖，可选依赖不被传递。</p>
-<p>依赖调解原则：</p>
-<ul>
-<li>路径最近者优先</li>
-<li>第一声明者优先</li></ul>
-        
-          <a class="article-more-a" href="/2016/09/30/Maven实战/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/30/Maven实战/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux服务器网络抓包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/27/Linux服务器网络抓包/">Linux服务器网络抓包</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/27/Linux服务器网络抓包/" class="archive-article-date">
-  	<time datetime="2016-09-27T08:43:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Linux网络监控工具"><a href="#一、Linux网络监控工具" class="headerlink" title="一、Linux网络监控工具"></a>一、Linux网络监控工具</h2><p>监控Linux网络带宽的工具有一大把，下面是按功能划分的命令名称。</p>
-<ul>
-<li>监控总体带宽使用――nload、bmon、slurm、bwm-ng、cbm、speedometer和netload</li>
-<li>监控总体带宽使用（批量式输出）――vnstat、ifstat、dstat和collectl</li>
-<li>每个套接字连接的带宽使用――iftop、iptraf、tcptrack、pktstat、netwatch和trafshow</li>
-<li>每个进程的带宽使用――nethogs</li>
-</ul>
-<h2 id="二、tcpdump"><a href="#二、tcpdump" class="headerlink" title="二、tcpdump"></a>二、tcpdump</h2><p>最近需要对服务器的网络进行抓包统计，便用到了tcpdump。<a href="http://www.tcpdump.org" target="_blank" rel="noopener">『官网传送门』</a>，可去查看最新版本以及相关用法。</p>
-<p>用简单的话来定义tcpdump，就是：dump the traffic on a network，根据使用者的定义对网络上的数据包进行截获的包分析工具。 tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息。</p>
-<blockquote>
-<p>tcpdump安装  </p>
-</blockquote>
-<p>依赖：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$ yum install flex  </span><br><span class="line">$ yum install bison  </span><br><span class="line">$ yum install gcc </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ wget http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz    </span><br><span class="line">$ wget http://www.tcpdump.org/release/tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ tar -zxvf libpcap-1.8.1.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> libpcap-1.8.1    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ make install    </span><br><span class="line">    </span><br><span class="line">$ <span class="built_in">cd</span> ..    </span><br><span class="line">$ tar -zxvf tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> tcpdump-4.9.2    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ sudo make install  </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">首先需要查看设备上有哪些设备可以抓取，通过tcpdump -D会列出可以抓取的网络设备名以及编号</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">```txt</span><br><span class="line">1.eth0 [Up, Running]</span><br><span class="line">2.eth1 [Up, Running]</span><br><span class="line">3.any (Pseudo-device that captures on all interfaces) [Up, Running]</span><br><span class="line">4.lo [Up, Running, Loopback]</span><br><span class="line">5.usbmon0 (All USB buses)</span><br><span class="line">6.nflog (Linux netfilter <span class="built_in">log</span> (NFLOG) interface)</span><br><span class="line">7.nfqueue (Linux netfilter queue (NFQUEUE) interface)</span><br><span class="line">8.usbmon1 (USB bus number 1)</span><br></pre></td></tr></table></figure>
-<p>如需要可视化页面来分析，可以安装大名鼎鼎的<a href="https://www.wireshark.org" target="_blank" rel="noopener">wireshark</a>。最新版本是支持windows和mac了的。</p>
-<p>可以通过tcpdump导出cap文件，供wireshark直接打开。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tcpdump tcp -i 2 -t -s 0 -c 2000 -w x.cap</span><br><span class="line"></span><br><span class="line">$ tcpdump -XvvennSs 0 -i 7 tcp[20:2]=0x4745 or tcp[20:2]=0x4854 -w x.cap</span><br></pre></td></tr></table></figure>
-<p>相关参数的含义请参考官网文档。</p>
-<p><img src="/2016/09/27/Linux服务器网络抓包/wireshark.jpg" alt=""></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/27/Linux服务器网络抓包/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mac下Php的环境配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/17/Mac下Php的环境配置/">Mac下Php的环境配置</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/17/Mac下Php的环境配置/" class="archive-article-date">
-  	<time datetime="2016-08-17T03:46:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Php环境安装"><a href="#一、Php环境安装" class="headerlink" title="一、Php环境安装"></a>一、Php环境安装</h2><p>1、Mac推荐使用XAMPP，Window可使用wampserver。直接傻瓜式下载安装即可。目前最新版本7.0.2，正常运行，开启mysql和apache，写个phpinfo，检测下环境即可。<br>以下以Mac为例，10.12 Sierra自带的php版本为5.6，XAMPP安装的php是7.0，可共存。</p>
-<p>2、PhpStorm安装：略，如有问题，可校验下sha256。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ shasum -a 256 PhpStorm-2017.2.4.dmg</span><br></pre></td></tr></table></figure>
-<h2 id="二、本地安装Redis"><a href="#二、本地安装Redis" class="headerlink" title="二、本地安装Redis"></a>二、本地安装Redis</h2><blockquote>
-<p>安装Redis</p>
-</blockquote>
-<p>1、可使用brew直接安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install redis</span><br></pre></td></tr></table></figure>
-<p>2、修改配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
-<p>3、本地启动redis</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/bin/redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/08/17/Mac下Php的环境配置/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/17/Mac下Php的环境配置/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1101,7 +1329,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1188,15 +1416,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1208,15 +1428,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1224,7 +1444,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1232,19 +1452,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1256,7 +1472,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,6 +1516,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -1304,14 +1536,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -1321,6 +1545,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

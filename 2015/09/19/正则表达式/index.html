@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>正则表达式 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束     常用的限定符     代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复">
+  <meta name="description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
 <meta name="keywords" content="正则">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://iherr.cn/2015/09/19/正则表达式/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束     常用的限定符     代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复">
+<meta property="og:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-18T07:53:41.000Z">
+<meta property="og:updated_time" content="2018-11-16T07:33:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始   $ 匹配字符串的结束     常用的限定符     代码/语法 说明     * 重复零次或更多次   + 重复一次或更多次   ? 重复零次或一次   {n} 重复">
+<meta name="twitter:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -204,11 +204,28 @@
 </tr>
 <tr>
 <td>^</td>
-<td>匹配字符串的开始</td>
+<td>匹配字符串的开始，注意如果放到方括号中表示排除。</td>
 </tr>
 <tr>
 <td>$</td>
 <td>匹配字符串的结束</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>选择字符，理解为“或”</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符</td>
+</tr>
+<tr>
+<td>()</td>
+<td>分组</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>范围</td>
 </tr>
 </tbody>
 </table>
@@ -500,7 +517,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -587,15 +604,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -607,15 +616,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -623,7 +632,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,19 +640,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,7 +660,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -687,6 +704,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -703,14 +724,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -720,6 +733,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

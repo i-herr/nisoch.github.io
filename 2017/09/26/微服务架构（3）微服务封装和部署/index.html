@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>微服务架构（3）微服务封装和部署 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』 可使用带dockerfile和不带dockerfile的两种方式。 123456789101112131415161718192021222324252627&amp;lt;plugin&amp;gt;    &amp;lt;gr">
-<meta name="keywords" content="Docker,Java,SpringBoot,MSA,Jenkins">
+  <meta name="description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』，该插件为Spotify公司开发的Maven插件。 可使用带dockerfile和不带dockerfile的两种方式。 12345678910111213141516171819202122232425262">
+<meta name="keywords" content="Docker,SpringBoot,Java,MSA,Jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构（3）微服务封装和部署">
 <meta property="og:url" content="http://iherr.cn/2017/09/26/微服务架构（3）微服务封装和部署/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』 可使用带dockerfile和不带dockerfile的两种方式。 123456789101112131415161718192021222324252627&amp;lt;plugin&amp;gt;    &amp;lt;gr">
+<meta property="og:description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』，该插件为Spotify公司开发的Maven插件。 可使用带dockerfile和不带dockerfile的两种方式。 12345678910111213141516171819202122232425262">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2017/09/26/微服务架构（3）微服务封装和部署/jenkins.jpg">
-<meta property="og:updated_time" content="2018-10-18T03:17:55.000Z">
+<meta property="og:updated_time" content="2018-11-14T06:57:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构（3）微服务封装和部署">
-<meta name="twitter:description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』 可使用带dockerfile和不带dockerfile的两种方式。 123456789101112131415161718192021222324252627&amp;lt;plugin&amp;gt;    &amp;lt;gr">
+<meta name="twitter:description" content="一、微服务的封装采用Docker实现，Docker相关知识可参考另一篇博文。  SpringBoot和Docker整合  添加插件docker-maven-plugin 『github传送门』，该插件为Spotify公司开发的Maven插件。 可使用带dockerfile和不带dockerfile的两种方式。 12345678910111213141516171819202122232425262">
 <meta name="twitter:image" content="http://iherr.cn/2017/09/26/微服务架构（3）微服务封装和部署/jenkins.jpg">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
@@ -177,11 +177,13 @@
 <blockquote>
 <p>SpringBoot和Docker整合</p>
 </blockquote>
-<p>添加插件docker-maven-plugin <a href="https://github.com/spotify/docker-maven-plugin" target="_blank" rel="noopener">『github传送门』</a></p>
+<p>添加插件docker-maven-plugin <a href="https://github.com/spotify/docker-maven-plugin" target="_blank" rel="noopener">『github传送门』</a>，该插件为Spotify公司开发的Maven插件。</p>
 <p>可使用带dockerfile和不带dockerfile的两种方式。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;com.spotify&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;!--&lt;imageName&gt;$&#123;docker.registry&#125;/$&#123;project.groupId&#125;/$&#123;project.artifactId&#125;:$&#123;project.version&#125;&lt;/imageName&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;dockerDirectory&gt;$&#123;project.build.outputDirectory&#125;&lt;/dockerDirectory&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;resources&gt;--&gt;</span><br><span class="line">            &lt;!--&lt;resource&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;targetPath&gt;/&lt;/targetPath&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;--&gt;</span><br><span class="line">            &lt;!--&lt;/resource&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;/resources&gt;--&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;imageName&gt;$&#123;docker.registry&#125;/$&#123;project.groupId&#125;/$&#123;project.artifactId&#125;:$&#123;project.version&#125;&lt;/imageName&gt;</span><br><span class="line">        &lt;baseImage&gt;java&lt;/baseImage&gt;</span><br><span class="line">        &lt;entryPoint&gt;[&quot;java&quot;, &quot;-jar&quot;, &quot;/$&#123;project.build.finalName&#125;.jar&quot;]&lt;/entryPoint&gt;</span><br><span class="line">        &lt;!-- copy the service&apos;s jar file from target into the root directory of the image --&gt;</span><br><span class="line">        &lt;resources&gt;</span><br><span class="line">            &lt;resource&gt;</span><br><span class="line">                &lt;targetPath&gt;/&lt;/targetPath&gt;</span><br><span class="line">                &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span><br><span class="line">                &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span><br><span class="line">            &lt;/resource&gt;</span><br><span class="line">        &lt;/resources&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>如采用dockerfile文件，需把上方注释掉的代码打开。在resource目录下增加dockerfile文件，内容如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java</span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"iherr"</span>&lt;herongrong-<span class="number">123</span>@<span class="number">163</span>.com&gt;</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> @project.build.finalName@.jar app.jar</span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD java -jar app.jar</span></span><br></pre></td></tr></table></figure>
+<p>执行以下命令，构建Docker镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean package docker:build</span><br></pre></td></tr></table></figure>
+<p>如采用dockerfile文件，需更改上方pom文件注释掉的代码。在resource目录下增加dockerfile文件，内容如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"iherr"</span>&lt;herongrong-<span class="number">123</span>@<span class="number">163</span>.com&gt;</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> @project.build.finalName@.jar app.jar</span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD java -jar app.jar</span></span><br></pre></td></tr></table></figure>
 <p>使用docker:build命令生成dockerfile和jar包。<br>使用docker:push推送到docker的本地registry服务器。<br>使用如下命令运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name springboot-hello -p 58080:8080 127.0.0.1:5000/com.msa/hello:0.0.1</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -349,7 +351,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -436,15 +438,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -456,15 +450,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,7 +466,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,19 +474,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -504,7 +494,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,6 +538,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -552,14 +558,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -569,6 +567,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

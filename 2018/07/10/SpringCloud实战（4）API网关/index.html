@@ -8,20 +8,23 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>SpringCloud实战（4）API网关 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  Spring Cloud Zuul只是API Gateway的一种">
+  <meta name="description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  如果客户端直接和各个微服务通信，会有如下问题：  客户端会多次请求">
 <meta name="keywords" content="Java,SpringCloud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloud实战（4）API网关">
 <meta property="og:url" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  Spring Cloud Zuul只是API Gateway的一种">
+<meta property="og:description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  如果客户端直接和各个微服务通信，会有如下问题：  客户端会多次请求">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/gateway.png">
 <meta property="og:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/eureka.png">
-<meta property="og:updated_time" content="2018-10-18T08:34:20.000Z">
+<meta property="og:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/zuul_cluster1.jpg">
+<meta property="og:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/zuul_cluster2.jpg">
+<meta property="og:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/sidecar_eureka.png">
+<meta property="og:updated_time" content="2018-11-14T06:29:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud实战（4）API网关">
-<meta name="twitter:description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  Spring Cloud Zuul只是API Gateway的一种">
+<meta name="twitter:description" content="一、API网关API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。  如果客户端直接和各个微服务通信，会有如下问题：  客户端会多次请求">
 <meta name="twitter:image" content="http://iherr.cn/2018/07/10/SpringCloud实战（4）API网关/gateway.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
@@ -176,8 +179,24 @@
       
         <h2 id="一、API网关"><a href="#一、API网关" class="headerlink" title="一、API网关"></a>一、API网关</h2><p>API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。</p>
 <p><img src="/2018/07/10/SpringCloud实战（4）API网关/gateway.png" alt=""></p>
-<p>Spring Cloud Zuul只是API Gateway的一种实现，其他的还有Nginx Plus、Kong等等。</p>
-<h2 id="二、-项目基础配置"><a href="#二、-项目基础配置" class="headerlink" title="二、 项目基础配置"></a>二、 项目基础配置</h2><p>为实现API网关，需要几个基础的module，请参考上一节实战（3）。配置不变。</p>
+<p>如果客户端直接和各个微服务通信，会有如下问题：</p>
+<ul>
+<li>客户端会多次请求不同的微服务，增加客户端复杂性</li>
+<li>跨域请求</li>
+<li>认证复杂</li>
+<li>难以重构</li>
+</ul>
+<h2 id="二、-项目基础配置"><a href="#二、-项目基础配置" class="headerlink" title="二、 项目基础配置"></a>二、 项目基础配置</h2><p>Zuul是Netflix开源的微服务网关，只是API Gateway的一种实现，其他的还有Nginx Plus、Kong等等。SpringCloud对Zuul进行了整合和增强，Zuul的核心是一系列过滤器：</p>
+<ul>
+<li>身份认证与安全</li>
+<li>审查与监控</li>
+<li>动态路由</li>
+<li>压力测试</li>
+<li>负载分配</li>
+<li>静态响应处理</li>
+<li>多区域弹性</li>
+</ul>
+<p>为实现Zuul网关，需要几个基础的module，请参考上一节实战（3）。配置不变。</p>
 <ul>
 <li>eureka-server，作为eureka的server服务注册中心</li>
 <li>service-provider-1，eureka-client端，连接到eureka-server成为服务提供者1。</li>
@@ -195,22 +214,121 @@
 <li>访问<a href="http://localhost:8001/1" target="_blank" rel="noopener">http://localhost:8001/1</a> 会返回service1。代表原有service-provider-1项目启动成功。</li>
 <li>访问<a href="http://localhost:8040/service-provider/1" target="_blank" rel="noopener">http://localhost:8040/service-provider/1</a> 也同样会返回service1。代表zuul项目启动成功。</li>
 <li>访问<a href="http://localhost:8761" target="_blank" rel="noopener">http://localhost:8761</a> 可以看到1个SERVICE-PROVIDER和1个SERVICE-EUREKA-ZUUL。</li>
+<li>zuul集成了Hystrix和Ribon负载均衡。</li>
 </ul>
 <p><img src="/2018/07/10/SpringCloud实战（4）API网关/eureka.png" alt=""></p>
-<h2 id="四、zuul路径设置"><a href="#四、zuul路径设置" class="headerlink" title="四、zuul路径设置"></a>四、zuul路径设置</h2><blockquote>
+<h2 id="四、zuul路径设置"><a href="#四、zuul路径设置" class="headerlink" title="四、zuul路径设置"></a>四、zuul路径设置</h2><p>zuul集成了routes端点，可访问<a href="http://localhost:8040/actuator/routes" target="_blank" rel="noopener">http://localhost:8040/actuator/routes</a> 查看映射关系详情。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#routes端点返回</span><br><span class="line">&#123;</span><br><span class="line">	<span class="attr">"/user/**"</span>: <span class="string">"service-provider"</span>,</span><br><span class="line">	<span class="attr">"/service-provider/**"</span>: <span class="string">"service-provider"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>默认规则</p>
 </blockquote>
-<p>默认访问地址如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8040/service-provider/1</span><br></pre></td></tr></table></figure>
+<p>默认访问地址 <a href="http://localhost:8040/service-provider/1" target="_blank" rel="noopener">http://localhost:8040/service-provider/1</a></p>
 <p>访问<a href="http://GATEWAY:GATEWAY_PORT/想要访问的Eureka服务id的小写/**" target="_blank" rel="noopener">http://GATEWAY:GATEWAY_PORT/想要访问的Eureka服务id的小写/**</a> ，将会访问到，<a href="http://想要访问的Eureka服务id的小写:该服务端口/**" target="_blank" rel="noopener">http://想要访问的Eureka服务id的小写:该服务端口/**</a> 。</p>
 <blockquote>
 <p>自定义路径</p>
 </blockquote>
-<p>自定义访问地址如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8040/user/1</span><br></pre></td></tr></table></figure>
-<p>需要在yml增加配置如下：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">service-provider</span>  <span class="comment"># 可以忽略的服务，不被路由，这样默认路径就无法访问了。</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    user:</span>   <span class="comment"># 可以随便写，在zuul上面唯一即可</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/user/**</span>  <span class="comment"># 想要映射到的路径</span></span><br><span class="line"><span class="attr">      service-id:</span> <span class="string">service-provider</span>  <span class="comment">#Eureka中的serviceId</span></span><br></pre></td></tr></table></figure>
-<h2 id="五、相关代码"><a href="#五、相关代码" class="headerlink" title="五、相关代码"></a>五、相关代码</h2><p><a href="https://gitee.com/iherr/spring-cloud-trip-zuul.git" target="_blank" rel="noopener">『代码传送门』</a></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义访问地址 http://localhost:8040/user/1</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">service-provider</span>  <span class="comment"># 可以忽略的服务，不被路由，这样默认路径就无法访问了。</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    user:</span>   <span class="comment"># 可以随便写，在zuul上面唯一即可</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/user/**</span>  <span class="comment"># 想要映射到的路径</span></span><br><span class="line"><span class="attr">      service-id:</span> <span class="string">service-provider</span>  <span class="comment">#Eureka中的serviceId</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下写法与上面等价    </span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">service-provider</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    service-provider:</span> <span class="string">/user/**</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>忽略微服务/微服务的某些路径</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略指定微服务</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">service-provider</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 先忽略所有微服务，然后可指定微服务</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-services:</span> <span class="string">service-provider</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 忽略某些路径，忽略包含/admin/的路径</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  ignored-patterns:</span> <span class="string">/**/admin/**</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    service-provider:</span> <span class="string">/user/**</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>路由前缀</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以下用于路由前缀，访问Zuul的/api/service-provider/1路径，请求将被转发到service-provider的/api/1。</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  prefix:</span> <span class="string">/api</span></span><br><span class="line"><span class="attr">  strip-prefix:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    service-provider:</span> <span class="string">/user/**</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下用于路由前缀，访问Zuul的/user/1路径，请求将被转发到service-provider的/user/1。</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    service-provider:</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/user/**</span></span><br><span class="line"><span class="attr">      strip-prefix:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>本地转发</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以下用于本地转发，访问Zuul的/path-a/**路径，请求将被转发到Zuul的/path-b/**。</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  routes:</span> </span><br><span class="line"><span class="attr">    route-name:</span> <span class="comment">#只是个路由名称，任意起名</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/path-a/**</span></span><br><span class="line"><span class="attr">      url:</span> <span class="attr">forward:/path-b</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同时指定path和URL</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 改方式将/user/** 映射到http://localhost:8000/。但该方式不会使用Hystrix和Ribbon特性。</span></span><br><span class="line"><span class="attr">zuul:</span></span><br><span class="line"><span class="attr">  routes:</span></span><br><span class="line"><span class="attr">    route-name:</span></span><br><span class="line"><span class="attr">      path:</span> <span class="string">/user/**</span></span><br><span class="line"><span class="attr">      url:</span> <span class="attr">http://localhost:8000/</span></span><br></pre></td></tr></table></figure>
+<p>另外，还使用正则表达式指定Zuul的路由匹配规则借助PatternServiceRouteMapper，实现微服务到映射路由的正则配置。</p>
+<p>若路由遇到问题，可以通过日志查看转发细节。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  level:</span></span><br><span class="line">    <span class="string">com.netflix:</span> <span class="string">DEBUG</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Header设置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 设置/忽略header</span><br><span class="line">zuul:</span><br><span class="line">  sensitive-headers: Cookie,Set-Cookie,AUthorization</span><br><span class="line">  ignored-headers: Header1,Header2</span><br></pre></td></tr></table></figure>
+<h2 id="五、Zuul的过滤器"><a href="#五、Zuul的过滤器" class="headerlink" title="五、Zuul的过滤器"></a>五、Zuul的过滤器</h2><blockquote>
+<p>查看过滤器</p>
+</blockquote>
+<p>zuul集成了filters端点，可访问<a href="http://localhost:8040/actuator/filters" target="_blank" rel="noopener">http://localhost:8040/actuator/filters</a> 查看过滤器的详情。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#filters端点返回</span><br><span class="line">&#123;</span><br><span class="line">	<span class="attr">"error"</span>: [&#123;</span><br><span class="line">		<span class="attr">"class"</span>: <span class="string">"org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter"</span>,</span><br><span class="line">		<span class="attr">"order"</span>: <span class="number">0</span>,</span><br><span class="line">		<span class="attr">"disabled"</span>: <span class="literal">false</span>,</span><br><span class="line">		<span class="attr">"static"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;],</span><br><span class="line">	<span class="attr">"post"</span>: [&#123;</span><br><span class="line">		<span class="attr">"class"</span>: <span class="string">"org.springframework.cloud.netflix.zuul.filters.post.SendResponseFilter"</span>,</span><br><span class="line">		<span class="attr">"order"</span>: <span class="number">1000</span>,</span><br><span class="line">		<span class="attr">"disabled"</span>: <span class="literal">false</span>,</span><br><span class="line">		<span class="attr">"static"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;],</span><br><span class="line">	<span class="attr">"pre"</span>: [&#123;</span><br><span class="line">		<span class="attr">"class"</span>: <span class="string">"org.springframework.cloud.netflix.zuul.filters.pre.DebugFilter"</span>,</span><br><span class="line">		<span class="attr">"order"</span>: <span class="number">1</span>,</span><br><span class="line">		<span class="attr">"disabled"</span>: <span class="literal">false</span>,</span><br><span class="line">		<span class="attr">"static"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;],</span><br><span class="line">	<span class="attr">"route"</span>: [&#123;</span><br><span class="line">		<span class="attr">"class"</span>: <span class="string">"org.springframework.cloud.netflix.zuul.filters.route.SimpleHostRoutingFilter"</span>,</span><br><span class="line">		<span class="attr">"order"</span>: <span class="number">100</span>,</span><br><span class="line">		<span class="attr">"disabled"</span>: <span class="literal">false</span>,</span><br><span class="line">		<span class="attr">"static"</span>: <span class="literal">true</span></span><br><span class="line">	&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>过滤器介绍</p>
+</blockquote>
+<p>过滤器是Zuul的核心组件，定义了4种标准过滤器类型。</p>
+<ul>
+<li>PRE，在请求被路由前调用。可实现身份验证、集群中选择请求的微服务、记录调试信息等。还可以实现安全认证、灰度发布、限流等。</li>
+<li>ROUTING，将请求路由到微服务。</li>
+<li>POST，在请求路由到微服务后执行。可为响应添加Header、收集统计信息和指标、将响应从微服务发送到客户端等。</li>
+<li>ERROR，在其他阶段发生错误时执行。</li>
+<li>自定义过滤性，可自行创建。</li>
+</ul>
+<p>SpringCloud默认为Zuul编写并启用了一些过滤性，通过@EnableZuulServer和@EnableZuulProxy这两个注解实现。</p>
+<p>@EnableZuulProxy是@EnableZuulServer的增强版，额外包含了RibbonRoutingFilter等其他几个过滤器。</p>
+<blockquote>
+<p>自定义Zuul过滤器</p>
+</blockquote>
+<p>自定义Zuul过滤器代码如下，继承抽象类ZuulFilter并实现4个抽象方法即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PreRequestLogFilter</span> <span class="keyword">extends</span> <span class="title">ZuulFilter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(PreRequestLogFilter.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">filterType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> FilterConstants.PRE_TYPE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">filterOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> FilterConstants.PRE_DECORATION_FILTER_ORDER -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">run</span><span class="params">()</span> <span class="keyword">throws</span> ZuulException </span>&#123;</span><br><span class="line">        RequestContext ctx= RequestContext.getCurrentContext();</span><br><span class="line">        HttpServletRequest request= ctx.getRequest();</span><br><span class="line">        PreRequestLogFilter.LOGGER.info(String.format(<span class="string">"send %s request to %s"</span>,request.getMethod(),request.getRequestURL().toString()));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>禁用过滤器</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#格式</span></span><br><span class="line"><span class="string">zuul.&lt;SimpleClassname&gt;.&lt;filterType&gt;.disable=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#示例，禁用上节定义的过滤器</span></span><br><span class="line"><span class="string">zuul.</span> <span class="string">PreRequestLogFilter.pre.disable=true</span></span><br></pre></td></tr></table></figure>
+<h2 id="六、Zuul的其他特性"><a href="#六、Zuul的其他特性" class="headerlink" title="六、Zuul的其他特性"></a>六、Zuul的其他特性</h2><blockquote>
+<p>Zuul的容错与回退</p>
+</blockquote>
+<p>为Zuul添加回退，需实现FallbackProvider接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFallbackProvider</span> <span class="keyword">implements</span> <span class="title">FallbackProvider</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getRoute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 为所有微服务提供回退</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"*"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClientHttpResponse <span class="title">fallbackResponse</span><span class="params">(String route, Throwable cause)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cause <span class="keyword">instanceof</span> HystrixTimeoutException) &#123;</span><br><span class="line">            <span class="keyword">return</span> response(HttpStatus.GATEWAY_TIMEOUT);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.fallbackResponse();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ClientHttpResponse <span class="title">fallbackResponse</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.response(HttpStatus.INTERNAL_SERVER_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ClientHttpResponse <span class="title">response</span><span class="params">(<span class="keyword">final</span> HttpStatus status)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ClientHttpResponse() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> HttpStatus <span class="title">getStatusCode</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> status;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getRawStatusCode</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> status.value();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">getStatusText</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> status.getReasonPhrase();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> InputStream <span class="title">getBody</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> ByteArrayInputStream(<span class="string">"服务不可用，请稍后再试。"</span>.getBytes());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> HttpHeaders <span class="title">getHeaders</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">// headers设定</span></span><br><span class="line">                HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">                MediaType mt = <span class="keyword">new</span> MediaType(<span class="string">"application"</span>, <span class="string">"json"</span>, Charset.forName(<span class="string">"UTF-8"</span>));</span><br><span class="line">                headers.setContentType(mt);</span><br><span class="line">                <span class="keyword">return</span> headers;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Zuul中Hystrix隔离策略和线程池</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zuul:</span></span><br><span class="line">  <span class="comment">#使用THREAD隔离策略</span></span><br><span class="line"><span class="attr">  ribbon-isolation-strategy:</span> <span class="string">thread</span> </span><br><span class="line"><span class="attr">  thread-pool:</span></span><br><span class="line">    <span class="comment">#每个路由使用独立的线程池</span></span><br><span class="line"><span class="attr">    use-separate-thread-pools:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment">#变更HystrixThreadPoolkey  </span></span><br><span class="line"><span class="attr">    thread-pool-key-prefix:</span> <span class="string">prefix-</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>高可用性</p>
+</blockquote>
+<p>1、如请求Zuul的客户端也注册到了Eureka上，则会自动实现Zuul的高可用性。<br><img src="/2018/07/10/SpringCloud实战（4）API网关/zuul_cluster1.jpg" alt=""></p>
+<p>2、如请求Zuul的客户端未注册到了Eureka上，可借助额外的负载均衡器来实现Zuul的高可用性。<br><img src="/2018/07/10/SpringCloud实战（4）API网关/zuul_cluster2.jpg" alt=""></p>
+<blockquote>
+<p>微服务聚合</p>
+</blockquote>
+<p>Zuul可结合RxJava，由Zuul来请求多个微服务的请求，并组织好数据返回。</p>
+<h2 id="七、Sidecar整合非JVM微服务"><a href="#七、Sidecar整合非JVM微服务" class="headerlink" title="七、Sidecar整合非JVM微服务"></a>七、Sidecar整合非JVM微服务</h2><p>非JVM微服务可操作Eureka的Rest端点实现注册与发现。也可以使用SpringCloud Netflix Sidecar来整合。</p>
+<blockquote>
+<p>Node.js微服务</p>
+</blockquote>
+<p>1、node-service.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">"url"</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建server</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 获得请求的路径</span></span><br><span class="line">    <span class="keyword">var</span> pathname = url.parse(req.url).pathname;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123; <span class="string">'Content-Type'</span> : <span class="string">'application/json; charset=utf-8'</span> &#125;);</span><br><span class="line">    <span class="comment">// 访问http://localhost:8060/，将会返回&#123;"index":"欢迎来到首页"&#125;</span></span><br><span class="line">    <span class="keyword">if</span> (pathname === <span class="string">'/'</span>) &#123;</span><br><span class="line">        res.end(<span class="built_in">JSON</span>.stringify(&#123; <span class="string">"index"</span> : <span class="string">"欢迎来到首页"</span> &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 访问http://localhost:8060/health，将会返回&#123;"status":"UP"&#125;</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pathname === <span class="string">'/health.json'</span>) &#123;</span><br><span class="line">        res.end(<span class="built_in">JSON</span>.stringify(&#123; <span class="string">"status"</span> : <span class="string">"UP"</span> &#125;));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 其他情况返回404</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        res.end(<span class="string">"404"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 创建监听，并打印日志</span></span><br><span class="line">server.listen(<span class="number">8060</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'listening on localhost:8060'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>2、命令启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node node-service.js</span><br></pre></td></tr></table></figure>
+<p>3、访问<a href="http://localhost:8060/health.json" target="_blank" rel="noopener">http://localhost:8060/health.json</a> 和<a href="http://localhost:8060/" target="_blank" rel="noopener">http://localhost:8060/</a> </p>
+<blockquote>
+<p>Sidecar项目</p>
+</blockquote>
+<p>1、POM依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-zuul<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-netflix-sidecar<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、yml配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8070</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">service-sidecar</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    service-url:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://localhost:8761/eureka/</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    prefer-ip-address:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">sidecar:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8060</span>   <span class="comment"># Node.js微服务的端口</span></span><br><span class="line"><span class="attr">  health-uri:</span> <span class="attr">http://localhost:8060/health.json</span> <span class="comment"># Node.js微服务的健康检查URL</span></span><br><span class="line"><span class="attr">  ip-address:</span> <span class="comment">#如果Sidecar和Node分离部署，可以设置非JVN微服务的IP地址</span></span><br><span class="line"><span class="attr">  hostname:</span> <span class="comment">#如果Sidecar和Node分离部署，可以设置非JVN微服务的hostname</span></span><br></pre></td></tr></table></figure>
+<p>3、service-provider-1增加testNode节点，使用Ribbon调用node服务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/testNode"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">fintestNodedByhahaId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"http://service-sidecar/"</span>,String.class);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4、测试</p>
+<ul>
+<li>非JVM调用JVM，可访问地址<a href="http://localhost:8070/service-provider/1" target="_blank" rel="noopener">http://localhost:8070/service-provider/1</a> 来调用JVM微服务。</li>
+<li>JVM调用非JVM，<a href="http://localhost:8070/service-provider/testNode" target="_blank" rel="noopener">http://localhost:8070/service-provider/testNode</a> 来调用Node微服务。</li>
+<li>查看service-sidecar在erureka上的注册信息，<a href="http://localhost:8761/eureka/apps/service-sidecar" target="_blank" rel="noopener">http://localhost:8761/eureka/apps/service-sidecar</a> </li>
+<li>停掉Node微服务node-service后，Eureka Server能感知到非JVM微服务的健康状态。</li>
+</ul>
+<p><img src="/2018/07/10/SpringCloud实战（4）API网关/sidecar_eureka.png" alt=""></p>
+<p>5、Sidecar端点</p>
+<ul>
+<li>/：展示常用端点</li>
+<li>/hosts/{serviceId}：指定微服务在Eureka的实例列表</li>
+<li>/ping：返回OK</li>
+</ul>
+<h2 id="八、相关代码"><a href="#八、相关代码" class="headerlink" title="八、相关代码"></a>八、相关代码</h2><p><a href="https://gitee.com/iherr/spring-cloud-trip-zuul.git" target="_blank" rel="noopener">『代码传送门』</a></p>
 
       
 
@@ -303,11 +421,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/15/SpringCloud实战（5）熔断器/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/07/15/SpringCloud实战（5）断路器/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          SpringCloud实战（5）熔断器
+          SpringCloud实战（5）断路器
         
       </div>
     </a>
@@ -357,7 +475,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -444,15 +562,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -464,15 +574,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,7 +590,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,19 +598,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,7 +618,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,6 +662,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -560,14 +682,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -577,6 +691,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

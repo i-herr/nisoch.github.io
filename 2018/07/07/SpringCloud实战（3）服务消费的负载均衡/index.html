@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2018/07/07/SpringCloud实战（3）服务消费的负载均衡/eureka_ribbon.png">
 <meta property="og:image" content="http://iherr.cn/2018/07/07/SpringCloud实战（3）服务消费的负载均衡/eureka_feign.png">
-<meta property="og:updated_time" content="2018-10-18T08:34:14.000Z">
+<meta property="og:updated_time" content="2018-11-13T08:41:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud实战（3）服务消费的负载均衡">
 <meta name="twitter:description" content="一、服务提供者和服务消费者   名词 概念     服务提供者 服务的被调用方   服务消费者 服务的调用方     服务提供者  提供接口服务后，并注册到注册中心。  服务消费者  我们创建了注册中心，以及服务的提供者，并成功地将服务提供者注册到了注册中心上。 要想消费服务是很简单的，我们只需要使用RestTemplate即可，或者例如HttpClient之类的http工具也是可以的。 在集群环">
@@ -244,7 +244,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3、yml配置中，项目的spring.application.name为service-consumer-ribbon，端口8010。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: 8010</span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: service-consumer-ribbon</span><br><span class="line">eureka:</span><br><span class="line">  client:</span><br><span class="line">    serviceUrl:</span><br><span class="line">      defaultZone: http://localhost:8761/eureka/</span><br><span class="line">  instance:</span><br><span class="line">    prefer-ip-address: true</span><br></pre></td></tr></table></figure>
-<p>4、RibbonController.java</p>
+<p>4、RibbonController.java，请求地址中，service-provider是服微服务的虚拟主机名，Ribbon会自动将虚拟主机名映射成微服务的ip。虚拟主机名不能包含“_”等字符，Ribbon调用时会报错。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"ribbon"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(RibbonController.class);</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LoadBalancerClient loadBalancerClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">findById</span><span class="params">(@PathVariable Long id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.restTemplate.getForObject(<span class="string">"http://service-provider/"</span> + id, String.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/log-instance"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">logUserInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServiceInstance serviceInstance = <span class="keyword">this</span>.loadBalancerClient.choose(<span class="string">"service-provider"</span>);</span><br><span class="line">        RibbonController.LOGGER.info(<span class="string">"&#123;&#125;:&#123;&#125;:&#123;&#125;"</span>, serviceInstance.getServiceId(), serviceInstance.getHost(), serviceInstance.getPort());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>5、测试<br>需要先依次启动项目基础配置中的3个module。才能启动ribbon项目。</p>
 <ul>
@@ -253,7 +253,43 @@
 <li>访问<a href="http://localhost:8761" target="_blank" rel="noopener">http://localhost:8761</a> 可以看到2个SERVICE-PROVIDER和一个SERVICE-CONSUMER-RIBBON。</li>
 </ul>
 <p><img src="/2018/07/07/SpringCloud实战（3）服务消费的负载均衡/eureka_ribbon.png" alt=""></p>
-<h2 id="五、Feign项目配置"><a href="#五、Feign项目配置" class="headerlink" title="五、Feign项目配置"></a>五、Feign项目配置</h2><p>1、pom.xml依赖</p>
+<h2 id="五、Ribbon配置自定义"><a href="#五、Ribbon配置自定义" class="headerlink" title="五、Ribbon配置自定义"></a>五、Ribbon配置自定义</h2><blockquote>
+<p>java代码自定义Ribbon配置</p>
+</blockquote>
+<p>在SpringCloud中，Ribbon的默认配置如下：（BeanType beanName:Classname）</p>
+<ul>
+<li>IClientConfig ribbonClientConfig: DefaultClientConfigImpl</li>
+<li>IRule ribbonRule: ZoneAvoidanceRule</li>
+<li>IPing ribbonPing: DummyPing</li>
+<li>…</li>
+</ul>
+<p>1、如需要改负载均衡规则，可先编写配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置类，不应该被@ComponentScan扫描</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RibbonConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRule <span class="title">ribbonRule</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//负载均衡规则，改为随机</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RandomRule();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、添加RibbonClient注解，可自定义指定名称Ribbon客户端的配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@RibbonClient</span>(name=<span class="string">"service-provider"</span>,configuration = RibbonConfiguration.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、也可使用@RibbonClients注解为所有Ribbon Client提供默认配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RibbonClients</span>(defaultConfiguration = DefaultRibbonConfig.class)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>属性自定义Ribbon配置</p>
+</blockquote>
+<p>1、针对service-provider的负载均衡规则</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service-provider:</span></span><br><span class="line"><span class="attr">  ribbon:</span></span><br><span class="line"><span class="attr">    NFLoadBalancerRuleClassName:</span> <span class="string">com.netflix.loadbalancer.RandomRule</span></span><br></pre></td></tr></table></figure>
+<p>2、针对所有Ribbon Client的负载均衡规则</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ribbon:</span></span><br><span class="line"><span class="attr">  NFLoadBalancerRuleClassName:</span> <span class="string">com.netflix.loadbalancer.RandomRule</span></span><br></pre></td></tr></table></figure>
+<p>3、属性配置的方式比Java代码配置的方式优先级更高</p>
+<blockquote>
+<p>脱离Eureka使用Ribbon</p>
+</blockquote>
+<p>可通过配置ribbon.listOfServers来设置Ribbon客户端设置请求的列表地址</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service-provider:</span></span><br><span class="line"><span class="attr">  ribbon:</span></span><br><span class="line"><span class="attr">    listOfServers:</span> <span class="attr">localhost:8001,localhost:8002</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>饥饿加载</p>
+</blockquote>
+<p>Ribbon Client维护了一个子应用程序的上下文，默认是懒加载的，因此首次请求往往会比较慢。可配置饥饿加载，对client1,client2的Ribbon Client在启动时就加载上下文，提高首次请求的速度。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ribbon:</span></span><br><span class="line"><span class="attr">  eager-load:</span></span><br><span class="line"><span class="attr">    enabled:</span><span class="literal">true</span></span><br><span class="line"><span class="attr">    clients:</span><span class="string">client1,client2</span></span><br></pre></td></tr></table></figure>
+<h2 id="六、Feign项目配置"><a href="#六、Feign项目配置" class="headerlink" title="六、Feign项目配置"></a>六、Feign项目配置</h2><p><a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">『Feign』</a>是Netflix开发的声明式、模板化的HTTP客户端，相比ribbon能更加便捷和优雅的调用HTTP API。</p>
+<p>Spring Cloud对Feign进行了增强，支持SpringMVC注解，并整合了Ribbon和Eureka，同时使用Ribbon的客户端侧负载均衡。</p>
+<p>1、pom.xml依赖</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <p>2、启动类中，增加注解@EnableDiscoveryClient<br>即可将service-provider服务注册到Eureka上面去。<br>增加@EnableFeignClients，启用Feign。</p>
 <p>3、yml配置中，项目的spring.application.name为service-consumer-feign，端口8011。</p>
@@ -268,7 +304,38 @@
 <li>访问<a href="http://localhost:8761" target="_blank" rel="noopener">http://localhost:8761</a> 可以看到2个SERVICE-PROVIDER和一个SERVICE-CONSUMER-FEIGN。</li>
 </ul>
 <p><img src="/2018/07/07/SpringCloud实战（3）服务消费的负载均衡/eureka_feign.png" alt=""></p>
-<h2 id="六、相关代码"><a href="#六、相关代码" class="headerlink" title="六、相关代码"></a>六、相关代码</h2><p><a href="https://gitee.com/iherr/spring-cloud-trip-ribbon-feign" target="_blank" rel="noopener">『代码传送门』</a></p>
+<h2 id="七、Feign配置自定义"><a href="#七、Feign配置自定义" class="headerlink" title="七、Feign配置自定义"></a>七、Feign配置自定义</h2><blockquote>
+<p>java代码自定义配置</p>
+</blockquote>
+<p>1、Feign的配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Contract <span class="title">feignContract</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> feign.Contract.Default();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、Feign接口使用原生注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"service-provider"</span>,configuration = FeignConfiguration.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestLine</span>(<span class="string">"GET /&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">findById</span><span class="params">(@Param(<span class="string">"id"</span>)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、也可通过注解指定默认的配置类，来实现全局配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span>(defaultConfiguration = DefaultRibbonConfig.class)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>属性自定义配置</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="attr">feign:</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    default:</span> <span class="comment">#可换成feignName，实现对于指定名称的FeignClient配置</span></span><br><span class="line"><span class="attr">      connectTimeout:</span> <span class="number">5000</span> <span class="comment">#Request.Options</span></span><br><span class="line"><span class="attr">      readTimeout:</span> <span class="number">5000</span></span><br><span class="line"><span class="attr">      loggerLevel:</span> <span class="string">full</span> <span class="comment">#日志级别</span></span><br><span class="line"><span class="attr">      errorDecoder:</span> <span class="string">com.example.SimpleErrorDecoder</span> <span class="comment">#配置错误解码器</span></span><br><span class="line"><span class="attr">      retryer:</span> <span class="string">com.example.SimpleRetryer</span> <span class="comment">#配置重试</span></span><br><span class="line"><span class="attr">      requestInterceptors:</span> <span class="comment">#配置拦截器</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">com.example.FooRequestinterceptor</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">com.example.BarRequestinterceptor</span></span><br><span class="line"><span class="attr">      decode404:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>属性配置的优先级比java代码配置方式，优先级更高。</p>
+<blockquote>
+<p>Feign构造多参数请求</p>
+</blockquote>
+<p>1、GET请求多参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"service-provider"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/get"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">findByUser</span><span class="params">(@RequestParam Map&lt;String,Object&gt; map)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserFeignClient userFeignClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/feign/get"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">findByUser</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> Long id,@<span class="title">RequestParam</span><span class="params">(<span class="string">"username"</span>)</span> String username) </span>&#123;</span><br><span class="line">        HashMap&lt;String,Object&gt; map=Maps.newHashMap();</span><br><span class="line">        map.put(<span class="string">"id"</span>,id);</span><br><span class="line">        map.put(<span class="string">"username"</span>,username);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.userFeignClient.findByUser(map);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、POST请求多参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"service-provider"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserFeignClient</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/post"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">postUser</span><span class="params">(@RequestBody User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其他特性</p>
+</blockquote>
+<ul>
+<li>Feign支持继承，但官方不建议，会造成客户端和服务器端代码的紧耦合。</li>
+<li>Feign支持压缩，使用属性feign.compression.request.enabled=true和feign.compression.response.enabled=true</li>
+<li>Feign对日志的处理，分为full、none、basic和headers共4种。</li>
+<li>Feign支持上传文件，需使用feign子项目feign-form来实现。</li>
+</ul>
+<h2 id="八、相关代码"><a href="#八、相关代码" class="headerlink" title="八、相关代码"></a>八、相关代码</h2><p><a href="https://gitee.com/iherr/spring-cloud-trip-ribbon-feign" target="_blank" rel="noopener">『代码传送门』</a></p>
 
       
 
@@ -415,7 +482,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -502,15 +569,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,15 +581,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,7 +597,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -546,19 +605,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,7 +625,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,6 +669,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -618,14 +689,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -635,6 +698,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -149,6 +149,357 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微服务架构（7）微服务测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/08/微服务架构（7）微服务测试/">微服务架构（7）微服务测试</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/08/微服务架构（7）微服务测试/" class="archive-article-date">
+  	<time datetime="2017-10-08T02:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、SpringBoot单元测试"><a href="#一、SpringBoot单元测试" class="headerlink" title="一、SpringBoot单元测试"></a>一、SpringBoot单元测试</h2><p>单元测试，用来配合敏捷开发中的TDD（Test-Driven Development，测试驱动开发）。</p>
+<p>添加pom依赖。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">  &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>使用JUnit的Assert.assertXxx()断言方法来验证期望和实际是否一致。SpringBoot支持AssertJ类库。</p>
+<table>
+<thead>
+<tr>
+<th>JUnit断言</th>
+<th>AssertJ断言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assert.assertNotNull(“product is null”, product);</td>
+<td>Assertions.assertThat(product).isNotNull();</td>
+</tr>
+<tr>
+<td>Assert.assertEquals(“product.price is wrong”, 9000, product.getPrice());</td>
+<td>Assertions.assertThat(product.getPrice()).isEqualTo(9000);</td>
+</tr>
+<tr>
+<td>Assert.assertTrue(“delete failure”, result);</td>
+<td>Assertions.assertThat(result).isTrue();</td>
+</tr>
+<tr>
+<td>Assert.assertEquals(“productList.size is wrong”, 3, productList.size());</td>
+<td>Assertions.assertThat(productList).hasSize(3);</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>测试时使用的注解</p>
+</blockquote>
+<ul>
+<li>@RunWith(SpringRunner.class)</li>
+<li>@SpringBootTest，和RunWith一起使用Junit和SpringBoot框架。</li>
+<li>@FixMethodOrder(MethodSorters.NAME_ASCENDING)，测试顺序按照字符升序方式</li>
+<li>@Test ，每个单元测试的方法都带有</li>
+<li>@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)，随机暴露端口号，而不是默认的8080。</li>
+</ul>
+<blockquote>
+<p>REST API测试</p>
+</blockquote>
+<p>使用TestRestTemplate的getForObject、postForObject、exchange等方法进行API接口调用。</p>
+<p>针对JSON断言，可使用JSONAssert来实现。</p>
+<h2 id="二、自动化测试"><a href="#二、自动化测试" class="headerlink" title="二、自动化测试"></a>二、自动化测试</h2><blockquote>
+<p>Postman</p>
+</blockquote>
+<p>有人说Postman是个手工的测试工具呀，其实里面还是有些脚本化的东东的。</p>
+<p>1、环境变量</p>
+<p>新建一个url的环境，设置r1的变量值为“localhost:8080”，即可使用“”来用。</p>
+<p>另外提供了timestamp、guid、randomInt等全局变量，当然也可自己新建全局变量。</p>
+<p><img src="/2017/10/08/微服务架构（7）微服务测试/postman_environment.png" alt=""></p>
+<p>2、测试脚本</p>
+<p>请求地址栏下方有Pre-request Script和Tests选项卡，分别用于在发送请求前后执行。</p>
+<p>在Pre-request Script前置脚本中，可以设置一些环境变量或全局变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//设置环境变量</span><br><span class="line">postman.setEnvironmentVariable(&quot;var_key&quot;,&quot;var_value&quot;);</span><br><span class="line">//清除环境变量</span><br><span class="line">postman.clearEnvironmentVariable(&quot;var_key&quot;);</span><br><span class="line">//设置全局变量</span><br><span class="line">postman.setGlobalVariable(&quot;var_key&quot;,&quot;var_value&quot;);</span><br><span class="line">//清除全局变量</span><br><span class="line">postman.clearGlobalVariable(&quot;var_key&quot;);</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/10/08/微服务架构（7）微服务测试/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/08/微服务架构（7）微服务测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-微服务架构（6）微服务通信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/05/微服务架构（6）微服务通信/">微服务架构（6）微服务通信</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/05/微服务架构（6）微服务通信/" class="archive-article-date">
+  	<time datetime="2017-10-05T06:40:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、HTTP同步调用"><a href="#一、HTTP同步调用" class="headerlink" title="一、HTTP同步调用"></a>一、HTTP同步调用</h2><blockquote>
+<p>服务器端</p>
+</blockquote>
+<p>一般采用REST API，调用方始终处于等待返回调用的状态，直到调用完成。</p>
+<p>可使用Spring的@RequestParam，@PathVariable，@RequestHeader等注解传入参数，使用@RestController来表明是个Rest接口。</p>
+<blockquote>
+<p>客户端-RestTemplate</p>
+</blockquote>
+<p>客户端调用，可使用Spring的RestTemplate的getForObject、exchange等方法发起请求。</p>
+<blockquote>
+<p>客户端-OkHttp</p>
+</blockquote>
+<p>如在Android开发中，也可以使用Square公司的OkHttp来调用，依赖如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.okhttp3<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> OkHttpClient okHttpClient;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">Request request = <span class="keyword">new</span> Request.Builder()</span><br><span class="line">    .get()</span><br><span class="line">    .url(String.format(<span class="string">"http://localhost/hello?name=%s"</span>, rootUri, name))</span><br><span class="line">    .build();</span><br><span class="line">Response response = okHttpClient.newCall(request).execute();</span><br><span class="line"><span class="keyword">return</span> response.body().string();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>客户端-Retrofit</p>
+</blockquote>
+<p>也可以使用Square公司的Retrofit来链式调用，在客户端中定义服务接口，通过注解的方式来绑定HTTP请求，依赖如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>retrofit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-scalars<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.squareup.retrofit2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>converter-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloClient.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> HelloService helloService;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">HelloClient</span><span class="params">(Retrofit retrofit)</span> </span>&#123;</span><br><span class="line">    helloService = retrofit.create(HelloService.class);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">(String name)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> helloService.hello(name).execute().body();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//HelloService.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@GET</span>(<span class="string">"/hello"</span>)</span><br><span class="line">  <span class="function">Call&lt;String&gt; <span class="title">say1</span><span class="params">(@Query(<span class="string">"name"</span>)</span> String name)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、RPC同步调用"><a href="#二、RPC同步调用" class="headerlink" title="二、RPC同步调用"></a>二、RPC同步调用</h2><blockquote>
+<p>相关概念 </p>
+</blockquote>
+<p>远程过程调用RPC（Remote Procedure Call），基于TCP协议。通信过程在传输层完成（相比HTTP通信在应用层完成），因此更高效、支持更高并发。</p>
+<p>流行的RPC框架有Google的gRPC，Facebook的Thrift，Twitter的Finagle，阿里的Dubbo，新浪微博的Motan等。</p>
+<p>RPC的通信原理如下，两个端的Stub（存根）用于对数据进行序列化和反序列化，调用方式需要服务端和客户端建立Socket连接来实现二进制数据的交换。</p>
+<p><img src="/2017/10/05/微服务架构（6）微服务通信/rpc.jpg" alt=""></p>
+<blockquote>
+<p>gRPC</p>
+</blockquote>
+<p>gRPC使用Protocol Buffers来编写服务定义，拥有强大的二进制序列化工具集。两者都是Google的开源项目。</p>
+<p><a href="http://www.grpc.io/" target="_blank" rel="noopener">『gRPC官网传送门』</a></p>
+        
+          <a class="article-more-a" href="/2017/10/05/微服务架构（6）微服务通信/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/05/微服务架构（6）微服务通信/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-微服务架构（5）微服务监控" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/微服务架构（5）微服务监控/">微服务架构（5）微服务监控</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/02/微服务架构（5）微服务监控/" class="archive-article-date">
+  	<time datetime="2017-10-02T03:32:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-Boot-Actuator应用监控"><a href="#一、Spring-Boot-Actuator应用监控" class="headerlink" title="一、Spring Boot Actuator应用监控"></a>一、Spring Boot Actuator应用监控</h2><p>SpringBoot有一个Actuator的插件，用来输出应用程序的端点（Endpoint），包括健康检查（/health）、运行指标（/metrics）、线程信息（/dump）等。</p>
+<p>1、pom.xml依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>2、配置文件，暴露所有Endpoints</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=*</span><br></pre></td></tr></table></figure>
+<p>3、以Spring Boot 2.x版本为例，访问路径/actuator可查看所有endpoints的路径。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">端点路径</th>
+<th>应用程序说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">/actuator/info</td>
+<td>基本信息</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/health</td>
+<td>健康状况</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/metrics</td>
+<td>运行指标</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/env</td>
+<td>环境变量</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/loggers</td>
+<td>日志级别配置</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/dump</td>
+<td>线程信息</td>
+</tr>
+<tr>
+<td style="text-align:center">/actuator/httptrace</td>
+<td>请求调用轨迹信息</td>
+</tr>
+</tbody>
+</table>
+<p>但是以上信息都是以数据形式直接访问，需要通过用户界面的方式呈现数据。</p>
+<h2 id="二、Spring-Boot-Admin开源的应用监控系统"><a href="#二、Spring-Boot-Admin开源的应用监控系统" class="headerlink" title="二、Spring Boot Admin开源的应用监控系统"></a>二、Spring Boot Admin开源的应用监控系统</h2><p>Spring Boot Admin包含了服务端和客户端。功能包括</p>
+<ul>
+<li>查看健康状态</li>
+<li>查看JVM和内存指标</li>
+<li>查看计数器与计量表指标</li>
+<li>查看数据源指标</li>
+<li>查看缓存指标</li>
+<li>查看系统构建信息</li>
+<li>查看并下载日志文件</li>
+<li>查看JVM系统属性与环境变量</li>
+<li>查看线程堆栈信息</li>
+<li>查看调用轨迹信息</li>
+<li>查看状态变更日志</li>
+<li>修改Logback日志级别管理</li>
+<li>修改JMX参数</li>
+<li>下载JVM堆内存文件</li>
+<li>通知状态变更（邮件等）</li>
+</ul>
+<p><a href="https://github.com/codecentric/spring-boot-admin" target="_blank" rel="noopener">『源码传送门』</a></p>
+<p><a href="http://codecentric.github.io/spring-boot-admin/2.0.1/" target="_blank" rel="noopener">『官方文档传送门』</a></p>
+<blockquote>
+<p>admin端</p>
+</blockquote>
+<p>1、pom.xml依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-starter-server&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;de.codecentric&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-admin-server-ui&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.0.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>2、应用主类中使用@EnableAdminServer注解</p>
+<p>3、浏览器访问 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 可查看到2.0新的vue页面。目前Application为0，需要添加client。</p>
+        
+          <a class="article-more-a" href="/2017/10/02/微服务架构（5）微服务监控/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/02/微服务架构（5）微服务监控/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-微服务架构（4）微服务日志" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -285,11 +636,13 @@
 <blockquote>
 <p>SpringBoot和Docker整合</p>
 </blockquote>
-<p>添加插件docker-maven-plugin <a href="https://github.com/spotify/docker-maven-plugin" target="_blank" rel="noopener">『github传送门』</a></p>
+<p>添加插件docker-maven-plugin <a href="https://github.com/spotify/docker-maven-plugin" target="_blank" rel="noopener">『github传送门』</a>，该插件为Spotify公司开发的Maven插件。</p>
 <p>可使用带dockerfile和不带dockerfile的两种方式。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;com.spotify&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;configuration&gt;</span><br><span class="line">        &lt;!--&lt;imageName&gt;$&#123;docker.registry&#125;/$&#123;project.groupId&#125;/$&#123;project.artifactId&#125;:$&#123;project.version&#125;&lt;/imageName&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;dockerDirectory&gt;$&#123;project.build.outputDirectory&#125;&lt;/dockerDirectory&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;resources&gt;--&gt;</span><br><span class="line">            &lt;!--&lt;resource&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;targetPath&gt;/&lt;/targetPath&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;--&gt;</span><br><span class="line">                &lt;!--&lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;--&gt;</span><br><span class="line">            &lt;!--&lt;/resource&gt;--&gt;</span><br><span class="line">        &lt;!--&lt;/resources&gt;--&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;imageName&gt;$&#123;docker.registry&#125;/$&#123;project.groupId&#125;/$&#123;project.artifactId&#125;:$&#123;project.version&#125;&lt;/imageName&gt;</span><br><span class="line">        &lt;baseImage&gt;java&lt;/baseImage&gt;</span><br><span class="line">        &lt;entryPoint&gt;[&quot;java&quot;, &quot;-jar&quot;, &quot;/$&#123;project.build.finalName&#125;.jar&quot;]&lt;/entryPoint&gt;</span><br><span class="line">        &lt;!-- copy the service&apos;s jar file from target into the root directory of the image --&gt;</span><br><span class="line">        &lt;resources&gt;</span><br><span class="line">            &lt;resource&gt;</span><br><span class="line">                &lt;targetPath&gt;/&lt;/targetPath&gt;</span><br><span class="line">                &lt;directory&gt;$&#123;project.build.directory&#125;&lt;/directory&gt;</span><br><span class="line">                &lt;include&gt;$&#123;project.build.finalName&#125;.jar&lt;/include&gt;</span><br><span class="line">            &lt;/resource&gt;</span><br><span class="line">        &lt;/resources&gt;</span><br><span class="line">    &lt;/configuration&gt;</span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
-<p>如采用dockerfile文件，需把上方注释掉的代码打开。在resource目录下增加dockerfile文件，内容如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java</span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"iherr"</span>&lt;herongrong-<span class="number">123</span>@<span class="number">163</span>.com&gt;</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> @project.build.finalName@.jar app.jar</span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD java -jar app.jar</span></span><br></pre></td></tr></table></figure>
+<p>执行以下命令，构建Docker镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn clean package docker:build</span><br></pre></td></tr></table></figure>
+<p>如采用dockerfile文件，需更改上方pom文件注释掉的代码。在resource目录下增加dockerfile文件，内容如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span></span><br><span class="line"><span class="keyword">MAINTAINER</span> <span class="string">"iherr"</span>&lt;herongrong-<span class="number">123</span>@<span class="number">163</span>.com&gt;</span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> @project.build.finalName@.jar app.jar</span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD java -jar app.jar</span></span><br></pre></td></tr></table></figure>
 <p>使用docker:build命令生成dockerfile和jar包。<br>使用docker:push推送到docker的本地registry服务器。<br>使用如下命令运行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name springboot-hello -p 58080:8080 127.0.0.1:5000/com.msa/hello:0.0.1</span><br></pre></td></tr></table></figure>
         
@@ -540,25 +893,26 @@
 <p>1、概述</p>
 </blockquote>
 <ul>
-<li>特点：<br>89年龟叔编写，开源（从规范到解释器）、跨平台</li>
-<li>优点：设计哲学是“优雅”、“明确”、“简单”。<br>适合开发web网站和网络服务、系统工具和脚本、胶水语言。代码少、开发速度快。</li>
+<li>特点：<br>本意“蟒蛇”，89年由“河南人”龟叔编写，开源（从规范到解释器）、跨平台，是一种胶水语言。</li>
+<li>优点：设计哲学是“优雅”、“明确”、“简单”。“人生苦短，我用Python”，2017年IEEE变成语言排行榜第1位。<br>适合开发web网站和网络服务、系统工具和脚本。代码少、开发速度快。</li>
 <li>缺点：解释性语言，相比于编译型语言C或Java的运行速度慢，代码不能加密。</li>
-<li>使用python开发的网站：Youtube、Openstack、豆瓣</li>
+<li>应用领域：Web开发，大数据，人工智能，自动化运维，云计算，爬虫，游戏开发等。使用python开发的网站：Openstack、豆瓣、Dropbox、Youtube视频分享服务、Facebook大量基础库、Google网络搜索系统、对冲基金和银行等。</li>
 <li>解释器：官方版本的解释器CPython，此外还有其他各种解释器。</li>
 </ul>
 <blockquote>
 <p>2、安装运行</p>
 </blockquote>
-<p>1、版本：Python有两个版本，一个是2.x版，一个是3.x版，这两个版本是不兼容的。mac自带2.7，可使用命令查看两个版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -V</span><br><span class="line">python -V</span><br></pre></td></tr></table></figure>
+<p>1、版本：Python有两个版本，一个是2.x版（2000年发布），一个是3.x版（2008年发布），这两个版本是不兼容的。mac自带2.7，可使用命令查看两个版本。如需要2.x版本转换为3.x版本，可以使用PYTHON_HOME/Tools.scripts/2to3.py脚本进行转换。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ python3 -V</span><br><span class="line">$ python -V </span><br><span class="line">$ python 2to3.py -w demo.py</span><br></pre></td></tr></table></figure>
 <p>2、安装：通过homebrew安装并查看路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ brew install python3</span><br><span class="line">$ <span class="built_in">which</span> python3</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ brew install python3</span><br><span class="line">$ <span class="built_in">which</span> python3</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br><span class="line"><span class="comment">#如果需要输入和输出，可使用ipython。安装方式如下：</span></span><br><span class="line">$ pip3 install ipython</span><br></pre></td></tr></table></figure>
 <p>3、运行</p>
-<p>可使用IDE，Pycharm创建项目时，使用virtualenv做版本管理，输入python3的路径。每个应用可能需要各自拥有一套“独立”的Python运行环境。virtualenv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
+<p>可使用IDE，Pycharm创建项目时，使用virtualenv做版本管理，输入python3的路径。每个应用可能需要各自拥有一套虚拟的“独立”的Python运行环境。virtualenv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install virtualenv</span><br><span class="line">$ virtualenv --version</span><br><span class="line">$ virtualenv venv <span class="comment">#根据命名创建虚拟环境</span></span><br><span class="line">$ source venv/bin/activate <span class="comment">#激活虚拟环境</span></span><br><span class="line">(venv) herr:test3 iherr$ deactivate <span class="comment">#退出虚拟环境</span></span><br><span class="line">herr:test3 iherr$</span><br></pre></td></tr></table></figure>
 <p>可以直接在命令行输入python或python3，看到提示符&gt;&gt;&gt;就表示我们已经在Python交互式环境中了，可以输入任何Python代码，回车后会立刻得到执行结果。输入exit()或quit()回车，就可以退出Python交互式环境。</p>
 <p>或者在命令行直接运行文件<br>python hello.py</p>
 <p>第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'hello, world'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'人生苦短，我用Python'</span>)</span><br></pre></td></tr></table></figure>
 <p>在mac和linux上，可以添加第一行注释后（标识这是一个Python可执行程序），提升权限后直接执行。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x hello.py</span><br><span class="line">./hello.py</span><br></pre></td></tr></table></figure>
         
@@ -575,6 +929,98 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/09/15/Python基础/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringCloud实战（1）介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/03/SpringCloud实战（1）介绍/">SpringCloud实战（1）介绍</a>
+    </h1>
+  
+
+        
+        <a href="/2017/07/03/SpringCloud实战（1）介绍/" class="archive-article-date">
+  	<time datetime="2017-07-03T08:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-Cloud"><a href="#一、Spring-Cloud" class="headerlink" title="一、Spring Cloud"></a>一、Spring Cloud</h2><blockquote>
+<p>特点</p>
+</blockquote>
+<ul>
+<li>约定优于配置</li>
+<li>使用各种环境</li>
+<li>隐藏组件复杂性，提供声明式、无xml配置方式</li>
+<li>开箱即用</li>
+<li>轻量级组件</li>
+<li>组件丰富，功能齐全。</li>
+<li>选型中立、丰富。</li>
+<li>灵活。组成部分解耦。</li>
+</ul>
+<blockquote>
+<p>版本</p>
+</blockquote>
+<p>已发布Angel、Brixton、Camden、Dalston、Edgware、Finchley版本（伦敦地铁名称），按照首字母顺序，是主版本。<br>以Release版本为初始版本，SR（Service Release）代表Bug修复版本。如Dalston SR4，表示Dalston版本的第4次Bug修复版本。</p>
+<ul>
+<li>Dalston、Edgware都是基于Spring Boot 1.5.x构建，不兼容Spring Boot 2.0.x。</li>
+<li>Finchley基于Spring Boot 2.0.x构建，不兼容Spring Boot 1.x。</li>
+</ul>
+<blockquote>
+<p>子项目</p>
+</blockquote>
+<p>组件包含spring-cloud-aws、spring-cloud-bus、、spring-cloud-cli、spring-cloud-commons、spring-cloud-contract、spring-cloud-config、spring-cloud-netflix、spring-cloud-security、spring-cloud-cloudfoundry、spring-cloud-consul、spring-cloud-sleuth、spring-cloud-stream、spring-cloud-zookeeper、spring-cloud-task、spring-cloud-vault、spring-cloud-gateway、spring-boot等。</p>
+<h2 id="各组件问题汇总"><a href="#各组件问题汇总" class="headerlink" title="各组件问题汇总"></a>各组件问题汇总</h2><h2 id="各组件超时"><a href="#各组件超时" class="headerlink" title="各组件超时"></a>各组件超时</h2><h2 id="各组件重试"><a href="#各组件重试" class="headerlink" title="各组件重试"></a>各组件重试</h2><h2 id="各组件属性调优"><a href="#各组件属性调优" class="headerlink" title="各组件属性调优"></a>各组件属性调优</h2><h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li>各项目自身的Github</li>
+<li>SpringCloud对应项目的Github</li>
+<li>SpringCloud的StackOverflow</li>
+<li>SpringCloud的Gitter</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/07/03/SpringCloud实战（1）介绍/">展开全文 >></a>
         </p>
       
 
@@ -718,498 +1164,6 @@
 
 
   
-    <article id="post-架构、框架和设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/14/架构、框架和设计模式/">架构、框架和设计模式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/14/架构、框架和设计模式/" class="archive-article-date">
-  	<time datetime="2017-04-14T06:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、架构"><a href="#一、架构" class="headerlink" title="一、架构"></a>一、架构</h2><p>软件架构是系统的一个草图，阐述了各个组件之间的通信，层次划分，一旦系统开始详细设计，架构蓝图就很难甚至无法改变。</p>
-<ul>
-<li>传统三层架构</li>
-<li>前后端分离架构</li>
-<li>微服务架构</li>
-</ul>
-<blockquote>
-<p>三层架构 </p>
-</blockquote>
-<p>三层架构是一种设计软件架构的思想。</p>
-<p>通常意义上的三层架构就是将整个业务应用划分为展现层（表示层）（User Interface  Layer）、业务逻辑层（Buesiness Logic Layer）、数据访问层（Data Access Layer）。区分层次的目的是为了体现“高内聚，低耦合”的思想。</p>
-<p>1.展现层（表示层）</p>
-<p>表示层位于最外层（最上层），最接近于用户。用于显示数据和接收用户输入的数据为用户提供一种交互式的操作界面。</p>
-<p>2.业务逻辑层</p>
-<p>业务逻辑层无疑是系统架构中体现核心价值的部分。他的关注点主要集中在业务规则的制定、业务流程的实现等与业务需求相关的系统设计上，也就是说，他与系统所对应的领域（Domain）逻辑有关，很多时候，也将业务逻辑层称为领域层。</p>
-<p>业务逻辑层在体系架构中的位置很关键，他处于数据访问层与表示层中间起到了数据交换中承上启下的作用。对于数据访问层而言，他是调用者；对于表示层而言，他却是被调用者。</p>
-<p>3、数据访问层</p>
-<p>数据访问层有时候也称为持久层，其功能主要是负责数据库的访问，可以访问数据库系统、二进制文件、文本文档、或是XML文档。简单的说法就是实现对数据表的Select、Insert、Update和Delete操作。</p>
-<h2 id="二、微服务架构"><a href="#二、微服务架构" class="headerlink" title="二、微服务架构"></a>二、微服务架构</h2><p>Martin Fowler于2014年提出的Micro Service概念，谈论多年的SOA（Service-Oriented Architecture，面向服务的架构）终于有了新的解决方案，不再需要ESB（Enterprise Service Bus，企业服务总线），并随着Docker的普及，一个轻量级SOA架构MSA诞生。</p>
-<blockquote>
-<p>传统应用架构</p>
-</blockquote>
-<p>若干业务模块打包封装到一个war包。单块架构/单体应用架构</p>
-<p>单体应用架构：尽管已经进行了模块化，但UI和若干业务都被打包在一个war包中，该war包包含了整个系统所有的业务功能。</p>
-<p><img src="/2017/04/14/架构、框架和设计模式/Traditional.jpg" alt=""></p>
-<p>缺点在于：</p>
-<ul>
-<li>复杂性高。模块多、边界模糊、依赖不清晰、代码质量参差不齐。</li>
-<li>技术债务。随着时间推移、需求变更、人员更迭，导致不坏不修，且代码难以被修改。</li>
-<li>部署频率低。构建和部署时间增加，全量部署耗时长、风险高。</li>
-<li>可靠性差。某个应用bug，如死循环、OOM等导致整个应用崩溃。</li>
-<li>拓展能力受限。有些模块计算密集，有些IO密集，导致在cpu、内存等硬件选择上无法兼顾。</li>
-<li>阻碍技术创新。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/04/14/架构、框架和设计模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/14/架构、框架和设计模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot实战（4）SpringBoot核心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/">SpringBoot实战（4）SpringBoot核心</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/" class="archive-article-date">
-  	<time datetime="2017-04-11T06:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、核心功能"><a href="#一、核心功能" class="headerlink" title="一、核心功能"></a>一、核心功能</h2><blockquote>
-<p>核心功能（优点）</p>
-</blockquote>
-<p>1、快速构建项目（提供starter简化Maven配置）<br>2、主流开发框架的无配置集成（自动配置Spring）<br>3、可以jar包方式独立运行，无须依赖Servlet容器，内嵌Servlet容器（Tomcat、Jetty、Undertow）<br>4、提供运行时的应用监控<br>5、极大提高了开发和部署效率（无代码生成和xml配置，通过注解配置和java配置，自动化配置）<br>6、与云计算的天然集成，提供生产级特性actuator</p>
-<blockquote>
-<p>快速集成</p>
-</blockquote>
-<p>1、可到<a href="https://start.spring.io" target="_blank" rel="noopener">https://start.spring.io</a> 快速配置下载demo<br>2、idea自带的Spring Initializr或eclipse的Spring Tool Suite<br>3、Spring Boot CLI命令行生成<br>4、Maven手工创建</p>
-<ul>
-<li>添加Spring Boo通的父级依赖</li>
-<li>添加web支持的starter pom（spring-boot-starter-web）</li>
-<li>添加编译插件</li>
-</ul>
-<h2 id="二、基本配置"><a href="#二、基本配置" class="headerlink" title="二、基本配置"></a>二、基本配置</h2><blockquote>
-<p>入口类和@SpringBootApplication</p>
-</blockquote>
-<p>有名为*Application的入口类，包含一个main方法，用来启动SpringBoot应用项目。</p>
-<p>@SpringBootApplication是核心的组合注解，组合了@Configuration、@EnableAutoConfiguration、@ComponentScan这3个注解。</p>
-<blockquote>
-<p>banner默认启动图案</p>
-</blockquote>
-<p>可通过在src/main/resources新建banner.txt覆盖。也可在main里禁用。</p>
-<p><img src="/2017/04/11/SpringBoot实战（4）SpringBoot核心/banner.png" alt=""></p>
-<blockquote>
-<p>配置文件</p>
-</blockquote>
-<p>SpringBoot使用资源目录下的全局的配置文件application.properties（常规properties配置文件）或application.yml（yaml语言）。</p>
-<p>SpringBoot提倡零xml配置，如特殊情况需要使用，可使用@ImportResource来加载。</p>
-<p>如tomcat端口和访问路径：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#properties版本</span></span><br><span class="line">server.port=9090</span><br><span class="line">server.servlet.context-path=/iherr</span><br><span class="line"></span><br><span class="line"><span class="comment">#yml版本</span></span><br><span class="line">server:</span><br><span class="line">	port: 9090</span><br><span class="line">	server.servlet.context-path: /iherr</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>starter pom</p>
-</blockquote>
-<p>提供了大多数场景的starter pom，包括官方和第三方，列举部分：</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>spring-boot-starter</td>
-<td style="text-align:center">核心starter，包含自动配置、日志、yaml配置文件等支持</td>
-</tr>
-<tr>
-<td>spring-boot-starter-amqp</td>
-<td style="text-align:center">使用spring-rabbit支持AMQP</td>
-</tr>
-<tr>
-<td>spring-boot-starter-aop</td>
-<td style="text-align:center">使用spring-aop和AspectJ支持切面</td>
-</tr>
-<tr>
-<td>spring-boot-starter-jpa</td>
-<td style="text-align:center">对JPA支持，包含spring-data-jpa、spring-orm和Hibernate</td>
-</tr>
-<tr>
-<td>spring-boot-starter-freemarker</td>
-<td style="text-align:center">对freemarker模板引擎支持</td>
-</tr>
-<tr>
-<td>spring-boot-starter-thymeleaf</td>
-<td style="text-align:center">对thymeleaf模板引擎支持</td>
-</tr>
-<tr>
-<td>spring-boot-starter-volocity</td>
-<td style="text-align:center">对volocity模板引擎支持</td>
-</tr>
-<tr>
-<td>spring-boot-starter-jdbc</td>
-<td style="text-align:center">对JDBC数据库的支持</td>
-</tr>
-<tr>
-<td>spring-boot-starter-test</td>
-<td style="text-align:center">对常用测试框架JUnit、Hamcrest等支持，包含spring-test模块</td>
-</tr>
-<tr>
-<td>spring-boot-starter-web</td>
-<td style="text-align:center">对Web项目开发的支持，包含Tomcat和spring-webmvc</td>
-</tr>
-<tr>
-<td>spring-boot-starter-Tomcat</td>
-<td style="text-align:center">默认的Servlet容器Tomcat</td>
-</tr>
-<tr>
-<td>spring-boot-starter-Jetty</td>
-<td style="text-align:center">使用Jetty作为Servlet容器替换Tomcat</td>
-</tr>
-<tr>
-<td>spring-boot-starter-Undertow</td>
-<td style="text-align:center">使用Undertow作为Servlet容器替换Tomcat</td>
-</tr>
-<tr>
-<td>spring-boot-starter-logging</td>
-<td style="text-align:center">默认的日志框架Logback</td>
-</tr>
-<tr>
-<td>spring-boot-starter-log4j</td>
-<td style="text-align:center">支持使用Log4J日志框架</td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/SpringBoot实战（4）SpringBoot核心/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot实战（3）SpringMVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">SpringBoot实战（3）SpringMVC</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/07/SpringBoot实战（3）SpringMVC/" class="archive-article-date">
-  	<time datetime="2017-04-07T03:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Spring-MVC原理"><a href="#一、Spring-MVC原理" class="headerlink" title="一、Spring MVC原理"></a>一、Spring MVC原理</h2><p><img src="/2017/04/07/SpringBoot实战（3）SpringMVC/springmvc.jpeg" alt=""></p>
-<blockquote>
-<p>DispatcherServlet（前端控制器）</p>
-</blockquote>
-<p>DispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet的存在降低了组件之间的耦合性。</p>
-<blockquote>
-<p>HandlerMapping（处理器映射器）</p>
-</blockquote>
-<p>HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等，推荐使用注解开发。</p>
-<blockquote>
-<p>Handler（处理器）</p>
-</blockquote>
-<p>Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</p>
-<blockquote>
-<p>HandlerAdapter（处理器适配器）</p>
-</blockquote>
-<p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
-<blockquote>
-<p>ViewResolver（视图解析器）</p>
-</blockquote>
-<p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p>
-<h2 id="二、Spring-Boot的Web开发"><a href="#二、Spring-Boot的Web开发" class="headerlink" title="二、Spring Boot的Web开发"></a>二、Spring Boot的Web开发</h2><p>Spring Boot提供了springboot-starter-web为Web开发予以支持。提供了嵌入的Tomcat以及Spring MVC的依赖。Web相关的自动配置存储在spring-boot-autoconfigure.jar的org.springframework.boot.autoconfigure.web下。</p>
-<blockquote>
-<p>模板引擎  </p>
-</blockquote>
-<p>jsp在内嵌的Servlet的容器中有问题，tomcat和jetty不支持以jar形式运行jsp，undertow不支持jsp，因此Spring Boot提供了大量模板引擎，有Freemarker、Groovy、Thymeleaf、Velocity等。  </p>
-<blockquote>
-<p>Thymeleaf</p>
-</blockquote>
-<p>Thymeleaf<a href="http://www.thymeleaf.org" target="_blank" rel="noopener">『官网传送门』</a>是一个java类库，是xml/xhtml/html5的模板引擎，作为MVC的Web应用的View层。<br></p>
-        
-          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringBoot实战（2）数据访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/03/SpringBoot实战（2）数据访问/">SpringBoot实战（2）数据访问</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/03/SpringBoot实战（2）数据访问/" class="archive-article-date">
-  	<time datetime="2017-04-03T10:25:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Spring-Data"><a href="#一、Spring-Data" class="headerlink" title="一、Spring Data"></a>一、Spring Data</h2><blockquote>
-<p>Spring Data</p>
-</blockquote>
-<p>是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。</p>
-<p>常见项目包含：</p>
-<table>
-<thead>
-<tr>
-<th>项目名称</th>
-<th style="text-align:center">Maven坐标 org.springframework.data</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Spring Data Jpa</td>
-<td style="text-align:center">spring-data-jpa</td>
-</tr>
-<tr>
-<td>Spring Data MongoDB</td>
-<td style="text-align:center">spring-data-mongodb</td>
-</tr>
-<tr>
-<td>Spring Data Redis</td>
-<td style="text-align:center">spring-data-redis</td>
-</tr>
-<tr>
-<td>Spring Data Solr</td>
-<td style="text-align:center">spring-data-solr</td>
-</tr>
-<tr>
-<td>Spring Data Hadoop</td>
-<td style="text-align:center">spring-data-hadoop</td>
-</tr>
-<tr>
-<td>Spring Data REST</td>
-<td style="text-align:center">spring-data-rest-webmvc</td>
-</tr>
-<tr>
-<td>Spring Data JDBC Ext</td>
-<td style="text-align:center">spring-data-oracle</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>JDBC相关</p>
-</blockquote>
-<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc2.jpg" alt=""></p>
-<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc1.jpg" alt=""></p>
-<h2 id="二、Spring-Data-JPA"><a href="#二、Spring-Data-JPA" class="headerlink" title="二、Spring Data JPA"></a>二、Spring Data JPA</h2><blockquote>
-<p>基本概念</p>
-</blockquote>
-<p>1、Hibernate主导了EJB3.0的JPA（Java Persistence API）规范。</p>
-<p>2、继承JpaRepository接口，即可拥有默认数据访问操作方法，如findAll，getOne等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Person</span>, <span class="title">Long</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、在Spring中，需要使用注解@EnableJPARepository来开启JPA支持。</p>
-<blockquote>
-<p>定义查询方法</p>
-</blockquote>
-<p>1、常规查询<br>根据属性名查询，使用findBy、Like、And、IsNull、In、OrderBy等关键字来定义查询方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Person <span class="title">findByNameAndAddress</span><span class="params">(String name,String address)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>通过top和first关键字来限制结果数量。</p>
-<p>2、JPA的NamedQuery查询</p>
-<p>Spring Data JPA支持用JPA的NamedQuery查询防范，即一个名称映射一个查询语句。</p>
-<p>3、@Query查询，直接将@Query注解在接口的方法上实现查询。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"select p from Person p where p.name= :name and p.address= :address"</span>)</span><br><span class="line"><span class="function">Person <span class="title">withNameAndAddressQuery</span><span class="params">(@Param(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"address"</span>)</span>String address)</span>;</span><br></pre></td></tr></table></figure>
-<p>4、排序与分页，提供了Sort类以及Page接口和Pageable接口。</p>
-<blockquote>
-<p>Spring Boot的支持</p>
-</blockquote>
-<p>1、JDBC的自动配置<br>在org.springframework.boot.autoconfigure.jdbc下。</p>
-<p>2、对JPA的自动配置<br>在org.springframework.boot.autoconfigure.orm.jpa下。其中JpaBaseConfiguration会自动扫描注解有@Entity的实体类。</p>
-<p>3、对Spring Data JPA的自动配置<br>在org.springframework.boot.autoconfigure.data.jpa下。JpaRepositoriesAutoConfiguration依赖于HibernateJpaAutoConfiguration配置。</p>
-        
-          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1224,7 +1178,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1311,15 +1265,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1331,15 +1277,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1347,7 +1293,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1355,19 +1301,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1379,7 +1321,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1411,6 +1365,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -1427,14 +1385,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -1444,6 +1394,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">

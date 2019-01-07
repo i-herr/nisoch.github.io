@@ -9,7 +9,7 @@
   <title>微服务架构（5）微服务监控 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、Spring Boot Actuator应用监控SpringBoot有一个Actuator的插件，用来输出应用程序的端点（Endpoint），包括健康检查（/health）、运行指标（/metrics）、线程信息（/dump）等。 1、pom.xml依赖 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/">
-<meta name="keywords" content="Java,SpringBoot,SpringCloud,MSA">
+<meta name="keywords" content="SpringBoot,Java,SpringCloud,MSA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微服务架构（5）微服务监控">
 <meta property="og:url" content="http://iherr.cn/2017/10/02/微服务架构（5）微服务监控/index.html">
@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://iherr.cn/2017/10/02/微服务架构（5）微服务监控/zipkin_trace1.png">
 <meta property="og:image" content="http://iherr.cn/2017/10/02/微服务架构（5）微服务监控/zipkin_trace2.png">
 <meta property="og:image" content="http://iherr.cn/2017/10/02/微服务架构（5）微服务监控/zipkin_dependencies.png">
-<meta property="og:updated_time" content="2018-11-05T15:08:15.000Z">
+<meta property="og:updated_time" content="2018-11-14T07:55:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务架构（5）微服务监控">
 <meta name="twitter:description" content="一、Spring Boot Actuator应用监控SpringBoot有一个Actuator的插件，用来输出应用程序的端点（Endpoint），包括健康检查（/health）、运行指标（/metrics）、线程信息（/dump）等。 1、pom.xml依赖 1234&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/">
@@ -375,6 +375,14 @@
 <p>以本条Trace为例，包含了Total Spans数，持续时间（Duration），调用涉及的服务数（Services），调用深度（Depth），下方有调用链追踪图。<br><img src="/2017/10/02/微服务架构（5）微服务监控/zipkin_trace2.png" alt=""></p>
 <p>查看调用的依赖关系：<br><img src="/2017/10/02/微服务架构（5）微服务监控/zipkin_dependencies.png" alt=""></p>
 <blockquote>
+<p>后续改进</p>
+</blockquote>
+<ul>
+<li>Zipkin Server注册到Eureka，实现服务发现。</li>
+<li>使用消息中间件如RabbitMQ等，收集数据。实现Server和Client端解耦。</li>
+<li>使用Elasticsearch存储跟踪数据，需借助zipkin-dependencies组件。</li>
+</ul>
+<blockquote>
 <p>相关代码</p>
 </blockquote>
 <p><a href="https://gitee.com/iherr/spring-boot-zipkin" target="_blank" rel="noopener">『代码传送门』</a></p>
@@ -524,7 +532,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 iherr
+    		&copy; 2019 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -611,15 +619,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -631,15 +631,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,7 +647,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,19 +655,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -679,7 +675,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringMVC</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -711,6 +719,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
@@ -727,14 +739,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">RPC</a>
               </li>
              
@@ -744,6 +748,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
