@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_39_1.png">
 <meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_40_0.png">
 <meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_41_0.png">
-<meta property="og:updated_time" content="2019-01-22T08:25:10.000Z">
+<meta property="og:updated_time" content="2019-01-22T09:54:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析（3）Matplotlib">
 <meta name="twitter:description" content="一、Matplotlib各种图形demo『matplotlib官网传送门』 『ipynb文档传送门』 123456import pandas as pdimport numpy as npimport matplotlib.pyplot as plt#把图画在notebook中%matplotlib inline  线状图  123456789101112x = [1,2,3]y = [5,7,4">
@@ -268,10 +268,40 @@
 <pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11bd9dd30&gt;
 </code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_30_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df3=pd.DataFrame(np.random.randint(<span class="number">10</span>,<span class="number">50</span>,(<span class="number">3</span>,<span class="number">4</span>)).cumsum(<span class="number">0</span>),columns=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>],index=[<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>])</span><br><span class="line">df3</span><br></pre></td></tr></table></figure>
-<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>A</th><br>      <th>B</th><br>      <th>C</th><br>      <th>D</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>one</th><br>      <td>35</td><br>      <td>10</td><br>      <td>45</td><br>      <td>14</td><br>    </tr><br>    <tr><br>      <th>two</th><br>      <td>71</td><br>      <td>50</td><br>      <td>63</td><br>      <td>36</td><br>    </tr><br>    <tr><br>      <th>three</th><br>      <td>83</td><br>      <td>62</td><br>      <td>111</td><br>      <td>81</td><br>    </tr><br>  </tbody><br></table><br></div>
-
-
-
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">one</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">45</td>
+<td style="text-align:center">14</td>
+</tr>
+<tr>
+<td style="text-align:center">two</td>
+<td style="text-align:center">71</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">63</td>
+<td style="text-align:center">36</td>
+</tr>
+<tr>
+<td style="text-align:center">three</td>
+<td style="text-align:center">83</td>
+<td style="text-align:center">62</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center">81</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>柱状图</p>
 </blockquote>
