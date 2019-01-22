@@ -17,7 +17,7 @@
 <meta property="og:description" content="简介   Pandas是Python的一个数据分析包，该工具为解决数据分析任务而创建。 Pandas纳入大量库和标准数据模型，提供高效的操作数据集所需的工具。 Pandas提供大量能使我们快速便捷地处理数据的函数和方法。 Pandas是字典形式，基于NumPy创建，让NumPy为中心的应用变得更加简单。 对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。 Exc">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（2）Pandas/output_80_0.png">
-<meta property="og:updated_time" content="2019-01-22T08:24:57.000Z">
+<meta property="og:updated_time" content="2019-01-22T09:33:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析（2）Pandas">
 <meta name="twitter:description" content="简介   Pandas是Python的一个数据分析包，该工具为解决数据分析任务而创建。 Pandas纳入大量库和标准数据模型，提供高效的操作数据集所需的工具。 Pandas提供大量能使我们快速便捷地处理数据的函数和方法。 Pandas是字典形式，基于NumPy创建，让NumPy为中心的应用变得更加简单。 对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。 Exc">
@@ -184,7 +184,7 @@
 <li>对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。</li>
 <li>Excel 2007及其以后的版本的最大行数是1048576，最大列数是16384，超过这个规模的数据可使用Pandas</li>
 </ul>
-<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/pandas.ipynb" target="_blank" rel="noopener">『ipynb文档』</a></p>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/pandas.ipynb" target="_blank" rel="noopener">『ipynb文档传送门』</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Series</p>
@@ -205,251 +205,183 @@ dtype: float64
                &apos;2017-01-05&apos;, &apos;2017-01-06&apos;],
               dtype=&apos;datetime64[ns]&apos;, freq=&apos;D&apos;)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>-0.119313</td>
-      <td>-0.165029</td>
-      <td>-1.065599</td>
-      <td>0.224712</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.423993</td>
-      <td>0.705954</td>
-      <td>-0.349143</td>
-      <td>-0.208349</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.259465</td>
-      <td>0.896735</td>
-      <td>0.033814</td>
-      <td>-1.135184</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>-1.568006</td>
-      <td>0.685092</td>
-      <td>-0.931491</td>
-      <td>0.323591</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>0.050029</td>
-      <td>1.938641</td>
-      <td>-0.193642</td>
-      <td>0.199692</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>-0.041061</td>
-      <td>-0.845943</td>
-      <td>1.542987</td>
-      <td>0.354031</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">-0.119313</td>
+<td style="text-align:center">-0.165029</td>
+<td style="text-align:center">-1.065599</td>
+<td style="text-align:center">0.224712</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.423993</td>
+<td style="text-align:center">0.705954</td>
+<td style="text-align:center">-0.349143</td>
+<td style="text-align:center">-0.208349</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.259465</td>
+<td style="text-align:center">0.896735</td>
+<td style="text-align:center">0.033814</td>
+<td style="text-align:center">-1.135184</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">-1.568006</td>
+<td style="text-align:center">0.685092</td>
+<td style="text-align:center">-0.931491</td>
+<td style="text-align:center">0.323591</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">0.050029</td>
+<td style="text-align:center">1.938641</td>
+<td style="text-align:center">-0.193642</td>
+<td style="text-align:center">0.199692</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">-0.041061</td>
+<td style="text-align:center">-0.845943</td>
+<td style="text-align:center">1.542987</td>
+<td style="text-align:center">0.354031</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.197225</td>
-      <td>-0.666883</td>
-      <td>0.855806</td>
-      <td>0.253851</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.291572</td>
-      <td>0.011976</td>
-      <td>-1.502192</td>
-      <td>0.051144</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>-0.670941</td>
-      <td>1.815718</td>
-      <td>0.503071</td>
-      <td>0.361448</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.197225</td>
+<td style="text-align:center">-0.666883</td>
+<td style="text-align:center">0.855806</td>
+<td style="text-align:center">0.253851</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.291572</td>
+<td style="text-align:center">0.011976</td>
+<td style="text-align:center">-1.502192</td>
+<td style="text-align:center">0.051144</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">-0.670941</td>
+<td style="text-align:center">1.815718</td>
+<td style="text-align:center">0.503071</td>
+<td style="text-align:center">0.361448</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>-1.643476</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>-0.114123</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">-1.643476</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">-0.114123</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df2 = pd.DataFrame(&#123; <span class="string">'A'</span> : <span class="number">1.</span>,</span><br><span class="line">                     <span class="string">'B'</span> : pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line">                     <span class="string">'C'</span> : pd.Series(<span class="number">1</span>,index=list(range(<span class="number">4</span>)),dtype=<span class="string">'float32'</span>), </span><br><span class="line">                     <span class="string">'D'</span> : np.array([<span class="number">3</span>] * <span class="number">4</span>,dtype=<span class="string">'int32'</span>),</span><br><span class="line">                     <span class="string">'E'</span> : pd.Categorical([<span class="string">"test"</span>,<span class="string">"train"</span>,<span class="string">"test"</span>,<span class="string">"train"</span>]),</span><br><span class="line">                     <span class="string">'F'</span> : <span class="string">'foo'</span> &#125;)</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.dtypes</span><br></pre></td></tr></table></figure>
 <pre><code>A           float64
 B    datetime64[ns]
@@ -469,363 +401,278 @@ dtype: object
        [1.0, Timestamp(&apos;2013-01-02 00:00:00&apos;), 1.0, 3, &apos;train&apos;, &apos;foo&apos;]],
       dtype=object)
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数字总结</span></span><br><span class="line">df2.describe()</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>3.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">count</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">mean</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">std</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">0.0</td>
+</tr>
+<tr>
+<td style="text-align:center">min</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">25%</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">50%</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">75%</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">max</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 翻转数据</span></span><br><span class="line">df2.T</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>A</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>2013-01-02 00:00:00</td>
-      <td>2013-01-02 00:00:00</td>
-      <td>2013-01-02 00:00:00</td>
-      <td>2013-01-02 00:00:00</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>E</th>
-      <td>test</td>
-      <td>train</td>
-      <td>test</td>
-      <td>train</td>
-    </tr>
-    <tr>
-      <th>F</th>
-      <td>foo</td>
-      <td>foo</td>
-      <td>foo</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">2013-01-02 00:00:00</td>
+<td style="text-align:center">2013-01-02 00:00:00</td>
+<td style="text-align:center">2013-01-02 00:00:00</td>
+<td style="text-align:center">2013-01-02 00:00:00</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">D</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">E</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">train</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">foo</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># axis等于1按列进行排序 如ABCDEFG 然后ascending倒叙进行显示</span></span><br><span class="line">df2.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>F</th>
-      <th>E</th>
-      <th>D</th>
-      <th>C</th>
-      <th>B</th>
-      <th>A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>test</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>foo</td>
-      <td>train</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>foo</td>
-      <td>test</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>foo</td>
-      <td>train</td>
-      <td>3</td>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">F</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#axis等于0按行进行排序 如0123 然后ascending倒叙进行显示</span></span><br><span class="line">df2.sort_index(axis=<span class="number">0</span>, ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按值进行排序</span></span><br><span class="line">df2.sort_values(by=<span class="string">'E'</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>test</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">test</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <a id="more"></a>
 <blockquote>
 <p>选择</p>
@@ -839,109 +686,75 @@ dtype: object
 2017-01-06    0.375105
 Freq: D, Name: A, dtype: float64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切片选择</span></span><br><span class="line">df[<span class="number">0</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.549772</td>
-      <td>-0.677954</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.549772</td>
+<td style="text-align:center">-0.677954</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'20170102'</span>:<span class="string">'20170104'</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># loc方法为根据行标签label选择</span></span><br><span class="line">df.loc[dates[<span class="number">0</span>]]</span><br></pre></td></tr></table></figure>
 <pre><code>A    0.549772
 B   -0.677954
@@ -951,108 +764,74 @@ Name: 2017-01-01 00:00:00, dtype: float64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[dates[<span class="number">0</span>],<span class="string">'A'</span>]</span><br></pre></td></tr></table></figure>
 <pre><code>0.5497720064165944
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[:,[<span class="string">'A'</span>,<span class="string">'B'</span>]]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.549772</td>
-      <td>-0.677954</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.549772</td>
+<td style="text-align:center">-0.677954</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="string">'20170102'</span>:<span class="string">'20170104'</span>,[<span class="string">'A'</span>,<span class="string">'B'</span>]]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># iloc方法为根据position选择</span></span><br><span class="line">df.iloc[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
 <pre><code>A    0.465035
 B    0.465077
@@ -1060,282 +839,197 @@ C   -0.018313
 D    1.338603
 Name: 2017-01-04 00:00:00, dtype: float64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">3</span>:<span class="number">5</span>,<span class="number">0</span>:<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">0</span>,<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.784801</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>0.668063</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>0.058086</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.784801</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">0.668063</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">0.058086</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <pre><code>-0.06768075680943383
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.iat[<span class="number">1</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <pre><code>-0.06768075680943383
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据布尔表达式筛选</span></span><br><span class="line">df[df &gt; <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.549772</td>
-      <td>NaN</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.800007</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>NaN</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>NaN</td>
-      <td>1.338603</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>NaN</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.549772</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0.800007</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">1.338603</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">NaN</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df.A &gt; <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.549772</td>
-      <td>-0.677954</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>-0.114123</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.549772</td>
+<td style="text-align:center">-0.677954</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">-0.114123</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用isin</span></span><br><span class="line">df2[df2[<span class="string">'E'</span>].isin([<span class="string">'train'</span>])]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1.0</td>
-      <td>2013-01-02</td>
-      <td>1.0</td>
-      <td>3</td>
-      <td>train</td>
-      <td>foo</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">2013-01-02</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">train</td>
+<td style="text-align:center">foo</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>设置数据</p>
 </blockquote>
@@ -1348,733 +1042,563 @@ Name: 2017-01-04 00:00:00, dtype: float64
 2017-01-07    6
 Freq: D, dtype: int64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'F'</span>] = s1</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.549772</td>
-      <td>-0.677954</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>-1.643476</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>-0.114123</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.549772</td>
+<td style="text-align:center">-0.677954</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+<td style="text-align:center">2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">-1.643476</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">-0.114123</td>
+<td style="text-align:center">5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.at[dates[<span class="number">0</span>],<span class="string">'A'</span>] = <span class="number">0</span></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>-0.677954</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>-1.643476</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>-0.114123</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">-0.677954</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+<td style="text-align:center">2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">-1.643476</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">-0.114123</td>
+<td style="text-align:center">5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.iat[<span class="number">0</span>,<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.616294</td>
-      <td>1.032977</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>0.800007</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>0.345128</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>1.338603</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>-1.643476</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>-0.114123</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">1.032977</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">0.800007</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">0.345128</td>
+<td style="text-align:center">2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">1.338603</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">-1.643476</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">-0.114123</td>
+<td style="text-align:center">5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用numpy数组</span></span><br><span class="line">df.loc[:,<span class="string">'D'</span>] = np.array([<span class="number">5</span>] * len(df))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.616294</td>
-      <td>5</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>0.106553</td>
-      <td>-1.707697</td>
-      <td>0.668063</td>
-      <td>5</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>0.465035</td>
-      <td>0.465077</td>
-      <td>-0.018313</td>
-      <td>5</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>1.261231</td>
-      <td>0.058086</td>
-      <td>5</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>0.375105</td>
-      <td>0.247912</td>
-      <td>0.998861</td>
-      <td>5</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.616294</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">0.668063</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">0.465035</td>
+<td style="text-align:center">0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">1.261231</td>
+<td style="text-align:center">0.058086</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">0.375105</td>
+<td style="text-align:center">0.247912</td>
+<td style="text-align:center">0.998861</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># where语句</span></span><br><span class="line">df[df &gt; <span class="number">0</span>] = -df</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-0.616294</td>
-      <td>-5</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>-5</td>
-      <td>-1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>-0.106553</td>
-      <td>-1.707697</td>
-      <td>-0.668063</td>
-      <td>-5</td>
-      <td>-2.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>-0.465035</td>
-      <td>-0.465077</td>
-      <td>-0.018313</td>
-      <td>-5</td>
-      <td>-3.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>-0.646332</td>
-      <td>-1.261231</td>
-      <td>-0.058086</td>
-      <td>-5</td>
-      <td>-4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>-0.375105</td>
-      <td>-0.247912</td>
-      <td>-0.998861</td>
-      <td>-5</td>
-      <td>-5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">-0.616294</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">-0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">-0.668063</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">-0.465035</td>
+<td style="text-align:center">-0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-3.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">-0.646332</td>
+<td style="text-align:center">-1.261231</td>
+<td style="text-align:center">-0.058086</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">-0.375105</td>
+<td style="text-align:center">-0.247912</td>
+<td style="text-align:center">-0.998861</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>处理丢失数据</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df1 = df.reindex(index=dates[<span class="number">0</span>:<span class="number">4</span>], columns=list(df.columns) + [<span class="string">'E'</span>])</span><br><span class="line">df1.loc[dates[<span class="number">0</span>]:dates[<span class="number">1</span>],<span class="string">'E'</span>] = <span class="number">1</span></span><br><span class="line">df1</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-0.616294</td>
-      <td>-5</td>
-      <td>NaN</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>-5</td>
-      <td>-1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>-0.106553</td>
-      <td>-1.707697</td>
-      <td>-0.668063</td>
-      <td>-5</td>
-      <td>-2.0</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>-0.465035</td>
-      <td>-0.465077</td>
-      <td>-0.018313</td>
-      <td>-5</td>
-      <td>-3.0</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">-0.616294</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-1.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">-0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">-0.668063</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-2.0</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">-0.465035</td>
+<td style="text-align:center">-0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-3.0</td>
+<td style="text-align:center">NaN</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1.dropna(how=<span class="string">'any'</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>-5</td>
-      <td>-1.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-1.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df1.fillna(value=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>-0.616294</td>
-      <td>-5</td>
-      <td>5.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>-0.969333</td>
-      <td>-0.067681</td>
-      <td>-0.784801</td>
-      <td>-5</td>
-      <td>-1.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>-0.106553</td>
-      <td>-1.707697</td>
-      <td>-0.668063</td>
-      <td>-5</td>
-      <td>-2.0</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>-0.465035</td>
-      <td>-0.465077</td>
-      <td>-0.018313</td>
-      <td>-5</td>
-      <td>-3.0</td>
-      <td>5.0</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">0.000000</td>
+<td style="text-align:center">-0.616294</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">5.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">-0.969333</td>
+<td style="text-align:center">-0.067681</td>
+<td style="text-align:center">-0.784801</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-1.0</td>
+<td style="text-align:center">1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">-0.106553</td>
+<td style="text-align:center">-1.707697</td>
+<td style="text-align:center">-0.668063</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-2.0</td>
+<td style="text-align:center">5.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">-0.465035</td>
+<td style="text-align:center">-0.465077</td>
+<td style="text-align:center">-0.018313</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">-3.0</td>
+<td style="text-align:center">5.0</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.isna(df1)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>F</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">F</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">True</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">True</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">False</td>
+<td style="text-align:center">True</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>运算</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计</span></span><br><span class="line">df = pd.DataFrame(np.random.randint(<span class="number">10</span>,size=(<span class="number">6</span>,<span class="number">4</span>)), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>5</td>
-      <td>4</td>
-      <td>9</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>2</td>
-      <td>4</td>
-      <td>4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>8</td>
-      <td>4</td>
-      <td>0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>5</td>
-      <td>1</td>
-      <td>5</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>8</td>
-      <td>5</td>
-      <td>6</td>
-      <td>6</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.mean()</span><br></pre></td></tr></table></figure>
 <pre><code>A    4.666667
 B    3.333333
@@ -2106,151 +1630,117 @@ Freq: D, dtype: float64
 2017-01-06    NaN
 Freq: D, dtype: float64
 </code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.sub(s, axis=<span class="string">'index'</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>1.0</td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>5.0</td>
-      <td>1.0</td>
-      <td>-3.0</td>
-      <td>-1.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>0.0</td>
-      <td>-4.0</td>
-      <td>0.0</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">5.0</td>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">-3.0</td>
+<td style="text-align:center">-1.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">-4.0</td>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">NaN</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apply函数</span></span><br><span class="line">df.apply(np.cumsum)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2017-01-01</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>2017-01-02</th>
-      <td>5</td>
-      <td>6</td>
-      <td>11</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <th>2017-01-03</th>
-      <td>7</td>
-      <td>10</td>
-      <td>15</td>
-      <td>16</td>
-    </tr>
-    <tr>
-      <th>2017-01-04</th>
-      <td>15</td>
-      <td>14</td>
-      <td>15</td>
-      <td>18</td>
-    </tr>
-    <tr>
-      <th>2017-01-05</th>
-      <td>20</td>
-      <td>15</td>
-      <td>20</td>
-      <td>27</td>
-    </tr>
-    <tr>
-      <th>2017-01-06</th>
-      <td>28</td>
-      <td>20</td>
-      <td>26</td>
-      <td>33</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2017-01-01</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-02</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-03</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-04</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-05</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">27</td>
+</tr>
+<tr>
+<td style="text-align:center">2017-01-06</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">26</td>
+<td style="text-align:center">33</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.apply(<span class="keyword">lambda</span> x: x.max() - x.min())</span><br></pre></td></tr></table></figure>
 <pre><code>A    8
 B    4
@@ -2302,1102 +1792,847 @@ dtype: object
 </blockquote>
 <p>分为concat拼接、merge连接、append附加</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#concat</span></span><br><span class="line">df = pd.DataFrame(np.random.randn(<span class="number">10</span>, <span class="number">4</span>))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.085320</td>
-      <td>1.206620</td>
-      <td>1.618956</td>
-      <td>-0.020682</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.026634</td>
-      <td>-1.078752</td>
-      <td>-0.996088</td>
-      <td>-0.252160</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.245989</td>
-      <td>0.846779</td>
-      <td>1.552243</td>
-      <td>-1.210550</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.043176</td>
-      <td>1.536280</td>
-      <td>-0.664456</td>
-      <td>1.274851</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-0.248457</td>
-      <td>0.061227</td>
-      <td>0.055422</td>
-      <td>-0.191773</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-1.047112</td>
-      <td>0.389239</td>
-      <td>1.542080</td>
-      <td>-0.545886</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>-0.669885</td>
-      <td>-0.376372</td>
-      <td>1.258315</td>
-      <td>0.035060</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.529041</td>
-      <td>1.427947</td>
-      <td>0.151411</td>
-      <td>-1.840725</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.435908</td>
-      <td>-0.023168</td>
-      <td>0.172505</td>
-      <td>1.062092</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>-0.171858</td>
-      <td>-0.599918</td>
-      <td>1.004990</td>
-      <td>0.233463</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">-0.085320</td>
+<td style="text-align:center">1.206620</td>
+<td style="text-align:center">1.618956</td>
+<td style="text-align:center">-0.020682</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-0.026634</td>
+<td style="text-align:center">-1.078752</td>
+<td style="text-align:center">-0.996088</td>
+<td style="text-align:center">-0.252160</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.245989</td>
+<td style="text-align:center">0.846779</td>
+<td style="text-align:center">1.552243</td>
+<td style="text-align:center">-1.210550</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.043176</td>
+<td style="text-align:center">1.536280</td>
+<td style="text-align:center">-0.664456</td>
+<td style="text-align:center">1.274851</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-0.248457</td>
+<td style="text-align:center">0.061227</td>
+<td style="text-align:center">0.055422</td>
+<td style="text-align:center">-0.191773</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-1.047112</td>
+<td style="text-align:center">0.389239</td>
+<td style="text-align:center">1.542080</td>
+<td style="text-align:center">-0.545886</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-0.669885</td>
+<td style="text-align:center">-0.376372</td>
+<td style="text-align:center">1.258315</td>
+<td style="text-align:center">0.035060</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0.529041</td>
+<td style="text-align:center">1.427947</td>
+<td style="text-align:center">0.151411</td>
+<td style="text-align:center">-1.840725</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.435908</td>
+<td style="text-align:center">-0.023168</td>
+<td style="text-align:center">0.172505</td>
+<td style="text-align:center">1.062092</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">-0.171858</td>
+<td style="text-align:center">-0.599918</td>
+<td style="text-align:center">1.004990</td>
+<td style="text-align:center">0.233463</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pieces = [df[:<span class="number">3</span>], df[<span class="number">3</span>:<span class="number">7</span>], df[<span class="number">7</span>:]]</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pieces[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.085320</td>
-      <td>1.206620</td>
-      <td>1.618956</td>
-      <td>-0.020682</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.026634</td>
-      <td>-1.078752</td>
-      <td>-0.996088</td>
-      <td>-0.252160</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.245989</td>
-      <td>0.846779</td>
-      <td>1.552243</td>
-      <td>-1.210550</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">-0.085320</td>
+<td style="text-align:center">1.206620</td>
+<td style="text-align:center">1.618956</td>
+<td style="text-align:center">-0.020682</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-0.026634</td>
+<td style="text-align:center">-1.078752</td>
+<td style="text-align:center">-0.996088</td>
+<td style="text-align:center">-0.252160</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.245989</td>
+<td style="text-align:center">0.846779</td>
+<td style="text-align:center">1.552243</td>
+<td style="text-align:center">-1.210550</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pieces[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>3</th>
-      <td>0.043176</td>
-      <td>1.536280</td>
-      <td>-0.664456</td>
-      <td>1.274851</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-0.248457</td>
-      <td>0.061227</td>
-      <td>0.055422</td>
-      <td>-0.191773</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-1.047112</td>
-      <td>0.389239</td>
-      <td>1.542080</td>
-      <td>-0.545886</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>-0.669885</td>
-      <td>-0.376372</td>
-      <td>1.258315</td>
-      <td>0.035060</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.043176</td>
+<td style="text-align:center">1.536280</td>
+<td style="text-align:center">-0.664456</td>
+<td style="text-align:center">1.274851</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-0.248457</td>
+<td style="text-align:center">0.061227</td>
+<td style="text-align:center">0.055422</td>
+<td style="text-align:center">-0.191773</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-1.047112</td>
+<td style="text-align:center">0.389239</td>
+<td style="text-align:center">1.542080</td>
+<td style="text-align:center">-0.545886</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-0.669885</td>
+<td style="text-align:center">-0.376372</td>
+<td style="text-align:center">1.258315</td>
+<td style="text-align:center">0.035060</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pieces[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7</th>
-      <td>0.529041</td>
-      <td>1.427947</td>
-      <td>0.151411</td>
-      <td>-1.840725</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.435908</td>
-      <td>-0.023168</td>
-      <td>0.172505</td>
-      <td>1.062092</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>-0.171858</td>
-      <td>-0.599918</td>
-      <td>1.004990</td>
-      <td>0.233463</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0.529041</td>
+<td style="text-align:center">1.427947</td>
+<td style="text-align:center">0.151411</td>
+<td style="text-align:center">-1.840725</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.435908</td>
+<td style="text-align:center">-0.023168</td>
+<td style="text-align:center">0.172505</td>
+<td style="text-align:center">1.062092</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">-0.171858</td>
+<td style="text-align:center">-0.599918</td>
+<td style="text-align:center">1.004990</td>
+<td style="text-align:center">0.233463</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat(pieces)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.085320</td>
-      <td>1.206620</td>
-      <td>1.618956</td>
-      <td>-0.020682</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>-0.026634</td>
-      <td>-1.078752</td>
-      <td>-0.996088</td>
-      <td>-0.252160</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.245989</td>
-      <td>0.846779</td>
-      <td>1.552243</td>
-      <td>-1.210550</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.043176</td>
-      <td>1.536280</td>
-      <td>-0.664456</td>
-      <td>1.274851</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-0.248457</td>
-      <td>0.061227</td>
-      <td>0.055422</td>
-      <td>-0.191773</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>-1.047112</td>
-      <td>0.389239</td>
-      <td>1.542080</td>
-      <td>-0.545886</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>-0.669885</td>
-      <td>-0.376372</td>
-      <td>1.258315</td>
-      <td>0.035060</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.529041</td>
-      <td>1.427947</td>
-      <td>0.151411</td>
-      <td>-1.840725</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.435908</td>
-      <td>-0.023168</td>
-      <td>0.172505</td>
-      <td>1.062092</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>-0.171858</td>
-      <td>-0.599918</td>
-      <td>1.004990</td>
-      <td>0.233463</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">-0.085320</td>
+<td style="text-align:center">1.206620</td>
+<td style="text-align:center">1.618956</td>
+<td style="text-align:center">-0.020682</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-0.026634</td>
+<td style="text-align:center">-1.078752</td>
+<td style="text-align:center">-0.996088</td>
+<td style="text-align:center">-0.252160</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.245989</td>
+<td style="text-align:center">0.846779</td>
+<td style="text-align:center">1.552243</td>
+<td style="text-align:center">-1.210550</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.043176</td>
+<td style="text-align:center">1.536280</td>
+<td style="text-align:center">-0.664456</td>
+<td style="text-align:center">1.274851</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-0.248457</td>
+<td style="text-align:center">0.061227</td>
+<td style="text-align:center">0.055422</td>
+<td style="text-align:center">-0.191773</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-1.047112</td>
+<td style="text-align:center">0.389239</td>
+<td style="text-align:center">1.542080</td>
+<td style="text-align:center">-0.545886</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-0.669885</td>
+<td style="text-align:center">-0.376372</td>
+<td style="text-align:center">1.258315</td>
+<td style="text-align:center">0.035060</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">0.529041</td>
+<td style="text-align:center">1.427947</td>
+<td style="text-align:center">0.151411</td>
+<td style="text-align:center">-1.840725</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.435908</td>
+<td style="text-align:center">-0.023168</td>
+<td style="text-align:center">0.172505</td>
+<td style="text-align:center">1.062092</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">-0.171858</td>
+<td style="text-align:center">-0.599918</td>
+<td style="text-align:center">1.004990</td>
+<td style="text-align:center">0.233463</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#merge</span></span><br><span class="line">left = pd.DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'foo'</span>, <span class="string">'foo'</span>], <span class="string">'lval'</span>: [<span class="number">1</span>, <span class="number">2</span>]&#125;)</span><br><span class="line">right = pd.DataFrame(&#123;<span class="string">'key'</span>: [<span class="string">'foo'</span>, <span class="string">'foo'</span>], <span class="string">'rval'</span>: [<span class="number">4</span>, <span class="number">5</span>]&#125;)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key</th>
-      <th>lval</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>foo</td>
-      <td>2</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">key</th>
+<th style="text-align:center">lval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">right</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key</th>
-      <th>rval</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>foo</td>
-      <td>5</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">key</th>
+<th style="text-align:center">rval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, on=<span class="string">'key'</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>key</th>
-      <th>lval</th>
-      <th>rval</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>1</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>foo</td>
-      <td>1</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>foo</td>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>foo</td>
-      <td>2</td>
-      <td>5</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">key</th>
+<th style="text-align:center">lval</th>
+<th style="text-align:center">rval</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">5</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#append</span></span><br><span class="line">df = pd.DataFrame(np.random.randn(<span class="number">8</span>, <span class="number">4</span>), columns=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>])</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.279258</td>
-      <td>-0.352347</td>
-      <td>-1.866664</td>
-      <td>-0.756606</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.007247</td>
-      <td>-1.684264</td>
-      <td>-0.671554</td>
-      <td>1.103426</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.716867</td>
-      <td>-1.119185</td>
-      <td>-0.062760</td>
-      <td>-0.424570</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.346070</td>
-      <td>-0.160277</td>
-      <td>0.480741</td>
-      <td>-3.739629</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-1.947606</td>
-      <td>-0.931807</td>
-      <td>1.361200</td>
-      <td>-0.944480</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1.063839</td>
-      <td>0.042823</td>
-      <td>-0.485761</td>
-      <td>0.014667</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>-0.171306</td>
-      <td>-1.320569</td>
-      <td>0.861081</td>
-      <td>-0.821154</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>-0.008423</td>
-      <td>-1.027952</td>
-      <td>0.233170</td>
-      <td>0.620665</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">-0.279258</td>
+<td style="text-align:center">-0.352347</td>
+<td style="text-align:center">-1.866664</td>
+<td style="text-align:center">-0.756606</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.007247</td>
+<td style="text-align:center">-1.684264</td>
+<td style="text-align:center">-0.671554</td>
+<td style="text-align:center">1.103426</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.716867</td>
+<td style="text-align:center">-1.119185</td>
+<td style="text-align:center">-0.062760</td>
+<td style="text-align:center">-0.424570</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.346070</td>
+<td style="text-align:center">-0.160277</td>
+<td style="text-align:center">0.480741</td>
+<td style="text-align:center">-3.739629</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-1.947606</td>
+<td style="text-align:center">-0.931807</td>
+<td style="text-align:center">1.361200</td>
+<td style="text-align:center">-0.944480</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">1.063839</td>
+<td style="text-align:center">0.042823</td>
+<td style="text-align:center">-0.485761</td>
+<td style="text-align:center">0.014667</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-0.171306</td>
+<td style="text-align:center">-1.320569</td>
+<td style="text-align:center">0.861081</td>
+<td style="text-align:center">-0.821154</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">-0.008423</td>
+<td style="text-align:center">-1.027952</td>
+<td style="text-align:center">0.233170</td>
+<td style="text-align:center">0.620665</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = df.iloc[<span class="number">3</span>]</span><br><span class="line">df.append(s, ignore_index=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>-0.279258</td>
-      <td>-0.352347</td>
-      <td>-1.866664</td>
-      <td>-0.756606</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.007247</td>
-      <td>-1.684264</td>
-      <td>-0.671554</td>
-      <td>1.103426</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.716867</td>
-      <td>-1.119185</td>
-      <td>-0.062760</td>
-      <td>-0.424570</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.346070</td>
-      <td>-0.160277</td>
-      <td>0.480741</td>
-      <td>-3.739629</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>-1.947606</td>
-      <td>-0.931807</td>
-      <td>1.361200</td>
-      <td>-0.944480</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>1.063839</td>
-      <td>0.042823</td>
-      <td>-0.485761</td>
-      <td>0.014667</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>-0.171306</td>
-      <td>-1.320569</td>
-      <td>0.861081</td>
-      <td>-0.821154</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>-0.008423</td>
-      <td>-1.027952</td>
-      <td>0.233170</td>
-      <td>0.620665</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.346070</td>
-      <td>-0.160277</td>
-      <td>0.480741</td>
-      <td>-3.739629</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">-0.279258</td>
+<td style="text-align:center">-0.352347</td>
+<td style="text-align:center">-1.866664</td>
+<td style="text-align:center">-0.756606</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0.007247</td>
+<td style="text-align:center">-1.684264</td>
+<td style="text-align:center">-0.671554</td>
+<td style="text-align:center">1.103426</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.716867</td>
+<td style="text-align:center">-1.119185</td>
+<td style="text-align:center">-0.062760</td>
+<td style="text-align:center">-0.424570</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.346070</td>
+<td style="text-align:center">-0.160277</td>
+<td style="text-align:center">0.480741</td>
+<td style="text-align:center">-3.739629</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-1.947606</td>
+<td style="text-align:center">-0.931807</td>
+<td style="text-align:center">1.361200</td>
+<td style="text-align:center">-0.944480</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">1.063839</td>
+<td style="text-align:center">0.042823</td>
+<td style="text-align:center">-0.485761</td>
+<td style="text-align:center">0.014667</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">-0.171306</td>
+<td style="text-align:center">-1.320569</td>
+<td style="text-align:center">0.861081</td>
+<td style="text-align:center">-0.821154</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">-0.008423</td>
+<td style="text-align:center">-1.027952</td>
+<td style="text-align:center">0.233170</td>
+<td style="text-align:center">0.620665</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">0.346070</td>
+<td style="text-align:center">-0.160277</td>
+<td style="text-align:center">0.480741</td>
+<td style="text-align:center">-3.739629</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>分组</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">'A'</span> : [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>,<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'foo'</span>, <span class="string">'foo'</span>],</span><br><span class="line">                   <span class="string">'B'</span> : [<span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>,<span class="string">'two'</span>, <span class="string">'two'</span>, <span class="string">'one'</span>, <span class="string">'three'</span>],</span><br><span class="line">                   <span class="string">'C'</span> : np.random.randn(<span class="number">8</span>),</span><br><span class="line">                   <span class="string">'D'</span> : np.random.randn(<span class="number">8</span>)&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>foo</td>
-      <td>one</td>
-      <td>-0.375015</td>
-      <td>-0.371934</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>bar</td>
-      <td>one</td>
-      <td>-0.837523</td>
-      <td>0.733000</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>foo</td>
-      <td>two</td>
-      <td>-0.248089</td>
-      <td>-1.269897</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>bar</td>
-      <td>three</td>
-      <td>0.320737</td>
-      <td>0.305018</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>foo</td>
-      <td>two</td>
-      <td>-2.005969</td>
-      <td>-1.319570</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>bar</td>
-      <td>two</td>
-      <td>-1.011349</td>
-      <td>-0.159672</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>foo</td>
-      <td>one</td>
-      <td>2.018282</td>
-      <td>1.061732</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>foo</td>
-      <td>three</td>
-      <td>-0.642915</td>
-      <td>-0.626796</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">-0.375015</td>
+<td style="text-align:center">-0.371934</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">-0.837523</td>
+<td style="text-align:center">0.733000</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">-0.248089</td>
+<td style="text-align:center">-1.269897</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">0.320737</td>
+<td style="text-align:center">0.305018</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">-2.005969</td>
+<td style="text-align:center">-1.319570</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">-1.011349</td>
+<td style="text-align:center">-0.159672</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">2.018282</td>
+<td style="text-align:center">1.061732</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">-0.642915</td>
+<td style="text-align:center">-0.626796</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(<span class="string">'A'</span>).sum()</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>bar</th>
-      <td>-1.528135</td>
-      <td>0.878347</td>
-    </tr>
-    <tr>
-      <th>foo</th>
-      <td>-1.253705</td>
-      <td>-2.526466</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">-1.528135</td>
+<td style="text-align:center">0.878347</td>
+</tr>
+<tr>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">-1.253705</td>
+<td style="text-align:center">-2.526466</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby([<span class="string">'A'</span>,<span class="string">'B'</span>]).sum()</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>C</th>
-      <th>D</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th>B</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">bar</th>
-      <th>one</th>
-      <td>-0.837523</td>
-      <td>0.733000</td>
-    </tr>
-    <tr>
-      <th>three</th>
-      <td>0.320737</td>
-      <td>0.305018</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>-1.011349</td>
-      <td>-0.159672</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">foo</th>
-      <th>one</th>
-      <td>1.643267</td>
-      <td>0.689798</td>
-    </tr>
-    <tr>
-      <th>three</th>
-      <td>-0.642915</td>
-      <td>-0.626796</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>-2.254058</td>
-      <td>-2.589467</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">-0.837523</td>
+<td style="text-align:center">0.733000</td>
+</tr>
+<tr>
+<td style="text-align:center">three</td>
+<td style="text-align:center">0.320737</td>
+<td style="text-align:center">0.305018</td>
+</tr>
+<tr>
+<td style="text-align:center">two</td>
+<td style="text-align:center">-1.011349</td>
+<td style="text-align:center">-0.159672</td>
+</tr>
+<tr>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">1.643267</td>
+<td style="text-align:center">0.689798</td>
+</tr>
+<tr>
+<td style="text-align:center">three</td>
+<td style="text-align:center">-0.642915</td>
+<td style="text-align:center">-0.626796</td>
+</tr>
+<tr>
+<td style="text-align:center">two</td>
+<td style="text-align:center">-2.254058</td>
+<td style="text-align:center">-2.589467</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>pivot table</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">'A'</span> : [<span class="string">'one'</span>, <span class="string">'one'</span>, <span class="string">'two'</span>, <span class="string">'three'</span>] * <span class="number">3</span>,</span><br><span class="line">                   <span class="string">'B'</span> : [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>] * <span class="number">4</span>,</span><br><span class="line">                   <span class="string">'C'</span> : [<span class="string">'foo'</span>, <span class="string">'foo'</span>, <span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'bar'</span>, <span class="string">'bar'</span>] * <span class="number">2</span>,</span><br><span class="line">                   <span class="string">'D'</span> : np.random.randn(<span class="number">12</span>),</span><br><span class="line">                   <span class="string">'E'</span> : np.random.randn(<span class="number">12</span>)&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>one</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>0.390424</td>
-      <td>-0.611496</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>one</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>0.261406</td>
-      <td>-1.746241</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>two</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>1.013178</td>
-      <td>-1.047726</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>three</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>0.874502</td>
-      <td>-0.251756</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>one</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>0.990922</td>
-      <td>0.956082</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>one</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>0.041987</td>
-      <td>1.418088</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>two</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>0.487429</td>
-      <td>0.315077</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>three</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>0.072805</td>
-      <td>-0.097474</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>one</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>-0.666952</td>
-      <td>1.655099</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>one</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>1.647375</td>
-      <td>-1.670791</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>two</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>-0.907300</td>
-      <td>-1.481746</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>three</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>0.214953</td>
-      <td>-0.420732</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.390424</td>
+<td style="text-align:center">-0.611496</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.261406</td>
+<td style="text-align:center">-1.746241</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">1.013178</td>
+<td style="text-align:center">-1.047726</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.874502</td>
+<td style="text-align:center">-0.251756</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.990922</td>
+<td style="text-align:center">0.956082</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.041987</td>
+<td style="text-align:center">1.418088</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.487429</td>
+<td style="text-align:center">0.315077</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.072805</td>
+<td style="text-align:center">-0.097474</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">-0.666952</td>
+<td style="text-align:center">1.655099</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">1.647375</td>
+<td style="text-align:center">-1.670791</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">-0.907300</td>
+<td style="text-align:center">-1.481746</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.214953</td>
+<td style="text-align:center">-0.420732</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.pivot_table(df, values=<span class="string">'D'</span>, index=[<span class="string">'A'</span>, <span class="string">'B'</span>], columns=[<span class="string">'C'</span>])</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>C</th>
-      <th>bar</th>
-      <th>foo</th>
-    </tr>
-    <tr>
-      <th>A</th>
-      <th>B</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="3" valign="top">one</th>
-      <th>A</th>
-      <td>1.647375</td>
-      <td>0.390424</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>0.990922</td>
-      <td>0.261406</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>0.041987</td>
-      <td>-0.666952</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">three</th>
-      <th>A</th>
-      <td>0.874502</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>NaN</td>
-      <td>0.072805</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>0.214953</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th rowspan="3" valign="top">two</th>
-      <th>A</th>
-      <td>NaN</td>
-      <td>0.487429</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>-0.907300</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>NaN</td>
-      <td>1.013178</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">bar</th>
+<th style="text-align:center">foo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">one</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">1.647375</td>
+<td style="text-align:center">0.390424</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">0.990922</td>
+<td style="text-align:center">0.261406</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">0.041987</td>
+<td style="text-align:center">-0.666952</td>
+</tr>
+<tr>
+<td style="text-align:center">three</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">0.874502</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0.072805</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">0.214953</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">two</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0.487429</td>
+</tr>
+<tr>
+<td style="text-align:center">B</td>
+<td style="text-align:center">-0.907300</td>
+<td style="text-align:center">NaN</td>
+</tr>
+<tr>
+<td style="text-align:center">C</td>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">1.013178</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <blockquote>
 <p>plotting</p>
 </blockquote>
@@ -3407,146 +2642,129 @@ dtype: object
 <p>导出和导入，支持csv、hdf5和excel</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.to_csv(<span class="string">'file/foo.csv'</span>)</span><br><span class="line">pd.read_csv(<span class="string">'file/foo.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-      <th>D</th>
-      <th>E</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>one</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>0.390424</td>
-      <td>-0.611496</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>one</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>0.261406</td>
-      <td>-1.746241</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2</td>
-      <td>two</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>1.013178</td>
-      <td>-1.047726</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>3</td>
-      <td>three</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>0.874502</td>
-      <td>-0.251756</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4</td>
-      <td>one</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>0.990922</td>
-      <td>0.956082</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>5</td>
-      <td>one</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>0.041987</td>
-      <td>1.418088</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>6</td>
-      <td>two</td>
-      <td>A</td>
-      <td>foo</td>
-      <td>0.487429</td>
-      <td>0.315077</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>7</td>
-      <td>three</td>
-      <td>B</td>
-      <td>foo</td>
-      <td>0.072805</td>
-      <td>-0.097474</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>8</td>
-      <td>one</td>
-      <td>C</td>
-      <td>foo</td>
-      <td>-0.666952</td>
-      <td>1.655099</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>9</td>
-      <td>one</td>
-      <td>A</td>
-      <td>bar</td>
-      <td>1.647375</td>
-      <td>-1.670791</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>10</td>
-      <td>two</td>
-      <td>B</td>
-      <td>bar</td>
-      <td>-0.907300</td>
-      <td>-1.481746</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>11</td>
-      <td>three</td>
-      <td>C</td>
-      <td>bar</td>
-      <td>0.214953</td>
-      <td>-0.420732</td>
-    </tr>
-  </tbody>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Unnamed: 0</th>
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.390424</td>
+<td style="text-align:center">-0.611496</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.261406</td>
+<td style="text-align:center">-1.746241</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">1.013178</td>
+<td style="text-align:center">-1.047726</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.874502</td>
+<td style="text-align:center">-0.251756</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.990922</td>
+<td style="text-align:center">0.956082</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.041987</td>
+<td style="text-align:center">1.418088</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.487429</td>
+<td style="text-align:center">0.315077</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">0.072805</td>
+<td style="text-align:center">-0.097474</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">foo</td>
+<td style="text-align:center">-0.666952</td>
+<td style="text-align:center">1.655099</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">one</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">1.647375</td>
+<td style="text-align:center">-1.670791</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">two</td>
+<td style="text-align:center">B</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">-0.907300</td>
+<td style="text-align:center">-1.481746</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">three</td>
+<td style="text-align:center">C</td>
+<td style="text-align:center">bar</td>
+<td style="text-align:center">0.214953</td>
+<td style="text-align:center">-0.420732</td>
+</tr>
+</tbody>
 </table>
-</div>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#excel导入导出，导出需要安装openpyxl库，导入需要安装xlrd库</span></span><br><span class="line">df.to_excel(<span class="string">'file/foo.xlsx'</span>, sheet_name=<span class="string">'Sheet1'</span>)</span><br><span class="line">pd.read_excel(<span class="string">'file/foo.xlsx'</span>, <span class="string">'Sheet1'</span>, index_col=<span class="keyword">None</span>, na_values=[<span class="string">'NA'</span>])</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>读取MySQL</p>

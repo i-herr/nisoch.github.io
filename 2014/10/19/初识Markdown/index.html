@@ -17,7 +17,7 @@
 <meta property="og:description" content="一、Markdown使用场景以前只在github上接触了下md文件，遇到倒是简单，也通用。如今自己搭建博客，便得系统的了解下Markdown了。 说到使用场景，基本有以下几种：  需维护型文档：文档需要在多平台使用，如邮件、wiki平台、同事传阅、网站发布等。一般文档常用Word来写，但是如果文档一需要在网上发布就麻烦了，格式没有跟过来。如果一开始就是markdown语法，可以通用解决。 项目文档">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2014/10/19/初识Markdown/macdown.jpg">
-<meta property="og:updated_time" content="2018-11-07T07:22:16.000Z">
+<meta property="og:updated_time" content="2019-01-22T09:24:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识Markdown">
 <meta name="twitter:description" content="一、Markdown使用场景以前只在github上接触了下md文件，遇到倒是简单，也通用。如今自己搭建博客，便得系统的了解下Markdown了。 说到使用场景，基本有以下几种：  需维护型文档：文档需要在多平台使用，如邮件、wiki平台、同事传阅、网站发布等。一般文档常用Word来写，但是如果文档一需要在网上发布就麻烦了，格式没有跟过来。如果一开始就是markdown语法，可以通用解决。 项目文档">
@@ -212,6 +212,8 @@
 <li style="list-style: none"><input type="checkbox" checked> 李四</li>
 <li style="list-style: none"><input type="checkbox"> 王五</li>
 </ul>
+<p>如需要使用html的table标签，hexo有多个空行的bug，需要删除table元素的所有换行符，或者使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">table content</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="三、Markdown工具"><a href="#三、Markdown工具" class="headerlink" title="三、Markdown工具"></a>三、Markdown工具</h2><p>提到Markdown工具，作为一名简书控，平常写文章时，便使用的简书在线的Markdown编辑器了。想到这玩意还要联网就觉得写博客的场景不太适用。Mac下推荐<a href="http://macdown.uranusjr.com" target="_blank" rel="noopener">『MacDown』</a>，试了下对照预览、插入链接(Command+Shift+K)、图片(Command+Shift+I)，都还算方便。我在写这篇博文时的使用截图，如下图所示。</p>
 <p><img src="/2014/10/19/初识Markdown/macdown.jpg" alt=""></p>
 <p>好啦，这玩意够用就好。不需要太精通。</p>

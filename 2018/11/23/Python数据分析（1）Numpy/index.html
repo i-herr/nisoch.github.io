@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>Python数据分析（1）Numpy | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档』 一、基础1import numpy as np 123# python li">
+  <meta name="description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档传送门』 一、基础1import numpy as np 123# python">
 <meta name="keywords" content="Python,Numpy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python数据分析（1）Numpy">
 <meta property="og:url" content="http://iherr.cn/2018/11/23/Python数据分析（1）Numpy/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档』 一、基础1import numpy as np 123# python li">
+<meta property="og:description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档传送门』 一、基础1import numpy as np 123# python">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T08:24:43.000Z">
+<meta property="og:updated_time" content="2019-01-22T09:33:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析（1）Numpy">
-<meta name="twitter:description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档』 一、基础1import numpy as np 123# python li">
+<meta name="twitter:description" content="Numpy是python科学计算的基础包，它提供以下功能：  快速高效的多维数组对象ndarray  用于对数组执行元素级计算以及直接对数组执行数学运算的函数 用于读写硬盘上基于数组的数据集的工具 线性代数运算、傅里叶变换，以及随机数生成 用于将C、C++、Fortran代码集成到python的工具  『ipynb文档传送门』 一、基础1import numpy as np 123# python">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -179,7 +179,7 @@
 <li>线性代数运算、傅里叶变换，以及随机数生成</li>
 <li>用于将C、C++、Fortran代码集成到python的工具</li>
 </ul>
-<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/numpy.ipynb" target="_blank" rel="noopener">『ipynb文档』</a></p>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/numpy.ipynb" target="_blank" rel="noopener">『ipynb文档传送门』</a></p>
 <h2 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python list方法生成数据</span></span><br><span class="line">list(range(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment">#[0, 2, 4, 6, 8]</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 二维数据访问</span></span><br><span class="line">var =[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">var[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"><span class="comment">#1</span></span><br></pre></td></tr></table></figure>
