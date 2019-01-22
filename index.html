@@ -169,22 +169,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+        <h2 id="一、Matplotlib各种图形demo"><a href="#一、Matplotlib各种图形demo" class="headerlink" title="一、Matplotlib各种图形demo"></a>一、Matplotlib各种图形demo</h2><p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/matplotlib.ipynb" target="_blank" rel="noopener">『ipynb文档传送门』</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#把图画在notebook中</span></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>线状图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/linear.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_4_0.png" alt="png"></p>
 <blockquote>
 <p>条形图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/bar.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_6_0.png" alt="png"></p>
 <blockquote>
 <p>直方图Histogram</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>No handles with labels found to put in legend.
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_8_1.png" alt="png"></p>
+<blockquote>
+<p>散点图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(x,y, label=<span class="string">'skitscat'</span>, color=<span class="string">'k'</span>, s=<span class="number">25</span>, marker=<span class="string">"o"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_10_0.png" alt="png"></p>
+<blockquote>
+<p>堆叠图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">days = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">sleeping = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">11</span>,<span class="number">7</span>]</span><br><span class="line">eating =   [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">working =  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">playing =  [<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">13</span>]</span><br><span class="line"></span><br><span class="line">plt.plot([],[],color=<span class="string">'m'</span>, label=<span class="string">'Sleeping'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'c'</span>, label=<span class="string">'Eating'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'r'</span>, label=<span class="string">'Working'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'k'</span>, label=<span class="string">'Playing'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.stackplot(days, sleeping,eating,working,playing, colors=[<span class="string">'m'</span>,<span class="string">'c'</span>,<span class="string">'r'</span>,<span class="string">'k'</span>])</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_12_0.png" alt="png"></p>
+<blockquote>
+<p>饼图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">slices = [<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">13</span>]</span><br><span class="line">activities = [<span class="string">'sleeping'</span>,<span class="string">'eating'</span>,<span class="string">'working'</span>,<span class="string">'playing'</span>]</span><br><span class="line">cols = [<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'r'</span>,<span class="string">'b'</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices,</span><br><span class="line">        labels=activities,</span><br><span class="line">        colors=cols,</span><br><span class="line">        startangle=<span class="number">90</span>,</span><br><span class="line">        shadow= <span class="keyword">True</span>,</span><br><span class="line">        explode=(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">0</span>,<span class="number">0</span>),</span><br><span class="line">        autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_14_0.png" alt="png"></p>
         
           <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/#more">more >></a>
         
@@ -199,6 +217,91 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python数据分析（2）Pandas（ipython版）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/27/Python数据分析（2）Pandas（ipython版）/">Python数据分析（2）Pandas（ipython版）</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/27/Python数据分析（2）Pandas（ipython版）/" class="archive-article-date">
+  	<time datetime="2018-11-27T02:45:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>简介</p>
+</blockquote>
+<ul>
+<li>Pandas是Python的一个数据分析包，该工具为解决数据分析任务而创建。</li>
+<li>Pandas纳入大量库和标准数据模型，提供高效的操作数据集所需的工具。</li>
+<li>Pandas提供大量能使我们快速便捷地处理数据的函数和方法。</li>
+<li>Pandas是字典形式，基于NumPy创建，让NumPy为中心的应用变得更加简单。</li>
+<li>对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。</li>
+<li>Excel 2007及其以后的版本的最大行数是1048576，最大列数是16384，超过这个规模的数据可使用Pandas</li>
+</ul>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/pandas.ipynb" target="_blank" rel="noopener">『ipynb文档』</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Series</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = pd.Series([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="number">0</span>    <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>    <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.0</span></span><br><span class="line"><span class="number">3</span>    NaN</span><br><span class="line"><span class="number">4</span>    <span class="number">6.0</span></span><br><span class="line"><span class="number">5</span>    <span class="number">8.0</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DataFrame</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates = pd.date_range(<span class="string">'20170101'</span>, periods=<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates</span><br><span class="line">DatetimeIndex([<span class="string">'2017-01-01'</span>, <span class="string">'2017-01-02'</span>, <span class="string">'2017-01-03'</span>, <span class="string">'2017-01-04'</span>,</span><br><span class="line">               <span class="string">'2017-01-05'</span>, <span class="string">'2017-01-06'</span>],</span><br><span class="line">              dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="string">'D'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.head(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.tail(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2 = pd.DataFrame(&#123; <span class="string">'A'</span> : <span class="number">1.</span>,</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'B'</span> : pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'C'</span> : pd.Series(<span class="number">1</span>,index=list(range(<span class="number">4</span>)),dtype=<span class="string">'float32'</span>), </span><br><span class="line"><span class="meta">... </span>                     <span class="string">'D'</span> : np.array([<span class="number">3</span>] * <span class="number">4</span>,dtype=<span class="string">'int32'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'E'</span> : pd.Categorical([<span class="string">"test"</span>,<span class="string">"train"</span>,<span class="string">"test"</span>,<span class="string">"train"</span>]),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'F'</span> : <span class="string">'foo'</span> &#125;) </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2</span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.dtypes</span><br><span class="line">A           float64</span><br><span class="line">B    datetime64[ns]</span><br><span class="line">C           float32</span><br><span class="line">D             int32</span><br><span class="line">E          category</span><br><span class="line">F            object</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.columns <span class="comment">#列的序号名字</span></span><br><span class="line">Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>], dtype=<span class="string">'object'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.index <span class="comment">#行的序号</span></span><br><span class="line">Int64Index([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=<span class="string">'int64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.values <span class="comment">#把每个值进行打印出来</span></span><br><span class="line">array([[<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>]],</span><br><span class="line">      dtype=object)</span><br><span class="line">      </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.describe() <span class="comment">#数字总结</span></span><br><span class="line">         A    C    D</span><br><span class="line">count  <span class="number">4.0</span>  <span class="number">4.0</span>  <span class="number">4.0</span></span><br><span class="line">mean   <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">std    <span class="number">0.0</span>  <span class="number">0.0</span>  <span class="number">0.0</span></span><br><span class="line">min    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">25</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">50</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">75</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">max    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.T <span class="comment">#翻转数据</span></span><br><span class="line">                     <span class="number">0</span>         ...                             <span class="number">3</span></span><br><span class="line">A                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">B  <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>         ...           <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">C                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">D                    <span class="number">3</span>         ...                             <span class="number">3</span></span><br><span class="line">E                 test         ...                         train</span><br><span class="line">F                  foo         ...                           foo</span><br><span class="line"></span><br><span class="line">[<span class="number">6</span> rows x <span class="number">4</span> columns]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于1按列进行排序 如ABCDEFG 然后ascending倒叙进行显示</span></span><br><span class="line">     F      E  D    C          B    A</span><br><span class="line"><span class="number">0</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">3</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">0</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于0按行进行排序 如0123 然后ascending倒叙进行显示</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_values(by=<span class="string">'E'</span>) <span class="comment">#按值进行排序</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（2）Pandas（ipython版）/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/27/Python数据分析（2）Pandas（ipython版）/">展开全文 >></a>
         </p>
       
 
@@ -249,8 +352,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>简介
-　　</p>
+<p>简介</p>
+</blockquote>
 <ul>
 <li>Pandas是Python的一个数据分析包，该工具为解决数据分析任务而创建。</li>
 <li>Pandas纳入大量库和标准数据模型，提供高效的操作数据集所需的工具。</li>
@@ -259,17 +362,647 @@
 <li>对于金融行业的用户，pandas提供了大量适用于金融数据的高性能时间序列功能和工具。</li>
 <li>Excel 2007及其以后的版本的最大行数是1048576，最大列数是16384，超过这个规模的数据可使用Pandas</li>
 </ul>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/pandas.ipynb" target="_blank" rel="noopener">『ipynb文档』</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Series</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = pd.Series([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s</span><br><span class="line"><span class="number">0</span>    <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>    <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.0</span></span><br><span class="line"><span class="number">3</span>    NaN</span><br><span class="line"><span class="number">4</span>    <span class="number">6.0</span></span><br><span class="line"><span class="number">5</span>    <span class="number">8.0</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
-<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = pd.Series([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,np.nan,<span class="number">6</span>,<span class="number">8</span>])</span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+<pre><code>0    1.0
+1    3.0
+2    5.0
+3    NaN
+4    6.0
+5    8.0
+dtype: float64
+</code></pre><blockquote>
 <p>DataFrame</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates = pd.date_range(<span class="string">'20170101'</span>, periods=<span class="number">6</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dates</span><br><span class="line">DatetimeIndex([<span class="string">'2017-01-01'</span>, <span class="string">'2017-01-02'</span>, <span class="string">'2017-01-03'</span>, <span class="string">'2017-01-04'</span>,</span><br><span class="line">               <span class="string">'2017-01-05'</span>, <span class="string">'2017-01-06'</span>],</span><br><span class="line">              dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="string">'D'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.head(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2.005030</span>  <span class="number">0.733879</span> <span class="number">-0.091630</span> <span class="number">-1.182515</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-02</span> <span class="number">-0.816147</span>  <span class="number">1.093998</span> <span class="number">-0.214505</span> <span class="number">-0.895524</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.525449</span>  <span class="number">0.592618</span> <span class="number">-0.843517</span>  <span class="number">0.723407</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.tail(<span class="number">3</span>)</span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2.688099</span> <span class="number">-0.981475</span> <span class="number">-0.613816</span> <span class="number">-0.190706</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-1.129791</span> <span class="number">-0.653375</span>  <span class="number">2.039835</span>  <span class="number">1.488373</span></span><br><span class="line"><span class="number">2017</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.306414</span> <span class="number">-0.294490</span> <span class="number">-0.178337</span> <span class="number">-0.546832</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2 = pd.DataFrame(&#123; <span class="string">'A'</span> : <span class="number">1.</span>,</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'B'</span> : pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'C'</span> : pd.Series(<span class="number">1</span>,index=list(range(<span class="number">4</span>)),dtype=<span class="string">'float32'</span>), </span><br><span class="line"><span class="meta">... </span>                     <span class="string">'D'</span> : np.array([<span class="number">3</span>] * <span class="number">4</span>,dtype=<span class="string">'int32'</span>),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'E'</span> : pd.Categorical([<span class="string">"test"</span>,<span class="string">"train"</span>,<span class="string">"test"</span>,<span class="string">"train"</span>]),</span><br><span class="line"><span class="meta">... </span>                     <span class="string">'F'</span> : <span class="string">'foo'</span> &#125;) </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2</span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.dtypes</span><br><span class="line">A           float64</span><br><span class="line">B    datetime64[ns]</span><br><span class="line">C           float32</span><br><span class="line">D             int32</span><br><span class="line">E          category</span><br><span class="line">F            object</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.columns <span class="comment">#列的序号名字</span></span><br><span class="line">Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>], dtype=<span class="string">'object'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.index <span class="comment">#行的序号</span></span><br><span class="line">Int64Index([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], dtype=<span class="string">'int64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.values <span class="comment">#把每个值进行打印出来</span></span><br><span class="line">array([[<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'test'</span>, <span class="string">'foo'</span>],</span><br><span class="line">       [<span class="number">1.0</span>, Timestamp(<span class="string">'2013-01-02 00:00:00'</span>), <span class="number">1.0</span>, <span class="number">3</span>, <span class="string">'train'</span>, <span class="string">'foo'</span>]],</span><br><span class="line">      dtype=object)</span><br><span class="line">      </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.describe() <span class="comment">#数字总结</span></span><br><span class="line">         A    C    D</span><br><span class="line">count  <span class="number">4.0</span>  <span class="number">4.0</span>  <span class="number">4.0</span></span><br><span class="line">mean   <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">std    <span class="number">0.0</span>  <span class="number">0.0</span>  <span class="number">0.0</span></span><br><span class="line">min    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">25</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">50</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">75</span>%    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line">max    <span class="number">1.0</span>  <span class="number">1.0</span>  <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.T <span class="comment">#翻转数据</span></span><br><span class="line">                     <span class="number">0</span>         ...                             <span class="number">3</span></span><br><span class="line">A                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">B  <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>         ...           <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">C                    <span class="number">1</span>         ...                             <span class="number">1</span></span><br><span class="line">D                    <span class="number">3</span>         ...                             <span class="number">3</span></span><br><span class="line">E                 test         ...                         train</span><br><span class="line">F                  foo         ...                           foo</span><br><span class="line"></span><br><span class="line">[<span class="number">6</span> rows x <span class="number">4</span> columns]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于1按列进行排序 如ABCDEFG 然后ascending倒叙进行显示</span></span><br><span class="line">     F      E  D    C          B    A</span><br><span class="line"><span class="number">0</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  foo   test  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">3</span>  foo  train  <span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_index(axis=<span class="number">0</span>, ascending=<span class="keyword">False</span>) <span class="comment">#axis等于0按行进行排序 如0123 然后ascending倒叙进行显示</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df2.sort_values(by=<span class="string">'E'</span>) <span class="comment">#按值进行排序</span></span><br><span class="line">     A          B    C  D      E    F</span><br><span class="line"><span class="number">0</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">2</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>   test  foo</span><br><span class="line"><span class="number">1</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br><span class="line"><span class="number">3</span>  <span class="number">1.0</span> <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.0</span>  <span class="number">3</span>  train  foo</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dates = pd.date_range(<span class="string">'20170101'</span>, periods=<span class="number">6</span>)</span><br><span class="line">dates</span><br></pre></td></tr></table></figure>
+<pre><code>DatetimeIndex([&apos;2017-01-01&apos;, &apos;2017-01-02&apos;, &apos;2017-01-03&apos;, &apos;2017-01-04&apos;,
+               &apos;2017-01-05&apos;, &apos;2017-01-06&apos;],
+              dtype=&apos;datetime64[ns]&apos;, freq=&apos;D&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(np.random.randn(<span class="number">6</span>,<span class="number">4</span>), index=dates, columns=list(<span class="string">'ABCD'</span>))</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-01</th>
+      <td>-0.119313</td>
+      <td>-0.165029</td>
+      <td>-1.065599</td>
+      <td>0.224712</td>
+    </tr>
+    <tr>
+      <th>2017-01-02</th>
+      <td>-0.423993</td>
+      <td>0.705954</td>
+      <td>-0.349143</td>
+      <td>-0.208349</td>
+    </tr>
+    <tr>
+      <th>2017-01-03</th>
+      <td>0.259465</td>
+      <td>0.896735</td>
+      <td>0.033814</td>
+      <td>-1.135184</td>
+    </tr>
+    <tr>
+      <th>2017-01-04</th>
+      <td>-1.568006</td>
+      <td>0.685092</td>
+      <td>-0.931491</td>
+      <td>0.323591</td>
+    </tr>
+    <tr>
+      <th>2017-01-05</th>
+      <td>0.050029</td>
+      <td>1.938641</td>
+      <td>-0.193642</td>
+      <td>0.199692</td>
+    </tr>
+    <tr>
+      <th>2017-01-06</th>
+      <td>-0.041061</td>
+      <td>-0.845943</td>
+      <td>1.542987</td>
+      <td>0.354031</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-01</th>
+      <td>0.197225</td>
+      <td>-0.666883</td>
+      <td>0.855806</td>
+      <td>0.253851</td>
+    </tr>
+    <tr>
+      <th>2017-01-02</th>
+      <td>-0.291572</td>
+      <td>0.011976</td>
+      <td>-1.502192</td>
+      <td>0.051144</td>
+    </tr>
+    <tr>
+      <th>2017-01-03</th>
+      <td>-0.670941</td>
+      <td>1.815718</td>
+      <td>0.503071</td>
+      <td>0.361448</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.tail(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2017-01-04</th>
+      <td>0.465035</td>
+      <td>0.465077</td>
+      <td>-0.018313</td>
+      <td>1.338603</td>
+    </tr>
+    <tr>
+      <th>2017-01-05</th>
+      <td>-0.646332</td>
+      <td>1.261231</td>
+      <td>0.058086</td>
+      <td>-1.643476</td>
+    </tr>
+    <tr>
+      <th>2017-01-06</th>
+      <td>0.375105</td>
+      <td>0.247912</td>
+      <td>0.998861</td>
+      <td>-0.114123</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df2 = pd.DataFrame(&#123; <span class="string">'A'</span> : <span class="number">1.</span>,</span><br><span class="line">                     <span class="string">'B'</span> : pd.Timestamp(<span class="string">'20130102'</span>),</span><br><span class="line">                     <span class="string">'C'</span> : pd.Series(<span class="number">1</span>,index=list(range(<span class="number">4</span>)),dtype=<span class="string">'float32'</span>), </span><br><span class="line">                     <span class="string">'D'</span> : np.array([<span class="number">3</span>] * <span class="number">4</span>,dtype=<span class="string">'int32'</span>),</span><br><span class="line">                     <span class="string">'E'</span> : pd.Categorical([<span class="string">"test"</span>,<span class="string">"train"</span>,<span class="string">"test"</span>,<span class="string">"train"</span>]),</span><br><span class="line">                     <span class="string">'F'</span> : <span class="string">'foo'</span> &#125;)</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.dtypes</span><br></pre></td></tr></table></figure>
+<pre><code>A           float64
+B    datetime64[ns]
+C           float32
+D             int32
+E          category
+F            object
+dtype: object
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列的序号名字</span></span><br><span class="line">df2.columns</span><br></pre></td></tr></table></figure>
+<pre><code>Index([&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;], dtype=&apos;object&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 行的序号</span></span><br><span class="line">df2.index</span><br></pre></td></tr></table></figure>
+<pre><code>Int64Index([0, 1, 2, 3], dtype=&apos;int64&apos;)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 把每个值进行打印出来</span></span><br><span class="line">df2.values</span><br></pre></td></tr></table></figure>
+<pre><code>array([[1.0, Timestamp(&apos;2013-01-02 00:00:00&apos;), 1.0, 3, &apos;test&apos;, &apos;foo&apos;],
+       [1.0, Timestamp(&apos;2013-01-02 00:00:00&apos;), 1.0, 3, &apos;train&apos;, &apos;foo&apos;],
+       [1.0, Timestamp(&apos;2013-01-02 00:00:00&apos;), 1.0, 3, &apos;test&apos;, &apos;foo&apos;],
+       [1.0, Timestamp(&apos;2013-01-02 00:00:00&apos;), 1.0, 3, &apos;train&apos;, &apos;foo&apos;]],
+      dtype=object)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数字总结</span></span><br><span class="line">df2.describe()</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 翻转数据</span></span><br><span class="line">df2.T</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>2013-01-02 00:00:00</td>
+      <td>2013-01-02 00:00:00</td>
+      <td>2013-01-02 00:00:00</td>
+      <td>2013-01-02 00:00:00</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>E</th>
+      <td>test</td>
+      <td>train</td>
+      <td>test</td>
+      <td>train</td>
+    </tr>
+    <tr>
+      <th>F</th>
+      <td>foo</td>
+      <td>foo</td>
+      <td>foo</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># axis等于1按列进行排序 如ABCDEFG 然后ascending倒叙进行显示</span></span><br><span class="line">df2.sort_index(axis=<span class="number">1</span>, ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>F</th>
+      <th>E</th>
+      <th>D</th>
+      <th>C</th>
+      <th>B</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>foo</td>
+      <td>test</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>foo</td>
+      <td>train</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>foo</td>
+      <td>test</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>foo</td>
+      <td>train</td>
+      <td>3</td>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#axis等于0按行进行排序 如0123 然后ascending倒叙进行显示</span></span><br><span class="line">df2.sort_index(axis=<span class="number">0</span>, ascending=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按值进行排序</span></span><br><span class="line">df2.sort_values(by=<span class="string">'E'</span>)</span><br></pre></td></tr></table></figure>
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div>
         
           <a class="article-more-a" href="/2018/11/27/Python数据分析（2）Pandas/#more">more >></a>
         
@@ -341,14 +1074,32 @@
 <li>线性代数运算、傅里叶变换，以及随机数生成</li>
 <li>用于将C、C++、Fortran代码集成到python的工具</li>
 </ul>
-<blockquote>
-<p>Basic</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</span><br><span class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</span><br><span class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape <span class="comment">#数组的dimentsions，对应matrix的rows和columns</span></span><br><span class="line">(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.ndim <span class="comment">#数组的维度dimensions数量，numpy也叫axes，线性代数中矩阵的秩</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype.name  <span class="comment">#元素的type</span></span><br><span class="line"><span class="string">'int64'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.itemsize <span class="comment">#每个元素的字节数</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.size <span class="comment">#元素总数</span></span><br><span class="line"><span class="number">15</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(a)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">numpy</span>.<span class="title">ndarray</span>'&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Array Creation</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">#1、array创建，参数为数组</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b=np.array([<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">array([<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(b)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">numpy</span>.<span class="title">ndarray</span>'&gt;</span></span><br><span class="line"><span class="class">&gt;&gt;&gt; <span class="title">b</span>.<span class="title">dtype</span></span></span><br><span class="line"><span class="class"><span class="title">dtype</span><span class="params">(<span class="string">'int64'</span>)</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line">&gt;&gt;&gt; c = np.array([(1.5,2,3), (4,5,6)])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.dtype <span class="comment">#元素中有float</span></span><br><span class="line">dtype(<span class="string">'float64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d = np.array( [ [<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>] ], dtype=complex ) <span class="comment">#创建复数，包括实数和虚数</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>d</span><br><span class="line">array([[ <span class="number">1.</span>+<span class="number">0.j</span>,  <span class="number">2.</span>+<span class="number">0.j</span>],</span><br><span class="line">       [ <span class="number">3.</span>+<span class="number">0.j</span>,  <span class="number">4.</span>+<span class="number">0.j</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment">#2、特定方法，参数为shape，一维：2，二维：(3,4)，三维：(2,3,4)  </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e=np.zeros( (<span class="number">3</span>,<span class="number">4</span>) )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e</span><br><span class="line">array([[<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>],</span><br><span class="line">       [<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>e.dtype</span><br><span class="line">dtype(<span class="string">'float64'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f=np.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>),dtype=np.int32)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f</span><br><span class="line">array([[[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line"></span><br><span class="line">       [[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]]], dtype=int32)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g=np.empty((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>g</span><br><span class="line">array([[<span class="number">-0.00000000e+000</span>,  <span class="number">2.32035699e+077</span>,  <span class="number">1.48219694e-323</span>],</span><br><span class="line">       [ <span class="number">0.00000000e+000</span>,  <span class="number">6.94117506e-310</span>,  <span class="number">4.17201348e-309</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment">#3、arange函数，设置开始、结束和步长。linspace函数，设置开始、结束和数量</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h=np.arange( <span class="number">10</span>, <span class="number">30</span>, <span class="number">5</span> )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>h</span><br><span class="line">array([<span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>j=np.arange( <span class="number">0</span>, <span class="number">2</span>, <span class="number">0.3</span> ) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>j</span><br><span class="line">array([<span class="number">0.</span> , <span class="number">0.3</span>, <span class="number">0.6</span>, <span class="number">0.9</span>, <span class="number">1.2</span>, <span class="number">1.5</span>, <span class="number">1.8</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>k=np.linspace( <span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span> )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>k</span><br><span class="line">array([<span class="number">0.</span>  , <span class="number">0.25</span>, <span class="number">0.5</span> , <span class="number">0.75</span>, <span class="number">1.</span>  , <span class="number">1.25</span>, <span class="number">1.5</span> , <span class="number">1.75</span>, <span class="number">2.</span>  ])</span><br></pre></td></tr></table></figure>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/numpy.ipynb" target="_blank" rel="noopener">『ipynb文档』</a></p>
+<h2 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python list方法生成数据</span></span><br><span class="line">list(range(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>))</span><br><span class="line"><span class="comment">#[0, 2, 4, 6, 8]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 二维数据访问</span></span><br><span class="line">var =[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]</span><br><span class="line">var[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"><span class="comment">#1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据数组创建np对象</span></span><br><span class="line">a=np.array(var)</span><br><span class="line">a</span><br><span class="line"><span class="comment"># array([[1, 2, 3],</span></span><br><span class="line"><span class="comment">#        [4, 5, 6],</span></span><br><span class="line"><span class="comment">#        [7, 8, 9]])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># np访问</span></span><br><span class="line">a[<span class="number">0</span>][<span class="number">0</span>],a[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"><span class="comment">#(1, 1)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># np数组切片</span></span><br><span class="line">a[:<span class="number">2</span>,:<span class="number">2</span>]</span><br><span class="line"><span class="comment"># array([[1, 2],</span></span><br><span class="line"><span class="comment">#        [4, 5]])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a1=np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>,<span class="number">5</span>)</span><br><span class="line">a1</span><br><span class="line"><span class="comment"># array([[ 0,  1,  2,  3,  4],</span></span><br><span class="line"><span class="comment">#        [ 5,  6,  7,  8,  9],</span></span><br><span class="line"><span class="comment">#        [10, 11, 12, 13, 14]])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数组的dimentsions，对应matrix的rows和columns</span></span><br><span class="line">a1.shape</span><br><span class="line"><span class="comment">#(3, 5)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数组的维度dimensions数量，numpy也叫axes，线性代数中矩阵的秩</span></span><br><span class="line">a1.ndim</span><br><span class="line"><span class="comment">#2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 元素的type</span></span><br><span class="line">a1.dtype</span><br><span class="line"><span class="comment">#dtype('int64')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 元素的type名</span></span><br><span class="line">a1.dtype.name</span><br><span class="line"><span class="comment">#'int64'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每个元素的字节数</span></span><br><span class="line">a1.itemsize</span><br><span class="line"><span class="comment">#8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 元素总数</span></span><br><span class="line">a1.size</span><br><span class="line"><span class="comment">#15</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(a1)</span><br><span class="line"><span class="comment">#numpy.ndarray</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">b1=np.arange(<span class="number">6</span>)</span><br><span class="line">b1</span><br><span class="line"><span class="comment">#array([0, 1, 2, 3, 4, 5])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(b1)</span><br><span class="line"><span class="comment">#[0 1 2 3 4 5]</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、数组创建"><a href="#二、数组创建" class="headerlink" title="二、数组创建"></a>二、数组创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># array创建，参数为数组</span></span><br><span class="line">a2=np.array([<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])</span><br><span class="line">a2</span><br><span class="line"><span class="comment">#array([6, 7, 8])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(a2)</span><br><span class="line"><span class="comment">#numpy.ndarray</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a2.dtype</span><br><span class="line"><span class="comment">#dtype('int64')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b2=np.array([(<span class="number">1.5</span>,<span class="number">2</span>,<span class="number">3</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>)])</span><br><span class="line">b2</span><br><span class="line"><span class="comment"># array([[1.5, 2. , 3. ],</span></span><br><span class="line"><span class="comment">#       [4. , 5. , 6. ]])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 元素中有float</span></span><br><span class="line">b2.dtype</span><br><span class="line"><span class="comment">#dtype('float64')</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b2.size</span><br><span class="line"><span class="comment">#6</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b2.itemsize</span><br><span class="line"><span class="comment">#8</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建复数，包括实数和虚数</span></span><br><span class="line">c2=np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>]],dtype=complex)</span><br><span class="line">c2</span><br><span class="line"><span class="comment"># array([[1.+0.j, 2.+0.j],</span></span><br><span class="line"><span class="comment">#        [3.+0.j, 4.+0.j]])</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 特定方法，参数为shape，一维：2，二维：(3,4)，三维：(2,3,4)</span></span><br><span class="line">d2=np.zeros((<span class="number">3</span>,<span class="number">4</span>),dtype=np.complex)</span><br><span class="line">d2</span><br><span class="line"><span class="comment"># array([[0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],</span></span><br><span class="line"><span class="comment">#        [0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],</span></span><br><span class="line"><span class="comment">#        [0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]])</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2018/11/23/Python数据分析（1）Numpy/#more">more >></a>
         
@@ -1068,73 +1819,6 @@
 
 
   
-    <article id="post-Mac的HighSierra更新问题汇总" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/17/Mac的HighSierra更新问题汇总/">Mac的HighSierra更新问题汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2017/11/17/Mac的HighSierra更新问题汇总/" class="archive-article-date">
-  	<time datetime="2017-11-17T06:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>10.13从9月份正式发布，到11月的10.13.1的推送，基本代表系统趋于稳定，是该升级下了，反正不当小白鼠，心想着应该点几下鼠标轻轻松松搞定，确不知前面还是有坑。</p>
-<h2 id="一、升级报错"><a href="#一、升级报错" class="headerlink" title="一、升级报错"></a>一、升级报错</h2><p>打开App Store，还是从正规渠道下好了，现在速度能接受，毕竟为了安全着想。下载完毕，点击安装，自动重启。还是熟悉的流程，然后直接很友好的提示macOS未能安装在您的电脑-更新固件时发生错误。蒙了……<br><img src="/2017/11/17/Mac的HighSierra更新问题汇总/macos_error.jpg" alt=""></p>
-<h2 id="二、恢复回10-12-6"><a href="#二、恢复回10-12-6" class="headerlink" title="二、恢复回10.12.6"></a>二、恢复回10.12.6</h2><p>是不是下的包有什么问题，连个md5校验码都不提供，可能丢包啦?但无论如何，我还得先恢复回去再升级呀。这个容易，开机Commond+R，重新安装macOS，在线就在线安装吧。因为刚刚下载新版本还是挺快的。<br>首先安装的验证就过不去，我这又不是黑苹果。。。气死我也，是不是网的问题，连个热点试试，成功。可是下载总不能连热点吧？5个多G的流量，心疼。换下wifi的dns试试呗，换来换去，简直做实验一般。等了1个多小时，恢复回来啦。哈哈哈。</p>
-<h2 id="三、继续升级"><a href="#三、继续升级" class="headerlink" title="三、继续升级"></a>三、继续升级</h2><p>怎么能就此放弃？这不是我的风格呀。怼它。去论坛上一逛，大家普遍反应下载的包大小不对，可能由于苹果cdn上的某个包没刷新导致。。这次去论坛下，包的md5也校验成功，胜利在望。开始安装，这下直接报了个白色的禁止符号🚫。</p>
-        
-          <a class="article-more-a" href="/2017/11/17/Mac的HighSierra更新问题汇总/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/17/Mac的HighSierra更新问题汇总/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1216,6 +1900,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -1228,15 +1920,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1248,15 +1948,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1264,23 +1956,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1289,6 +1965,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1316,11 +2012,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1336,15 +2036,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">

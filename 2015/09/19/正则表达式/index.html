@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>正则表达式 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
+  <meta name="description" content="常用的元字符      代码/语法 说明     . 匹配除换行符(\n)以外的任意单个字符   \ 转义字符   […] 范围，字符集，对应字符集中的任意字符       ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束   \  选择字符，理解为“或”   () 分组，用于提取括号里的内容   \b 匹配单词的开始或结束       \w 匹配字母或数字或下划线">
 <meta name="keywords" content="正则">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式">
 <meta property="og:url" content="http://iherr.cn/2015/09/19/正则表达式/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
+<meta property="og:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符(\n)以外的任意单个字符   \ 转义字符   […] 范围，字符集，对应字符集中的任意字符       ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束   \  选择字符，理解为“或”   () 分组，用于提取括号里的内容   \b 匹配单词的开始或结束       \w 匹配字母或数字或下划线">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-16T07:33:42.000Z">
+<meta property="og:updated_time" content="2019-01-16T11:04:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符以外的任意字符   \w 匹配字母或数字或下划线或汉字   \s 匹配任意的空白符   \d 匹配数字   \b 匹配单词的开始或结束   ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束     选择字符，理解为“或”   \ 转义字符   () 分组   [] 范围     常用的限定符">
+<meta name="twitter:description" content="常用的元字符      代码/语法 说明     . 匹配除换行符(\n)以外的任意单个字符   \ 转义字符   […] 范围，字符集，对应字符集中的任意字符       ^ 匹配字符串的开始，注意如果放到方括号中表示排除。   $ 匹配字符串的结束   \  选择字符，理解为“或”   () 分组，用于提取括号里的内容   \b 匹配单词的开始或结束       \w 匹配字母或数字或下划线">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -184,23 +184,19 @@
 <tbody>
 <tr>
 <td>.</td>
-<td>匹配除换行符以外的任意字符</td>
+<td>匹配除换行符(\n)以外的任意单个字符</td>
 </tr>
 <tr>
-<td>\w</td>
-<td>匹配字母或数字或下划线或汉字</td>
+<td>\</td>
+<td>转义字符</td>
 </tr>
 <tr>
-<td>\s</td>
-<td>匹配任意的空白符</td>
+<td>[…]</td>
+<td>范围，字符集，对应字符集中的任意字符</td>
 </tr>
 <tr>
-<td>\d</td>
-<td>匹配数字</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词的开始或结束</td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>^</td>
@@ -211,21 +207,45 @@
 <td>匹配字符串的结束</td>
 </tr>
 <tr>
-<td></td>
+<td>\</td>
 <td></td>
 <td>选择字符，理解为“或”</td>
 </tr>
 <tr>
-<td>\</td>
-<td>转义字符</td>
-</tr>
-<tr>
 <td>()</td>
-<td>分组</td>
+<td>分组，用于提取括号里的内容</td>
 </tr>
 <tr>
-<td>[]</td>
-<td>范围</td>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线，等价于[A-Za-Z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符，等价于[^A-Za-Z0-9_]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符，等价于[\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意的非空白符，等价于[^\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字字符，等价于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配非数字字符，等价于[^0-9]</td>
 </tr>
 </tbody>
 </table>
@@ -242,15 +262,15 @@
 <tbody>
 <tr>
 <td>*</td>
-<td>重复零次或更多次</td>
+<td>重复0次或更多次</td>
 </tr>
 <tr>
 <td>+</td>
-<td>重复一次或更多次</td>
+<td>重复1次或更多次</td>
 </tr>
 <tr>
 <td>?</td>
-<td>重复零次或一次</td>
+<td>重复0次或1次</td>
 </tr>
 <tr>
 <td>{n}</td>
@@ -297,7 +317,7 @@
 </tr>
 <tr>
 <td>.*?</td>
-<td>懒惰匹配</td>
+<td>懒惰匹配（最小匹配）</td>
 </tr>
 </tbody>
 </table>
@@ -463,11 +483,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2015/11/20/Mac常用开发软件问题汇总/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/11/20/Mac常用软件/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Mac常用开发软件问题汇总
+          Mac常用软件
         
       </div>
     </a>
@@ -584,6 +604,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -596,15 +624,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -616,15 +652,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,23 +660,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,6 +669,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,11 +716,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -704,15 +740,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,25 +8,43 @@
   <link rel="dns-prefetch" href="http://iherr.cn">
   <title>Python数据分析（3）Matplotlib | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="『matplotlib官网传送门』 1import matplotlib.pyplot as plt  线状图  1234567891011121314import matplotlib.pyplot as pltx = [1,2,3]y = [5,7,4]x2 = [1,2,3]y2 = [10,14,12]plt.plot(x, y, label=&apos;First Line&apos;)plt.plot(x">
-<meta name="keywords" content="前端,ios,android,html5,开发者,程序猿,编程,代码,开源,IT网站,Developer,Programmer,Coder,用户体验">
+  <meta name="description" content="一、Matplotlib各种图形demo『matplotlib官网传送门』 『ipynb文档传送门』 123456import pandas as pdimport numpy as npimport matplotlib.pyplot as plt#把图画在notebook中%matplotlib inline  线状图  123456789101112x = [1,2,3]y = [5,7,4">
+<meta name="keywords" content="Python,Matplotlib">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python数据分析（3）Matplotlib">
 <meta property="og:url" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/index.html">
 <meta property="og:site_name" content="iherr的博客">
-<meta property="og:description" content="『matplotlib官网传送门』 1import matplotlib.pyplot as plt  线状图  1234567891011121314import matplotlib.pyplot as pltx = [1,2,3]y = [5,7,4]x2 = [1,2,3]y2 = [10,14,12]plt.plot(x, y, label=&apos;First Line&apos;)plt.plot(x">
+<meta property="og:description" content="一、Matplotlib各种图形demo『matplotlib官网传送门』 『ipynb文档传送门』 123456import pandas as pdimport numpy as npimport matplotlib.pyplot as plt#把图画在notebook中%matplotlib inline  线状图  123456789101112x = [1,2,3]y = [5,7,4">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/linear.png">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/bar.png">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/histogram.png">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/scatter.png">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/stack.png">
-<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/pie.png">
-<meta property="og:updated_time" content="2019-01-07T10:16:41.000Z">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_4_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_6_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_8_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_10_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_12_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_14_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_17_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_18_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_20_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_21_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_22_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_23_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_24_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_25_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_29_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_30_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_33_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_34_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_35_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_36_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_38_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_39_1.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_40_0.png">
+<meta property="og:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_41_0.png">
+<meta property="og:updated_time" content="2019-01-22T08:25:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python数据分析（3）Matplotlib">
-<meta name="twitter:description" content="『matplotlib官网传送门』 1import matplotlib.pyplot as plt  线状图  1234567891011121314import matplotlib.pyplot as pltx = [1,2,3]y = [5,7,4]x2 = [1,2,3]y2 = [10,14,12]plt.plot(x, y, label=&apos;First Line&apos;)plt.plot(x">
-<meta name="twitter:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/linear.png">
+<meta name="twitter:description" content="一、Matplotlib各种图形demo『matplotlib官网传送门』 『ipynb文档传送门』 123456import pandas as pdimport numpy as npimport matplotlib.pyplot as plt#把图画在notebook中%matplotlib inline  线状图  123456789101112x = [1,2,3]y = [5,7,4">
+<meta name="twitter:image" content="http://iherr.cn/2018/11/27/Python数据分析（3）Matplotlib/output_4_0.png">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -178,39 +196,111 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+        <h2 id="一、Matplotlib各种图形demo"><a href="#一、Matplotlib各种图形demo" class="headerlink" title="一、Matplotlib各种图形demo"></a>一、Matplotlib各种图形demo</h2><p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
+<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/matplotlib.ipynb" target="_blank" rel="noopener">『ipynb文档传送门』</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#把图画在notebook中</span></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>线状图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/linear.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_4_0.png" alt="png"></p>
 <blockquote>
 <p>条形图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/bar.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_6_0.png" alt="png"></p>
 <blockquote>
 <p>直方图Histogram</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/histogram.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<pre><code>No handles with labels found to put in legend.
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_8_1.png" alt="png"></p>
 <blockquote>
 <p>散点图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(x,y, label=<span class="string">'skitscat'</span>, color=<span class="string">'k'</span>, s=<span class="number">25</span>, marker=<span class="string">"o"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/scatter.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(x,y, label=<span class="string">'skitscat'</span>, color=<span class="string">'k'</span>, s=<span class="number">25</span>, marker=<span class="string">"o"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_10_0.png" alt="png"></p>
 <blockquote>
 <p>堆叠图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">days = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">sleeping = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">11</span>,<span class="number">7</span>]</span><br><span class="line">eating =   [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">working =  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">playing =  [<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">13</span>]</span><br><span class="line"></span><br><span class="line">plt.plot([],[],color=<span class="string">'m'</span>, label=<span class="string">'Sleeping'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'c'</span>, label=<span class="string">'Eating'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'r'</span>, label=<span class="string">'Working'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'k'</span>, label=<span class="string">'Playing'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.stackplot(days, sleeping,eating,working,playing, colors=[<span class="string">'m'</span>,<span class="string">'c'</span>,<span class="string">'r'</span>,<span class="string">'k'</span>])</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/stack.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">days = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">sleeping = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">11</span>,<span class="number">7</span>]</span><br><span class="line">eating =   [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">working =  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">playing =  [<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">13</span>]</span><br><span class="line"></span><br><span class="line">plt.plot([],[],color=<span class="string">'m'</span>, label=<span class="string">'Sleeping'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'c'</span>, label=<span class="string">'Eating'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'r'</span>, label=<span class="string">'Working'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'k'</span>, label=<span class="string">'Playing'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.stackplot(days, sleeping,eating,working,playing, colors=[<span class="string">'m'</span>,<span class="string">'c'</span>,<span class="string">'r'</span>,<span class="string">'k'</span>])</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_12_0.png" alt="png"></p>
 <blockquote>
 <p>饼图</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">slices = [<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">13</span>]</span><br><span class="line">activities = [<span class="string">'sleeping'</span>,<span class="string">'eating'</span>,<span class="string">'working'</span>,<span class="string">'playing'</span>]</span><br><span class="line">cols = [<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'r'</span>,<span class="string">'b'</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices,</span><br><span class="line">        labels=activities,</span><br><span class="line">        colors=cols,</span><br><span class="line">        startangle=<span class="number">90</span>,</span><br><span class="line">        shadow= <span class="keyword">True</span>,</span><br><span class="line">        explode=(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">0</span>,<span class="number">0</span>),</span><br><span class="line">        autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/pie.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">slices = [<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">13</span>]</span><br><span class="line">activities = [<span class="string">'sleeping'</span>,<span class="string">'eating'</span>,<span class="string">'working'</span>,<span class="string">'playing'</span>]</span><br><span class="line">cols = [<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'r'</span>,<span class="string">'b'</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices,</span><br><span class="line">        labels=activities,</span><br><span class="line">        colors=cols,</span><br><span class="line">        startangle=<span class="number">90</span>,</span><br><span class="line">        shadow= <span class="keyword">True</span>,</span><br><span class="line">        explode=(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">0</span>,<span class="number">0</span>),</span><br><span class="line">        autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_14_0.png" alt="png"></p>
+<a id="more"></a>
+<h2 id="二、自定义绘图"><a href="#二、自定义绘图" class="headerlink" title="二、自定义绘图"></a>二、自定义绘图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x,np.sin(x),<span class="string">'--'</span>)</span><br><span class="line">plt.plot(x,np.cos(x))</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11b64add8&gt;]
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_17_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig=plt.figure()</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'--'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11b73f6a0&gt;]
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_18_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fig.savefig(<span class="string">'/Users/iherr/Desktop/a.png'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'--'</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">plt.plot(x,np.cos(x))</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11b80bd68&gt;]
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_20_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 点状样式，颜色</span></span><br><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'o'</span>,color=<span class="string">'red'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11b926b00&gt;]
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_21_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 图例</span></span><br><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">100</span>)</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'--'</span>,color=<span class="string">'red'</span>,label=<span class="string">'sin(x)'</span>)</span><br><span class="line">plt.plot(x,np.cos(x),<span class="string">'o'</span>,color=<span class="string">'green'</span>,label=<span class="string">'cos(x)'</span>)</span><br><span class="line"><span class="comment">#图例位置</span></span><br><span class="line">plt.legend(loc=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.legend.Legend at 0x11b996240&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_22_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'-*'</span>,color=<span class="string">'orange'</span>,markersize=<span class="number">16</span>,linewidth=<span class="number">4</span>,markeredgecolor=<span class="string">'gray'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&lt;matplotlib.lines.Line2D at 0x11ba6a2e8&gt;]
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_23_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=np.linspace(<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line">plt.plot(x,np.sin(x),<span class="string">'-*'</span>,color=<span class="string">'orange'</span>,markersize=<span class="number">16</span>,linewidth=<span class="number">4</span>,markeredgecolor=<span class="string">'gray'</span>)</span><br><span class="line">plt.ylim(<span class="number">-2</span>,<span class="number">2</span>)</span><br><span class="line">plt.xlim(<span class="number">2</span>,<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(2, 8)
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_24_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#plt.style.use('classic')</span></span><br><span class="line">x=np.random.randn(<span class="number">100</span>)</span><br><span class="line">y=np.random.randn(<span class="number">100</span>)</span><br><span class="line">colors = np.random.rand(<span class="number">100</span>)</span><br><span class="line">sizes = <span class="number">1000</span>* np.random.rand(<span class="number">100</span>)</span><br><span class="line">plt.scatter(x,y,c=colors,s=sizes,alpha=<span class="number">0.4</span>)</span><br><span class="line">plt.colorbar()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.colorbar.Colorbar at 0x11bc77cf8&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_25_1.png" alt="png"></p>
+<h2 id="三、pandas自带绘画"><a href="#三、pandas自带绘画" class="headerlink" title="三、pandas自带绘画"></a>三、pandas自带绘画</h2><blockquote>
+<p>线性图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2=pd.DataFrame(np.random.rand(<span class="number">100</span>,<span class="number">4</span>).cumsum(<span class="number">0</span>),columns=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11bcc7d30&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_29_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df2.A.plot()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11bd9dd30&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_30_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df3=pd.DataFrame(np.random.randint(<span class="number">10</span>,<span class="number">50</span>,(<span class="number">3</span>,<span class="number">4</span>)).cumsum(<span class="number">0</span>),columns=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>],index=[<span class="string">'one'</span>,<span class="string">'two'</span>,<span class="string">'three'</span>])</span><br><span class="line">df3</span><br></pre></td></tr></table></figure>
+<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>A</th><br>      <th>B</th><br>      <th>C</th><br>      <th>D</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>one</th><br>      <td>35</td><br>      <td>10</td><br>      <td>45</td><br>      <td>14</td><br>    </tr><br>    <tr><br>      <th>two</th><br>      <td>71</td><br>      <td>50</td><br>      <td>63</td><br>      <td>36</td><br>    </tr><br>    <tr><br>      <th>three</th><br>      <td>83</td><br>      <td>62</td><br>      <td>111</td><br>      <td>81</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+<blockquote>
+<p>柱状图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">df3.plot.bar()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11be48b00&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_33_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#和上方等价</span></span><br><span class="line">df3.plot(kind=<span class="string">'bar'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11bf3b0b8&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_34_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#累加</span></span><br><span class="line">df3.plot(kind=<span class="string">'bar'</span>,stacked=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11c014a58&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_35_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df3.A.plot.bar()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11c10a3c8&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_36_1.png" alt="png"></p>
+<blockquote>
+<p>直方图</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df4=pd.DataFrame(np.random.randn(<span class="number">100</span>,<span class="number">4</span>),columns=[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>])</span><br><span class="line">df4.hist(column=<span class="string">'A'</span>,figsize=(<span class="number">5</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x11c1ca9b0&gt;]],
+      dtype=object)
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_38_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df4.plot(kind=<span class="string">'kde'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11c273908&gt;
+</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_39_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">N = <span class="number">5</span></span><br><span class="line">menMeans = (<span class="number">20</span>, <span class="number">35</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">27</span>)</span><br><span class="line">womenMeans = (<span class="number">25</span>, <span class="number">32</span>, <span class="number">34</span>, <span class="number">20</span>, <span class="number">25</span>)</span><br><span class="line">menStd = (<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">womenStd = (<span class="number">3</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">ind = np.arange(N)    <span class="comment"># the x locations for the groups</span></span><br><span class="line">width = <span class="number">0.35</span>       <span class="comment"># the width of the bars: can also be len(x) sequence</span></span><br><span class="line"></span><br><span class="line">p1 = plt.bar(ind, menMeans, width, yerr=menStd)</span><br><span class="line">p2 = plt.bar(ind, womenMeans, width,</span><br><span class="line">             bottom=menMeans, yerr=womenStd)</span><br><span class="line"></span><br><span class="line">plt.ylabel(<span class="string">'Scores'</span>)</span><br><span class="line">plt.title(<span class="string">'Scores by group and gender'</span>)</span><br><span class="line">plt.xticks(ind, (<span class="string">'G1'</span>, <span class="string">'G2'</span>, <span class="string">'G3'</span>, <span class="string">'G4'</span>, <span class="string">'G5'</span>))</span><br><span class="line">plt.yticks(np.arange(<span class="number">0</span>, <span class="number">81</span>, <span class="number">10</span>))</span><br><span class="line">plt.legend((p1[<span class="number">0</span>], p2[<span class="number">0</span>]), (<span class="string">'Men'</span>, <span class="string">'Women'</span>))</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_40_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ts = pd.Series(np.random.randn(<span class="number">1000</span>), index=pd.date_range(<span class="string">'1/1/2000'</span>, periods=<span class="number">1000</span>))</span><br><span class="line">ts = ts.cumsum()</span><br><span class="line">plt.figure()</span><br><span class="line">ts.plot()</span><br><span class="line">plt.legend(loc=<span class="string">'best'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_41_0.png" alt="png"></p>
 
       
 
@@ -304,8 +394,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/11/27/Python数据分析（2）Pandas/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python数据分析（2）Pandas</div>
+    <a href="/2018/11/27/Python数据分析（2）Pandas（ipython版）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python数据分析（2）Pandas（ipython版）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -415,6 +505,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -427,15 +525,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -447,15 +553,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,23 +561,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -488,6 +570,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +617,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +641,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">

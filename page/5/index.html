@@ -149,6 +149,193 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-高性能MySQL（2）Schema与数据类型优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">高性能MySQL（2）Schema与数据类型优化</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/" class="archive-article-date">
+  	<time datetime="2016-07-07T07:11:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、选择优化的数据类型"><a href="#一、选择优化的数据类型" class="headerlink" title="一、选择优化的数据类型"></a>一、选择优化的数据类型</h2><blockquote>
+<p>原则  </p>
+</blockquote>
+<ul>
+<li>更小的通常更好。  </li>
+<li>简单就好。内建类型datetime来存储日期，而不是字符串。整型存储IP等。  </li>
+<li>尽量避免NULL。NULL的列会使用更多的存储空间。  </li>
+</ul>
+<blockquote>
+<p>整数类型  </p>
+</blockquote>
+<p>数字有两种：整数和实数。如果存储整数，可使用：TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,分别对应8、16、24、32、64位存储空间，存储的值得范围从-2^(N-1)到2^(N-1) -1。可选UNSIGNED属性，表示不允许负值。MySQL可以为整数类型指定宽度，例如INT(11)，但对于存储和计算来讲，INT(1)和INT(11)是相同的。</p>
+<blockquote>
+<p>实数类型  </p>
+</blockquote>
+<p>如果不只是为了存储实数的小数部分，可以使用DECIMAL存储币BIGINT还大的整数。 </p>
+<p>MySQL既支持精确类型，也支持不精确类型。DECIMAL用于存储精确的小数。CPU支持原生浮点计算，所以浮点运算更快，使用更少的空间。但CPU不支持DECIMAL的直接计算，需要MySQL服务器自身实现。FLOAT使用4个字节存储，DOUBLE占用8个，而DECIMAL(18,9)，由于每4个字节存储9个数字，因此需要4+4+1（小数点本身）=9个。因此针对DECIMAL，只有当需要对小数进行精确计算时才使用。但一般，可以将金额乘以一百万，可以达到存储数据精确到万分之一分，便可满足需要。  </p>
+<blockquote>
+<p>字符串类型  </p>
+</blockquote>
+<p>1、VARCHAR，用于存储可边长字符串，比定长节省空间，但需要使用1个（列长度在255个字节以内）或2个额外字节记录字符串的长度，例如VARCHAR(10)需要11个字节，VARCHAR(1000)需要1002个字节。VARCHAR使用情形：字符串列的最大长度，比平均长度大很多，且列的更新很少。<br>2、CHAR，用于存储定长，会根据定义的字符串长度分配足够的空间。CHAR适合存储很短的字符串。需要注意，当字符串末尾有空格时，插入会被截断。<br>使用VARCHAR(5)和VARCHAR(200)存储’hello’的空间开销是一样的，但是更长的列会消耗更多的内存，所以尽量只分配真正需要的空间。<br>3、BLOB和TEXT类型用于存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。BLOB没有排序规则或字符集，而TEXT类型有。<br>4、枚举类型ENUM，有时可代替字符串类型。但需要小心使用。</p>
+        
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-高性能MySQL（1）MySQL架构与历史" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">高性能MySQL（1）MySQL架构与历史</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/" class="archive-article-date">
+  	<time datetime="2016-07-03T08:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-MySQL逻辑架构"><a href="#1-MySQL逻辑架构" class="headerlink" title="1 MySQL逻辑架构"></a>1 MySQL逻辑架构</h2><blockquote>
+<p>MySql安装访问</p>
+</blockquote>
+<p>1、安装后忘记root密码，可使用脚本重置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/ext/reset_mysql_root_password.sh</span><br><span class="line">sh reset_mysql_root_password.sh</span><br></pre></td></tr></table></figure>
+<p>2、无法远程访问，添加权限，检查防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>3、修改密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">"123456"</span>) <span class="built_in">where</span> user=<span class="string">"root"</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>MySql逻辑架构</p>
+</blockquote>
+<p><img src="/2016/07/03/高性能MySQL（1）MySQL架构与历史/1_logical_architecture.jpg" alt="MySQL逻辑架构图">  </p>
+<p>1、最上层处理连接、授权认证、安全等。<br>（1）<strong>连接管理</strong>，每个连接都会在服务器进程中拥有一个线程，连接的查询只会在这个线程中执行，该线程只能轮流在某个CPU中运行。<br>（2）<strong>安全性</strong>，会进行用户名和密码认证，还会验证是否有操作权限，可进行主机信息校验（如ip等）。  </p>
+<p>2、第二层，MySQL核心服务功能都在这，包括查询解析、分析、优化、缓存以及所有内置喊出，所有跨存储引擎的功能都在这实现：存储过程、触发器、视图等。<br>MySQL会根据解析查询，创建内部数据结构（解析树），对其进行优化，如重写查询、表的读取数据、选择合适的索引等。用户可请求优化器解释（explain）知晓服务器的优化决策。<br>针对SELECT语句，在解析查询前会检查查询缓存并直接返回查询缓存中的结果集。</p>
+<p>3、第三层包含了存储引擎，负责MySQL中数据的存储和提取。上层通过API于存储引擎进行通信。</p>
+<h2 id="二、并发控制（锁机制）"><a href="#二、并发控制（锁机制）" class="headerlink" title="二、并发控制（锁机制）"></a>二、并发控制（锁机制）</h2><blockquote>
+<p>锁的类型</p>
+</blockquote>
+<p>在处理并发请求时，可以通过实现锁系统来解决。锁系统包含<strong>共享锁</strong>（<strong>读锁</strong>）和<strong>排他锁</strong>（<strong>写锁</strong>），读锁指查询，写锁指增删改。  </p>
+<blockquote>
+<p>锁的粒度</p>
+</blockquote>
+<p>在给定的资源上，锁定的数据量越少，则系统的并发程序越高，只要相互之间不发生冲突，另外加锁会消耗资源，因此，针对锁粒度，就是在锁的开销和数据的安全性之间寻求平衡。每种存储引擎都可以实现自己的锁策略和锁粒度。常用的锁粒度有：表锁、行级锁和页锁。<br>1、<strong>表锁</strong>是锁定整张表，基本的锁策略，开销也最小。表级锁是不会产生死锁问题的。InnoDB、MyISAM、BDB存储引擎都支持表锁。<br>2、<strong>行级锁</strong>可最大程度地支持并发，开销最大，且只在InnoDB和XtraDB等一些存储引擎中得到实现。行级锁定也最容易发生死锁。InnoDB存储引擎支持行级锁。<br>3、<strong>页级锁定</strong>是MySQL中比较独特的一种锁定级别，锁定颗粒度介于行级锁定与表级锁之间，所以获取锁定所需要的资源开销以及所能提供的并发处理能力也同样是介于二者之间。也会产生死锁问题。BDB存储引擎支持页级锁定。  </p>
+<blockquote>
+<p>一次性封锁与两段锁   </p>
+</blockquote>
+<p>1、<strong>一次性封锁</strong>：在sql语句的开始执行的时候，已经预先知道要涉及到那些数据，然后全部锁住，在执行完毕之后，再全部解锁！（myisam就是采用这样的锁协议）<br>两段锁： 是指每个事务的执行可以分为两个阶段：生长阶段（加锁阶段）和衰退阶段（解锁阶段）。  </p>
+<p>2、<strong>加锁阶段</strong>：在该阶段可以进行加锁操作。在对任何数据进行读操作之前要申请并获得S锁，在进行写操作之前要申请并获得X锁。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行；  </p>
+<p>3、<strong>解锁阶段</strong>：当事务释放了一个封锁以后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。 </p>
+<p>4、<strong>两段封锁法</strong>：事务开始后就处于加锁阶段，一直到执行ROLLBACK和COMMIT之前都是加锁阶段。ROLLBACK和COMMIT使事务进入解锁阶段，即在ROLLBACK和COMMIT模块中DBMS释放所有封锁。（innodb就是采取这样的锁协议） </p>
+<p>5、<strong>死锁</strong>：为两个或多个事务在同一资源上的相互占用，请求锁定对方占用的资源导致的恶性循环现象。InnoDB目前处理的方法是，将持有最少行级排他锁的事务进行回滚。  </p>
+<blockquote>
+<p>隐式锁和显式锁  </p>
+</blockquote>
+<p>1、<strong>隐式锁</strong>：当多个客户端并发访问同一个数据的时候，为了保证数据的一致性，数据库管理系统会自动的为该数据加锁、解锁，这种被称为隐式锁。隐式锁无需开发人员维护（包括锁粒度、加锁时机、解锁时机等） </p>
+<p>2、<strong>显式锁</strong>：当时在某些特殊的情况下需要开发人员手动的进行加锁、解锁，这种锁方式被称为显式锁。对于显式锁而言，开发人员不仅要确定锁的粒度，还需要确定加锁的时机（何时加锁）、解锁的时机（何时解锁）以及所的类型。例如SELECT … FOR UPDATE</p>
+<h2 id="三、事务"><a href="#三、事务" class="headerlink" title="三、事务"></a>三、事务</h2><blockquote>
+<p>事务是一组原子性的SQL查询，要么全部执行成功，要么全部执行失败。需要通过ACID测试。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-幸福的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1020,451 +1207,6 @@
 
 
   
-    <article id="post-也谈金融" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/22/也谈金融/">也谈金融</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/22/也谈金融/" class="archive-article-date">
-  	<time datetime="2016-02-22T04:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>金融的本质</p>
-</blockquote>
-<ul>
-<li>货币的时间价值</li>
-<li>未来的不确定性</li>
-</ul>
-<blockquote>
-<p>股指</p>
-</blockquote>
-<p>指数本身永远是货币现象。GDP自然增长和物价的增长，会让名义利润趋势性增加。在一个很中庸的假设下，2020年的上证7000点市盈率大约与2015年初的4000点类似。所以，6124点会不会突破，是个伪命题，不确定仅在于时间。</p>
-<blockquote>
-<p>国家金融策略</p>
-</blockquote>
-<ul>
-<li>把过往中国投资过剩的生产能力，通过“一带一路”释放到国外去。</li>
-<li>把过往中国如饥似渴的消费能力，通过“自贸区”吸收到国内来。</li>
-<li>把过往中国盲目乱窜的巨量货币，通过“股票市场”转移到实体去。</li>
-<li>把过往中国无处可去的外汇储备，通过“亚投行”投资到同盟国去。</li>
-</ul>
-<blockquote>
-<p>选股原则</p>
-</blockquote>
-<ul>
-<li>行业有好的变革</li>
-<li>企业有好的变革</li>
-<li>有稳定的现金流</li>
-<li>资金放量</li>
-<li>不易出现信用危机</li>
-<li>被低估</li>
-</ul>
-<blockquote>
-<p>个人金融底线</p>
-</blockquote>
-<p>巴菲特说过那句话，过去238年来，从来没有人因为做空自己的祖国而发财的。但是巴菲特老先生可能不太了解我们这个神奇的国度，在这个号称5000年历史的国度，有过无数因为出卖自己的祖国自己的同胞自己的党派而发财而大富大贵的先例。</p>
-<p>技术分析就是扯淡。如果一个理论，不可证伪，那压根就没有任何科学价值。太多太多的技术分析流派，宣示的理论，连可证伪性都不具备。拥有的，不过是一大堆图形拼凑起来的迷信罢了。</p>
-<blockquote>
-<p>货币政策和财政政策</p>
-</blockquote>
-<p>年轻人，中长线<br>第一、中长期投资有利于你腾出精力好好工作<br>第二、中长线赚钱似乎更简单点<br>第三、中长线更有利于你提高生活质量</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/22/也谈金融/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一生要做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/10/一生要做的事/">一生要做的事</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/10/一生要做的事/" class="archive-article-date">
-  	<time datetime="2016-01-10T11:21:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>我究竟要怎样过一生<br>设定那愿意消耗生命去做的事<br>努力去达成<br>保留你的体验<br>珍惜你的感悟</p>
-</blockquote>
-<h3 id="常回家看看"><a href="#常回家看看" class="headerlink" title="常回家看看"></a>常回家看看</h3><blockquote>
-<p>父母在<br>不言老<br>游必有方</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>每年给爸妈过生日/问候</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>帮爸妈完成梦想</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>带爸妈去旅游/自驾</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>给爸妈做可口的饭菜</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>给爸妈买保险</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>给爸妈安排体检</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>给爸妈过一次大寿</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>回家看望爸妈的次数</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>和爸妈一起吃年夜饭的次数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起浪漫"><a href="#一起浪漫" class="headerlink" title="一起浪漫"></a>一起浪漫</h3><blockquote>
-<p>浪漫<br>哪怕是小浪漫</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起坐摩天轮</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起看日出日落</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>一起看烟火</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起对着流星许愿</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起跳舞</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起数星星</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起在树下埋下约定</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起去海边放漂流瓶</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起露营</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td>一起坐邮轮</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起平淡"><a href="#一起平淡" class="headerlink" title="一起平淡"></a>一起平淡</h3><blockquote>
-<p>不够浪漫<br>那就陪伴 </p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起手牵手逛街</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起布置家</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>一起吃路边摊</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起骑脚踏车</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起堆雪人</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起养花种树</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起养动物</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起看场话剧</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起看场舞台剧</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td>一起看场舞蹈</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">11</td>
-<td>一起听场音乐会</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">12</td>
-<td>一起看场球赛</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">13</td>
-<td>一起听场相声</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">14</td>
-<td>一起参加电视节目</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">15</td>
-<td>一起晨练</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">16</td>
-<td>一起看书喝茶</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">17</td>
-<td>到站台送别</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">18</td>
-<td>一起学会游泳</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起成长"><a href="#一起成长" class="headerlink" title="一起成长"></a>一起成长</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起见对方的朋友</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起去趟博物馆</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>当一天陌生人</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起去养老院做义工</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起去孤儿院送礼物</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起为灾区募捐</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起做志愿者</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起到少数民族和外国人家中做客</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起给亲人和朋友挑礼物</td>
-</tr>
-</tbody>
-</table>
-        
-          <a class="article-more-a" href="/2016/01/10/一生要做的事/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/10/一生要做的事/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1546,6 +1288,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -1558,15 +1308,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1578,15 +1336,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1594,23 +1344,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1619,6 +1353,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">RTMP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Numpy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1646,11 +1400,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1666,15 +1424,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">读书</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">MSA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
