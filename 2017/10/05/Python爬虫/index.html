@@ -17,7 +17,7 @@
 <meta property="og:description" content="一、爬虫介绍 爬虫库   urllib/urllib3，python自带，有短板 requests，用来请求网站获取网页数据。 Beautiful，用来解析html和xml，提取数据。   性能对比  html解析性能对比，如结构简单且避免额外依赖可选择正则，爬取数据量较少可使用BeautifulSoup，当数据量大时Lxml是最好的选择。    爬取方法 性能 使用难度 安装难度     正则表">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2017/10/05/Python爬虫/scrapy.png">
-<meta property="og:updated_time" content="2019-01-22T08:24:16.000Z">
+<meta property="og:updated_time" content="2019-02-13T06:36:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python爬虫">
 <meta name="twitter:description" content="一、爬虫介绍 爬虫库   urllib/urllib3，python自带，有短板 requests，用来请求网站获取网页数据。 Beautiful，用来解析html和xml，提取数据。   性能对比  html解析性能对比，如结构简单且避免额外依赖可选择正则，爬取数据量较少可使用BeautifulSoup，当数据量大时Lxml是最好的选择。    爬取方法 性能 使用难度 安装难度     正则表">
@@ -173,7 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、爬虫介绍"><a href="#一、爬虫介绍" class="headerlink" title="一、爬虫介绍"></a>一、爬虫介绍</h2><blockquote>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、爬虫介绍"><a href="#一、爬虫介绍" class="headerlink" title="一、爬虫介绍"></a>一、爬虫介绍</h2><blockquote>
 <p>爬虫库</p>
 </blockquote>
 <ul>
@@ -435,7 +435,7 @@
 </blockquote>
 <p>Selenium是一个用于Web应用程序测试的工具，Selenium直接运行在浏览器中，就像真正的用户在操作一样。Selenium也是一个强大的网络数据采集工具，其可以让浏览器自动加载页面，这样，使用了异步加载技术的网页，也可获取其需要的数据，避免进行逆向工程。<br>phantomjs就建议不要装了。第一费劲，第二selenium新版已不推荐。还是使用chrome好了。</p>
 <p>chrome需要下载<a href="http://npm.taobao.org/mirrors/chromedriver/" target="_blank" rel="noopener">『chromedriver』</a> ，需要下载对应的版本。不一定非要放到/usr/bin，放到这个路径需要做权限设置，十分麻烦，可随意放个地方，然后</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ open ~/.bash_profile</span><br><span class="line"><span class="comment">#在.bash_profile中添加路径，如果chromedriver的位置在/Users/iherr/chrome/bin/chromedriver</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/iherr/chrome/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># 保存文件后再执行后面</span></span><br><span class="line">$ <span class="built_in">source</span> .bash_profile</span><br><span class="line"><span class="comment"># 查看版本号，如有显示证明安装成功</span></span><br><span class="line">$ chromedriver -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ open ~/.bash_profile</span><br><span class="line"><span class="comment">#在.bash_profile中添加路径，如果chromedriver的位置在/Users/iherr/chrome/bin/chromedriver</span></span><br><span class="line">$ <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/Users/iherr/chrome/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment"># 保存文件后再执行后面</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br><span class="line"><span class="comment"># 查看版本号，如有显示证明安装成功</span></span><br><span class="line">$ chromedriver -v</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>示例</p>
 </blockquote>
@@ -691,14 +691,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -711,11 +703,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,11 +715,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -739,7 +731,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -748,6 +744,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -767,15 +771,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -803,15 +807,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">

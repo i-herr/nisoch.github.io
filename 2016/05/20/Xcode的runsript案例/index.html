@@ -6,26 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://iherr.cn">
-  <title>Xcode的runsript案例 | iherr的博客</title>
+  <title>Xcode的runscript案例 | iherr的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、runscript介绍在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。 二、runscript案例1-appledocappledoc是我们较为常用的文档生成工具，『github地址传送门』 安装方法请执行： 123$ git clone git://github.com/tomaz/appledoc.git$ cd appledo">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xcode的runsript案例">
+<meta property="og:title" content="Xcode的runscript案例">
 <meta property="og:url" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/index.html">
 <meta property="og:site_name" content="iherr的博客">
 <meta property="og:description" content="一、runscript介绍在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。 二、runscript案例1-appledocappledoc是我们较为常用的文档生成工具，『github地址传送门』 安装方法请执行： 123$ git clone git://github.com/tomaz/appledoc.git$ cd appledo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/addtarget.jpg">
-<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/addrunscript.jpg">
-<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/addscript.jpg">
-<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/buildlog.png">
-<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/screenshot.png">
-<meta property="og:updated_time" content="2018-10-18T10:19:17.000Z">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addtarget.jpg">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addrunscript.jpg">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addscript.jpg">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/buildlog.png">
+<meta property="og:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/screenshot.png">
+<meta property="og:updated_time" content="2019-02-11T09:35:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xcode的runsript案例">
+<meta name="twitter:title" content="Xcode的runscript案例">
 <meta name="twitter:description" content="一、runscript介绍在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。 二、runscript案例1-appledocappledoc是我们较为常用的文档生成工具，『github地址传送门』 安装方法请执行： 123$ git clone git://github.com/tomaz/appledoc.git$ cd appledo">
-<meta name="twitter:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/addtarget.jpg">
+<meta name="twitter:image" content="http://iherr.cn/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addtarget.jpg">
   
     <link rel="alternative" href="/atom.xml" title="iherr的博客" type="application/atom+xml">
   
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Xcode的runsript案例
+      Xcode的runscript案例
     </h1>
   
 
@@ -177,29 +177,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、runscript介绍"><a href="#一、runscript介绍" class="headerlink" title="一、runscript介绍"></a>一、runscript介绍</h2><p>在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、runscript介绍"><a href="#一、runscript介绍" class="headerlink" title="一、runscript介绍"></a>一、runscript介绍</h2><p>在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。</p>
 <h2 id="二、runscript案例1-appledoc"><a href="#二、runscript案例1-appledoc" class="headerlink" title="二、runscript案例1-appledoc"></a>二、runscript案例1-appledoc</h2><p>appledoc是我们较为常用的文档生成工具，<a href="https://github.com/tomaz/appledoc" target="_blank" rel="noopener">『github地址传送门』</a></p>
 <p>安装方法请执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/tomaz/appledoc.git</span><br><span class="line">$ <span class="built_in">cd</span> appledoc</span><br><span class="line">$ sudo sh install-appledoc.sh</span><br></pre></td></tr></table></figure>
 <p>安装完成后，我们想着每次在编译ios app时，都能自动生成文档。</p>
 <p>在项目中新建一个target，选择如下图所示的类别。这样会在项目中多出一个target。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addtarget.jpg" alt=""></p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addtarget.jpg" alt=""></p>
 <p>对该target的Build Phases上添加run script phrase。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addrunscript.jpg" alt=""></p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addrunscript.jpg" alt=""></p>
 <p>为了自动生成文档，需要使用appledoc的生成命令，可供粘贴。如果对命令不熟练，也可以使用appledoc –help进行查看。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/addscript.jpg" alt=""></p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addscript.jpg" alt=""></p>
 <p>script脚本如下，供copy。需要注意的是outputPath，为文档的输出路径。ignore，可以选择不生成某些路径下的文档。最后的参数，”{PROJECT_DIR}/runscript)”，需要根据自己需要生成的项目做调整。</p>
 <a id="more"></a>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#appledoc Xcode script</span></span><br><span class="line"><span class="meta"># Start constants</span></span><br><span class="line">company=<span class="string">"herr"</span>;</span><br><span class="line">companyID=<span class="string">"com.herr"</span>;</span><br><span class="line">companyURL=<span class="string">"http://iherr.cn"</span>;</span><br><span class="line">target=<span class="string">"iphoneos"</span>;</span><br><span class="line"><span class="meta">#target=<span class="meta-string">"macosx"</span>;</span></span><br><span class="line">outputPath=<span class="string">"$&#123;PROJECT_DIR&#125;"</span>/Doc;</span><br><span class="line"><span class="meta"># End constants</span></span><br><span class="line"></span><br><span class="line">/usr/local/bin/appledoc \</span><br><span class="line">--project-name <span class="string">"$&#123;PROJECT_NAME&#125;"</span> \</span><br><span class="line">--project-company <span class="string">"$&#123;company&#125;"</span> \</span><br><span class="line">--company-<span class="keyword">id</span> <span class="string">"$&#123;companyID&#125;"</span> \</span><br><span class="line">--docset-atom-filename <span class="string">"$&#123;company&#125;.atom"</span> \</span><br><span class="line">--docset-feed-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;/%DOCSETATOMFILENAME"</span> \</span><br><span class="line">--docset-package-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;/%DOCSETPACKAGEFILENAME"</span> \</span><br><span class="line">--docset-fallback-url <span class="string">"$&#123;companyURL&#125;/$&#123;company&#125;"</span> \</span><br><span class="line">--output <span class="string">"$&#123;outputPath&#125;"</span> \</span><br><span class="line">--ignore <span class="string">"$&#123;PROJECT_DIR&#125;"</span>/runscript/Libs \</span><br><span class="line">--publish-docset \</span><br><span class="line">--docset-platform-family <span class="string">"$&#123;target&#125;"</span> \</span><br><span class="line">--logformat xcode \</span><br><span class="line">--keep-intermediate-files \</span><br><span class="line">--no-repeat-first-par \</span><br><span class="line">--no-warn-invalid-crossref \</span><br><span class="line">--exit-threshold <span class="number">2</span> \</span><br><span class="line"><span class="string">"$&#123;PROJECT_DIR&#125;"</span>/runscript</span><br></pre></td></tr></table></figure>
 <p>完成后，编译运行，可以在xcode上看到编译结果。里面有run script的执行情况，当然可以在script中使用printf来打印，也同样会在这里显示。</p>
-<p><img src="/2016/05/20/Xcode的runsript案例/buildlog.png" alt=""></p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/buildlog.png" alt=""></p>
 <p>这样，我们可以在项目目录的doc文件夹里找到生成的文档，或者到xcode的window的Documentations and API Reference里查看。</p>
 <p>另外，文档的生成需要平时对项目的注释进行规范书写，这里不再赘述。</p>
 <h2 id="三、runscript案例2-对icon添加版本号等信息"><a href="#三、runscript案例2-对icon添加版本号等信息" class="headerlink" title="三、runscript案例2-对icon添加版本号等信息"></a>三、runscript案例2-对icon添加版本号等信息</h2><p>一直以来，做测试时都要区分版本号、git的提交序列、服务器测试还是正式环境等问题，想着在编译时，自动将这些信息贴在app的icon上就好了。直到在github上碰到了这个项目<a href="https://github.com/krzysztofzablocki/IconOverlaying" target="_blank" rel="noopener">『github地址传送门』</a>。</p>
 <p>作者编写了个脚本，获取项目的版本号、git的提交序列等信息，然后使用<strong>imagemagick</strong>和<strong>ghostscript</strong>将这些信息绘制在了app的icon里。<br>如果本地机器没有安装，则需要使用brew命令一键安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install imagemagick</span><br><span class="line">$ brew install ghostscript</span><br></pre></td></tr></table></figure>
 <p>当使用debug模式进行编译时，则会出现如下的logo。当然，如果是release模式打包，则不会出现，具体可以参考runscrip脚本 <a href="iconVersioning.sh">『iconVersioning.sh』</a></p>
-<p><img src="/2016/05/20/Xcode的runsript案例/screenshot.png" alt=""></p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/screenshot.png" alt=""></p>
 <p>在此基础上，我们还可以将应用服务器测试还是正式环境等其他参数都加到icon上，方便对产品进行标示。</p>
 
       
@@ -414,14 +414,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">App</a>
               </li>
              
@@ -434,11 +426,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
+                <a href="javascript:void(0)" class="js-tag color4">iOS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color5">CocoaPods</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,10 +446,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTML5</a>
               </li>
              
@@ -462,7 +454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -471,6 +467,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Php</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -490,15 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pandas</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,6 +510,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">MyBatis</a>
               </li>
              
@@ -518,15 +522,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Matplotlib</a>
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,10 +539,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,7 +578,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
