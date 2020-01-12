@@ -149,6 +149,494 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringBoot实战（3）SpringMVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">SpringBoot实战（3）SpringMVC</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/07/SpringBoot实战（3）SpringMVC/" class="archive-article-date">
+  	<time datetime="2017-04-07T03:31:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-MVC原理"><a href="#一、Spring-MVC原理" class="headerlink" title="一、Spring MVC原理"></a>一、Spring MVC原理</h2><p><img src="/2017/04/07/SpringBoot实战（3）SpringMVC/springmvc.jpeg" alt=""></p>
+<blockquote>
+<p>DispatcherServlet（前端控制器）</p>
+</blockquote>
+<p>DispatcherServlet是整个流程控制的中心，由它调用其它组件处理用户的请求，DispatcherServlet的存在降低了组件之间的耦合性。</p>
+<blockquote>
+<p>HandlerMapping（处理器映射器）</p>
+</blockquote>
+<p>HandlerMapping负责根据用户请求找到Handler即处理器，springmvc提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等，推荐使用注解开发。</p>
+<blockquote>
+<p>Handler（处理器）</p>
+</blockquote>
+<p>Handler 是继DispatcherServlet前端控制器的后端控制器，在DispatcherServlet的控制下Handler对具体的用户请求进行处理。由于Handler涉及到具体的用户业务请求，所以一般情况需要程序员根据业务需求开发Handler。</p>
+<blockquote>
+<p>HandlerAdapter（处理器适配器）</p>
+</blockquote>
+<p>通过HandlerAdapter对处理器进行执行，这是适配器模式的应用，通过扩展适配器可以对更多类型的处理器进行执行。</p>
+<blockquote>
+<p>ViewResolver（视图解析器）</p>
+</blockquote>
+<p>View Resolver负责将处理结果生成View视图，View Resolver首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</p>
+<h2 id="二、Spring-Boot的Web开发"><a href="#二、Spring-Boot的Web开发" class="headerlink" title="二、Spring Boot的Web开发"></a>二、Spring Boot的Web开发</h2><p>Spring Boot提供了springboot-starter-web为Web开发予以支持。提供了嵌入的Tomcat以及Spring MVC的依赖。Web相关的自动配置存储在spring-boot-autoconfigure.jar的org.springframework.boot.autoconfigure.web下。</p>
+<blockquote>
+<p>模板引擎  </p>
+</blockquote>
+<p>jsp在内嵌的Servlet的容器中有问题，tomcat和jetty不支持以jar形式运行jsp，undertow不支持jsp，因此Spring Boot提供了大量模板引擎，有Freemarker、Groovy、Thymeleaf、Velocity等。  </p>
+<blockquote>
+<p>Thymeleaf</p>
+</blockquote>
+<p>Thymeleaf<a href="http://www.thymeleaf.org" target="_blank" rel="noopener">『官网传送门』</a>是一个java类库，是xml/xhtml/html5的模板引擎，作为MVC的Web应用的View层。<br></p>
+        
+          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/07/SpringBoot实战（3）SpringMVC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot实战（2）数据访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/SpringBoot实战（2）数据访问/">SpringBoot实战（2）数据访问</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/03/SpringBoot实战（2）数据访问/" class="archive-article-date">
+  	<time datetime="2017-04-03T10:25:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring-Data"><a href="#一、Spring-Data" class="headerlink" title="一、Spring Data"></a>一、Spring Data</h2><blockquote>
+<p>Spring Data</p>
+</blockquote>
+<p>是Spring用来解决数据访问问题的一揽子解决方案，包含了大量关系型和非关系型数据库的数据访问方案。</p>
+<p>常见项目包含：</p>
+<table>
+<thead>
+<tr>
+<th>项目名称</th>
+<th style="text-align:center">Maven坐标 org.springframework.data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spring Data Jpa</td>
+<td style="text-align:center">spring-data-jpa</td>
+</tr>
+<tr>
+<td>Spring Data MongoDB</td>
+<td style="text-align:center">spring-data-mongodb</td>
+</tr>
+<tr>
+<td>Spring Data Redis</td>
+<td style="text-align:center">spring-data-redis</td>
+</tr>
+<tr>
+<td>Spring Data Solr</td>
+<td style="text-align:center">spring-data-solr</td>
+</tr>
+<tr>
+<td>Spring Data Hadoop</td>
+<td style="text-align:center">spring-data-hadoop</td>
+</tr>
+<tr>
+<td>Spring Data REST</td>
+<td style="text-align:center">spring-data-rest-webmvc</td>
+</tr>
+<tr>
+<td>Spring Data JDBC Ext</td>
+<td style="text-align:center">spring-data-oracle</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>JDBC相关</p>
+</blockquote>
+<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc2.jpg" alt=""></p>
+<p><img src="/2017/04/03/SpringBoot实战（2）数据访问/jdbc1.jpg" alt=""></p>
+<h2 id="二、Spring-Data-JPA"><a href="#二、Spring-Data-JPA" class="headerlink" title="二、Spring Data JPA"></a>二、Spring Data JPA</h2><blockquote>
+<p>基本概念</p>
+</blockquote>
+<p>1、Hibernate主导了EJB3.0的JPA（Java Persistence API）规范。</p>
+<p>2、继承JpaRepository接口，即可拥有默认数据访问操作方法，如findAll，getOne等。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">PersonRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Person</span>, <span class="title">Long</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、在Spring中，需要使用注解@EnableJPARepository来开启JPA支持。</p>
+<blockquote>
+<p>定义查询方法</p>
+</blockquote>
+<p>1、常规查询<br>根据属性名查询，使用findBy、Like、And、IsNull、In、OrderBy等关键字来定义查询方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Person <span class="title">findByNameAndAddress</span><span class="params">(String name,String address)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>通过top和first关键字来限制结果数量。</p>
+<p>2、JPA的NamedQuery查询</p>
+<p>Spring Data JPA支持用JPA的NamedQuery查询防范，即一个名称映射一个查询语句。</p>
+<p>3、@Query查询，直接将@Query注解在接口的方法上实现查询。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"select p from Person p where p.name= :name and p.address= :address"</span>)</span><br><span class="line"><span class="function">Person <span class="title">withNameAndAddressQuery</span><span class="params">(@Param(<span class="string">"name"</span>)</span>String name, @<span class="title">Param</span><span class="params">(<span class="string">"address"</span>)</span>String address)</span>;</span><br></pre></td></tr></table></figure>
+<p>4、排序与分页，提供了Sort类以及Page接口和Pageable接口。</p>
+<blockquote>
+<p>Spring Boot的支持</p>
+</blockquote>
+<p>1、JDBC的自动配置<br>在org.springframework.boot.autoconfigure.jdbc下。</p>
+<p>2、对JPA的自动配置<br>在org.springframework.boot.autoconfigure.orm.jpa下。其中JpaBaseConfiguration会自动扫描注解有@Entity的实体类。</p>
+<p>3、对Spring Data JPA的自动配置<br>在org.springframework.boot.autoconfigure.data.jpa下。JpaRepositoriesAutoConfiguration依赖于HibernateJpaAutoConfiguration配置。</p>
+        
+          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/03/SpringBoot实战（2）数据访问/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBoot实战（1）入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/01/SpringBoot实战（1）入门/">SpringBoot实战（1）入门</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/01/SpringBoot实战（1）入门/" class="archive-article-date">
+  	<time datetime="2017-04-01T08:41:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、Spring框架"><a href="#一、Spring框架" class="headerlink" title="一、Spring框架"></a>一、Spring框架</h2><blockquote>
+<p>框架设计原则</p>
+</blockquote>
+<ol>
+<li>使用POJO（Plain Old Java Object，普通Java对象）取代EJB（Enterprise Java bean，企业级Java Bean），进行轻量级和最小侵入式开发。</li>
+<li>通过IoC（Inversion of Control，控制反转）的DI（Dependency Injection，依赖注入），和基于接口编程实现松耦合。</li>
+<li>通过AOP（Aspect Oriented Programming，面向切面编程），和默认习惯进行声明式编程。</li>
+<li>通过AOP和模板（template）减少模块化代码，用于事务管理、权限控制、日志记录、性能统计等。</li>
+</ol>
+<p><img src="/2017/04/01/SpringBoot实战（1）入门/spring_frame.png" alt=""></p>
+<h2 id="二、IoC相关"><a href="#二、IoC相关" class="headerlink" title="二、IoC相关"></a>二、IoC相关</h2><blockquote>
+<p>依赖注入</p>
+</blockquote>
+<p>所谓依赖注入指的是容器负责创建对象和维护对象间的依赖关系，而不是通过对象本身负责自己的创建和解决自己的依赖。</p>
+<p>依赖注入是向类里面的属性设置值。主要为了解耦，体现了一种“组合”的理念。如果需要某个类具备某项功能的时候，如继承一个具有此功能的父类，子类将和父类耦合，组合另外一个类则使耦合度大大降低。</p>
+<p>关系：依赖注入不能单独存在，需要在IoC基础上完成操作。控制反转是通过依赖注入实现的。</p>
+<p>Spring IoC容器（ApplicationContext）负责创建Bean，并通过容器将功能类Bean注入到你需要的Bean中，Spring提供xml、注解、Java/groovy配置来配置元数据，实现Bean的创建和注入。IoC通过dom4j解析xml配置文件，利用工厂设计模式和反射来实现。</p>
+<blockquote>
+<p>Spring的Bean实例化</p>
+</blockquote>
+<p>1、默认使用类的无参构造创建。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans&gt;    </span><br><span class="line">    &lt;bean id=<span class="string">"userDao"</span> class=<span class="string">"com.herr.xml.UserDao"</span>/&gt;    </span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/04/01/SpringBoot实战（1）入门/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/01/SpringBoot实战（1）入门/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Nginx详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/29/Nginx详解/">Nginx详解</a>
+    </h1>
+  
+
+        
+        <a href="/2017/03/29/Nginx详解/" class="archive-article-date">
+  	<time datetime="2017-03-29T07:57:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、安装部署相关"><a href="#一、安装部署相关" class="headerlink" title="一、安装部署相关"></a>一、安装部署相关</h2><blockquote>
+<p>使用docker安装</p>
+</blockquote>
+<p>docker地址： <a href="https://store.docker.com/images/nginx" target="_blank" rel="noopener">https://store.docker.com/images/nginx</a></p>
+<p>安装命令：<br>本地新建 nginx/html文件夹和nginx/conf/xxx.conf文件，xxx.conf文件参考下方第3小结-基础配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx1 -d -p 8070:80 -v ~/docker/nginx/html:/usr/share/nginx/html -v ~/docker/nginx/conf:/etc/nginx/conf.d nginx</span><br></pre></td></tr></table></figure>
+<p>默认编译参数如下（可使用nginx -V查看）：</p>
+<p>–prefix=/etc/nginx –sbin-path=/usr/sbin/nginx –modules-path=/usr/lib/nginx/modules –conf-path=/etc/nginx/nginx.conf –error-log-path=/var/log/nginx/error.log –http-log-path=/var/log/nginx/access.log –pid-path=/var/run/nginx.pid –lock-path=/var/run/nginx.lock</p>
+<blockquote>
+<p>mac直接安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ brew install nginx</span><br><span class="line">$ nginx</span><br><span class="line"><span class="comment"># 配置文件</span></span><br><span class="line">$ cat /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>openresty<br>/Users/bjjzy/docker/openresty/conf<br>/etc/nginx/conf.d/*.conf;<br>/usr/local/opt/openresty/nginx/sbin<br>/usr/local/Cellar/openresty/1.15.8.1/nginx/logs/error.log<br>/usr/local/opt/openresty/nginx/sbin/nginx -c /Users/bjjzy/docker/openresty/conf/nginx.conf</p>
+<blockquote>
+<p>linux编译安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> usr/<span class="built_in">local</span>/src/</span><br><span class="line">$ tar -xvf nginx-1.11.6.tar </span><br><span class="line">https://github.com/arut/nginx-rtmp-module</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git</span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=/usr/<span class="built_in">local</span>/nginx  --add-module=/usr/<span class="built_in">local</span>/src/nginx-rtmp-module  --with-http_ssl_module --with-http_stub_status_module</span><br><span class="line"></span><br><span class="line">$ yum -y install pcre-devel</span><br><span class="line">$ yum -y install openssl--devel</span><br><span class="line"></span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2017/03/29/Nginx详解/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/03/29/Nginx详解/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-半生感悟" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/22/半生感悟/">半生感悟</a>
+    </h1>
+  
+
+        
+        <a href="/2017/02/22/半生感悟/" class="archive-article-date">
+  	<time datetime="2017-02-22T03:41:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">道理都懂，可依然过不好这一生。</span><br></pre></td></tr></table></figure>
+<p>写在前面，其实并不是道理有错，而是你害怕拿自己的人生去检验。</p>
+<h2 id="一、成长篇"><a href="#一、成长篇" class="headerlink" title="一、成长篇"></a>一、成长篇</h2><p>小时候觉得悲伤很酷，听悲泪的情歌，写决绝的字句，生怕自己看起来没情绪。现在想来，当时真是多虑了，人生的疾苦都会在未来的路上埋伏好等你出现，一样也不会少你，一样你都躲不掉。</p>
+<p>人们永远不会为做过什么而后悔，只会为没做过什么而后悔。</p>
+<p>总有一句话，让我们瞬间长大。</p>
+<p>您能谈谈人类的奇怪之处吗？他们急于成长，然后又哀叹失去的童年；他们以健康换取金钱，不久后又想用金钱恢复健康。他们对未来焦虑不已，却又无视现在的幸福。因此，他们既不活在当下，也不活在未来。他们活着仿佛从来不会死亡；临死前，又仿佛从未活过。</p>
+<p>我已经过了餐桌上有只鸡就一定能吃到鸡腿的年纪了。</p>
+<p>优于别人，并不高贵，真正的高贵应该是优于过去的自己。</p>
+<p>人世间，但凡真正的悲伤，都与时光有关。</p>
+<p>时间是个自称包治百病的庸医。</p>
+<p>它揭发了我不愿承认的懦弱，或提醒了我从不自知的坚强。只是我当时不知道，这两者对我都是好的。</p>
+<p>人到了一定年龄，必须扔掉四样东西：没意义的酒局，不爱你的人，看不起你的亲戚，虚情假意的朋友。必须拥有四样东西：扬在脸上的自信，长在心里的善良，融进血液里的骨气，刻在生命里的坚强。</p>
+<p>如今我们深夜饮酒，杯子碰到一起，都是梦破碎的声音。</p>
+<p>攻人短者，其自修必疏。</p>
+<p>要学会避开弱者思维，抱怨，运气，爹妈。</p>
+<p>一些路，只有你走过了、走错了、走进死胡同了，你才知道这条路是不能走的，这样并不影响你的速度，因为，生活和速度无关，和终点无关，和路程上的风景、和陪你的人、和走路的心情息息相关。</p>
+<p>明明两点之间最短的距离是线段，上帝为什么让你绕着走？后来随着成长，我开始明白，两点之间的线段虽然最短，但是那条曲线是最美的。</p>
+<p>从前有个少年，后来他长大了。</p>
+<p>很多时候，道理虽是对的，但时代错了。</p>
+<p>人生有三次成长，第一次是在发现自己不是世界中心的时候，第二次是在发现即使再怎么努力，终究还是有些事令人无能为力的时候，第三次是在明知道有些事情可能会无能为力，但还是会努力争取的时候。</p>
+<p>别指望所有的人都能懂你，因为萝卜白菜，各有所爱。你做了萝卜，自然就做不成白菜。</p>
+<p>什么是成熟？小时候我认为成熟是像大人一样做什么事都很稳妥，叛逆期我又认为成熟不过是苟且的另一种说法，现在呢我认为成熟是一种释怀，是一种对生命的释然。</p>
+<p>那个喝冰镇汽水的少年，终将拿起保温杯。</p>
+<p>像我们这样的人，再不努力和坚持就什么也不是了。努力了不见得会成功，不见得一定会得到自己想要的。很有可能我们努力奋斗一生的，却是别人一出生就拥有的。但是努力一定会有回报，也许是美好的生活，也许只是给自己一个交代。</p>
+<p>我未曾见过一个早起、勤奋、谨慎、诚实的人抱怨命运不好。良好的品格，优良的习惯，坚强的意志，是不会被假设所谓的命运击败的。</p>
+<p>人生苦难重重。这是个伟大的真理，它的伟大之处在于，只要我们真正理解并接受这一点，那么我们就再也不会对人生的苦难耿耿于怀了。</p>
+<p>世界其实无比简单，所有的复杂都是感官上的迷惑、大脑的想象和对未来的恐惧。</p>
+<p>小时候听故事，总是急着问：“后来呢？”后来，原来并非全然美好。人生是一场盛筵，初见总是琳琅满目热气腾腾，之后酒冷茶凉。悲伤的，不是这残羹冷炙，是这似水流年。</p>
+<h2 id="二、爱情篇"><a href="#二、爱情篇" class="headerlink" title="二、爱情篇"></a>二、爱情篇</h2><p>冰心赠葛洛的一首诗中说，爱在左，情在右，在生命的两旁，随时撒种，随时开花，将这一径长途点缀得花香弥漫，使得穿花拂叶的行人，踏着荆棘，不觉痛苦，有泪可挥，不觉悲凉。</p>
+<p>来路或许不易，命运或许不公，人生或许悲苦，但是请你足够相信。无论是生活困顿，抑或身体抱恙，都会有“爱” 与“情” 相伴。</p>
+<p>有多少人，以朋友的名义，默默爱着，有多少人，以夫妻的名义，凑合过着。</p>
+<p>对我来说，“你好”这两个字不是打招呼，而是字面意思。千好万好，还是你好。</p>
+        
+          <a class="article-more-a" href="/2017/02/22/半生感悟/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/22/半生感悟/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-App后台开发运维和架构实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -865,627 +1353,50 @@
 
 
   
-    <article id="post-算法之道（1）基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-音视频开发（8）FFmpeg的代码调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/08/算法之道（1）基础/">算法之道（1）基础</a>
+      <a class="article-title" href="/2017/01/11/音视频开发（8）FFmpeg的代码调用/">音视频开发（8）FFmpeg的代码调用</a>
     </h1>
   
 
         
-        <a href="/2017/01/08/算法之道（1）基础/" class="archive-article-date">
-  	<time datetime="2017-01-08T10:17:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-08</time>
+        <a href="/2017/01/11/音视频开发（8）FFmpeg的代码调用/" class="archive-article-date">
+  	<time datetime="2017-01-11T13:16:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前言：</p>
-<p>算法的基础是数学。高等代数、线性代数、离散数学的知识显得十分重要。</p>
-<h2 id="一、算法简介"><a href="#一、算法简介" class="headerlink" title="一、算法简介"></a>一、算法简介</h2><p>1、算法，是任何良定义的计算过程，某个值或集合输入，产生某个值或集合的输出。</p>
-<p>2、算法，可以看成一种技术。计算机也许是快的，但它们不是无限快。存储器也许是廉价的，但不是免费的。因此算法帮助我们有效的使用时间或空间等资源。</p>
-<p>3、学习已有的算法，是为了深层理解算法设计与分析的技术，以便能自行设计算法，证明其正确性和理解其效率。</p>
-<h2 id="二、算法分析-时间复杂度"><a href="#二、算法分析-时间复杂度" class="headerlink" title="二、算法分析-时间复杂度"></a>二、算法分析-时间复杂度</h2><p>我们以插入排序的算法为例，解释时间复杂度计算。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertion_sort2</span><span class="params">(list)</span>:</span>          <span class="comment"># 代价  次数</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(list)):    <span class="comment"># c1    n (循环头会比循环体多执行1次)</span></span><br><span class="line">        key =list[j]                <span class="comment"># c2    n-1</span></span><br><span class="line">        i=j<span class="number">-1</span>                       <span class="comment"># c4    n-1</span></span><br><span class="line">        <span class="keyword">while</span> i&gt;=<span class="number">0</span> <span class="keyword">and</span> list[i]&gt;key: <span class="comment"># c5    t(1)+t(2)+t(3)+...+t(j)，t(j)表示当值为j时循环次数，t(j)最坏情况执行j+1次，t(1)=2,t(2)=3,t(n-1)=n，最好情况执行1次。</span></span><br><span class="line">            list[i+<span class="number">1</span>]=list[i]       <span class="comment"># c6    t(1)-1 + t(2)-1 +... t(j)-1，t(j)-1最坏情况执行j次，最好情况执行0次</span></span><br><span class="line">            i=i<span class="number">-1</span>                   <span class="comment"># c7    t(1)-1 + t(2)-1 +... t(j)-1，同上一行</span></span><br><span class="line">        list[i+<span class="number">1</span>]=key               <span class="comment"># c8    n-1</span></span><br><span class="line">        print(list)</span><br><span class="line">    <span class="keyword">return</span> list</span><br><span class="line"></span><br><span class="line">numbers = [<span class="number">12</span>, <span class="number">123</span>, <span class="number">23</span>, <span class="number">232</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">7</span>]</span><br><span class="line">insertion_sort(numbers)</span><br></pre></td></tr></table></figure>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><msub><mi>c</mi><mn>1</mn></msub><mi>n</mi><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>5</mn></msub><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><msub><mi>t</mi><mi>j</mi></msub><mo>+</mo><msub><mi>c</mi><mn>6</mn></msub><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>(</mo><msub><mi>t</mi><mi>j</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>7</mn></msub><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>(</mo><msub><mi>t</mi><mi>j</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-T(n)=c_1n+c_2(n-1)+c_4(n-1)+c_5\sum_{j=1}^{n-1}t_j+c_6\sum_{j=1}^{n-1}(t_j-1)+c_7\sum_{j=1}^{n-1}(t_j-1)+c_8(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.854239em;"></span><span class="strut bottom" style="height:1.267211em;vertical-align:-0.412972em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">6</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span>
-<p>最佳情况运行时间，可以看出是n的线性函数。</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><msub><mi>c</mi><mn>1</mn></msub><mi>n</mi><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>5</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-T(n)=c_1n+c_2(n-1)+c_4(n-1)+c_5(n-1)+c_8(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mo>(</mo><msub><mi>c</mi><mn>1</mn></msub><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>+</mo><msub><mi>c</mi><mn>5</mn></msub><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>)</mo><mi>n</mi><mo>−</mo><mo>(</mo><msub><mi>c</mi><mn>2</mn></msub><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>+</mo><msub><mi>c</mi><mn>5</mn></msub><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-=(c_1+c_2+c_4+c_5+c_8)n-(c_2+c_4+c_5+c_8)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span>
-<p>最坏情况运行时间：</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>(</mo><msub><mi>t</mi><mi>j</mi></msub><mo>)</mo><mo>=</mo><mfrac><mrow><mi>n</mi><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex"> 
-\sum_{j=1}^{n-1}(t_j)=\dfrac{n(n+1)}{2}-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.427em;"></span><span class="strut bottom" style="height:2.113em;vertical-align:-0.686em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit">n</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span>
-<p>还有：<br><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>(</mo><msub><mi>t</mi><mi>j</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mfrac><mrow><mi>n</mi><mo>(</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><mrow><mn>2</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex"> 
-\sum_{j=1}^{n-1}(t_j-1)=\dfrac{n(n+1)}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.427em;"></span><span class="strut bottom" style="height:2.113em;vertical-align:-0.686em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.276864em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.403131em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">n</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">t</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord mathrm">1</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathit">n</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
-<p>得出是n的二次函数。</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mo>(</mo><mfrac><mrow><msub><mi>c</mi><mn>5</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><msub><mi>c</mi><mn>6</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><mfrac><mrow><msub><mi>c</mi><mn>7</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>)</mo><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mo>(</mo><msub><mi>c</mi><mn>1</mn></msub><mo>+</mo><msub><mi>c</mi><mn>2</mn></msub><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>+</mo><mfrac><mrow><msub><mi>c</mi><mn>5</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>−</mo><mfrac><mrow><msub><mi>c</mi><mn>6</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>−</mo><mfrac><mrow><msub><mi>c</mi><mn>7</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>)</mo><mi>n</mi><mo>−</mo><mo>(</mo><msub><mi>c</mi><mn>2</mn></msub><mo>+</mo><msub><mi>c</mi><mn>4</mn></msub><mo>+</mo><msub><mi>c</mi><mn>5</mn></msub><mo>+</mo><msub><mi>c</mi><mn>8</mn></msub><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-T(n)=(\dfrac{c_5}{2}+\dfrac{c_6}{2}+\dfrac{c_7}{2})n^2+(c_1+c_2+c_4+\dfrac{c_5}{2}-\dfrac{c_6}{2}-\dfrac{c_7}{2}+c_8)n-(c_2+c_4+c_5+c_8)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.10756em;"></span><span class="strut bottom" style="height:1.7935600000000003em;vertical-align:-0.686em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">6</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">−</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">6</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">−</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">7</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mord mathit">n</span><span class="mbin">−</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord"><span class="mord mathit">c</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">8</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span>
-<p>我们往往只求最坏情况运行时间，原因在于，</p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>FFmpeg由C语言编写，因此也提供大量C的接口，涉及libavformat、libavcodec、libavfilter等库的接口，功能涵盖转封装、转码、滤镜等功能。因此调用FFmpeg由两种主流方式：</p>
 <ul>
-<li>一个算法的最坏情况运行时间给出了任意输入的运行时间的上界，不会变的更坏。</li>
-<li>对某些算法，最坏情况经常出现。</li>
-<li>平均情况往往与最坏情况大致一样差。</li>
+<li>编码调用ffmpeg命令行</li>
+<li>编码调用ffmpeg的API接口</li>
 </ul>
-<h2 id="三、分治法（Divide-and-Conquer）"><a href="#三、分治法（Divide-and-Conquer）" class="headerlink" title="三、分治法（Divide and Conquer）"></a>三、分治法（Divide and Conquer）</h2><p>许多算法结构上是递归的，遵循分治法的思想：将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。</p>
-<p>分治模式在每层递归时有三个步骤：分解、解决、合并。</p>
-<p>分治算法运行时间的递归式为：T(n)是规模为n的一个问题的运行时间，如问题规模足够小，当n&lt;=c（某个常量）时，直接求解需要常量时间，协作<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-\Theta(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span>。把原问题分解成a个子问题，每个子问题的规模是原问题的1/b（对归并排序，a和b都为2）。为了求解子问题，需要T(n/b)的时间，分解问题需要的时间D(n)，合并子问题需要的时间C(n)，则可得到递归式：</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>n</mi><mo>≤</mo><mi>c</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>a</mi><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mi>b</mi><mo>)</mo><mo>+</mo><mi>D</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>+</mo><mi>C</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>n</mi><mo>&gt;</mo><mi>c</mi></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> 
-T(n)= \begin{cases}
-   \Theta(1) &amp;\text{if } n \le c \\
-   aT(n/b)+D(n)+C(n) &amp;\text{if } n&gt;c
-\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.75em;"></span><span class="strut bottom" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">=</span><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mord mathrm">/</span><span class="mord mathit">b</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="text mord textstyle uncramped"><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mspace"> </span></span><span class="mord mathit">n</span><span class="mrel">≤</span><span class="mord mathit">c</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="text mord textstyle uncramped"><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mspace"> </span></span><span class="mord mathit">n</span><span class="mrel">&gt;</span><span class="mord mathit">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span>
-<p>具体到递归排序，分解运行时间如下：</p>
-<p>分解：D(n)=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-\Theta(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mclose">)</span></span></span></span>。<br>解决：2T(n/2)<br>合并：C(n)=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
-\Theta(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span>。</p>
-<p>递归排序的最坏运行时间T(n)的递归式：</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>(</mo><mi>n</mi><mo>)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mrow><mi>c</mi></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>n</mi><mo>=</mo><mn>1</mn></mrow></mtd></mtr><mtr><mtd><mrow><mn>2</mn><mi>T</mi><mo>(</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo><mo>+</mo><mi>c</mi><mi>n</mi></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>n</mi><mo>&gt;</mo><mn>1</mn></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> 
-T(n)= \begin{cases}
-   c &amp;\text{if } n=1 \\
-   2T(n/2)+cn &amp;\text{if } n&gt;1
-\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.75em;"></span><span class="strut bottom" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span><span class="mrel">=</span><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">c</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathrm">2</span><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mord mathrm">/</span><span class="mord mathrm">2</span><span class="mclose">)</span><span class="mbin">+</span><span class="mord mathit">c</span><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist"><span style="top:-0.6819999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="text mord textstyle uncramped"><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mspace"> </span></span><span class="mord mathit">n</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span><span style="top:0.7579999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="text mord textstyle uncramped"><span class="mord mathrm">i</span><span class="mord mathrm" style="margin-right:0.07778em;">f</span><span class="mord mspace"> </span></span><span class="mord mathit">n</span><span class="mrel">&gt;</span><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span>
-<p>递归式求解如下：</p>
-<p>第一层为1个cn，第二层为2个2/cn，第lgn层为n个c，因此递归式总体运行时间为cn lgn+cn。</p>
-<h2 id="四、函数的增长"><a href="#四、函数的增长" class="headerlink" title="四、函数的增长"></a>四、函数的增长</h2><blockquote>
-<p>Θ记号</p>
-</blockquote>
-<p>我们已经使用过渐进记号<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi></mrow><annotation encoding="application/x-tex"> 
-\Theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.68333em;vertical-align:0em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span></span></span></span>来表示增长量级，该记号适用于函数，例如插入排序的运行时间：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo><mo>=</mo><mi>a</mi><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><mi>b</mi><mi>n</mi><mo>+</mo><mi>c</mi></mrow><annotation encoding="application/x-tex"> 
-\Theta(n^2)=an^2+bn+c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8141079999999999em;"></span><span class="strut bottom" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">a</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">+</span><span class="mord mathit">b</span><span class="mord mathit">n</span><span class="mbin">+</span><span class="mord mathit">c</span></span></span></span></p>
-        
-          <a class="article-more-a" href="/2017/01/08/算法之道（1）基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/08/算法之道（1）基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Git版本控制管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/07/Git版本控制管理/">Git版本控制管理</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/07/Git版本控制管理/" class="archive-article-date">
-  	<time datetime="2017-01-07T09:51:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Git概述"><a href="#一、Git概述" class="headerlink" title="一、Git概述"></a>一、Git概述</h2><blockquote>
-<p>版本控制系统（VCS）</p>
-</blockquote>
-<p>目的：是为了持续性的对代码或文档进行备份和存档，对变更进行追踪管理。</p>
-<p>发展进程：SCCS源码控制系统–&gt;RCS修订控制系统（本地）–&gt;CVS并行版本系统–&gt;Subversion（SVN）（集中化）–&gt;Git（分布式）</p>
-<blockquote>
-<p>Git简史</p>
-</blockquote>
-<p>Git，<a href="https://git-scm.com/" target="_blank" rel="noopener">『网站传送门』</a>，由大神Linus Torvalds发明，git本意是无用的人、饭桶，令人舒服的解释是Global Information Tracker。</p>
-<p>之前Linux开源社区用的BitKeeper，05年开始收费后，迫使开发自己的版本系统。起初用来管理Linux内核的开发工作。于05年4月托管，Linux内核提交git，包含670万行代码。</p>
-<p>Git的目标是需要以下特性：  </p>
+<h2 id="Java命令行调用"><a href="#Java命令行调用" class="headerlink" title="Java命令行调用"></a>Java命令行调用</h2><p>在Java中提供了两种方法来调用诸如exe,shell这样的程序或脚本</p>
 <ul>
-<li>完全分布式</li>
-<li>能胜任上千开发人员的规模，允许独立且同时开发，离线开发</li>
-<li>支持并鼓励基于分支的开发，非线性分支管理</li>
-<li>免费自由</li>
-<li>性能优异，解决网络传输瓶颈，近乎所有操作都是本地执行，保证执行速度</li>
-<li>保持完整性和可靠性，数据存储前使用SHA-1散列来计算校验和，会发现丢失或损坏的文件。</li>
+<li>使用Runtime的exec()方法</li>
+<li>使用ProcessBuilder的start()方法</li>
 </ul>
-<blockquote>
-<p>Git三个工作区域</p>
-</blockquote>
-<ul>
-<li>Git仓库，用来保存项目元数据和对象数据的地方</li>
-<li>工作目录，用来使用或修改</li>
-<li>暂存区域，保存了下次提交的文件列表信息，是一个index文件，有时被叫做索引。</li>
-</ul>
-<p><img src="/2017/01/07/Git版本控制管理/git_area.png" alt=""></p>
-<h2 id="二、Git起步"><a href="#二、Git起步" class="headerlink" title="二、Git起步"></a>二、Git起步</h2><blockquote>
-<p>客户端安装配置</p>
-</blockquote>
-<ul>
-<li>Windows使用cygwin版本的Git，或原生版本的msysGit。或者直接安装GitHub for Windows。</li>
-<li>Mac系统使用Xcode Command Line Tools。在Terminal运行git命令即可。或者直接安装GitHub for Mac。</li>
-<li>Linux可使用yum或apt-get安装。</li>
-</ul>
-<p>git支持不同层级的配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.git/config  <span class="comment">#版本库配置</span></span><br><span class="line">~/.gitconfig <span class="comment">#用户配置</span></span><br><span class="line">/etc/gitconfig <span class="comment">#系统配置</span></span><br></pre></td></tr></table></figure>
-<p>配置提交作者，根据上述层级分别对应，默认为global</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"iherr"</span>  <span class="comment">#在当前版本库目录执行</span></span><br><span class="line">$ git config user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --global user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --global user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --system user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --system user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --list <span class="comment">#检查配置信息</span></span><br><span class="line">$ git config --global alias.ci commit <span class="comment">#可设置别名，使用命令git ci代替git commit</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>服务器端安装配置</p>
-</blockquote>
-<ul>
-<li>Gitlab</li>
-<li>Github</li>
-<li>Gitee</li>
-</ul>
-<p>git传输协议有以下4种</p>
-<ul>
-<li>本地协议</li>
-<li>HTTP协议</li>
-<li>SSH协议</li>
-<li>GIT协议</li>
-</ul>
-<blockquote>
-<p>通用命令</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git  </span><br><span class="line">usage: git [--version] [--<span class="built_in">help</span>] [-C &lt;path&gt;] [-c name=value] [--<span class="built_in">exec</span>-path[=&lt;path&gt;]] [--html-path] [--man-path] [--info-path] [-p | --paginate | --no-pager] [--no-replace-objects] [--bare] [--git-dir=&lt;path&gt;] [--work-tree=&lt;path&gt;] [--namespace=&lt;name&gt;] &lt;<span class="built_in">command</span>&gt; [&lt;args&gt;]</span><br></pre></td></tr></table></figure>
-<p>理解短和长选项命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"fixed bug"</span></span><br><span class="line">$ git commit --message <span class="string">"fixed bug"</span></span><br></pre></td></tr></table></figure>
-<p>常用命令如下：</p>
-<p><img src="/2017/01/07/Git版本控制管理/git_command.jpg" alt=""></p>
-<blockquote>
-<p>初始版本库命令</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir <span class="built_in">test</span></span><br><span class="line">$ <span class="built_in">cd</span> <span class="built_in">test</span></span><br><span class="line">$ git init  <span class="comment">#创建隐藏目录.git</span></span><br><span class="line">$ touch README.md</span><br><span class="line">$ git add README.md  <span class="comment">#将md文件添加到版本库</span></span><br><span class="line">$ git add .  <span class="comment">#或者将目录中所有文件都添加到版本库</span></span><br><span class="line">$ git commit -m <span class="string">"first commit"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 可创建版本库副本</span></span><br><span class="line">$ git <span class="built_in">clone</span> <span class="built_in">test</span> test2 <span class="comment">#在test上级目录执行，根据test创建test2。</span></span><br><span class="line">Cloning into <span class="string">'test2'</span>...</span><br><span class="line"><span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p> 修改和提交的基础命令</p>
-</blockquote>
-<p>add暂存，然后commit提交</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git add .  <span class="comment">#将文件放入暂存区，从Untracked状态到Staged状态，或者从Modified状态到Staged状态</span></span><br><span class="line">$ git commit -m <span class="string">"first commit"</span> <span class="comment">#只将暂存区文件提交到版本库，将文件从Staged状态到Unmodified状态</span></span><br></pre></td></tr></table></figure>
-<h2 id="三、Git原理"><a href="#三、Git原理" class="headerlink" title="三、Git原理"></a>三、Git原理</h2><blockquote>
-<p>版本库（repository）</p>
-</blockquote>
-<p>版本库位于.git文件夹下，维护了两个主要的数据结构，对象库object store和索引index。</p>
-<blockquote>
-<p>对象库</p>
-</blockquote>
-<p>1、对象库，包含以下4种类型：</p>
-<ul>
-<li>块blob，存放任意文件的数据</li>
-<li>目录树tree，代表一层目录信息。</li>
-<li>提交commit、一个提交对象保存版本库中每一次变化的元数据，每一个提交对象指向一个目录树对象。</li>
-<li>标签tag，给提交对象取的tag。 </li>
-</ul>
-<p>以下的图示，名为master分支和名为V1.0的标签都指向id为1492的提交对象，提交对象指向任何指定的树对象（可根据此树对象找到索引），树对象指向若干blob对象或其他树对象。 </p>
-<p><img src="/2017/01/07/Git版本控制管理/gitobject.jpeg" width="200" align="center/"><br><!--![](Git版本控制管理/gitobject.jpeg)--></p>
-<blockquote>
-<p>索引</p>
-</blockquote>
-<p>1、索引，是一个动态的二进制文件，描述版本库的目录结构。 </p>
-<p>2、Git的工作原理，在工作目录和版本库之间加设了一层索引（index），用来暂存（stage）。一次提交的过程：暂存变更和提交变更。</p>
-        
-          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/07/Git版本控制管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-FFmpeg入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/15/FFmpeg入门/">FFmpeg入门</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/15/FFmpeg入门/" class="archive-article-date">
-  	<time datetime="2016-12-15T03:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、FFmpeg简介"><a href="#一、FFmpeg简介" class="headerlink" title="一、FFmpeg简介"></a>一、FFmpeg简介</h2><p>FFmpeg是一个自由软件，可以运行音频和视频多种格式的录影、转换、流功能，包含了 libavcodec 用于多个项目中音频和视频的解码器库，以及 libavformat 音频与视频格式转换库。</p>
-<p><a href="https://ffmpeg.org/" target="_blank" rel="noopener">『FFmpeg官网传送门』</a>，目前支持Linux,Mac OS,Windows三个主流的平台，可以直接下载使用。</p>
-<h2 id="二、FFmpeg安装"><a href="#二、FFmpeg安装" class="headerlink" title="二、FFmpeg安装"></a>二、FFmpeg安装</h2><p>当然也可以自己编译到Android或者iOS平台。</p>
-<blockquote>
-<p>如果是Mac用户，可以通过brew安装</p>
-</blockquote>
-<p>有之前有安装过，版本或模块有问题，可先brew uninstall卸载。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ffmpeg --with-libvpx --with-libvorbis --with-ffplay</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>linux 安装</p>
-</blockquote>
-<p>详细资料可参考官方文档，<a href="https://trac.ffmpeg.org/wiki/CompilationGuide/Centos" target="_blank" rel="noopener">『文档传送门』</a></p>
-        
-          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/15/FFmpeg入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker技术入门与实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/24/Docker技术入门与实战/">Docker技术入门与实战</a>
-    </h1>
-  
-
-        
-        <a href="/2016/10/24/Docker技术入门与实战/" class="archive-article-date">
-  	<time datetime="2016-10-24T05:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Docker简介"><a href="#一、Docker简介" class="headerlink" title="一、Docker简介"></a>一、Docker简介</h2><blockquote>
-<p>Docker和集装箱</p>
-</blockquote>
-<p>集装箱，港口运输业最伟大的发明。Docker，聪明的技术人员从传统的运输行业找到了答案。</p>
-<p>Docker是一个开源的容器引擎，将应用程序和基础设施层隔离，实现Build，Ship，and Run Any App，Anywhere，即任何应用都可以构建、发布、运行于任何环境。看看Docker的icon就明白了。基本使用Golang进行开发。<br><img src="/2016/10/24/Docker技术入门与实战/docker_icon.jpeg" alt=""></p>
-<blockquote>
-<p>下载安装</p>
-</blockquote>
-<p>分为企业版EE和社区版CE，版本采用YY.MM形式控制。使用命令docker version验证安装版本。</p>
-<ul>
-<li>Mac版，去<a href="https://www.docker.com" target="_blank" rel="noopener">『Docker官网』</a>运行docker for mac安装。</li>
-<li>CentOS，要求CentOS 7以上，可使用yum或脚本安装。</li>
-<li>Ubuntu，要求版本和平台，较为复杂，使用APT或脚本安装。</li>
-<li>Windows，Docker for Windows需要64位Win 10 Pro，必须开启Hyper-V。</li>
-</ul>
-<blockquote>
-<p>Docker优点</p>
-</blockquote>
-<p>Docker使用的基础技术，Linux的命名空间Namespace、控制组Control Group、分层文件系统、网络虚拟化等在Docker之前就存在很多年，但容器一直没有得到关注的原因，在于易用性，docker通过简单的指令或接口来维护容器，降低部署难度，提升维护效率。它提供一种统一的实践方法（维护一个Dockerfile文件或Compose的方式），供开发和运维团队来透明和合作，降低沟通和部署成本。</p>
-<ul>
-<li>快速上手新技术，不纠结于环境搭建的学习成本。  </li>
-<li>容器化的代码仓库，所有常用代码都可以以容器化的方式保存，并可以调出随时运行。  </li>
-<li>面向业务编程，使得软件工程师更加专注于业务需求，快速启用新技能。  </li>
-<li>使用Docker Hub发布开源项目。  </li>
-</ul>
-<blockquote>
-<p>容器化开发模式  </p>
-</blockquote>
-<p>工作流程比较<br><img src="/2016/10/24/Docker技术入门与实战/docker_workflow.jpg" alt=""></p>
-<p>开发、测试、运维协同<br><img src="/2016/10/24/Docker技术入门与实战/docker_flow.jpg" alt=""></p>
-<blockquote>
-<p>容器与云服务</p>
-</blockquote>
-<p>目前AWS、Google、Azure、Docker官方、腾讯、阿里、华为、UCloud等都推出了公有云的容器服务，来支撑企业级IT架构的云化与容器化、微服务化。</p>
-<p>有些甚至还推出了容器云服务（Container as a Service，CaaS）。按需提供容器化环境和应用服务，让开发和运维团队相互协作，构建和部署应用。从而使得容器成为生产主流。主要有网易蜂巢、时速云、Daocloud、数人云等。提供容器调度、服务发现、网络配置、安全配置、负载、数据持久、容错与高可用性等需求。</p>
-<blockquote>
-<p>容器与生产环境</p>
-</blockquote>
-<p>Docker还是个IT生产环境和基础设施的新成员，目前容器还存在一些分支和分歧，成立OCI（Open Container Initiative）组织来建立通用容器技术标准。传统数据库或有状态应用、网络吞吐性能高要求的应用还不适合容器化。因此需要考虑：  </p>
-<ul>
-<li>Docker出现不可控风险后的备选方案  </li>
-<li>Docker怎么做资源的限制  </li>
-<li>Docker对容器安全管理是否完善    </li>
-<li>内部私有仓库、镜像的管理是否解决  </li>
-</ul>
-<p>但是，有一句话还得送给大家，容器技术非常热门，未来将成为主流，那么你就应该尽快掌握。</p>
-<h2 id="二、Docker镜像-Image"><a href="#二、Docker镜像-Image" class="headerlink" title="二、Docker镜像(Image)"></a>二、Docker镜像(Image)</h2><blockquote>
-<p>获取镜像</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull NAME[:TAG]</span><br></pre></td></tr></table></figure>
-<p>其中，NAME是镜像仓库的名称，TAG是镜像的标签，例如ubuntu:14.04。如不指定TAG，则默认为latest标签，下载最新版本。</p>
-<p>默认使用官方注册服务器registry.hub.docker.com/ubuntu:14.04命令，如需从非官方仓库下载，可指定如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hub.c.163.com/public/ubuntu:14.04</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>查看镜像信息</p>
-</blockquote>
-<p>1、列出本地主机上已有镜像的基本信息，字段包含归属仓库、镜像标签、镜像ID、创建时间和镜像大小</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br></pre></td></tr></table></figure>
-<p><img src="/2016/10/24/Docker技术入门与实战/docker_images.png" alt=""></p>
-<p>2、使用tag命令添加标签镜像，可为本地镜像添加新的标签，他们都指向同一个镜像文件，只是有别名而已。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag nginx:latest mynginx:latest</span><br></pre></td></tr></table></figure>
-<p>3、使用inspect命令查看详细信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect ubuntu:14.04</span><br></pre></td></tr></table></figure>
-<p>4、使用history查看镜像历史</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">history</span> ubuntu:14.04</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/10/24/Docker技术入门与实战/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Maven实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/30/Maven实战/">Maven实战</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/30/Maven实战/" class="archive-article-date">
-  	<time datetime="2016-09-30T08:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Maven简介"><a href="#一、Maven简介" class="headerlink" title="一、Maven简介"></a>一、Maven简介</h2><p>Maven翻译为“专家”，是Apache下的一款跨平台的开源项目管理工具。主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
-<blockquote>
-<p>构建工具（Build）</p>
-</blockquote>
-<p>每天除了编写源码，程序员相当一部分时间花在编译、运行单元测试，生产文档，打包和部署等构建工作上。Maven可抽象构建声明周期模型，并标准化构建过程。</p>
-<blockquote>
-<p>依赖管理工具</p>
-</blockquote>
-<p>提供中央仓库，自动下载构建（artifact），Maven可有序的管理依赖，并且管理原本分散在项目各个角落的项目信息。并提供了大把现成的插件。</p>
-<p>敏捷开发之极限编程（XP）中，Maven的价值：</p>
-<ul>
-<li>简单</li>
-<li>测试驱动开发（TDD）</li>
-<li>十分钟构建（清理、编译、测试、打包、部署、产品）</li>
-<li>持续集成（CI）</li>
-</ul>
-<p>其他构建工具有Make（makefile脚本），Ant（build.xml）。而Maven使用pom.xml，pom作为项目对象模型。</p>
-<h2 id="二、Maven概念"><a href="#二、Maven概念" class="headerlink" title="二、Maven概念"></a>二、Maven概念</h2><blockquote>
-<p>坐标</p>
-</blockquote>
-<p>Maven通过groupId、artifactId、version、packaging等元素来构成坐标。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.herr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>依赖</p>
-</blockquote>
-<p>1、配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">version</span>&gt;</span>...<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">type</span>&gt;</span>...<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>...<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>...<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">exclisions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">exclision</span>&gt;</span></span><br><span class="line">				...</span><br><span class="line">				<span class="tag">&lt;/<span class="name">exclision</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">exclisions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2、scope依赖范围</p>
-<p>classpath有3套，分别是编译classpath、测试classpath、运行classpath。Maven的依赖范围scope对应关系如下：</p>
-<ul>
-<li>compile，默认，三种classpath都有效。</li>
-<li>test，只对于测试classpath有效。比如JUnit。</li>
-<li>provided，对编译和测试classpath有效，如servlet-api。</li>
-<li>runtime，对于测试和运行classpath有效。如JDBC驱动</li>
-<li>system，和provided依赖范围一致，但通过systemPath指定依赖文件路径。</li>
-</ul>
-<p>3、传递型依赖</p>
-<p>依赖范围影响传递性依赖，可选依赖不被传递。</p>
-<p>依赖调解原则：</p>
-<ul>
-<li>路径最近者优先</li>
-<li>第一声明者优先</li></ul>
-        
-          <a class="article-more-a" href="/2016/09/30/Maven实战/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/30/Maven实战/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux服务器网络抓包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/27/Linux服务器网络抓包/">Linux服务器网络抓包</a>
-    </h1>
-  
-
-        
-        <a href="/2016/09/27/Linux服务器网络抓包/" class="archive-article-date">
-  	<time datetime="2016-09-27T08:43:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、Linux网络监控工具"><a href="#一、Linux网络监控工具" class="headerlink" title="一、Linux网络监控工具"></a>一、Linux网络监控工具</h2><p>监控Linux网络带宽的工具有一大把，下面是按功能划分的命令名称。</p>
-<ul>
-<li>监控总体带宽使用――nload、bmon、slurm、bwm-ng、cbm、speedometer和netload</li>
-<li>监控总体带宽使用（批量式输出）――vnstat、ifstat、dstat和collectl</li>
-<li>每个套接字连接的带宽使用――iftop、iptraf、tcptrack、pktstat、netwatch和trafshow</li>
-<li>每个进程的带宽使用――nethogs</li>
-</ul>
-<h2 id="二、tcpdump"><a href="#二、tcpdump" class="headerlink" title="二、tcpdump"></a>二、tcpdump</h2><p>最近需要对服务器的网络进行抓包统计，便用到了tcpdump。<a href="http://www.tcpdump.org" target="_blank" rel="noopener">『官网传送门』</a>，可去查看最新版本以及相关用法。</p>
-<p>用简单的话来定义tcpdump，就是：dump the traffic on a network，根据使用者的定义对网络上的数据包进行截获的包分析工具。 tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息。</p>
-<blockquote>
-<p>tcpdump安装  </p>
-</blockquote>
-<p>依赖：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$ yum install flex  </span><br><span class="line">$ yum install bison  </span><br><span class="line">$ yum install gcc </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ wget http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz    </span><br><span class="line">$ wget http://www.tcpdump.org/release/tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ tar -zxvf libpcap-1.8.1.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> libpcap-1.8.1    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ make install    </span><br><span class="line">    </span><br><span class="line">$ <span class="built_in">cd</span> ..    </span><br><span class="line">$ tar -zxvf tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> tcpdump-4.9.2    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ sudo make install  </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">首先需要查看设备上有哪些设备可以抓取，通过tcpdump -D会列出可以抓取的网络设备名以及编号</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">```txt</span><br><span class="line">1.eth0 [Up, Running]</span><br><span class="line">2.eth1 [Up, Running]</span><br><span class="line">3.any (Pseudo-device that captures on all interfaces) [Up, Running]</span><br><span class="line">4.lo [Up, Running, Loopback]</span><br><span class="line">5.usbmon0 (All USB buses)</span><br><span class="line">6.nflog (Linux netfilter <span class="built_in">log</span> (NFLOG) interface)</span><br><span class="line">7.nfqueue (Linux netfilter queue (NFQUEUE) interface)</span><br><span class="line">8.usbmon1 (USB bus number 1)</span><br></pre></td></tr></table></figure>
-<p>如需要可视化页面来分析，可以安装大名鼎鼎的<a href="https://www.wireshark.org" target="_blank" rel="noopener">wireshark</a>。最新版本是支持windows和mac了的。</p>
-<p>可以通过tcpdump导出cap文件，供wireshark直接打开。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tcpdump tcp -i 2 -t -s 0 -c 2000 -w x.cap</span><br><span class="line"></span><br><span class="line">$ tcpdump -XvvennSs 0 -i 7 tcp[20:2]=0x4745 or tcp[20:2]=0x4854 -w x.cap</span><br></pre></td></tr></table></figure>
-<p>相关参数的含义请参考官网文档。</p>
-<p><img src="/2016/09/27/Linux服务器网络抓包/wireshark.jpg" alt=""></p>
+<p>Runtime和ProcessBulider提供了不同的方式来启动程序，设置启动参数、环境变量和工作目录，但是这两种方法都会返回一个用于管理操作系统进程的Process对象。</p>
+<p>正常情况下，我们调用命令行会返回process对象，通过waitFor方法等待该process表示的进程已经终止后，再继续执行。</p>
+<p>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        String cmd=<span class="string">"notepad.exe"</span>;</span><br><span class="line">        Process process =runtime.exec(cmd);</span><br><span class="line">        System.out.println(<span class="string">"命令运行中..."</span>);</span><br><span class="line">        process.waitFor();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.out.println(<span class="string">"出现异常："</span>+e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"命令执行成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要打印命令行执行结果，可获取process的inputStream。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        String cmd=<span class="string">"cmd /c dir"</span>;</span><br><span class="line">        Process process =runtime.exec(cmd);</span><br><span class="line">        System.out.println(<span class="string">"命令运行中..."</span>);</span><br><span class="line">        process.waitFor();</span><br><span class="line"></span><br><span class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(process.getInputStream()));</span><br><span class="line">        String line = <span class="string">""</span>;</span><br><span class="line">        String outputJson = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            outputJson = outputJson + line;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(outputJson);</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.out.println(<span class="string">"出现异常："</span>+e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"命令执行成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当将命令换成ffmpeg命令时，当打印日志时，程序无法结束，似乎卡住了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        <span class="comment">//将视频压缩为每秒15帧 平均码率1000k，分辨率为1280*720，不输出日志，正常</span></span><br><span class="line">        String cmd=<span class="string">"ffmpeg -y -i D:\\video\\input.mp4 -t 10 -r 15 -b:v 1000k -s 1280x720 D:\\video\\output_java.mp4"</span>;</span><br><span class="line">        Process process =runtime.exec(cmd);</span><br><span class="line">        System.out.println(<span class="string">"命令运行中..."</span>);</span><br><span class="line">        process.waitFor();</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.out.println(<span class="string">"出现异常："</span>+e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"命令执行成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题的关键在缓冲区这个地方：可执行程序的标准输出比较多，而运行窗口的标准缓冲区不够大，所以发生阻塞。接着来分析缓冲区，哪来的这个东西,当Runtime对象调用exec(cmd)后，JVM会启动一个子进程，该进程会与JVM进程建立三个管道连接：标准输入，标准输出和标准错误流。假设该程序不断在向标准输出流和标准错误流写数据，而JVM不读取的话，当缓冲区满之后将无法继续写入数据，最终造成阻塞在waitfor()这里。我们尝试在ffmpeg加上-v quiet不输出日志时，可正常转码，印证了这一问题。</p>
+<p>改用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test6</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        Process processDuration = <span class="keyword">new</span> ProcessBuilder(<span class="string">"ffmpeg"</span>, <span class="string">"-y"</span>, <span class="string">"-i"</span>, <span class="string">"D:\\video\\input.mp4"</span>,<span class="string">"-t"</span>, <span class="string">"10"</span>,</span><br><span class="line">                <span class="string">"-r"</span>, <span class="string">"15"</span>, <span class="string">"-b:v"</span>, <span class="string">"1000k"</span>, <span class="string">"-s"</span>, <span class="string">"1280x720"</span>, <span class="string">"D:\\video\\output_java.mp4"</span>).redirectErrorStream(<span class="keyword">true</span>).start();</span><br><span class="line">        StringBuilder strBuild = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        System.out.println(<span class="string">"命令运行中..."</span>);</span><br><span class="line">        <span class="keyword">try</span> (BufferedReader processOutputReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(processDuration.getInputStream(), Charset.defaultCharset()));) &#123;</span><br><span class="line">            String line;</span><br><span class="line">            <span class="keyword">while</span> ((line = processOutputReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                strBuild.append(line + System.lineSeparator());</span><br><span class="line">                System.out.println(line);</span><br><span class="line">            &#125;</span><br><span class="line">            processDuration.waitFor();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">        System.out.println(<span class="string">"出现异常："</span>+e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"命令执行成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三方框架"><a href="#三方框架" class="headerlink" title="三方框架"></a>三方框架</h2><p>1、JAVE</p>
+<p><a href="http://www.sauronsoftware.it/projects/jave/manual.php" target="_blank" rel="noopener">http://www.sauronsoftware.it/projects/jave/manual.php</a></p>
+<p>2、javaCV</p>
 
       
 
@@ -1497,7 +1408,7 @@ T(n)= \begin{cases}
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/09/27/Linux服务器网络抓包/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/01/11/音视频开发（8）FFmpeg的代码调用/">展开全文 >></a>
         </p>
       
 
@@ -1529,7 +1440,7 @@ T(n)= \begin{cases}
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -1541,7 +1452,7 @@ T(n)= \begin{cases}
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1628,10 +1539,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -1696,15 +1603,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1716,11 +1623,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1728,19 +1639,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1752,15 +1659,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1772,11 +1687,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1789,6 +1704,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">

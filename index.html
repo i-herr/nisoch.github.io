@@ -149,6 +149,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法之道" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/02/算法之道/">算法之道</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/02/算法之道/" class="archive-article-date">
+  	<time datetime="2020-01-02T03:27:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法之道"><a href="#算法之道" class="headerlink" title="算法之道"></a>算法之道</h1><h2 id="一、算法基础"><a href="#一、算法基础" class="headerlink" title="一、算法基础"></a>一、算法基础</h2><blockquote>
+<p>前言</p>
+</blockquote>
+<ul>
+<li>时间有限，做个算法的入门。</li>
+<li>器术道用：易者，以用为妙。</li>
+<li>对于算法而言，语言（器）并不重要，重要的是思想（道）。</li>
+<li>建议循序渐进，《算法图解》，《算法》第4版，《算法导论》。</li>
+<li>算法的基础是数学。要学好数学，学好数学，学好数学。</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/01/02/算法之道/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/02/算法之道/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-机器学习（6）支持向量机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/机器学习（6）支持向量机/">机器学习（6）支持向量机</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/22/机器学习（6）支持向量机/" class="archive-article-date">
+  	<time datetime="2019-02-22T11:07:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><p>支持向量机(Support Vector Machines，SVM)，是现成最好的分类器。SVM有很多实现算法，如序列最小优化（Sequential Minimal Optimization，SMO）算法。</p>
+<blockquote>
+<p>基于最大间隔分隔数据</p>
+</blockquote>
+<p>将数据集分隔开来的直线称为分隔超平面(separating hyperplane)。分隔二维平面，分隔超平面是一条直线。当数据集是N维的，就是用来分隔的N-1维的对象被称为超平面。</p>
+<p>我们把这些数据点到分隔面的距离称为间隔，也就是该点到分隔平面的法线（或垂线）长度。在训练分类器时，希望间隔尽可能的大。</p>
+<p>支持向量，就是离分隔超平面最近的那些点，需要试着最大化支持向量到分隔面的距离。</p>
+<blockquote>
+<p>原理推导</p>
+</blockquote>
+<p>为了寻找最大间隔，分隔超平面可以写成w^Tx+b。</p>
+<p>点A到分隔超平面的距离为(w^Tx+b)/||w||。</p>
+<p>使用了类似单位阶跃函数类似的函数，返回类别标签，值为-1和+1。当数据点处于正方向时，label为+1。当数据点处于负方向是时，label为-1。保证label*(w^Tx+b)仍然是正数。</p>
+<p>支持向量(取最近的n个点)的表示如下：</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>min</mi><mi>n</mi></msub><mo>(</mo><mi>l</mi><mi>a</mi><mi>b</mi><mi>e</mi><mi>l</mi><mo>⋅</mo><mo>(</mo><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>)</mo><mo>⋅</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
+\min_n(label \cdot (w^Tx+b) \cdot \dfrac{1}{||w||})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.25744em;vertical-align:-0.936em;"></span><span class="base textstyle uncramped"><span class="mop"><span class="mop">min</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">b</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mbin">⋅</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">x</span><span class="mbin">+</span><span class="mord mathit">b</span><span class="mclose">)</span><span class="mbin">⋅</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">∣</span><span class="mord mathrm">∣</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathrm">∣</span><span class="mord mathrm">∣</span></span></span></span><span style="top:-0.2300000000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>
+<p>需要对该间隔最大化，写作</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>r</mi><mi>g</mi><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mo>(</mo><mi>w</mi><mo separator="true">,</mo><mi>b</mi><mo>)</mo></mrow></msub><mrow><mo>{</mo><mi>m</mi><mi>i</mi><msub><mi>n</mi><mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msub><mo>(</mo><mi>l</mi><mi>a</mi><mi>b</mi><mi>e</mi><mi>l</mi><mo>⋅</mo><mo>(</mo><msup><mi>w</mi><mi>T</mi></msup><mi>x</mi><mo>+</mo><mi>b</mi><mo>)</mo><mo>⋅</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><mo>)</mo><mo>}</mo></mrow></mrow><annotation encoding="application/x-tex"> 
+arg max_{(w,b)}{\{min_{(n)}(label \cdot (w^Tx+b) \cdot \dfrac{1}{||w||})\}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.25744em;vertical-align:-0.936em;"></span><span class="base textstyle uncramped"><span class="mord mathit">a</span><span class="mord mathit" style="margin-right:0.02778em;">r</span><span class="mord mathit" style="margin-right:0.03588em;">g</span><span class="mord mathit">m</span><span class="mord mathit">a</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.18019999999999992em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mpunct">,</span><span class="mord mathit">b</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord textstyle uncramped"><span class="mopen">{</span><span class="mord mathit">m</span><span class="mord mathit">i</span><span class="mord"><span class="mord mathit">n</span><span class="vlist"><span style="top:0.18019999999999992em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">b</span><span class="mord mathit">e</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mbin">⋅</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit">x</span><span class="mbin">+</span><span class="mord mathit">b</span><span class="mclose">)</span><span class="mbin">⋅</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">∣</span><span class="mord mathrm">∣</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mord mathrm">∣</span><span class="mord mathrm">∣</span></span></span></span><span style="top:-0.2300000000000001em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span><span class="mclose">}</span></span></span></span></span>
+<p>该求解相当困难，加上约束条件label * (w^Tx+b) &gt;=1.0，并使用拉格朗日乘子法，可以将优化目标函数最后写成：(尖括号为内积)</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mo>(</mo><mi>α</mi><mo>)</mo></mrow></msub><mo>[</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mi>α</mi><mo>−</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msubsup><mo>∑</mo><mrow><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mi>l</mi><mi>a</mi><mi>b</mi><mi>e</mi><msup><mi>l</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup><mo>⋅</mo><mi>l</mi><mi>a</mi><mi>b</mi><mi>e</mi><msup><mi>l</mi><mrow><mo>(</mo><mi>j</mi><mo>)</mo></mrow></msup><mo>⋅</mo><msub><mi>a</mi><mi>i</mi></msub><mo>⋅</mo><msub><mi>a</mi><mi>j</mi></msub><mo>⟨</mo><msup><mi>x</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup><mo separator="true">,</mo><msup><mi>x</mi><mrow><mo>(</mo><mi>j</mi><mo>)</mo></mrow></msup><mo>⟩</mo><mo>]</mo></mrow><annotation encoding="application/x-tex"> 
+max_{(\alpha)}[\sum_{i=1}^m\alpha - \dfrac{1}{2}\sum_{i,j=1}^mlabel^{(i)} \cdot label^{(j)} \cdot a_i \cdot a_j \langle x^{(i)},x^{(j)} \rangle]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="base textstyle uncramped"><span class="mord mathit">m</span><span class="mord mathit">a</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:0.18019999999999992em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">[</span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.30001em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.364em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">m</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mbin">−</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.30001em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.364em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">m</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">b</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit">i</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">⋅</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">b</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">⋅</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">⋅</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05724em;">j</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">⟨</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit">i</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">⟩</span><span class="mclose">]</span></span></span></span>
+<p>再引入松弛变量C后，约束条件为:</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>≥</mo><mi>α</mi><mo>≥</mo><mn>0</mn><mo separator="true">,</mo><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><mi>m</mi></msubsup><mo>⋅</mo><mi>l</mi><mi>a</mi><mi>b</mi><mi>e</mi><msup><mi>l</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex"> 
+C \ge \alpha \ge 0,\sum_{i-1}^m \cdot label^{(i)}=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8879999999999999em;"></span><span class="strut bottom" style="height:1.246341em;vertical-align:-0.358341em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="mrel">≥</span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mrel">≥</span><span class="mord mathrm">0</span><span class="mpunct">,</span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∑</span><span class="vlist"><span style="top:0.30001em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mbin">−</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.364em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">m</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord">⋅</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">a</span><span class="mord mathit">b</span><span class="mord mathit">e</span><span class="mord"><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit">i</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mord mathrm">0</span></span></span></span>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/22/机器学习（6）支持向量机/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-机器学习（5）线性回归" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -169,10 +327,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><blockquote>
+        <h2 id="一、线性回归"><a href="#一、线性回归" class="headerlink" title="一、线性回归"></a>一、线性回归</h2><blockquote>
 <p>回归</p>
 </blockquote>
-<p>回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系。<br>回归模型是表示输入变量到输出变量之间映射的函数。<br>回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知数据。</p>
+<p>回归是监督学习的一个重要问题，回归用于预测输入变量和输出变量之间的关系，目的是预测数值型的目标值。<br>回归模型（回归方程）是表示输入变量到输出变量之间映射的函数。<br>回归问题的学习等价于函数拟合：使用一条函数曲线使其很好的拟合已知函数且很好的预测未知数据。</p>
 <p>回归问题分为模型的学习和预测两个过程。基于给定的训练数据集构建一个模型，根据新的输入数据预测相应的输出。</p>
 <p>回归问题按照输入变量的个数可以分为一元回归和多元回归；<br>按照输入变量和输出变量之间关系的类型，可以分为线性回归和非线性回归。如果你和的线是一条直线，则被称为线性回归。非线性回归有常用的逻辑回归模型。</p>
 <blockquote>
@@ -185,7 +343,7 @@
 <p>逻辑回归（logistic ）</p>
 </blockquote>
 <p>逻辑回归的模型是一个非线性模型，它本质上又是一个线性回归模型，因为通过sigmoid映射函数（又称逻辑回归函数）关系，转换成线性回归问题来解决。</p>
-<h2 id="最小二乘法的数学求解"><a href="#最小二乘法的数学求解" class="headerlink" title="最小二乘法的数学求解"></a>最小二乘法的数学求解</h2><p>最小二乘法适用于任意多维度的线性回归参数求解，它可求解出一组最优解，使得对于样本集中的每一个样本，用y=f(x1,x2,…xi,…xn)来预测样本，使得预测值与实际值的方差最小。</p>
+<h2 id="二、最小二乘法"><a href="#二、最小二乘法" class="headerlink" title="二、最小二乘法"></a>二、最小二乘法</h2><p>最小二乘法适用于任意多维度的线性回归参数求解，它可求解出一组最优解，使得对于样本集中的每一个样本，用y=f(x1,x2,…xi,…xn)来预测样本，使得预测值与实际值的方差最小。</p>
 <blockquote>
 <p>模型公式</p>
 </blockquote>
@@ -229,11 +387,111 @@ J(\theta) = \dfrac{1}{2} \sum_{i=0}^m (h_{\theta}(x_i)-y_i)^2 = \dfrac{1}{2} (X\
 <p>当矩阵满秩时，求导后取极值点，令函数值为0，得出</p>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi><mo>=</mo><mo>(</mo><msup><mi>X</mi><mi>T</mi></msup><mi>X</mi><msup><mo>)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>X</mi><mi>T</mi></msup><mi>y</mi></mrow><annotation encoding="application/x-tex"> 
 \theta = (X^T X)^{-1} X^T y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">θ</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span>
-<p>为保证X^TX可逆（满秩），最终得出:</p>
+<p>也可以通过贝叶斯最大后验概率进行推导。</p>
+<h2 id="三、线性回归实例"><a href="#三、线性回归实例" class="headerlink" title="三、线性回归实例"></a>三、线性回归实例</h2><p>有数据如下，需要计算最优回归系数。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">x0-偏移量</th>
+<th style="text-align:center">x1-x轴</th>
+<th style="text-align:center">x2-y轴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.000000</td>
+<td style="text-align:center">0.067732</td>
+<td style="text-align:center">3.176513</td>
+</tr>
+<tr>
+<td style="text-align:center">1.000000</td>
+<td style="text-align:center">0.427810</td>
+<td style="text-align:center">3.816464</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">1.000000</td>
+<td style="text-align:center">0.995731</td>
+<td style="text-align:center">4.550095</td>
+</tr>
+<tr>
+<td style="text-align:center">1.000000</td>
+<td style="text-align:center">0.738336</td>
+<td style="text-align:center">4.256571</td>
+</tr>
+<tr>
+<td style="text-align:center">1.000000</td>
+<td style="text-align:center">0.981083</td>
+<td style="text-align:center">4.560815</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param fileName: 文件名</span></span><br><span class="line"><span class="string">    :return: dataMat 数据集，labelMat 标签</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    numFeat = len(open(fileName).readline().split(<span class="string">'\t'</span>)) - <span class="number">1</span></span><br><span class="line">    dataMat = []; labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr =[]</span><br><span class="line">        curLine = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeat):</span><br><span class="line">            lineArr.append(float(curLine[i]))</span><br><span class="line">        dataMat.append(lineArr)</span><br><span class="line">        labelMat.append(float(curLine[<span class="number">-1</span>]))</span><br><span class="line">    <span class="keyword">return</span> dataMat,labelMat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotDataSet</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    绘制数据集</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    xArr, yArr = loadDataSet(<span class="string">'ex0.txt'</span>)                                    <span class="comment">#加载数据集</span></span><br><span class="line">    n = len(xArr)                                                        <span class="comment">#数据个数</span></span><br><span class="line">    xcord = []; ycord = []                                                <span class="comment">#样本点</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        xcord.append(xArr[i][<span class="number">1</span>]); ycord.append(yArr[i])                    <span class="comment">#样本点</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)                                            <span class="comment">#添加subplot</span></span><br><span class="line">    ax.scatter(xcord, ycord, s = <span class="number">20</span>, c = <span class="string">'blue'</span>,alpha = <span class="number">.5</span>)                <span class="comment">#绘制样本点</span></span><br><span class="line">    plt.title(<span class="string">'DataSet'</span>)                                                <span class="comment">#绘制title</span></span><br><span class="line">    plt.xlabel(<span class="string">'X'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    plotDataSet()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/18/机器学习（5）线性回归/regression_linear_plt_1.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">standRegres</span><span class="params">(xArr, yArr)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    计算回归系数</span></span><br><span class="line"><span class="string">    :param xArr:数据集</span></span><br><span class="line"><span class="string">    :param yArr:标签</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    xMat = np.mat(xArr);</span><br><span class="line">    yMat = np.mat(yArr).T <span class="comment">#T方法为转置</span></span><br><span class="line">    xTx = xMat.T * xMat  <span class="comment"># 根据文中推导的公示计算回归系数</span></span><br><span class="line">    <span class="keyword">if</span> np.linalg.det(xTx) == <span class="number">0.0</span>: <span class="comment">#奇异矩阵的性质是，其行列式的值为0</span></span><br><span class="line">        print(<span class="string">"矩阵为奇异矩阵,不能求逆"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ws = xTx.I * (xMat.T * yMat) <span class="comment"># I方法为求逆</span></span><br><span class="line">    <span class="keyword">return</span> ws</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotRegression</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    绘制回归曲线和数据集</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    xArr, yArr = loadDataSet(<span class="string">'ex0.txt'</span>)  <span class="comment"># 加载数据集</span></span><br><span class="line">    ws = standRegres(xArr, yArr)  <span class="comment"># 计算回归系数</span></span><br><span class="line">    xMat = np.mat(xArr)  <span class="comment"># 创建xMat矩阵</span></span><br><span class="line">    yMat = np.mat(yArr)  <span class="comment"># 创建yMat矩阵</span></span><br><span class="line">    xCopy = xMat.copy()  <span class="comment"># 深拷贝xMat矩阵</span></span><br><span class="line">    xCopy.sort(<span class="number">0</span>)  <span class="comment"># 排序</span></span><br><span class="line">    yHat = xCopy * ws  <span class="comment"># 计算对应的y值</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    ax = fig.add_subplot(<span class="number">111</span>)  <span class="comment"># 添加subplot</span></span><br><span class="line">    ax.plot(xCopy[:, <span class="number">1</span>], yHat, c=<span class="string">'red'</span>)  <span class="comment"># 绘制回归曲线</span></span><br><span class="line">    ax.scatter(xMat[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.flatten().A[<span class="number">0</span>], s=<span class="number">20</span>, c=<span class="string">'blue'</span>, alpha=<span class="number">.5</span>)  <span class="comment"># 绘制样本点</span></span><br><span class="line">    plt.title(<span class="string">'DataSet'</span>)  <span class="comment"># 绘制title</span></span><br><span class="line">    plt.xlabel(<span class="string">'X'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    plotRegression()</span><br></pre></td></tr></table></figure>
+<p>求解出的ws回归系数为，用函数表示为：y=3.00774324+1.69532264x</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[3.00774324]</span><br><span class="line">[1.69532264]]</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/18/机器学习（5）线性回归/regression_linear_plt_2.jpg" alt=""></p>
+<h2 id="四、局部加权线性回归"><a href="#四、局部加权线性回归" class="headerlink" title="四、局部加权线性回归"></a>四、局部加权线性回归</h2><blockquote>
+<p>定义</p>
+</blockquote>
+<p>局部加权线性回归（Locally Weighted Linear Regression，LWLR），是为了解决线性回归可能出现的欠拟合现象，在该方法中，我们给待预测点附近的每个点赋予一定的权重。形式如下：</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi><mo>=</mo><mo>(</mo><msup><mi>X</mi><mi>T</mi></msup><mi>W</mi><mi>X</mi><msup><mo>)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>X</mi><mi>T</mi></msup><mi>W</mi><mi>y</mi></mrow><annotation encoding="application/x-tex"> 
+\theta = (X^TWX)^{-1} X^TWy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">θ</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.13889em;">W</span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span>
+<p>对比之前的公式，区别在于多了W，来给每个点赋予权重。LWLR使用“核”（类似于向量机的核）来对附近的点赋予更高的权重，常用的核是高斯核，k被称为平滑参数，如下：</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>i</mi><mo>)</mo><mo>=</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><msup><mi>x</mi><mrow><mo>(</mo><mi>i</mi><mo>)</mo></mrow></msup><mo>−</mo><mi>x</mi><mi mathvariant="normal">∣</mi></mrow><mrow><mo>−</mo><mn>2</mn><msup><mi>k</mi><mn>2</mn></msup></mrow></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex"> 
+w(i,i)=exp(\dfrac{|x^{(i)}-x|}{-2k^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.565em;"></span><span class="strut bottom" style="height:2.33433em;vertical-align:-0.7693300000000001em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mopen">(</span><span class="mord mathit">i</span><span class="mpunct">,</span><span class="mord mathit">i</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">e</span><span class="mord mathit">x</span><span class="mord mathit">p</span><span class="mopen">(</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord">−</span><span class="mord mathrm">2</span><span class="mord"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="vlist"><span style="top:-0.289em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">∣</span><span class="mord"><span class="mord mathit">x</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mopen">(</span><span class="mord mathit">i</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord mathit">x</span><span class="mord mathrm">∣</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>
+<blockquote>
+<p>代码实现</p>
+</blockquote>
+<p>还是之前回归的数据，使用k=1，k=0.01，k=0.003进行局部加权线性回归，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> linear_regression</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotlwlrRegression</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    绘制多条局部加权回归曲线</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    font = FontProperties(fname=<span class="string">r"/Library/Fonts/Songti.ttc"</span>, size=<span class="number">14</span>)</span><br><span class="line">    xArr, yArr = linear_regression.loadDataSet(<span class="string">'ex0.txt'</span>)  <span class="comment"># 加载数据集</span></span><br><span class="line">    yHat_1 = lwlrTest(xArr, xArr, yArr, <span class="number">1.0</span>)  <span class="comment"># 根据局部加权线性回归计算yHat</span></span><br><span class="line">    yHat_2 = lwlrTest(xArr, xArr, yArr, <span class="number">0.01</span>)  <span class="comment"># 根据局部加权线性回归计算yHat</span></span><br><span class="line">    yHat_3 = lwlrTest(xArr, xArr, yArr, <span class="number">0.003</span>)  <span class="comment"># 根据局部加权线性回归计算yHat</span></span><br><span class="line">    xMat = np.mat(xArr)  <span class="comment"># 创建xMat矩阵</span></span><br><span class="line">    yMat = np.mat(yArr)  <span class="comment"># 创建yMat矩阵</span></span><br><span class="line">    srtInd = xMat[:, <span class="number">1</span>].argsort(<span class="number">0</span>)  <span class="comment"># 排序，返回索引值</span></span><br><span class="line">    xSort = xMat[srtInd][:, <span class="number">0</span>, :]</span><br><span class="line">    fig, axs = plt.subplots(nrows=<span class="number">3</span>, ncols=<span class="number">1</span>, sharex=<span class="keyword">False</span>, sharey=<span class="keyword">False</span>, figsize=(<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line">    axs[<span class="number">0</span>].plot(xSort[:, <span class="number">1</span>], yHat_1[srtInd], c=<span class="string">'red'</span>)  <span class="comment"># 绘制回归曲线</span></span><br><span class="line">    axs[<span class="number">1</span>].plot(xSort[:, <span class="number">1</span>], yHat_2[srtInd], c=<span class="string">'red'</span>)  <span class="comment"># 绘制回归曲线</span></span><br><span class="line">    axs[<span class="number">2</span>].plot(xSort[:, <span class="number">1</span>], yHat_3[srtInd], c=<span class="string">'red'</span>)  <span class="comment"># 绘制回归曲线</span></span><br><span class="line">    axs[<span class="number">0</span>].scatter(xMat[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.flatten().A[<span class="number">0</span>], s=<span class="number">20</span>, c=<span class="string">'blue'</span>, alpha=<span class="number">.5</span>)  <span class="comment"># 绘制样本点</span></span><br><span class="line">    axs[<span class="number">1</span>].scatter(xMat[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.flatten().A[<span class="number">0</span>], s=<span class="number">20</span>, c=<span class="string">'blue'</span>, alpha=<span class="number">.5</span>)  <span class="comment"># 绘制样本点</span></span><br><span class="line">    axs[<span class="number">2</span>].scatter(xMat[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], yMat.flatten().A[<span class="number">0</span>], s=<span class="number">20</span>, c=<span class="string">'blue'</span>, alpha=<span class="number">.5</span>)  <span class="comment"># 绘制样本点</span></span><br><span class="line">    <span class="comment"># 设置标题,x轴label,y轴label</span></span><br><span class="line">    axs0_title_text = axs[<span class="number">0</span>].set_title(<span class="string">u'局部加权回归曲线,k=1.0'</span>, FontProperties=font)</span><br><span class="line">    axs1_title_text = axs[<span class="number">1</span>].set_title(<span class="string">u'局部加权回归曲线,k=0.01'</span>, FontProperties=font)</span><br><span class="line">    axs2_title_text = axs[<span class="number">2</span>].set_title(<span class="string">u'局部加权回归曲线,k=0.003'</span>, FontProperties=font)</span><br><span class="line">    plt.setp(axs0_title_text, size=<span class="number">8</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'red'</span>)</span><br><span class="line">    plt.setp(axs1_title_text, size=<span class="number">8</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'red'</span>)</span><br><span class="line">    plt.setp(axs2_title_text, size=<span class="number">8</span>, weight=<span class="string">'bold'</span>, color=<span class="string">'red'</span>)</span><br><span class="line">    plt.xlabel(<span class="string">'X'</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlr</span><span class="params">(testPoint, xArr, yArr, k=<span class="number">1.0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    使用局部加权线性回归计算回归系数w</span></span><br><span class="line"><span class="string">    :param testPoint: 测试样本点</span></span><br><span class="line"><span class="string">    :param xArr: 数据集</span></span><br><span class="line"><span class="string">    :param yArr: 标签y</span></span><br><span class="line"><span class="string">    :param k: 高斯核的k,自定义参数</span></span><br><span class="line"><span class="string">    :return: 回归系数</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    xMat = np.mat(xArr);</span><br><span class="line">    yMat = np.mat(yArr).T</span><br><span class="line">    m = np.shape(xMat)[<span class="number">0</span>]</span><br><span class="line">    weights = np.mat(np.eye((m)))  <span class="comment"># 创建权重对角矩阵</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(m):  <span class="comment"># 遍历数据集计算每个样本的权重</span></span><br><span class="line">        diffMat = testPoint - xMat[j, :]</span><br><span class="line">        weights[j, j] = np.exp(diffMat * diffMat.T / (<span class="number">-2.0</span> * k ** <span class="number">2</span>))</span><br><span class="line">    xTx = xMat.T * (weights * xMat)</span><br><span class="line">    <span class="keyword">if</span> np.linalg.det(xTx) == <span class="number">0.0</span>:</span><br><span class="line">        print(<span class="string">"矩阵为奇异矩阵,不能求逆"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ws = xTx.I * (xMat.T * (weights * yMat))  <span class="comment"># 计算回归系数</span></span><br><span class="line">    <span class="keyword">return</span> testPoint * ws</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lwlrTest</span><span class="params">(testArr, xArr, yArr, k=<span class="number">1.0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    局部加权线性回归测试</span></span><br><span class="line"><span class="string">    :param testArr: 测试数据集</span></span><br><span class="line"><span class="string">    :param xArr: 数据集</span></span><br><span class="line"><span class="string">    :param yArr: 标签y</span></span><br><span class="line"><span class="string">    :param k:高斯核的k,自定义参数</span></span><br><span class="line"><span class="string">    :return:回归系数向量</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    m = np.shape(testArr)[<span class="number">0</span>]  <span class="comment"># 计算测试数据集大小</span></span><br><span class="line">    yHat = np.zeros(m)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):  <span class="comment"># 对每个样本点进行预测</span></span><br><span class="line">        yHat[i] = lwlr(testArr[i], xArr, yArr, k)</span><br><span class="line">    <span class="keyword">return</span> yHat</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    plotlwlrRegression()</span><br></pre></td></tr></table></figure>
+<p>可以看出当k越小（比如k=0.01），拟合效果越好。但是k=0.003时过小，导致考虑了太多噪声，进而导致了过拟合现象。</p>
+<p><img src="/2019/02/18/机器学习（5）线性回归/regression_linear_plt_3.jpg" alt=""></p>
+<h2 id="五、岭回归"><a href="#五、岭回归" class="headerlink" title="五、岭回归"></a>五、岭回归</h2><p>上面提到，计算回归参数需要保证X^TX可逆（满秩）。那么如果数据的特征点比样本数还多，那么矩阵X肯定不是满秩矩阵，无法求逆，导致无法使用正常的线性回归。因此统计学家引入岭回归（ridge regression）的概念。</p>
+<blockquote>
+<p>定义</p>
+</blockquote>
+<p>岭回归就是在矩阵X^TX上加一个λI从而使得矩阵非奇异，进而能对X^TX + λI求逆。其中矩阵I是一个m×m的单位矩阵，对角线上元素全为1，其他元素全为0。而λ是一个用户定义的数值。回归系数的计算公式将变成：</p>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi><mo>=</mo><mo>(</mo><msup><mi>X</mi><mi>T</mi></msup><mi>X</mi><mo>+</mo><mi>λ</mi><mi>I</mi><msup><mo>)</mo><mrow><mo>−</mo><mn>1</mn></mrow></msup><msup><mi>X</mi><mi>T</mi></msup><mi>y</mi></mrow><annotation encoding="application/x-tex"> 
 \theta = (X^T X + \lambda I)^{-1} X^T y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8413309999999999em;"></span><span class="strut bottom" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02778em;">θ</span><span class="mrel">=</span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mbin">+</span><span class="mord mathit">λ</span><span class="mord mathit" style="margin-right:0.07847em;">I</span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord">−</span><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span>
-<p>也可以通过贝叶斯最大后验概率进行推导。</p>
-<h2 id="梯度下降算法"><a href="#梯度下降算法" class="headerlink" title="梯度下降算法"></a>梯度下降算法</h2><p>当矩阵不满秩时，可采用梯度下降算法来求局部最优解的方法。</p>
+<p>这里通过引入λ来限制了所有θ之和，通过引入该惩罚项，能减少不重要的参数，这个技术在统计学中叫做缩减(shrinkage)</p>
+<h2 id="梯度上升和梯度下降"><a href="#梯度上升和梯度下降" class="headerlink" title="梯度上升和梯度下降"></a>梯度上升和梯度下降</h2><p>梯度上升（下降）法基于的思想是:要找到某函数的最大（小）值，最好的方法是沿着该函数的梯度方向探寻。函数f(x,y)的梯度由下面公式表示:</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∇</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo><mo>=</mo><mrow><mo fence="true">(</mo><mtable><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow></mrow><mrow><mi mathvariant="normal">∂</mi><mrow><mi>x</mi></mrow></mrow></mfrac></mrow></mtd></mtr><mtr><mtd><mrow><mfrac><mrow><mi mathvariant="normal">∂</mi><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>)</mo></mrow></mrow><mrow><mi mathvariant="normal">∂</mi><mrow><mi>y</mi></mrow></mrow></mfrac></mrow></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex"> 
+\nabla(x,y)=\begin{pmatrix}
+   \dfrac{\partial{f(x,y)}}{\partial{x}}  \\
+   \dfrac{\partial{f(x,y)}}{\partial{y}}  
+\end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:2.46022em;"></span><span class="strut bottom" style="height:4.42044em;vertical-align:-1.96022em;"></span><span class="base textstyle uncramped"><span class="mord mathrm">∇</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mrel">=</span><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing mult"><span class="vlist"><span style="top:1.2050049999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:0.049995000000000074em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-1.1950249999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist"><span style="top:-1.03322em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.686em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle cramped"><span class="mord mathit">x</span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span><span style="top:1.07978em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.6860000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle cramped"><span class="mord mathit" style="margin-right:0.03588em;">y</span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm" style="margin-right:0.05556em;">∂</span><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mpunct">,</span><span class="mord mathit" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="style-wrap reset-textstyle textstyle uncramped"><span class="delimsizing mult"><span class="vlist"><span style="top:1.2050049999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:0.049995000000000074em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-1.1950249999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></span>
+<p>梯度是三维以上坐标系的概念，它在平面坐标系对应的概念是导数。二维平面中，导数代表线的倾斜方向和倾斜程度。三维空间中，梯度代表 面的倾斜方向和倾斜程度。线的倾斜方向只用正负表示，导数为正代表右斜，导数为负代表线左斜。面的倾斜方向是无穷的，由向量表示。</p>
+<p>梯度上升和梯度下降，指的是你要计算的结果是函数的极大值还是极小值。计算极小值，就用梯度下降，计算极大值，就是梯度上升。</p>
+<blockquote>
+<p>梯度上升</p>
+</blockquote>
+<p>梯度上升的算法如下：</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mo>:</mo><mo>=</mo><mi>w</mi><mo>+</mo><mi>α</mi><msub><mi mathvariant="normal">∇</mi><mi>w</mi></msub><mrow><mi>f</mi><mo>(</mo><mi>w</mi><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex"> 
+w := w+ \alpha \nabla_w{f(w)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mrel">:</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mbin">+</span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mord mathrm">∇</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></span>
+<p>可以根据简化的二维平面y=-x^2函数来求最大值来理解，当x&lt;0时导数为正，函数值在0时最大。</p>
+<ul>
+<li>当取w&lt;0时，导数为正，因此迭代后的w会往右侧（最大值所在的x=0）靠近。</li>
+<li>当取w&gt;0时，导数为负，因此迭代后的w会往左侧（最大值所在的x=0）靠近。</li>
+</ul>
+<blockquote>
+<p>梯度下降</p>
+</blockquote>
+<p>梯度下降的算法如下：</p>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>w</mi><mo>:</mo><mo>=</mo><mi>w</mi><mo>−</mo><mi>α</mi><msub><mi mathvariant="normal">∇</mi><mi>w</mi></msub><mrow><mi>f</mi><mo>(</mo><mi>w</mi><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex"> 
+w := w- \alpha \nabla_w{f(w)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mrel">:</span><span class="mrel">=</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mbin">−</span><span class="mord mathit" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mord mathrm">∇</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02691em;">w</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord textstyle uncramped"><span class="mord mathit" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></span>
+<p>可以根据简化的二维平面y=x^2函数来求最小值来理解，当x&gt;0时导数为正，函数值在0时最小。</p>
+<ul>
+<li>当取w&lt;0时，导数为负，因此迭代后的w会往右侧（最大值所在的x=0）靠近。</li>
+<li>当取w&gt;0时，导数为正，因此迭代后的w会往左侧（最大值所在的x=0）靠近。</li>
+</ul>
+<p>当三维甚至多维时，w变成向量。</p>
+<p>当矩阵不满秩时，可采用梯度下降算法来求局部最优解的方法。</p>
 <h2 id="Logistic回归和Sigmoid函数的分类"><a href="#Logistic回归和Sigmoid函数的分类" class="headerlink" title="Logistic回归和Sigmoid函数的分类"></a>Logistic回归和Sigmoid函数的分类</h2><p>我们想要的函数应该是，能够接受所有的输入然后预测出类别。例如在两个类的情况下，分类函数能够输出0或1，这种函数称为“海威赛德阶跃函数”，然而这个函数的问题在于，该函数直接在跳跃点从0跳跃到1，这个瞬间的跳跃有点难处理。</p>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ϵ</mi><mo>(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub><mo>)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable><mtr><mtd><mrow><mn>1</mn></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>t</mi><mo>&gt;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow></mtd></mtr><mtr><mtd><mrow><mn>0</mn></mrow></mtd><mtd><mrow><mtext><mi mathvariant="normal">i</mi><mi mathvariant="normal">f</mi><mtext> </mtext></mtext><mi>t</mi><mo>&lt;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex"> 
 \epsilon(t-t_0)=\begin{cases}
@@ -1686,229 +1944,9 @@ f&#x27; \left( x_0 \right) = {\lim\limits_{\Delta x\to 0}} \dfrac{\Delta y}{\Del
 
 
   
-    <article id="post-一个程序员的数学素养（1）数学基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/14/一个程序员的数学素养（1）数学基础/">一个程序员的数学素养（1）数学基础</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/14/一个程序员的数学素养（1）数学基础/" class="archive-article-date">
-  	<time datetime="2018-12-14T03:58:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数学是统计学，运筹学，数值分析，计算机算法，机器学习，大数据分析等等无数计算机相关学科的必备基础。</p>
-<ul>
-<li>高数–&gt;连续，概率论、拓扑、测度论、复变函数等</li>
-<li>线代–&gt;离散，高等代数，抽象代数等</li>
-</ul>
-<h2 id="一、数学公式"><a href="#一、数学公式" class="headerlink" title="一、数学公式"></a>一、数学公式</h2><blockquote>
-<p>hexo渲染</p>
-</blockquote>
-<p>由于hexo不直接支持lateX，因此需要安装插件，推荐使用hexo-tag-katex，安装方式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-tag-katex --save</span><br></pre></td></tr></table></figure>
-<p>使用方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% katex [displayMode] %&#125;</span><br><span class="line"></span><br><span class="line">a^&#123;b^&#123;\sqrt&#123;c&#125;&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endkatex %&#125;</span><br></pre></td></tr></table></figure>
-<p>katex语法，和lateX有些区别，可参考官方文档<a href="https://katex.org/docs/supported.html" target="_blank" rel="noopener">『传送门』</a>。</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><msub><mi>lim</mi><mrow><mi>x</mi><mo>→</mo><mo>+</mo><mi mathvariant="normal">∞</mi></mrow></msub></mrow><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mrow><mi>a</mi></mrow></mtd><mtd><mrow><mi>b</mi></mrow></mtd></mtr><mtr><mtd><mrow><mi>c</mi></mrow></mtd><mtd><mrow><mi>d</mi></mrow></mtd></mtr></mtable><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">
-{\lim\limits_{x \to +\infty}}
-
-
-\begin{bmatrix}
-   a &amp; b \\
-   c &amp; d
-\end{bmatrix}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.45em;"></span><span class="strut bottom" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="base textstyle uncramped"><span class="mord textstyle uncramped"><span class="mop op-limits"><span class="vlist"><span style="top:0.6em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">x</span><span class="mrel">→</span><span class="mord">+</span><span class="mord mathrm">∞</span></span></span></span><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="mop">lim</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist"><span style="top:-0.6099999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">a</span></span></span><span style="top:0.5900000000000003em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">c</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-0.6099999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">b</span></span></span><span style="top:0.5900000000000003em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span>
-<blockquote>
-<p>jupyter使用</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from IPython.display import Latex</span><br><span class="line">Latex(r&quot;$f(x) = 3x + 7$&quot;)</span><br><span class="line">Latex(r&quot;$\sum_&#123;i=1&#125;^n a_i=0$&quot;)</span><br><span class="line">Latex(r&quot;$ &#123;\lim\limits_&#123;x \to +\infty&#125;&#125; $&quot;)</span><br><span class="line">Latex(r&quot;$ \begin&#123;bmatrix&#125; a &amp; b \\ c &amp; d \end&#123;bmatrix&#125; $ &quot;)</span><br></pre></td></tr></table></figure>
-<h2 id="二、质数相关"><a href="#二、质数相关" class="headerlink" title="二、质数相关"></a>二、质数相关</h2><blockquote>
-<p>素数和素性测试</p>
-</blockquote>
-<p>素数，是除了1和自己以外没有除数的自然数。</p>
-<p>大素数检测，如果需要枚举mod不现实。可使用费马素性检测来解决，它用来判断数字是素数的可能性的大小。</p>
-<p>当p为prime number素数时，对于n&lt;p，有n^p mod p =n，被称为费马小定理。</p>
-<p>匹配得到确认的次数越多，素数的可能性就越高。但即使满足所有费马素数性检测，也不能确认它是素数，这样的合数被称为卡迈克尔数或绝对费马伪素数。</p>
-<p>实例：5是素数</p>
-<ul>
-<li>4^5=1024 mode 5=4  </li>
-<li>3^5=243 mode 5=3  </li>
-<li>2^5=32 mode 5=2  </li>
-<li>1^5=1 mode 5=1</li>
-</ul>
-<blockquote>
-<p>欧拉函数</p>
-</blockquote>
-<p>N以内有多少个小于等于N的正整数与N互质呢？</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>φ</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mi>x</mi><msubsup><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo>(</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mi>p</mi><mi>i</mi></msub></mrow></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex">
-\varphi(x)=x\prod_{i=1}^n(1-\dfrac{1}{p_i})
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.20188em;vertical-align:-0.8804400000000001em;"></span><span class="base textstyle uncramped"><span class="mord mathit">φ</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord mathit">x</span><span class="mop"><span class="op-symbol small-op mop" style="top:-0.0000050000000000050004em;">∏</span><span class="vlist"><span style="top:0.30001em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">i</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.364em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">n</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathrm">1</span><span class="mbin">−</span><span class="mord reset-textstyle displaystyle textstyle uncramped"><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.6860000000000002em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle cramped"><span class="mord textstyle cramped"><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit">i</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.677em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle textstyle uncramped"><span class="mord textstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mclose">)</span></span></span></span>
-<p>其中p1, p2…pn为x的所有质因数，x是不为0的整数。</p>
-<p>欧拉函数是积性函数，若m,n互质， 则φ(mn)=φ(m)φ(n)。</p>
-<p>实例：</p>
-<p>φ(1)=1。和1互质的数(小于等于1)就是1本身。<br>φ(12)=φ(2^2 <em> 3^1)=12 </em> (1-1/2)* (1-1/3) = 4。</p>
-<blockquote>
-<p>欧拉定理</p>
-</blockquote>
-<p>如果两个正整数a和n互质，则n的欧拉函数 φ(n) 可以让下面的等式成立：</p>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>a</mi><mrow><mi>φ</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow></msup><mo>≡</mo><mn>1</mn><mo>(</mo><mi>m</mi><mi>o</mi><mi>d</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">
-a^{\varphi(n)} \equiv 1 (mod n)
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8879999999999999em;"></span><span class="strut bottom" style="height:1.138em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord mathit">φ</span><span class="mopen">(</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">≡</span><span class="mord mathrm">1</span><span class="mopen">(</span><span class="mord mathit">m</span><span class="mord mathit">o</span><span class="mord mathit">d</span><span class="mord mathit">n</span><span class="mclose">)</span></span></span></span>
-<p>a的φ(n)次方被n除的余数为1。或者说，a的φ(n)次方减去1，可以被n整除。</p>
-<p>比如，3和7互质，而7的欧拉函数φ(7)等于6，所以3的6次方（729）减去1，可以被7整除（728/7=104）</p>
-        
-          <a class="article-more-a" href="/2018/12/14/一个程序员的数学素养（1）数学基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/14/一个程序员的数学素养（1）数学基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python数据分析（3）Matplotlib" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/27/Python数据分析（3）Matplotlib/">Python数据分析（3）Matplotlib</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/27/Python数据分析（3）Matplotlib/" class="archive-article-date">
-  	<time datetime="2018-11-27T09:14:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Matplotlib各种图形demo"><a href="#一、Matplotlib各种图形demo" class="headerlink" title="一、Matplotlib各种图形demo"></a>一、Matplotlib各种图形demo</h2><p><a href="https://matplotlib.org" target="_blank" rel="noopener">『matplotlib官网传送门』</a></p>
-<p><a href="https://gitee.com/iherr/ipynb/blob/master/dataanalysis/matplotlib.ipynb" target="_blank" rel="noopener">『ipynb文档传送门』</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#把图画在notebook中</span></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>线状图</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">x2 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y2 = [<span class="number">10</span>,<span class="number">14</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x, y, label=<span class="string">'First Line'</span>)</span><br><span class="line">plt.plot(x2, y2, label=<span class="string">'Second Line'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Plot Number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Important var'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend() <span class="comment">#生成默认图例</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_4_0.png" alt="png"></p>
-<blockquote>
-<p>条形图</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">plt.bar([<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">9</span>],[<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">2</span>], label=<span class="string">"Example one"</span>)</span><br><span class="line">plt.bar([<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>],[<span class="number">8</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>], label=<span class="string">"Example two"</span>, color=<span class="string">'g'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.xlabel(<span class="string">'bar number'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'bar height'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Epic Graph\nAnother Line! Whoa'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_6_0.png" alt="png"></p>
-<blockquote>
-<p>直方图Histogram</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">population_ages = [<span class="number">22</span>,<span class="number">55</span>,<span class="number">62</span>,<span class="number">45</span>,<span class="number">21</span>,<span class="number">22</span>,<span class="number">34</span>,<span class="number">42</span>,<span class="number">42</span>,<span class="number">4</span>,<span class="number">99</span>,<span class="number">102</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">121</span>,<span class="number">122</span>,<span class="number">130</span>,<span class="number">111</span>,<span class="number">115</span>,<span class="number">112</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">54</span>,<span class="number">44</span>,<span class="number">43</span>,<span class="number">42</span>,<span class="number">48</span>]</span><br><span class="line"></span><br><span class="line">bins = [<span class="number">0</span>,<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>,<span class="number">110</span>,<span class="number">120</span>,<span class="number">130</span>]</span><br><span class="line"></span><br><span class="line">plt.hist(population_ages, bins, histtype=<span class="string">'bar'</span>, rwidth=<span class="number">0.8</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<pre><code>No handles with labels found to put in legend.
-</code></pre><p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_8_1.png" alt="png"></p>
-<blockquote>
-<p>散点图</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">y = [<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">plt.scatter(x,y, label=<span class="string">'skitscat'</span>, color=<span class="string">'k'</span>, s=<span class="number">25</span>, marker=<span class="string">"o"</span>)</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_10_0.png" alt="png"></p>
-<blockquote>
-<p>堆叠图</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">days = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">sleeping = [<span class="number">7</span>,<span class="number">8</span>,<span class="number">6</span>,<span class="number">11</span>,<span class="number">7</span>]</span><br><span class="line">eating =   [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]</span><br><span class="line">working =  [<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line">playing =  [<span class="number">8</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">13</span>]</span><br><span class="line"></span><br><span class="line">plt.plot([],[],color=<span class="string">'m'</span>, label=<span class="string">'Sleeping'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'c'</span>, label=<span class="string">'Eating'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'r'</span>, label=<span class="string">'Working'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line">plt.plot([],[],color=<span class="string">'k'</span>, label=<span class="string">'Playing'</span>, linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.stackplot(days, sleeping,eating,working,playing, colors=[<span class="string">'m'</span>,<span class="string">'c'</span>,<span class="string">'r'</span>,<span class="string">'k'</span>])</span><br><span class="line"></span><br><span class="line">plt.xlabel(<span class="string">'x'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'y'</span>)</span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_12_0.png" alt="png"></p>
-<blockquote>
-<p>饼图</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">slices = [<span class="number">7</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">13</span>]</span><br><span class="line">activities = [<span class="string">'sleeping'</span>,<span class="string">'eating'</span>,<span class="string">'working'</span>,<span class="string">'playing'</span>]</span><br><span class="line">cols = [<span class="string">'c'</span>,<span class="string">'m'</span>,<span class="string">'r'</span>,<span class="string">'b'</span>]</span><br><span class="line"></span><br><span class="line">plt.pie(slices,</span><br><span class="line">        labels=activities,</span><br><span class="line">        colors=cols,</span><br><span class="line">        startangle=<span class="number">90</span>,</span><br><span class="line">        shadow= <span class="keyword">True</span>,</span><br><span class="line">        explode=(<span class="number">0</span>,<span class="number">0.1</span>,<span class="number">0</span>,<span class="number">0</span>),</span><br><span class="line">        autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Interesting Graph\nCheck it out'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/11/27/Python数据分析（3）Matplotlib/output_14_0.png" alt="png"></p>
-        
-          <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/27/Python数据分析（3）Matplotlib/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1920,7 +1958,7 @@ a^{\varphi(n)} \equiv 1 (mod n)
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -2007,10 +2045,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -2075,15 +2109,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2095,11 +2129,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2107,19 +2145,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2131,15 +2165,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2151,11 +2193,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2168,6 +2210,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">

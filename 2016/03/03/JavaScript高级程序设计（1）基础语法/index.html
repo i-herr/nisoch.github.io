@@ -17,7 +17,7 @@
 <meta property="og:description" content="一、JavaScript简介 1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。   2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://iherr.cn/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png">
-<meta property="og:updated_time" content="2019-01-07T10:14:36.000Z">
+<meta property="og:updated_time" content="2019-12-09T13:55:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计（1）基础语法">
 <meta name="twitter:description" content="一、JavaScript简介 1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。   2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、">
@@ -175,18 +175,16 @@
       
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、JavaScript简介"><a href="#一、JavaScript简介" class="headerlink" title="一、JavaScript简介"></a>一、JavaScript简介</h2><p><img src="/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png" alt="JS"></p>
 <p>1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。  </p>
-<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型）   </p>
+<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型，如navigator、location、screen对象、cookies支持等）   </p>
 <p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
 <h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
 <p>语法</p>
-<p>JS语法</p>
 </blockquote>
 <ul>
 <li>动态类型，定义变量用var操作符</li>
-<li>undefined：变量未赋值，null：变量为空值  </li>
+<li>undefined：变量未赋值，null：变量类型为Object的空值（空指针）  </li>
 <li>区分大小写  </li>
-<li>标识符（变量、函数、参数、属性等）驼峰 </li>
-<li>基本类型：数字、布尔、串  </li>
+<li>标识符（变量、函数、参数、属性等），驼峰</li>
 <li>单行多行注释</li>
 <li>语句分号结尾</li>
 </ul>
@@ -195,22 +193,50 @@
 </blockquote>
 <p>Undefined、Null、Boolean、Number、String、Object  </p>
 <ul>
-<li>typeof操作符，返回多一个function  </li>
+<li>typeof操作符，返回多一个function。</li>
 <li>undefined派生自null值的，相等性测试返回true。  </li>
 <li>undefined、null、0/NaN、空字符串，转换成布尔为false。</li>
 <li>0代表八进制、0x代表十六进制，浮点计算会产生舍入误差。Number.MIN_VALUE和Number.MAX_VALUE为ECMAScript能保存的最大和最小值，超出了会转换成Infinity。isNaN用来判断是否是“非数值”。  </li>
-<li>数值转换，Number()用于任何类型、parseInt(string,int)和parseFloat()用于字符串转换，int默认为10进制。  </li>
-<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 .toString(int)将其他类型转换为字符串，int默认为10进制。  </li>
+<li>数值转换，Number()用于任何类型、parseInt(string,进制)和parseFloat()用于字符串转换，进制默认为10进制。  </li>
+<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 num.toString(进制)将其他类型转换为字符串，进制默认为10进制。  </li>
 <li>object，定义：var o =new Object();</li>
 </ul>
 <blockquote>
 <p>操作符</p>
 </blockquote>
 <p>1、一元操作符（递增和递减、加和减表示正负）</p>
-<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。<br>按位非 NOT（~）<br>按位与 AND（&amp;）<br>按位或 OR（|）<br>按位异或 XOR（^）<br>左移(&lt;&lt;)，不影响符号位<br>有符号的右移（&gt;&gt;），不影响符号位<br>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </p>
-<p>3、布尔操作符<br>逻辑非（!）<br>逻辑与（&amp;&amp;）<br>逻辑或（||）</p>
+<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。</p>
+<ul>
+<li>按位非 NOT（~）  </li>
+<li>按位与 AND（&amp;）  </li>
+<li>按位或 OR（|）  </li>
+<li>按位异或 XOR（^）  </li>
+<li>左移(&lt;&lt;)，不影响符号位  </li>
+<li>有符号的右移（&gt;&gt;），不影响符号位  </li>
+<li>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </li>
+</ul>
+<p>3、布尔操作符  </p>
+<ul>
+<li>逻辑非（!）</li>
+<li>逻辑与（&amp;&amp;）</li>
+<li>逻辑或（||）</li>
+</ul>
+<p>4、相等操作符</p>
+<ul>
+<li>相等/不相等（==/!=），转换后比较</li>
+<li>全等/不全等(===/!==)，仅比较不转换</li>
+</ul>
 <blockquote>
 <p>流控制语句</p>
+</blockquote>
+<ul>
+<li>if</li>
+<li>do-while</li>
+<li>while</li>
+<li>for</li>
+<li>for-in</li>
+</ul>
+<blockquote>
 <p>函数：</p>
 </blockquote>
 <ul>
@@ -367,7 +393,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -454,10 +480,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -522,15 +544,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,11 +564,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -554,19 +580,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,15 +600,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,11 +628,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,6 +645,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">

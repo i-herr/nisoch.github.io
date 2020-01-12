@@ -38,7 +38,7 @@
 <meta property="og:image" content="http://iherr.cn/2017/01/07/Git版本控制管理/git_rebase2.png">
 <meta property="og:image" content="http://iherr.cn/2017/01/07/Git版本控制管理/git_rebase3.png">
 <meta property="og:image" content="http://iherr.cn/2017/01/07/Git版本控制管理/git_rebase4.png">
-<meta property="og:updated_time" content="2018-12-21T09:42:56.000Z">
+<meta property="og:updated_time" content="2019-12-24T16:10:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git版本控制管理">
 <meta name="twitter:description" content="一、Git概述 版本控制系统（VCS）  目的：是为了持续性的对代码或文档进行备份和存档，对变更进行追踪管理。 发展进程：SCCS源码控制系统–&amp;gt;RCS修订控制系统（本地）–&amp;gt;CVS并行版本系统–&amp;gt;Subversion（SVN）（集中化）–&amp;gt;Git（分布式）  Git简史  Git，『网站传送门』，由大神Linus Torvalds发明，git本意是无用的人、饭桶，令人舒服">
@@ -233,7 +233,7 @@
 <p>git支持不同层级的配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.git/config  <span class="comment">#版本库配置</span></span><br><span class="line">~/.gitconfig <span class="comment">#用户配置</span></span><br><span class="line">/etc/gitconfig <span class="comment">#系统配置</span></span><br></pre></td></tr></table></figure>
 <p>配置提交作者，根据上述层级分别对应，默认为global</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"iherr"</span>  <span class="comment">#在当前版本库目录执行</span></span><br><span class="line">$ git config user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --global user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --global user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --system user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --system user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --list <span class="comment">#检查配置信息</span></span><br><span class="line">$ git config --global alias.ci commit <span class="comment">#可设置别名，使用命令git ci代替git commit</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name <span class="string">"iherr"</span>  <span class="comment">#在当前版本库目录执行</span></span><br><span class="line">$ git config user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --global user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --global user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --system user.name <span class="string">"iherr"</span></span><br><span class="line">$ git config --system user.email <span class="string">"herongrong-123@163.com"</span></span><br><span class="line"></span><br><span class="line">$ git config --list <span class="comment">#检查配置信息</span></span><br><span class="line">$ git config --global alias.ci commit <span class="comment">#可设置别名，使用命令git ci代替git commit</span></span><br><span class="line"></span><br><span class="line">$ git config --global --<span class="built_in">unset</span> user.name</span><br><span class="line">$ git config --global --<span class="built_in">unset</span> user.email</span><br><span class="line"></span><br><span class="line">$ git config --system --<span class="built_in">unset</span> credential.helper <span class="comment"># 删除验证信息</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>服务器端安装配置</p>
 </blockquote>
@@ -338,7 +338,7 @@
 <p>git mv</p>
 </blockquote>
 <p>如需要移动或重命名文件，可直接使用git mv。相当于先rm再add。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README <span class="comment">#更名，相当于以下3条命令：</span></span><br><span class="line"></span><br><span class="line">$ mv README.md README$ git rm README.md$ git add README</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README <span class="comment">#更名，相当于以下3条命令：</span></span><br><span class="line"></span><br><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
 <p>VCS当重命名后回丢失追踪，SVN需要使用svn mv命令显式的追踪每一次重命名。<br>而Git可以保留，当Git碰到重命名时，只会影响树对象，不会影响blob内容对象。查看两棵树差异就可发现blob被移动到新的地方。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 两个树对象指向的blob一样，名称不一样，是两个不同的树。</span></span><br><span class="line">$ git cat-file -p d37e</span><br><span class="line">100644 blob d800886d9c86731ae5c4a62b0b77c437015e00d2	README.md</span><br><span class="line">$ git cat-file -p b7d8</span><br><span class="line">100644 blob d800886d9c86731ae5c4a62b0b77c437015e00d2	README</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -483,7 +483,7 @@
 <p>1、在master默认分支上工作，有C0，C1，C2共3个提交</p>
 <p><img src="/2017/01/07/Git版本控制管理/git_branch1.png" alt=""></p>
 <p>2、创建分支，解决#53问题。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53 <span class="comment">#新建并切换至新分支</span></span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#它是下面两条命令的简写：</span></span><br><span class="line">$ git branch iss53 <span class="comment">#只创建分支，不切换工作目录</span></span><br><span class="line">$ git checkout iss53 <span class="comment">#切换到新分支</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b iss53 <span class="comment">#新建并切换至新分支</span></span><br><span class="line">Switched to a new branch <span class="string">"iss53"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#它是下面两条命令的简写：</span></span><br><span class="line">$ git branch iss53 <span class="comment">#只创建分支，不切换工作目录</span></span><br><span class="line">$ git checkout iss53 <span class="comment">#切换到新分支</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果需要获取远程版本库的分支</span></span><br><span class="line">$ git checkout -b 本地分支 origin/远程分支</span><br></pre></td></tr></table></figure>
 <p><img src="/2017/01/07/Git版本控制管理/git_branch2.png" alt=""></p>
 <p>3、在分支上提交C3。</p>
 <p><img src="/2017/01/07/Git版本控制管理/git_branch3.png" alt=""></p>
@@ -509,7 +509,7 @@
 <p>1、查看有冲突的文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ git merge iss53</span><br><span class="line">Auto-merging index.html</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> index.html</span><br><span class="line">Automatic merge failed; fix conflicts and <span class="keyword">then</span> commit the result.</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">You have unmerged paths.</span><br><span class="line">  (fix conflicts and run <span class="string">"git commit"</span>)</span><br><span class="line"></span><br><span class="line">Unmerged paths:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to mark resolution)</span><br><span class="line"></span><br><span class="line">    both modified:      index.html</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br></pre></td></tr></table></figure>
 <p>2、修改冲突的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD:index.html</span><br><span class="line">&lt;div id=<span class="string">"footer"</span>&gt;contact : email.support@github.com&lt;/div&gt;</span><br><span class="line">=======</span><br><span class="line">&lt;div id=<span class="string">"footer"</span>&gt;</span><br><span class="line"> please contact us at support@github.com</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; iss53:index.html</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt; &lt; HEAD:index.html</span><br><span class="line">&lt;div id=<span class="string">"footer"</span>&gt;contact : email.support@github.com&lt;/div&gt;</span><br><span class="line">=======</span><br><span class="line">&lt;div id=<span class="string">"footer"</span>&gt;</span><br><span class="line"> please contact us at support@github.com</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt; &gt; iss53:index.html</span><br></pre></td></tr></table></figure>
 <p>这表示 HEAD 所指示的版本（也就是你的 master 分支所在的位置，因为你在运行 merge 命令的时候已经检出到了这个分支）在这个区段的上半部分（======= 的上半部分），而 iss53 分支所指示的版本在 ======= 的下半部分。 为了解决冲突，你必须选择使用由 ======= 分割的两部分中的一个，或者你也可以自行合并这些内容。 例如，你可以通过把这段内容换成下面的样子来解决冲突：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"footer"</span>&gt;</span><br><span class="line">please contact us at email.support@github.com</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
 <p>3、可再次查看status，冲突解决后可commit进行提交</p>
@@ -688,8 +688,8 @@
     </a>
   
   
-    <a href="/2016/12/15/FFmpeg入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">FFmpeg入门</div>
+    <a href="/2016/12/30/音视频开发（6）FFmpeg滤镜/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">音视频开发（6）FFmpeg滤镜</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -732,7 +732,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -819,10 +819,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -887,15 +883,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -907,11 +903,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -919,19 +919,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -943,15 +939,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -963,11 +967,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -980,6 +984,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">

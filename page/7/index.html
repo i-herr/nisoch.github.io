@@ -149,64 +149,71 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JavaScript高级程序设计（3）执行环境和作用域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Maven实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/">JavaScript高级程序设计（3）执行环境和作用域</a>
+      <a class="article-title" href="/2016/09/30/Maven实战/">Maven实战</a>
     </h1>
   
 
         
-        <a href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/" class="archive-article-date">
-  	<time datetime="2016-03-09T14:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-09</time>
+        <a href="/2016/09/30/Maven实战/" class="archive-article-date">
+  	<time datetime="2016-09-30T08:57:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Javascript 这门语言与其他的大部分语言相比，有很多特殊性，这是很多人喜欢它或者讨厌它的原因。其中变量的作用域问题，对很多初学者来说就是一个又一个「坑」。</p>
-<p>变量的作用域在编程技能中算是一个基本概念，而在 Javascript 中，这一基本概念往往挑战者初学者的常识。</p>
-<h2 id="一、几个概念"><a href="#一、几个概念" class="headerlink" title="一、几个概念."></a>一、几个概念.</h2><p>1、<strong>执行环境</strong>（execution context），定义了变量或函数有权访问的其他数据，决定了它们各自的行为，执行环境有全局执行环境和函数执行环境之分。</p>
-<p>2、<strong>变量对象</strong>（variable object），环境中定义的所有变量和函数都保存在这个对象中。如果该环境是函数，变量对象就是活动对象，活动对象最初只包含一个变量，即 arguments 对象。<br>每个执行环境都有一个与之关联的变量对象。</p>
-<p>3、某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出，如关闭网页或浏览器，才被销毁）。也就是进行自动垃圾回收。</p>
-<p>4、<strong>作用域链</strong>（scope chain），当执行流进入一个函数时，函数环境就会被推入一个环境栈，在函数执行之后，栈将其环境弹出，把控权返回给之前的执行环境。作用域链就是环境栈。每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链。</p>
-<h2 id="二、理解作用域链"><a href="#二、理解作用域链" class="headerlink" title="二、理解作用域链"></a>二、理解作用域链</h2><p>有一段代码，放在全局作用域中</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br><span class="line">func3();</span><br></pre></td></tr></table></figure>
-<p>这段代码的作用域可以这样理解，每个内部环境可以通过作用域链依次访问它外部环境，但外部环境不能访问内部环境中的任何变量和函数。</p>
-<ol>
-<li>开始时，作用域链（环境栈）只有 Global(Window)</li>
-<li>当执行 func1()，作用域链（环境栈）推入 func1，变成：func1, Global。查找任何变量，先在 func1 的执行环境中找，如果找不到，再在 Global 的执行环境中找。</li>
-<li>当执行到 func2()，作用域链（环境栈）推入 func1，变成：func2, func1, Global</li>
-<li>func2 执行完毕后，func2 的环境被销毁，内存释放，作用域链（环境栈）变为：func1, Global</li>
-<li>func1 执行完毕，作用域链（环境栈）变为：Global</li>
-<li>再执行 func3，作用域链（环境栈）变为：func3, Global</li>
-<li>func3 执行完毕，作用域链（环境栈）变为：Global</li>
-<li>当浏览器（或标签）关闭，Global 销毁。</li>
-</ol>
-<h2 id="三、理解变量的作用域"><a href="#三、理解变量的作用域" class="headerlink" title="三、理解变量的作用域"></a>三、理解变量的作用域</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">'global'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkScope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">'local'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(scope); <span class="comment">// local</span></span><br><span class="line">&#125;</span><br><span class="line">checkScope();</span><br><span class="line"><span class="built_in">console</span>.log(scope); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
-<p>上面的例子中，声明了全局变量 scope 和函数体内的局部变量 scope。在函数体内部，局部变量的优先级比通明的全局变量要高，如果一个局部变量的名字与一个全局变量相同，那么，在声明局部变量的函数体范围内，局部变量将覆盖同名的全局变量。</p>
-<p>下面再看一个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scope = &apos;global&apos;;</span><br><span class="line">function checkScope()&#123;</span><br><span class="line">    scope = &apos;local&apos;; </span><br><span class="line">    console.log(scope); // local</span><br><span class="line">    myScope = &apos;local&apos;;</span><br><span class="line">    console.log(myScope); // local</span><br><span class="line">&#125;</span><br><span class="line">checkScope();</span><br><span class="line">console.log(scope); // local</span><br><span class="line">console.log(myScope); // local</span><br></pre></td></tr></table></figure>
-<p>对于初学者来说，可能会有两个疑问：为什么在函数体外，scope 的值也变成了 local ？为什么在函数体外可以访问 myScope 变量？</p>
-<p>这两个问题都源于一个特性。在全局作用域中声明变量可以省略 var 关键字，但是如果在函数体内声明变量时不使用 var 关键字，就会发生上面的现象。首先，函数体内的第一行语句，把全局变量中的 scope 变量的值改变了。而在声明 myScope 变量时，由于没有使用 var 关键字，Javascript 就会在全局范围内声明这个变量。因此，在声明局部变量时使用 var 关键字是个很好的习惯。</p>
-<h2 id="四、没有「块级作用域」"><a href="#四、没有「块级作用域」" class="headerlink" title="四、没有「块级作用域」"></a>四、没有「块级作用域」</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">	var color = &quot;blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(color);    //&quot;blue&quot;</span><br></pre></td></tr></table></figure>
-<p>这里是在一个if语句中定义了变量color。如果是在C、C++或Java中，color会在if语句执行完毕后被销毁。但在JavaScript中，if语句中的变量声明会将变量添加到当前的执行环境（在这里是全局环境）中。</p>
-<p>如果要更加强调上文中 函数中声明的所有变量，无论是在哪里声明的，在整个函数中它们都是有定义的 这句话，那么还可以在后面跟一句话：函数中声明的所有变量，无论是在哪里声明的，在整个函数中它们都是有定义的，即使是在声明之前。对于这句话，有个经典的困扰初学者的「坑」。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">function test()&#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">    var a = 10;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
-<p>上面的例子中，控制台输出变量 a 的值为 undefined，既不是全局变量 a 的值 2,也不是局部变量 a 的值 10。首先，局部变量在整个函数体内都是有定义的，因此，局部变量 a 会在函数体内覆盖全局变量 a，而在函数体内，在 var 语句之前，它是不会被初始化的。如果要读取一个未被初始化的变量，将会得到一个默认值 undefined。</p>
-<p>所以，上面示例中的代码与下面的代码时等价的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">function test()&#123;</span><br><span class="line">    var a;</span><br><span class="line">    console.log(a);</span><br><span class="line">    a = 10;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
-<p>可见，把所有的函数声明集合起来放在函数的开头是个良好的习惯。</p>
-<p>##五、js变量的本质<br>可能很多人已经注意到，在 Javascript 当中，一个变量与一个对象的一个属性，有很多相似的地方，实际上，它们并没有什么本质区别。在 Javascript 中，任何变量都是某个特定对象的属性。</p>
-<p>全局变量都是全局对象的属性。在 Javascript 解释器开始运行且没有执行 Javascript 代码之前，会有一个「全局对象」被创建，然后 Javascript 解释器会给它与定义一些属性，这些属性就是我们在 Javascript 代码中可以直接使用的内置的变量和方法。之后，每当我们定义一个全局变量，实际上是给全局对象定义了一个属性。</p>
-<p>在客户端的 Javascript 当中，这个全局变量就是 Window 对象，它有一个指向自己的属性 window ，这就是我们常用的全局变量。</p>
-<p>对于函数的局部变量，则是在函数开始执行时，会有一个对应的「调用对象」被创建，函数的局部变量都作为它的属性而存储。这样可以防止局部变量覆盖全局变量。</p>
-
+        <h2 id="一、Maven简介"><a href="#一、Maven简介" class="headerlink" title="一、Maven简介"></a>一、Maven简介</h2><p>Maven翻译为“专家”，是Apache下的一款跨平台的开源项目管理工具。主要服务于基于Java平台的项目构建、依赖管理和项目信息管理。</p>
+<blockquote>
+<p>构建工具（Build）</p>
+</blockquote>
+<p>每天除了编写源码，程序员相当一部分时间花在编译、运行单元测试，生产文档，打包和部署等构建工作上。Maven可抽象构建声明周期模型，并标准化构建过程。</p>
+<blockquote>
+<p>依赖管理工具</p>
+</blockquote>
+<p>提供中央仓库，自动下载构建（artifact），Maven可有序的管理依赖，并且管理原本分散在项目各个角落的项目信息。并提供了大把现成的插件。</p>
+<p>敏捷开发之极限编程（XP）中，Maven的价值：</p>
+<ul>
+<li>简单</li>
+<li>测试驱动开发（TDD）</li>
+<li>十分钟构建（清理、编译、测试、打包、部署、产品）</li>
+<li>持续集成（CI）</li>
+</ul>
+<p>其他构建工具有Make（makefile脚本），Ant（build.xml）。而Maven使用pom.xml，pom作为项目对象模型。</p>
+<h2 id="二、Maven概念"><a href="#二、Maven概念" class="headerlink" title="二、Maven概念"></a>二、Maven概念</h2><blockquote>
+<p>坐标</p>
+</blockquote>
+<p>Maven通过groupId、artifactId、version、packaging等元素来构成坐标。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.herr<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>依赖</p>
+</blockquote>
+<p>1、配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>...<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">version</span>&gt;</span>...<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">type</span>&gt;</span>...<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>...<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>...<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">		    <span class="tag">&lt;<span class="name">exclisions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">exclision</span>&gt;</span></span><br><span class="line">				...</span><br><span class="line">				<span class="tag">&lt;/<span class="name">exclision</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">exclisions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>2、scope依赖范围</p>
+<p>classpath有3套，分别是编译classpath、测试classpath、运行classpath。Maven的依赖范围scope对应关系如下：</p>
+<ul>
+<li>compile，默认，三种classpath都有效。</li>
+<li>test，只对于测试classpath有效。比如JUnit。</li>
+<li>provided，对编译和测试classpath有效，如servlet-api。</li>
+<li>runtime，对于测试和运行classpath有效。如JDBC驱动</li>
+<li>system，和provided依赖范围一致，但通过systemPath指定依赖文件路径。</li>
+</ul>
+<p>3、传递型依赖</p>
+<p>依赖范围影响传递性依赖，可选依赖不被传递。</p>
+<p>依赖调解原则：</p>
+<ul>
+<li>路径最近者优先</li>
+<li>第一声明者优先</li></ul>
+        
+          <a class="article-more-a" href="/2016/09/30/Maven实战/#more">more >></a>
+        
       
 
       
@@ -217,7 +224,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/09/30/Maven实战/">展开全文 >></a>
         </p>
       
 
@@ -247,46 +254,45 @@
 
 
   
-    <article id="post-JavaScript高级程序设计（2）函数参数传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Linux服务器网络抓包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">JavaScript高级程序设计（2）函数参数传递</a>
+      <a class="article-title" href="/2016/09/27/Linux服务器网络抓包/">Linux服务器网络抓包</a>
     </h1>
   
 
         
-        <a href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/" class="archive-article-date">
-  	<time datetime="2016-03-06T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
+        <a href="/2016/09/27/Linux服务器网络抓包/" class="archive-article-date">
+  	<time datetime="2016-09-27T08:43:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-09-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、两种不同数据类型的值"><a href="#一、两种不同数据类型的值" class="headerlink" title="一、两种不同数据类型的值"></a>一、两种不同数据类型的值</h2><p>1、基本类型值，指简单的数据段，对于undefined、null、boolean、number、string这5种简单数据类型可以直接操作保存在变量中的实际值，也就是按值访问。</p>
-<p>2、引用类型值，指那些可能由多个值构成的对象，只能操作对象的引用而不是实际的对象，所以要得到引用类型这种值只能按引用访问。</p>
-<p>3、ECMAScript中所有函数的参数都是按值传递的。</p>
-<h2 id="二、声明变量时不同的内存分配"><a href="#二、声明变量时不同的内存分配" class="headerlink" title="二、声明变量时不同的内存分配"></a>二、声明变量时不同的内存分配</h2><p>1、基本类型值：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>这是因为这些原始类型占据的空间是固定的，所以可将他们存储在较小的内存区域 — 栈中，这样存储便于迅速查寻变量的值。</p>
-<p>2、引用类型值：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存地址。<br>这是因为：引用值的大小会改变，所以不能把它放在栈中，否则会降低变量查寻的速度。相反，放在变量的栈空间中的值是该对象存储在堆中的地址。地址的大小是固定的，所以把它存储在栈中对变量性能无任何负面影响。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/stack_heap.png" alt="内存分配差异"></p>
-<p>3、不同的内存分配机制也带来了不同的访问机制：</p>
-<p>在ECMAScript中是不允许直接访问保存在堆内存中的对象的，所以在访问一个对象时，首先得到的是这个对象在堆内存中的地址，然后再按照这个地址去获得这个对象中的值，这就是按引用访问。而基本类型的值则是可以直接访问到的。</p>
-<h2 id="三、复制变量时的不同"><a href="#三、复制变量时的不同" class="headerlink" title="三、复制变量时的不同"></a>三、复制变量时的不同</h2><p>1、基本类型值：在将一个保存着基本类型值的变量复制给另一个变量时，会将原始值的副本赋值给新变量，此后这两个变量是完全独立的，他们只是拥有相同的value而已。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy1.png" alt="基本类型值复制"></p>
-<p>2、引用类型值：在将一个保存着对象内存地址的变量复制给另一个变量时，会把这个内存地址赋值给新变量（因为这个引用值只能按引用访问得到），也就是说这两个变量都指向了堆内存中的同一个对象，他们中任何一个作出的改变都会反映在另一个身上。<br>这里要理解的一点就是，复制对象时并不会在堆内存中新生成一个一模一样的对象，只是多了一个保存指向这个对象指针的变量罢了。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy2.png" alt="引用类型值复制"></p>
-<h2 id="四、函数参数的传递"><a href="#四、函数参数的传递" class="headerlink" title="四、函数参数的传递"></a>四、函数参数的传递</h2><p>现在是难理解的地方了，现在进入正题。<br>首先明确一点：ECMAScript中所有函数的参数都是按值来传递的。但是为什么涉及到基本数据类型与引用类型的值时仍然有区别呢，还不就是因为内存分配时的差别。</p>
-<p>1、基本类型值：只是把变量里的值传递给参数，之后参数和这个变量互不影响，这个很好理解，不再赘述。</p>
-<p>2、引用类型值：对象变量里面的值是这个对象在堆内存中的内存地址，因此它传递的值也就是这个内存地址，这也就是为什么函数内部对这个参数的修改会体现在外部的原因了，因为它们都指向同一个对象。</p>
-<p><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/transmit.png" alt="函数参数的传递"></p>
-<p>用代码解释可能理解更形象：<br>注：代码范例来自JS高程P71。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    obj.name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    obj.name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">setName(person); </span><br><span class="line"></span><br><span class="line"><span class="comment">//根据上述函数参数的特点，可以利用arguments对象来重写这个函数：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params"> </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将参数person传入setName函数，函数执行步骤入下：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=person; <span class="comment">//将arguments[0]和person指向同一个对象</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>; <span class="comment">//也即person.name="Nicholas"</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>; <span class="comment">//重新定义arguments[0]。这时，arguments[0]已经跟 person“脱钩”</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>; <span class="comment">//这行代码跟person已经没有关系了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果自然很明朗，没悬念</span></span><br><span class="line">alert(person.name); <span class="comment">// "Nicholas";</span></span><br></pre></td></tr></table></figure>
-<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>在ECMAScript中，所谓参数按值传递就是，将形式参数初始化为实际参数的值。或者说将所传递的实际参数的值复制到函数内部的arguments数组中。对于基本类型值，就是在函数内部创建了一个该值的副本；对于引用类型值则复制了一个指向某个对象的指针。所传递的参数依次对应于arguments数组中的arguments[0],arguments[1]等元素。</p>
-<p>而按引用传递，则相当于将形式参数初始化为实际参数本身。</p>
-<p>注意：一个是只传递变量的值，一个是传递整个变量。这两者的内涵是完全不同的。<br>我们知道，ECMAScript中，每个变量都是一个用于保存值的占位符。如果参数是对像，则参数按值传递，意味着在函数内部，只能操作实际参数（对像）的属性和值，而不能操作实际参数（对像）本身。也就是说，你可以通过函数来改变函数外部所传入对像（参数）的属性和属性值；但你不能删除该变量，或改变此变量的引用对象。</p>
-<p>所以在对像参数传递时，最重要的是要理解，所谓的按值传递，意味着函数只能操作对像的属性和值，而不能操作对像本身。</p>
-<p>准确的说，JS中的基本类型按值传递，对象类型按<strong>共享传递</strong>的(call by sharing，也叫按对象传递、按对象共享传递)。最早由Barbara Liskov. 在1974年的GLU语言中提出。该求值策略被用于Python、Java、Ruby、JS等多种语言。<br>该策略的重点是：调用函数传参时，函数接受对象实参引用的副本(既不是按值传递的对象副本，也不是按引用传递的隐式引用)。它和按引用传递的不同在于：在共享传递中对函数形参的赋值，不会影响实参的值。如下面例子中，不可以通过修改形参o的值，来修改obj的值。虽然引用是副本，引用的对象是相同的。它们共享相同的对象，所以修改形参对象的属性值，也会影响到实参的属性值。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、Linux网络监控工具"><a href="#一、Linux网络监控工具" class="headerlink" title="一、Linux网络监控工具"></a>一、Linux网络监控工具</h2><p>监控Linux网络带宽的工具有一大把，下面是按功能划分的命令名称。</p>
+<ul>
+<li>监控总体带宽使用――nload、bmon、slurm、bwm-ng、cbm、speedometer和netload</li>
+<li>监控总体带宽使用（批量式输出）――vnstat、ifstat、dstat和collectl</li>
+<li>每个套接字连接的带宽使用――iftop、iptraf、tcptrack、pktstat、netwatch和trafshow</li>
+<li>每个进程的带宽使用――nethogs</li>
+</ul>
+<h2 id="二、tcpdump"><a href="#二、tcpdump" class="headerlink" title="二、tcpdump"></a>二、tcpdump</h2><p>最近需要对服务器的网络进行抓包统计，便用到了tcpdump。<a href="http://www.tcpdump.org" target="_blank" rel="noopener">『官网传送门』</a>，可去查看最新版本以及相关用法。</p>
+<p>用简单的话来定义tcpdump，就是：dump the traffic on a network，根据使用者的定义对网络上的数据包进行截获的包分析工具。 tcpdump可以将网络中传送的数据包的“头”完全截获下来提供分析。它支持针对网络层、协议、主机、网络或端口的过滤，并提供and、or、not等逻辑语句来帮助你去掉无用的信息。</p>
+<blockquote>
+<p>tcpdump安装  </p>
+</blockquote>
+<p>依赖：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">$ yum install flex  </span><br><span class="line">$ yum install bison  </span><br><span class="line">$ yum install gcc </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">安装：</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">$ wget http://www.tcpdump.org/release/libpcap-1.8.1.tar.gz    </span><br><span class="line">$ wget http://www.tcpdump.org/release/tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ tar -zxvf libpcap-1.8.1.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> libpcap-1.8.1    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ make install    </span><br><span class="line">    </span><br><span class="line">$ <span class="built_in">cd</span> ..    </span><br><span class="line">$ tar -zxvf tcpdump-4.9.2.tar.gz    </span><br><span class="line">$ <span class="built_in">cd</span> tcpdump-4.9.2    </span><br><span class="line">$ ./configure    </span><br><span class="line">$ sudo make install  </span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">首先需要查看设备上有哪些设备可以抓取，通过tcpdump -D会列出可以抓取的网络设备名以及编号</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line">```txt</span><br><span class="line">1.eth0 [Up, Running]</span><br><span class="line">2.eth1 [Up, Running]</span><br><span class="line">3.any (Pseudo-device that captures on all interfaces) [Up, Running]</span><br><span class="line">4.lo [Up, Running, Loopback]</span><br><span class="line">5.usbmon0 (All USB buses)</span><br><span class="line">6.nflog (Linux netfilter <span class="built_in">log</span> (NFLOG) interface)</span><br><span class="line">7.nfqueue (Linux netfilter queue (NFQUEUE) interface)</span><br><span class="line">8.usbmon1 (USB bus number 1)</span><br></pre></td></tr></table></figure>
+<p>如需要可视化页面来分析，可以安装大名鼎鼎的<a href="https://www.wireshark.org" target="_blank" rel="noopener">wireshark</a>。最新版本是支持windows和mac了的。</p>
+<p>可以通过tcpdump导出cap文件，供wireshark直接打开。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ tcpdump tcp -i 2 -t -s 0 -c 2000 -w x.cap</span><br><span class="line"></span><br><span class="line">$ tcpdump -XvvennSs 0 -i 7 tcp[20:2]=0x4745 or tcp[20:2]=0x4854 -w x.cap</span><br></pre></td></tr></table></figure>
+<p>相关参数的含义请参考官网文档。</p>
+<p><img src="/2016/09/27/Linux服务器网络抓包/wireshark.jpg" alt=""></p>
 
       
 
@@ -298,7 +304,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/09/27/Linux服务器网络抓包/">展开全文 >></a>
         </p>
       
 
@@ -328,75 +334,41 @@
 
 
   
-    <article id="post-JavaScript高级程序设计（1）基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Mac下Php的环境配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">JavaScript高级程序设计（1）基础语法</a>
+      <a class="article-title" href="/2016/08/17/Mac下Php的环境配置/">Mac下Php的环境配置</a>
     </h1>
   
 
         
-        <a href="/2016/03/03/JavaScript高级程序设计（1）基础语法/" class="archive-article-date">
-  	<time datetime="2016-03-03T04:36:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-03</time>
+        <a href="/2016/08/17/Mac下Php的环境配置/" class="archive-article-date">
+  	<time datetime="2016-08-17T03:46:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-17</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、JavaScript简介"><a href="#一、JavaScript简介" class="headerlink" title="一、JavaScript简介"></a>一、JavaScript简介</h2><p><img src="/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png" alt="JS"></p>
-<p>1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。  </p>
-<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型）   </p>
-<p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
-<h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
-<p>语法</p>
-<p>JS语法</p>
+        <h2 id="一、Php环境安装"><a href="#一、Php环境安装" class="headerlink" title="一、Php环境安装"></a>一、Php环境安装</h2><p>1、Mac推荐使用XAMPP，Window可使用wampserver。直接傻瓜式下载安装即可。目前最新版本7.0.2，正常运行，开启mysql和apache，写个phpinfo，检测下环境即可。<br>以下以Mac为例，10.12 Sierra自带的php版本为5.6，XAMPP安装的php是7.0，可共存。</p>
+<p>2、PhpStorm安装：略，如有问题，可校验下sha256。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ shasum -a 256 PhpStorm-2017.2.4.dmg</span><br></pre></td></tr></table></figure>
+<h2 id="二、本地安装Redis"><a href="#二、本地安装Redis" class="headerlink" title="二、本地安装Redis"></a>二、本地安装Redis</h2><blockquote>
+<p>安装Redis</p>
 </blockquote>
-<ul>
-<li>动态类型，定义变量用var操作符</li>
-<li>undefined：变量未赋值，null：变量为空值  </li>
-<li>区分大小写  </li>
-<li>标识符（变量、函数、参数、属性等）驼峰 </li>
-<li>基本类型：数字、布尔、串  </li>
-<li>单行多行注释</li>
-<li>语句分号结尾</li>
-</ul>
-<blockquote>
-<p>数据类型  </p>
-</blockquote>
-<p>Undefined、Null、Boolean、Number、String、Object  </p>
-<ul>
-<li>typeof操作符，返回多一个function  </li>
-<li>undefined派生自null值的，相等性测试返回true。  </li>
-<li>undefined、null、0/NaN、空字符串，转换成布尔为false。</li>
-<li>0代表八进制、0x代表十六进制，浮点计算会产生舍入误差。Number.MIN_VALUE和Number.MAX_VALUE为ECMAScript能保存的最大和最小值，超出了会转换成Infinity。isNaN用来判断是否是“非数值”。  </li>
-<li>数值转换，Number()用于任何类型、parseInt(string,int)和parseFloat()用于字符串转换，int默认为10进制。  </li>
-<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 .toString(int)将其他类型转换为字符串，int默认为10进制。  </li>
-<li>object，定义：var o =new Object();</li>
-</ul>
-<blockquote>
-<p>操作符</p>
-</blockquote>
-<p>1、一元操作符（递增和递减、加和减表示正负）</p>
-<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。<br>按位非 NOT（~）<br>按位与 AND（&amp;）<br>按位或 OR（|）<br>按位异或 XOR（^）<br>左移(&lt;&lt;)，不影响符号位<br>有符号的右移（&gt;&gt;），不影响符号位<br>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </p>
-<p>3、布尔操作符<br>逻辑非（!）<br>逻辑与（&amp;&amp;）<br>逻辑或（||）</p>
-<blockquote>
-<p>流控制语句</p>
-<p>函数：</p>
-</blockquote>
-<ul>
-<li>定义函数时指定形参，调用函数时提供实参。  </li>
-<li>基本类型，按值传递。数组或对象时，按指针传递。  </li>
-<li>函数外声明为全局变量，只要页面存在就活着。函数内声明为局部变量，函数结束就消失。</li>
-<li>构造函数，是创建对象的函数。首字母大写。</li>
-<li>赋给一个对象属性的函数成为方法。方法可以使用this来引用调用这个方法的对象。</li>
-<li>window对象、document对象，以及document.getElementById方法会返回一个元素对象。</li>
-</ul>
-
+<p>1、可使用brew直接安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install redis</span><br></pre></td></tr></table></figure>
+<p>2、修改配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
+<p>3、本地启动redis</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/<span class="built_in">local</span>/bin/redis-server /usr/<span class="built_in">local</span>/etc/redis.conf</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2016/08/17/Mac下Php的环境配置/#more">more >></a>
+        
       
 
       
@@ -407,7 +379,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/08/17/Mac下Php的环境配置/">展开全文 >></a>
         </p>
       
 
@@ -437,66 +409,50 @@
 
 
   
-    <article id="post-也谈金融" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-高性能MySQL（4）查询性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/22/也谈金融/">也谈金融</a>
+      <a class="article-title" href="/2016/07/31/高性能MySQL（4）查询性能优化/">高性能MySQL（4）查询性能优化</a>
     </h1>
   
 
         
-        <a href="/2016/02/22/也谈金融/" class="archive-article-date">
-  	<time datetime="2016-02-22T04:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-22</time>
+        <a href="/2016/07/31/高性能MySQL（4）查询性能优化/" class="archive-article-date">
+  	<time datetime="2016-07-31T06:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
-<p>金融的本质</p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、为什么查询速度会慢"><a href="#一、为什么查询速度会慢" class="headerlink" title="一、为什么查询速度会慢"></a>一、为什么查询速度会慢</h2><p>1、查询看作一个任务，由一系列子任务组成。优化查询，需要优化其子任务，消除或减少执行次数，或者运行更快。</p>
+<p>2、从查询的生命周期来讲，从客户端，到服务器，然后服务器上进行解析，生成执行计划，执行，并返回结果给客户端。其中“执行”最为重要，包含大量为了检索数据到存储引擎的调用以及调用后的数据处理，包括排序和分组等。  </p>
+<p>3、查询需要在不同的地方花费时间，包括网络，cpu计算，统计信息生成，执行计划，锁等待等操作，尤其是向底层存储引擎检索数据的调用操作，需要在内存操作、cpu操作和内存不足时导致的I/O操作上消耗时间。  </p>
+<h2 id="二、慢查询基础：优化数据访问"><a href="#二、慢查询基础：优化数据访问" class="headerlink" title="二、慢查询基础：优化数据访问"></a>二、慢查询基础：优化数据访问</h2><p>查询性能低下最基本的原因是访问的数据太多，增加网络开销、消耗cpu和内存资源等。  </p>
+<blockquote>
+<p>是否向数据库请求了不需要的数据  </p>
 </blockquote>
+<p>1、查询不需要的数据，MySQL会查询出全部的结果集再进行计算，客户端应用程序会接收全部结果集数据，然后抛弃其中大部分数据，这样会产生问题。解决方法是查询后面加上LIMIT。</p>
+<p>2、多表关联时返回全部列、总是取出全部列<br>禁止使用SELECT *的写法，会让优化器无法完成索引覆盖扫描这类优化，带来额外的I/O、内存和cpu的消耗。<br>3、重复查询相同的数据，针对相同的查询，可将数据缓存来使用。  </p>
+<blockquote>
+<p>MySQL是否在扫描额外的记录  </p>
+</blockquote>
+<p>衡量查询开销的三个指标：<br>1、响应时间：是一个表面上的值，但是仍然是最重要的指标。由服务时间和排队时间组成，服务时间是指数据库处理这个查询真正花了多长时间，排队时间是指服务器因为等待某些资源而没有真正执行查询的时间（I/O操作等待、行锁等待等），一般需要判断当前响应时间是不是一个合理的值，来区分是单个查询问题还是服务器问题。  </p>
+<p>2、扫描的行数和返回的行数<br>分析查询时，查看该查询扫描的行数，可以判断查询的效率高不高。理想情况下扫描的行数和返回的行数应该是相同的（不常见）。除非特殊情况，一般比例在1：1和10：1之间。  </p>
+<p>3、扫描的行数和访问类型<br>在EXPLAIN语句中的type列反应了访问类型，可能会是权标扫描、索引扫描、范围扫描、唯一索引查询、常数引用等，其中，扫描表（type：ALL）、扫描索引（type：ref）、范围访问和单值访问是速度从慢到快，扫描的行数也是从多到少。如果未使用索引进行where条件，Extra会体现“Using where”，表示MySQL将通过WHERE条件来筛选存储引擎返回的记录。<br>一般Mys能使用以下三种方式应用WHERE条件，从好到坏依次是：  </p>
 <ul>
-<li>货币的时间价值</li>
-<li>未来的不确定性</li>
+<li>在索引中使用WHERE条件来过滤不匹配的记录，在存储引擎层完成。  </li>
+<li>使用索引覆盖扫描（在Extra列中出现Using index）来返回记录，直接从索引中过滤不需要的记录并返回命中的结果，是在MySQL服务器层完成，无须再回表查询记录。  </li>
+<li>从数据表中返回数据，然后过滤不满足条件的记录（在Extra列中出现Using where），在服务器层完成，并需要先从数据表读出记录然后过滤。  </li>
 </ul>
 <blockquote>
-<p>股指</p>
+<p>如果发现查询需要扫描大量的数据，但只返回少数的行，可以这样来优化</p>
 </blockquote>
-<p>指数本身永远是货币现象。GDP自然增长和物价的增长，会让名义利润趋势性增加。在一个很中庸的假设下，2020年的上证7000点市盈率大约与2015年初的4000点类似。所以，6124点会不会突破，是个伪命题，不确定仅在于时间。</p>
-<blockquote>
-<p>国家金融策略</p>
-</blockquote>
-<ul>
-<li>把过往中国投资过剩的生产能力，通过“一带一路”释放到国外去。</li>
-<li>把过往中国如饥似渴的消费能力，通过“自贸区”吸收到国内来。</li>
-<li>把过往中国盲目乱窜的巨量货币，通过“股票市场”转移到实体去。</li>
-<li>把过往中国无处可去的外汇储备，通过“亚投行”投资到同盟国去。</li>
-</ul>
-<blockquote>
-<p>选股原则</p>
-</blockquote>
-<ul>
-<li>行业有好的变革</li>
-<li>企业有好的变革</li>
-<li>有稳定的现金流</li>
-<li>资金放量</li>
-<li>不易出现信用危机</li>
-<li>被低估</li>
-</ul>
-<blockquote>
-<p>个人金融底线</p>
-</blockquote>
-<p>巴菲特说过那句话，过去238年来，从来没有人因为做空自己的祖国而发财的。但是巴菲特老先生可能不太了解我们这个神奇的国度，在这个号称5000年历史的国度，有过无数因为出卖自己的祖国自己的同胞自己的党派而发财而大富大贵的先例。</p>
-<p>技术分析就是扯淡。如果一个理论，不可证伪，那压根就没有任何科学价值。太多太多的技术分析流派，宣示的理论，连可证伪性都不具备。拥有的，不过是一大堆图形拼凑起来的迷信罢了。</p>
-<blockquote>
-<p>货币政策和财政政策</p>
-</blockquote>
-<p>年轻人，中长线<br>第一、中长期投资有利于你腾出精力好好工作<br>第二、中长线赚钱似乎更简单点<br>第三、中长线更有利于你提高生活质量</p>
+<p>1、使用索引覆盖扫描，把所有需要用的列都放到索引中，这样存储引擎无须回表获取对应行就可以返回结果了。<br>2、改变库表结构，例如使用单独的汇总表</p>
 
       
 
@@ -508,7 +464,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/22/也谈金融/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/07/31/高性能MySQL（4）查询性能优化/">展开全文 >></a>
         </p>
       
 
@@ -538,309 +494,71 @@
 
 
   
-    <article id="post-一生要做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-高性能MySQL（3）创建高性能的索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/10/一生要做的事/">一生要做的事</a>
+      <a class="article-title" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/">高性能MySQL（3）创建高性能的索引</a>
     </h1>
   
 
         
-        <a href="/2016/01/10/一生要做的事/" class="archive-article-date">
-  	<time datetime="2016-01-10T11:21:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-10</time>
+        <a href="/2016/07/18/高性能MySQL（3）创建高性能的索引/" class="archive-article-date">
+  	<time datetime="2016-07-18T02:45:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>我究竟要怎样过一生<br>设定那愿意消耗生命去做的事<br>努力去达成<br>保留你的体验<br>珍惜你的感悟</p>
+        <h2 id="一、索引的定义"><a href="#一、索引的定义" class="headerlink" title="一、索引的定义"></a>一、索引的定义</h2><blockquote>
+<p>索引的定义</p>
 </blockquote>
-<h3 id="常回家看看"><a href="#常回家看看" class="headerlink" title="常回家看看"></a>常回家看看</h3><blockquote>
-<p>父母在<br>不言老<br>游必有方</p>
+<p>索引（键key），是存储引擎用于快速找到记录的一种数据结构。不恰当的索引当数据量逐渐增大时，性能会急剧下降（传统非固态硬盘）。因此索引优化甚至优先于查询优化，是查询性能优化最有效的手段。<br>索引可包含一个或多个列的值，如果包含多个列，列的顺序也十分重要，MySQL只能高效地使用索引的最左前缀列。即便使用对象关系映射（ORM）工具，除非是基本的查询，否则很难生成适合索引的查询。<br>索引是存储引擎层实现的，而不是服务器层实现的。</p>
+<blockquote>
+<p>索引的优点</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>每年给爸妈过生日/问候</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>帮爸妈完成梦想</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>带爸妈去旅游/自驾</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>给爸妈做可口的饭菜</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>给爸妈买保险</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>给爸妈安排体检</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>给爸妈过一次大寿</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>回家看望爸妈的次数</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>和爸妈一起吃年夜饭的次数</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起浪漫"><a href="#一起浪漫" class="headerlink" title="一起浪漫"></a>一起浪漫</h3><blockquote>
-<p>浪漫<br>哪怕是小浪漫</p>
+<p>1、大大减少了服务器需要扫描的数据量<br>2、可以帮助服务器避免排序和临时表<br>3、可以将随机I/O变为顺序I/O<br>索引并不总是最好的工具，只有当索引帮助存储引擎快速查找到记录带来的好处大于其带来的额外工作时，索引才是有效的。对于非常小的表，简单的全表扫描更高效。</p>
+<h2 id="二、索引的类型"><a href="#二、索引的类型" class="headerlink" title="二、索引的类型"></a>二、索引的类型</h2><blockquote>
+<p>B-Tree索引</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起坐摩天轮</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起看日出日落</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>一起看烟火</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起对着流星许愿</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起跳舞</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起数星星</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起在树下埋下约定</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起去海边放漂流瓶</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起露营</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td>一起坐邮轮</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起平淡"><a href="#一起平淡" class="headerlink" title="一起平淡"></a>一起平淡</h3><blockquote>
-<p>不够浪漫<br>那就陪伴 </p>
+<p>为默认索引，大多数引擎都支持，但可能使用不同的存储结构，例如InnoDB使用的是B+Tree。<br><img src="/2016/07/18/高性能MySQL（3）创建高性能的索引/btree.jpg" alt="B-Tree索引"><br>B-Tree所有的值都是按顺序存储，并且每一个叶子页到根的距离相同。索引从<strong>根节点</strong>开始搜索，根节点的槽中存放了指向<strong>子节点</strong>的指针，通过比较节点页的值和要查找的值，可以找到合适的指针进入下层子节点。<strong>叶子节点</strong>比较特别，它们的指针指向的不是其他的节点页，而是被索引的数据。树的深度和表的大小直接相关。  </p>
+<p>1、B-Tree索引适用于全键值、键值范围或键前缀查找（最左前缀）。 </p>
+<ul>
+<li>全值匹配：和索引的所有列进行匹配。  </li>
+<li>匹配最左前缀：只使用索引的第一列。  </li>
+<li>匹配列前缀：索引的第一列的开头部分。  </li>
+<li>匹配范围值：查找索引第一列的某个范围。  </li>
+<li>精确匹配某一列并范围匹配另外一列：即索引第一列全匹配，第二列范围匹配。  </li>
+<li>只访问索引的查询：不访问数据行，只需要访问索引。</li>
+<li>查询中的ORDER BY操作：索引树中的节点是有序的。  </li>
+</ul>
+<p>2、B-Tree的限制：  </p>
+<ul>
+<li>如果不是从最左列查找，则无法使用索引。  </li>
+<li>不能跳过索引中的列。</li>
+<li>如果查询中有某个列的范围查询，则其右侧所有列都无法使用索引优化查找。<br>以上的限制并非是B-Tree本身导致，而是MySQL优化器和存储引擎使用索引的方式导致。</li>
+</ul>
+<blockquote>
+<p>哈希索引<br>基于哈希表实现，只有精确匹配索引所有列的查询才有效。Memory存储引擎会对所有的索引列计算一个哈希码，支持非唯一哈希索引。<br>1、哈希索引的限制：</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起手牵手逛街</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起布置家</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>一起吃路边摊</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起骑脚踏车</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起堆雪人</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起养花种树</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起养动物</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起看场话剧</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起看场舞台剧</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">10</td>
-<td>一起看场舞蹈</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">11</td>
-<td>一起听场音乐会</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">12</td>
-<td>一起看场球赛</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">13</td>
-<td>一起听场相声</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">14</td>
-<td>一起参加电视节目</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">15</td>
-<td>一起晨练</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">16</td>
-<td>一起看书喝茶</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">17</td>
-<td>到站台送别</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">18</td>
-<td>一起学会游泳</td>
-</tr>
-</tbody>
-</table>
-<h3 id="一起成长"><a href="#一起成长" class="headerlink" title="一起成长"></a>一起成长</h3><table>
-<thead>
-<tr>
-<th style="text-align:center">序列</th>
-<th>成就</th>
-<th style="text-align:center">达成</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>一起见对方的朋友</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>一起去趟博物馆</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>当一天陌生人</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>一起去养老院做义工</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>一起去孤儿院送礼物</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">6</td>
-<td>一起为灾区募捐</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">7</td>
-<td>一起做志愿者</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">8</td>
-<td>一起到少数民族和外国人家中做客</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">9</td>
-<td>一起给亲人和朋友挑礼物</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>只包含哈希值和行指针，而不存储字段值，因此不能使用索引中的值来避免读取行。  </li>
+<li>不是按照索引值顺序存储的，无法用于排序。</li>
+<li>不支持部分索引列匹配查找，因为哈希索引是使用索引列的全部内容来计算哈希值的。</li>
+<li>只支持等值比较查询。  </li>
+<li>可能会产生哈希冲突，即不同的索引列值却有相同的哈希值。有冲突时，需要遍历链表中所有的行指针，逐行比较。</li>
+<li>如果哈希冲突很多，一些索引维护操作的代价也会很高，比如删除表中一行时需要遍历冲突的每一行。</li>
+</ul>
+<p>2、InnoDB中有一个“自适应哈希索引”，会在内存中基于B-Tree索引上再创建一个哈希索引，比如快速的哈希查找。该功能无法控制或配置，可以关闭。  </p>
+<p>3、创建自定义哈希索引。<br>例如需要存储大量的URL，并且根据URL进行查找。可以删除URL列上的索引，然后新增一个被索引的url-crc列，使用CRC32做哈希。不要使用SHA1或MD5，因为强加密函数的哈希值很长，使用简单哈希函数，保证冲突控制在一个可以接受的范围即可。要避免冲突，需要WHERE条件中带入哈希值和对应列值，便可以使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">url</span> <span class="keyword">WHERE</span> <span class="keyword">url</span>=<span class="string">"http://www.baidu.com"</span></span><br><span class="line"><span class="keyword">AND</span> url_crc=<span class="keyword">CRC32</span>(<span class="string">"http://www.baidu.com"</span>);</span><br></pre></td></tr></table></figure>
+<p>另外，需要手动维护哈希值，可以使用触发器，在插入和更新时维护url_crc列。</p>
         
-          <a class="article-more-a" href="/2016/01/10/一生要做的事/#more">more >></a>
+          <a class="article-more-a" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/#more">more >></a>
         
       
 
@@ -852,7 +570,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/10/一生要做的事/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/07/18/高性能MySQL（3）创建高性能的索引/">展开全文 >></a>
         </p>
       
 
@@ -882,108 +600,49 @@
 
 
   
-    <article id="post-Mac常用软件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-高性能MySQL（2）Schema与数据类型优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/20/Mac常用软件/">Mac常用软件</a>
+      <a class="article-title" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">高性能MySQL（2）Schema与数据类型优化</a>
     </h1>
   
 
         
-        <a href="/2015/11/20/Mac常用软件/" class="archive-article-date">
-  	<time datetime="2015-11-20T07:21:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-20</time>
+        <a href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/" class="archive-article-date">
+  	<time datetime="2016-07-07T07:11:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、常用软件快捷键"><a href="#一、常用软件快捷键" class="headerlink" title="一、常用软件快捷键"></a>一、常用软件快捷键</h2><blockquote>
-<p>系统</p>
+        <h2 id="一、选择优化的数据类型"><a href="#一、选择优化的数据类型" class="headerlink" title="一、选择优化的数据类型"></a>一、选择优化的数据类型</h2><blockquote>
+<p>原则  </p>
 </blockquote>
 <ul>
-<li>Ctrl + 空格键，自定义为 Spotlight 搜索栏</li>
+<li>更小的通常更好。  </li>
+<li>简单就好。内建类型datetime来存储日期，而不是字符串。整型存储IP等。  </li>
+<li>尽量避免NULL。NULL的列会使用更多的存储空间。  </li>
 </ul>
 <blockquote>
-<p>Terminal</p>
+<p>整数类型  </p>
 </blockquote>
-<ul>
-<li>Ctrl + A/E，将光标移动到开头和结尾</li>
-<li>Alt + 左右箭头，光标向前/后移动一个单词</li>
-<li>Ctrl + W，删除光标前一个单词</li>
-<li>Ctrl + U，清空当前行</li>
-<li>Command + K，清屏</li>
-</ul>
+<p>数字有两种：整数和实数。如果存储整数，可使用：TINYINT,SMALLINT,MEDIUMINT,INT,BIGINT,分别对应8、16、24、32、64位存储空间，存储的值得范围从-2^(N-1)到2^(N-1) -1。可选UNSIGNED属性，表示不允许负值。MySQL可以为整数类型指定宽度，例如INT(11)，但对于存储和计算来讲，INT(1)和INT(11)是相同的。</p>
 <blockquote>
-<p>Finder</p>
+<p>实数类型  </p>
 </blockquote>
-<ul>
-<li>Shift + Command + D，打开桌面文件夹</li>
-<li>Command + W，关闭窗口</li>
-<li>Command + [，后退</li>
-<li>Command + ]，前进</li>
-<li>空格键，快速查看</li>
-<li>Alt + Command + 空格键，快速打开inder</li>
-</ul>
+<p>如果不只是为了存储实数的小数部分，可以使用DECIMAL存储币BIGINT还大的整数。 </p>
+<p>MySQL既支持精确类型，也支持不精确类型。DECIMAL用于存储精确的小数。CPU支持原生浮点计算，所以浮点运算更快，使用更少的空间。但CPU不支持DECIMAL的直接计算，需要MySQL服务器自身实现。FLOAT使用4个字节存储，DOUBLE占用8个，而DECIMAL(18,9)，由于每4个字节存储9个数字，因此需要4+4+1（小数点本身）=9个。因此针对DECIMAL，只有当需要对小数进行精确计算时才使用。但一般，可以将金额乘以一百万，可以达到存储数据精确到万分之一分，便可满足需要。  </p>
 <blockquote>
-<p>MacDown</p>
+<p>字符串类型  </p>
 </blockquote>
-<ul>
-<li>Shift + Command + I，插入图片</li>
-<li>Shift + Command + K，插入链接</li>
-</ul>
-<blockquote>
-<p>Xcode</p>
-</blockquote>
-<ul>
-<li>Alt + Command + [ 或 ]，上下移动该行</li>
-<li>Command+［ 或 ]，多行缩进</li>
-</ul>
-<blockquote>
-<p>JetBrain家族-idea、python、android studio等</p>
-</blockquote>
-<p>快捷键，使用Mac OS X10.5+模板</p>
-<ul>
-<li>Command + D，复制当前行</li>
-<li>Command + delete，删除当前行</li>
-<li>Shift + enter，当光标在某行中间时，直接换行到下一行</li>
-<li>两次Shift，搜索文件并打开</li>
-</ul>
-<blockquote>
-<p>Alfred</p>
-</blockquote>
-<ul>
-<li>Option + 空格，调出搜索框</li>
-<li>find 文件名</li>
-<li>open 文件名</li>
-<li>bd 搜索内容 #百度搜索，需要配置</li>
-</ul>
-<blockquote>
-<p>Jupyter Notebook</p>
-</blockquote>
-<p>Shift-Enter    运行本单元，选中下个单元<br>Ctrl-Enter    运行本单元<br>Alt-Enter    运行本单元，在其下插入新单元<br>Y    单元转入代码状态<br>M    单元转入 markdown 状态<br>D,D    删除选中的单元<br>Enter 进入编辑模式<br>Esc 退出编辑模式<br>A 添加一行<br>TAB 代码提示<br>L 显示行数</p>
-<h2 id="二、sublime-text"><a href="#二、sublime-text" class="headerlink" title="二、sublime text"></a>二、sublime text</h2><blockquote>
-<p>插件  </p>
-</blockquote>
-<p>（1）color highlighter显示颜色<br>（2）color picker拾取颜色，快捷键Command+Shift+C<br>（3）emmet，但需要pyv8插件。Tab键代码自动补全<br>（4）javascript completions，js代码补全<br>（5）ConvertToUTF8，字符集转换为UTF-8，避免汉字乱码，需要安装插件Codecs33<br>（6）LESS，用于支持LESS高亮显示<br>（7）Less2Css，用于支持LESS编译，需安装less(编译)和less-plugin-clean-css(压缩)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g less  </span><br><span class="line">$ npm install -g less-plugin-clean-css</span><br></pre></td></tr></table></figure>
-<p>（8）SASS，用于SASS高亮显示<br>（9）SASS Build，用于支持SASS编译</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin sass</span><br></pre></td></tr></table></figure>
-<p>如报错Error: Invalid US-ASCII character “\xC2” ，可在scss文件添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">"UTF-8"</span>;</span><br></pre></td></tr></table></figure>
-<p>如需要使用watch自动编译，则需要保证路径上无中文，否则会报错：incompatible character encodings: ASCII-8BIT and UTF-8 Backtrace</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch style.scss:style.css</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>中文无法open in browser </p>
-</blockquote>
-<p>安装插件SideBarEnhancements，绑定快捷键</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+1"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"safari"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+2"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"chrome"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+3"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"firefox"</span>&#125;  &#125;,</span><br></pre></td></tr></table></figure>
+<p>1、VARCHAR，用于存储可边长字符串，比定长节省空间，但需要使用1个（列长度在255个字节以内）或2个额外字节记录字符串的长度，例如VARCHAR(10)需要11个字节，VARCHAR(1000)需要1002个字节。VARCHAR使用情形：字符串列的最大长度，比平均长度大很多，且列的更新很少。<br>2、CHAR，用于存储定长，会根据定义的字符串长度分配足够的空间。CHAR适合存储很短的字符串。需要注意，当字符串末尾有空格时，插入会被截断。<br>使用VARCHAR(5)和VARCHAR(200)存储’hello’的空间开销是一样的，但是更长的列会消耗更多的内存，所以尽量只分配真正需要的空间。<br>3、BLOB和TEXT类型用于存储很大的数据而设计的字符串数据类型，分别采用二进制和字符方式存储。BLOB没有排序规则或字符集，而TEXT类型有。<br>4、枚举类型ENUM，有时可代替字符串类型。但需要小心使用。</p>
         
-          <a class="article-more-a" href="/2015/11/20/Mac常用软件/#more">more >></a>
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/#more">more >></a>
         
       
 
@@ -995,7 +654,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/20/Mac常用软件/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/07/07/高性能MySQL（2）Schema与数据类型优化/">展开全文 >></a>
         </p>
       
 
@@ -1025,247 +684,69 @@
 
 
   
-    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-高性能MySQL（1）MySQL架构与历史" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/19/正则表达式/">正则表达式</a>
+      <a class="article-title" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">高性能MySQL（1）MySQL架构与历史</a>
     </h1>
   
 
         
-        <a href="/2015/09/19/正则表达式/" class="archive-article-date">
-  	<time datetime="2015-09-19T08:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-19</time>
+        <a href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/" class="archive-article-date">
+  	<time datetime="2016-07-03T08:22:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-07-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
-<p>常用的元字符 </p>
+        <h2 id="1-MySQL逻辑架构"><a href="#1-MySQL逻辑架构" class="headerlink" title="1 MySQL逻辑架构"></a>1 MySQL逻辑架构</h2><blockquote>
+<p>MySql安装访问</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>匹配除换行符(\n)以外的任意单个字符</td>
-</tr>
-<tr>
-<td>\</td>
-<td>转义字符</td>
-</tr>
-<tr>
-<td>[…]</td>
-<td>范围，字符集，对应字符集中的任意字符</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开始，注意如果放到方括号中表示排除。</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结束</td>
-</tr>
-<tr>
-<td>\</td>
-<td></td>
-<td>选择字符，理解为“或”</td>
-</tr>
-<tr>
-<td>()</td>
-<td>分组，用于提取括号里的内容</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词的开始或结束</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配字母或数字或下划线，等价于[A-Za-Z0-9_]</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>匹配任何非单词字符，等价于[^A-Za-Z0-9_]</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意的空白符，等价于[\f\n\r\t\v]</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意的非空白符，等价于[^\f\n\r\t\v]</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配数字字符，等价于[0-9]</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配非数字字符，等价于[^0-9]</td>
-</tr>
-</tbody>
-</table>
+<p>1、安装后忘记root密码，可使用脚本重置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://soft.vpser.net/lnmp/ext/reset_mysql_root_password.sh</span><br><span class="line">sh reset_mysql_root_password.sh</span><br></pre></td></tr></table></figure>
+<p>2、无法远程访问，添加权限，检查防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">'root'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span> WITH GRANT OPTION;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>3、修改密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user <span class="built_in">set</span> password=password(<span class="string">"123456"</span>) <span class="built_in">where</span> user=<span class="string">"root"</span>;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>常用的限定符</p>
+<p>MySql逻辑架构</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>重复0次或更多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>重复1次或更多次</td>
-</tr>
-<tr>
-<td>?</td>
-<td>重复0次或1次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>重复n次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>重复n次或更多次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>重复n到m次</td>
-</tr>
-</tbody>
-</table>
+<p><img src="/2016/07/03/高性能MySQL（1）MySQL架构与历史/1_logical_architecture.jpg" alt="MySQL逻辑架构图">  </p>
+<p>1、最上层处理连接、授权认证、安全等。<br>（1）<strong>连接管理</strong>，每个连接都会在服务器进程中拥有一个线程，连接的查询只会在这个线程中执行，该线程只能轮流在某个CPU中运行。<br>（2）<strong>安全性</strong>，会进行用户名和密码认证，还会验证是否有操作权限，可进行主机信息校验（如ip等）。  </p>
+<p>2、第二层，MySQL核心服务功能都在这，包括查询解析、分析、优化、缓存以及所有内置喊出，所有跨存储引擎的功能都在这实现：存储过程、触发器、视图等。<br>MySQL会根据解析查询，创建内部数据结构（解析树），对其进行优化，如重写查询、表的读取数据、选择合适的索引等。用户可请求优化器解释（explain）知晓服务器的优化决策。<br>针对SELECT语句，在解析查询前会检查查询缓存并直接返回查询缓存中的结果集。</p>
+<p>3、第三层包含了存储引擎，负责MySQL中数据的存储和提取。上层通过API于存储引擎进行通信。</p>
+<h2 id="二、并发控制（锁机制）"><a href="#二、并发控制（锁机制）" class="headerlink" title="二、并发控制（锁机制）"></a>二、并发控制（锁机制）</h2><blockquote>
+<p>锁的类型</p>
+</blockquote>
+<p>在处理并发请求时，可以通过实现锁系统来解决。锁系统包含<strong>共享锁</strong>（<strong>读锁</strong>）和<strong>排他锁</strong>（<strong>写锁</strong>），读锁指查询，写锁指增删改。  </p>
 <blockquote>
-<p>分枝条件</p>
+<p>锁的粒度</p>
 </blockquote>
-<p>正则表达式里的分枝条件指的是有几种规则，如果满足其中任意一种规则都应该当成匹配，具体方法是用|把不同的规则分隔开。<br>使用分枝条件时，要注意各个条件的顺序。匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。  </p>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\</td>
-<td></td>
-<td>分枝</td>
-</tr>
-<tr>
-<td>()</td>
-<td>分组</td>
-</tr>
-<tr>
-<td>#</td>
-<td>注释</td>
-</tr>
-<tr>
-<td>.*</td>
-<td>贪婪匹配</td>
-</tr>
-<tr>
-<td>.*?</td>
-<td>懒惰匹配（最小匹配）</td>
-</tr>
-</tbody>
-</table>
+<p>在给定的资源上，锁定的数据量越少，则系统的并发程序越高，只要相互之间不发生冲突，另外加锁会消耗资源，因此，针对锁粒度，就是在锁的开销和数据的安全性之间寻求平衡。每种存储引擎都可以实现自己的锁策略和锁粒度。常用的锁粒度有：表锁、行级锁和页锁。<br>1、<strong>表锁</strong>是锁定整张表，基本的锁策略，开销也最小。表级锁是不会产生死锁问题的。InnoDB、MyISAM、BDB存储引擎都支持表锁。<br>2、<strong>行级锁</strong>可最大程度地支持并发，开销最大，且只在InnoDB和XtraDB等一些存储引擎中得到实现。行级锁定也最容易发生死锁。InnoDB存储引擎支持行级锁。<br>3、<strong>页级锁定</strong>是MySQL中比较独特的一种锁定级别，锁定颗粒度介于行级锁定与表级锁之间，所以获取锁定所需要的资源开销以及所能提供的并发处理能力也同样是介于二者之间。也会产生死锁问题。BDB存储引擎支持页级锁定。  </p>
 <blockquote>
-<p>常用的反义代码</p>
+<p>一次性封锁与两段锁   </p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\W</td>
-<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意不是空白符的字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意非数字的字符</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配不是单词开头或结束的位置</td>
-</tr>
-<tr>
-<td>[^x]</td>
-<td>匹配除了x以外的任意字符</td>
-</tr>
-<tr>
-<td>[^aeiou]</td>
-<td>匹配除了aeiou这几个字母以外的任意字符</td>
-</tr>
-</tbody>
-</table>
+<p>1、<strong>一次性封锁</strong>：在sql语句的开始执行的时候，已经预先知道要涉及到那些数据，然后全部锁住，在执行完毕之后，再全部解锁！（myisam就是采用这样的锁协议）<br>两段锁： 是指每个事务的执行可以分为两个阶段：生长阶段（加锁阶段）和衰退阶段（解锁阶段）。  </p>
+<p>2、<strong>加锁阶段</strong>：在该阶段可以进行加锁操作。在对任何数据进行读操作之前要申请并获得S锁，在进行写操作之前要申请并获得X锁。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行；  </p>
+<p>3、<strong>解锁阶段</strong>：当事务释放了一个封锁以后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。 </p>
+<p>4、<strong>两段封锁法</strong>：事务开始后就处于加锁阶段，一直到执行ROLLBACK和COMMIT之前都是加锁阶段。ROLLBACK和COMMIT使事务进入解锁阶段，即在ROLLBACK和COMMIT模块中DBMS释放所有封锁。（innodb就是采取这样的锁协议） </p>
+<p>5、<strong>死锁</strong>：为两个或多个事务在同一资源上的相互占用，请求锁定对方占用的资源导致的恶性循环现象。InnoDB目前处理的方法是，将持有最少行级排他锁的事务进行回滚。  </p>
 <blockquote>
-<p>懒惰限定符</p>
+<p>隐式锁和显式锁  </p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>代码/语法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*?</td>
-<td>重复任意次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>+?</td>
-<td>重复1次或更多次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>??</td>
-<td>重复0次或1次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,m}?</td>
-<td>重复n到m次，但尽可能少重复</td>
-</tr>
-<tr>
-<td>{n,}?</td>
-<td>重复n次以上，但尽可能少重复</td>
-</tr>
-</tbody>
-</table>
-
+<p>1、<strong>隐式锁</strong>：当多个客户端并发访问同一个数据的时候，为了保证数据的一致性，数据库管理系统会自动的为该数据加锁、解锁，这种被称为隐式锁。隐式锁无需开发人员维护（包括锁粒度、加锁时机、解锁时机等） </p>
+<p>2、<strong>显式锁</strong>：当时在某些特殊的情况下需要开发人员手动的进行加锁、解锁，这种锁方式被称为显式锁。对于显式锁而言，开发人员不仅要确定锁的粒度，还需要确定加锁的时机（何时加锁）、解锁的时机（何时解锁）以及所的类型。例如SELECT … FOR UPDATE</p>
+<h2 id="三、事务"><a href="#三、事务" class="headerlink" title="三、事务"></a>三、事务</h2><blockquote>
+<p>事务是一组原子性的SQL查询，要么全部执行成功，要么全部执行失败。需要通过ACID测试。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/#more">more >></a>
+        
       
 
       
@@ -1276,7 +757,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/09/19/正则表达式/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/07/03/高性能MySQL（1）MySQL架构与历史/">展开全文 >></a>
         </p>
       
 
@@ -1306,312 +787,162 @@
 
 
   
-    <article id="post-Java基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-幸福的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/26/Java基础/">Java基础</a>
+      <a class="article-title" href="/2016/06/12/幸福的方法/">幸福的方法</a>
     </h1>
   
 
         
-        <a href="/2015/05/26/Java基础/" class="archive-article-date">
-  	<time datetime="2015-05-26T08:22:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-05-26</time>
+        <a href="/2016/06/12/幸福的方法/" class="archive-article-date">
+  	<time datetime="2016-06-12T08:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、基础概念"><a href="#一、基础概念" class="headerlink" title="一、基础概念"></a>一、基础概念</h2><ul>
-<li>java编写的程序，既是编译型的，又是解释型的。代码经过编译会生成字节码class文件，由JVM对字节码进行解释和运行。编译只进行一次，而解释在每次程序运行时都会进行。  </li>
-<li>有3个版本，Java SE（标准），Java EE（企业），Java ME（嵌入）。</li>
-<li>需安装JDK（Java Development Kits），里面包含JRE(Java Runtime Environment)。需做相关环境配置。 </li>
-<li>编译运行java程序，且Java虚拟机只会选择从main方法开始执行。</li>
+        <h2 id="一、关于幸福的几个问题"><a href="#一、关于幸福的几个问题" class="headerlink" title="一、关于幸福的几个问题"></a>一、关于幸福的几个问题</h2><blockquote>
+<ul>
+<li>你幸福嘛？</li>
+<li>你有哪些对幸福的疑惑，身边有哪些幸福的假象？</li>
+<li>幸福到底是<strong>什么</strong>？</li>
+<li><strong>为什么</strong>要追求幸福？</li>
+<li><strong>怎么</strong>追求幸福？</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ javac -d . HelloWorld.java //javac -d destdir srcFile</span><br><span class="line">$ java HelloWorld //java java类名</span><br><span class="line">$ java HelloWorld arg1 arg2 //增加arg1和arg2两个参数，赋值给main方法的参数</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二、数据类型和基础类库"><a href="#二、数据类型和基础类库" class="headerlink" title="二、数据类型和基础类库"></a>二、数据类型和基础类库</h2><p>Java支持两种数据类型，基本类型和引用类型。</p>
-<blockquote>
-<p>基本数据类型</p>
 </blockquote>
-<p>包括数值型（整数、浮点）、字符型和布尔型。  </p>
+<p>1、常常会问，“你幸福吗？”<br>那么，我怎样才能判断自己是否幸福？幸福有统一的标准嘛？“我是否幸福”这个问题本身就暗示着对幸福的两极看法：要么幸福，要么不幸福。在这种理解中，幸福成为一个终点，一旦到达，我们对幸福的追求就结束了。实际上这个终点并不存在，这一误解的执着只会导致不满和挫败感。我们永远都可以更幸福，与其问自己是否幸福，不如去探求“怎样才能更幸福？”</p>
+<p>2、你有哪些对幸福的疑惑，身边有哪些幸福的假象？ </p>
 <blockquote>
-<p>包装类</p>
+<ul>
+<li>所有人都有追求幸福的权利，但大家都有“我过的不是很幸福”的感慨。</li>
+<li>我们要的不止是自己的幸福，还要比别人幸福。</li>
+<li>随着物质水平的提高，焦虑症和抑郁症的患病率急剧上升。我们过着以亿万富翁为目标的人生游戏，但财富带给我们的似乎是不幸福。 </li>
+<li>幸福好像很难获取？上帝给了每一个人幸福的机会，人们都知道，却不知如何得到它。之前接触的“成功学”，例如幸福的五大步骤、成功的三大秘密、找到完美爱人的四大法宝，全是空头承诺。</li>
+<li>成功一定能带来幸福嘛？人往往会被所谓“做到某件事就能幸福”的“幸福神话”所束缚。有没有曾经在实现了一个重要目标之后，却没有感到你期望的喜悦？成就感和喜悦慢慢消失，感到空虚和迷惘，不能带来持久的幸福。这时，你会灰心、绝望，因为没有目标你就失去了对幸福的指望。 </li>
+<li>为了获得幸福必须经历痛苦？周围人生活得并不开心，他们沮丧、压力重重却并不在乎，只是努力的为了追求好成绩、高薪和晋升而奋斗。在追求和达成这些目标的过程中，很少能体会到发自内心的快乐，他们认定要成功就必须以经历痛苦作为代价。</li>
+<li>幸福的感悟，是不是和遗传特征有关，那还有没有方法变得更幸福？</li>
+</ul>
 </blockquote>
-<p>java.lang包中的Integer、Long和Short类，将基本类型封装成一个类，都是Number的子类。  </p>
-<p>Java为8种基本类型提供面向对象的支持，定义了响应的引用类型，称之为基础数据类型的包装类。JDK1.5以后提供自动装箱和自动拆箱功能，简化两者的转换。</p>
+<h2 id="二、幸福是什么？"><a href="#二、幸福是什么？" class="headerlink" title="二、幸福是什么？"></a>二、幸福是什么？</h2><blockquote>
+<p>幸福汉堡模型</p>
+</blockquote>
+<p>所谓幸福，即为充满快乐，能感受到人生意义的经验。快乐，代表现在的美好时光，属于当下的利益；意义则来自于目标，一种未来的利益。<br>以快乐（当下的利益）和意义（未来的利益）为轴心分为4类。先看这4种汉堡模型。    </p>
+<p><img src="/2016/06/12/幸福的方法/hanbao.jpg" alt=""></p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">封装类</th>
-<th style="text-align:center">对应基本类型</th>
-<th>构造方法</th>
+<th>汉堡模型</th>
+<th style="text-align:center">过程重要</th>
+<th style="text-align:center">结果重要</th>
+<th style="text-align:center">目标感</th>
+<th style="text-align:center">幸福感</th>
+<th style="text-align:center">昨天今天明天</th>
+<th style="text-align:center">对幸福的理解</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">Integer</td>
-<td style="text-align:center">int</td>
-<td>Integer(int number); Integer(String str);</td>
+<td>奔波忙碌型</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">为了未来而活</td>
+<td style="text-align:center">等考上大学/有好工作/退休了，就幸福了 </td>
 </tr>
 <tr>
-<td style="text-align:center">Boolean</td>
-<td style="text-align:center">boolean</td>
-<td>Boolean(boolean value);Boolean(String str);</td>
-<td></td>
+<td>享乐主义型</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">为了现在而活</td>
+<td style="text-align:center">寻找哪怕短暂的快乐，逃避痛苦，自以为得到幸福。</td>
 </tr>
 <tr>
-<td style="text-align:center">Byte</td>
-<td style="text-align:center">byte</td>
-<td>Byte(byte value); Byte(String str);</td>
-<td></td>
+<td>虚无主义型</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">低</td>
+<td style="text-align:center">沉迷于过去而放弃现在和未来</td>
+<td style="text-align:center">无论自己做什么都无法得到幸福</td>
 </tr>
 <tr>
-<td style="text-align:center">Character</td>
-<td style="text-align:center">char</td>
-<td>Character(char value)</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center">Double</td>
-<td style="text-align:center">double</td>
-<td>Double(double value); Double(String str);</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center">Short</td>
-<td style="text-align:center">short</td>
-<td>Short(short value); Short(String str);</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center">Long</td>
-<td style="text-align:center">long</td>
-<td>Long(long value); Long(String str);</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center">Float</td>
-<td style="text-align:center">float</td>
-<td>Float(float value); Float(String str);</td>
-</tr>
-</tbody>
-</table>
-<p>包装类实现了基本类型变量和字符串的转换。把字符串转换为基本类型的方式：</p>
-<ul>
-<li>包装类parseXxx(String s)静态方法（除Charater外）</li>
-<li>包装类valueOf(String s)静态方法</li>
-</ul>
-<p>String类提供多个重载valueOf()静态方法，将基本类型变量转换成字符串。</p>
-<blockquote>
-<p>字符串 </p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>序列</th>
-<th>操作</th>
-<th style="text-align:center">方法</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>连接字符串</td>
-<td style="text-align:center">+</td>
-</tr>
-<tr>
-<td>2</td>
-<td>长度</td>
-<td style="text-align:center">str.length();</td>
-</tr>
-<tr>
-<td>3</td>
-<td>字符串查找</td>
-<td style="text-align:center">str.indexOf(substr); str.lastIndexOf(substr)</td>
-</tr>
-<tr>
-<td>4</td>
-<td>获取指定索引的字符</td>
-<td style="text-align:center">str.charAt(6);</td>
-</tr>
-<tr>
-<td>5</td>
-<td>获取子字符串</td>
-<td style="text-align:center">str.substring(int beginIndex); str.substring(int beginIndex,int endIndex);</td>
-</tr>
-<tr>
-<td>6</td>
-<td>去空格</td>
-<td style="text-align:center">str.trim();</td>
-</tr>
-<tr>
-<td>7</td>
-<td>字符串替换</td>
-<td style="text-align:center">str.replace(char oldChar,char newChar);</td>
-</tr>
-<tr>
-<td>8</td>
-<td>字符串的开始与结尾</td>
-<td style="text-align:center">str.startsWith(String prefix); str.endsWith(String suffix);</td>
-</tr>
-<tr>
-<td>9</td>
-<td>是否相等</td>
-<td style="text-align:center">equals();equalsIgnoreCase()</td>
-<td style="text-align:center">“==”比较的是两个字符串的地址是否相同。</td>
-</tr>
-<tr>
-<td>10</td>
-<td>按字典顺序比较</td>
-<td style="text-align:center">str.compareTo(String otherstr);</td>
-<td style="text-align:center">如在参数之前为负整数，相等为0，之后为正整数 </td>
-</tr>
-<tr>
-<td>11</td>
-<td>字母大小写转换</td>
-<td style="text-align:center">str.toLowerCase(); str.toUpperCase();</td>
-</tr>
-<tr>
-<td>12</td>
-<td>字符串分割</td>
-<td style="text-align:center">str.split(String sign);  str.split(String sign,int limit);</td>
-<td style="text-align:center">可限定分割次数     </td>
-</tr>
-<tr>
-<td>13</td>
-<td>字符串格式化</td>
-<td style="text-align:center">str.format(String format,Object…args);</td>
-<td style="text-align:center">可对日期、时间以及组合，各种进制（如%d为十进制）、其他类型进行格式化。 </td>
-</tr>
-<tr>
-<td>14</td>
-<td>使用正则表达式</td>
-<td style="text-align:center">str.matches(regex);</td>
-</tr>
-<tr>
-<td>14</td>
-<td>StringBuilder类</td>
-<td style="text-align:center">bf.append(content); bf.insert(int offset,arg);  bf.delete(int start,int end);</td>
-<td style="text-align:center">字符串创建后，长度固定，内容不能被改变和变异。+会生成新的String实例，如需要频繁修改，会增加系统开销              </td>
+<td>感悟幸福型</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">享受当下的快乐以及未来的幸福</td>
+<td style="text-align:center">现在和未来的利益有时是冲突的，但这是可以平衡的</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
-<p>数组： </p>
+<p>奔波忙碌型  </p>
 </blockquote>
-<ol>
-<li>声明 int arr[];（或int[] arr;） arr=new int[5];等价于int arr[]=new int[5];   </li>
-<li>初始化数组 int arr[]=new int[]{1,2,3,4,5};等价于int arr[]={1,2,3,4,5};  </li>
-<li>使用一维数组 int value=arr[int i];  </li>
-<li>遍历数组 for(int k=0,k&lt;str.length();k++)或 foreach. </li>
-<li>排序 Array.sort(object);  </li>
-<li>复制数组 Array.copyOfRange(arr,int newlength);Array.copyOfRange(arr,int fromIndex,int toIndex);前包后不包括。  </li>
-<li>排序算法 冒泡排序、直接选择排序，详情见算法导论。</li>
-</ol>
-<blockquote>
-<p>数学运算：Math类</p>
-</blockquote>
-<p>三角函数、指数对数函数、取整函数、最值函数等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Math.PI;   </span><br><span class="line">Math.E;   </span><br><span class="line">Math.sin(Math.PI);  </span><br><span class="line">Math.exp(<span class="number">2</span>);  </span><br><span class="line">Math.log(<span class="number">2</span>);  </span><br><span class="line">Math.sqrt(<span class="number">4</span>);  </span><br><span class="line">Math.cbrt(<span class="number">8</span>);  </span><br><span class="line">Math.pow(<span class="number">2</span>,<span class="number">2</span>); <span class="comment">//2的2次方  </span></span><br><span class="line">Math.ceil(<span class="number">1.1</span>); <span class="comment">//大于等于参数的最小整数  </span></span><br><span class="line">Math.floor(<span class="number">1.2</span>); <span class="comment">//小于等于参数的最大整数  </span></span><br><span class="line">Math.rint(<span class="number">1.2</span>); <span class="comment">//最接近参数的整数，如一样近取偶数。  </span></span><br><span class="line">Math.abs(-<span class="number">1.1</span>);  </span><br><span class="line">Math.max(<span class="number">4</span>,<span class="number">8</span>);  </span><br><span class="line">Math.min(<span class="number">4</span>,<span class="number">8</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>随机数</p>
-</blockquote>
-<p>Math.random();随机数，0.0&lt;=值产生&lt;1.0</p>
-<p>(int)(Math.Random()*n)，是根据当前时间作为参数的伪随机数。</p>
-<p>也可使用java.util.Random类来生成。</p>
-<blockquote>
-<p>大数字运算：java.math.BigInteger类和java.math.BigDecimal类。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger value=<span class="keyword">new</span> BigInteger(String val);</span><br><span class="line">BigDecimal value=<span class="keyword">new</span> BigDecimal(<span class="keyword">double</span> val);</span><br><span class="line">BigDecimal value=<span class="keyword">new</span> BigDecimal(String val);</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">常用类</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Scanner</td>
-<td>键盘输入</td>
-</tr>
-<tr>
-<td style="text-align:center">System</td>
-<td>标准输入输出</td>
-</tr>
-<tr>
-<td style="text-align:center">Runtime</td>
-<td>运行环境</td>
-</tr>
-<tr>
-<td style="text-align:center">Object</td>
-<td>基类</td>
-</tr>
-<tr>
-<td style="text-align:center">Date</td>
-<td>日期</td>
-</tr>
-<tr>
-<td style="text-align:center">Calendar</td>
-<td>日历</td>
-</tr>
-<tr>
-<td style="text-align:center">Pattern</td>
-<td>正则表达式</td>
-</tr>
-<tr>
-<td style="text-align:center">Matcher</td>
-<td>正则匹配</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>枚举常量</p>
-</blockquote>
-<p>类型安全，运行效率高。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public enum Constants&#123;</span><br><span class="line">	Constans_A,</span><br><span class="line">	Constans_B,</span><br><span class="line">	Constans_C</span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">枚举常用方法：  </span><br><span class="line">values() 返回枚举成员的数组形式。valueOf将字符串转换为枚举实例，ordinal()得到枚举成员的位置索引。</span><br><span class="line"></span><br><span class="line"><span class="comment">## 三、类和对象</span></span><br><span class="line">&gt; 类</span><br><span class="line"></span><br><span class="line">从面向过程到面向对象，先抽象出对象，识别属性和行为。类就是封装属性和行为的载体，对象是类的一个实例。</span><br><span class="line"></span><br><span class="line">类定义=成员变量（状态数据）+方法（行为）</span><br><span class="line"></span><br><span class="line">面向过程中，一切以函数为中心，而面向对象中，一切以对象为中心。</span><br></pre></td></tr></table></figure>
-<p>吃(猪八戒,西瓜) //面向过程<br>猪八戒.吃(西瓜) //面向对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">类定义=成员变量（状态数据）+方法（行为）</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">[修饰符] class 类名</span><br><span class="line">&#123;</span><br><span class="line">	0到多个构造器定义</span><br><span class="line">	0到多个成员变量</span><br><span class="line">	0到多个方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<blockquote>
-<p>对象</p>
-</blockquote>
+<p>1、一分耕耘，一分收获。  </p>
+<p>2、观念  </p>
 <ul>
-<li>对象创建的根本途径是构造器，通过new关键字来调用某个类的构造器。Test test=new Test();   </li>
-<li>访问对象的属性和行为，使用“对象.类成员”来获取。  </li>
-<li>对象的成员变量数据实际存在在堆内存里，而引用变量只是指向该堆内存里的对象，引用变量存放在栈内存中。</li>
-<li>对象的比较，使用 “==”运算符代表两个对象引用的地址是否相等。  </li>
-<li>对象的销毁，当对象引用超过作用范围，被会视为垃圾。将对象赋值为null。  </li>
-<li>针对垃圾回收机制，finalize()方法可能无效，可使用System.gc()来手动执行回收。 </li>
-<li>this，总是指向调用该方法的对象，是本类对象的引用。Java允许对象的一个成员直接调用另一个成员，可以省略this前缀。 </li>
+<li>只有实现一个有价值的目标，才能换取未来的幸福，即使牺牲现在的快乐。  </li>
+<li>成功即是幸福，导致把目标实现后的放松和解脱当成幸福。这种解脱让我们感到快乐，但不等同于幸福。</li>
+</ul>
+<p>3、行为  </p>
+<p>我们习惯了去关注自己的目标，却不在意当下感受，最终导致盲目的追求。</p>
+<blockquote>
+<p>享乐主义型  </p>
+</blockquote>
+<p>1、人生得意须尽欢,莫使金樽空对月  </p>
+<p>2、观念</p>
+<ul>
+<li>快乐至上，只要不断的享受短暂的快乐，就算没有实现目标，也可以得到幸福。  </li>
+<li>寻找快乐，逃避痛苦。如果吸毒能带来快感，就会去吸毒；如果工作辛苦，就会逃避。将辛苦与痛苦、快感与幸福等同化。  </li>
+<li>没有目的和挑战，盲目地满足欲望，生活变得毫无意义。</li>
 </ul>
 <blockquote>
-<p>变量</p>
+<p>虚无主义型  </p>
 </blockquote>
-<p>变量分为成员变量和局部变量。</p>
-<p>1、成员变量分为静态变量和实例变量。</p>
-<p>静态变量，也叫类变量，添加static关键字，能以“类名.类变量”的方式调用，也允许以“实例.类变量”的方式调用。</p>
-<p>实例变量，能以“实例.实例变量”的方式调用。</p>
-<p>成员变量的初始化，当系统加载类或者创建该类实例时，会自动为成员变量分配内存空间，并指定初始值。以引用类型为例，栈内存为引用的变量，堆内存包含类变量（只创建一次）和实例变量（每次初始化均创建）。</p>
-<p>2、局部变量分为形参、方法局部变量和代码块局部变量。与成员变量不同，局部变量除形参之外，都必须显式初始化，否则不可以访问它们。</p>
-<p>局部变量的初始化，局部变量定义后，系统不会为局部变量执行初始化，并未分配内存，等到为变量赋初始值后才分配内存。栈内存中的变量无须系统垃圾回收，随方法或代码块的结束而结束。</p>
-<p>Java允许局部变量和成员变量同名，方法局部变量会覆盖成员变量，如在方法里需引用成员变量，可使用this（实例变量）或类名（类变量）作为调用者来访问。</p>
-<blockquote>
-<p>方法</p>
-</blockquote>
+<p>1、极尽繁华,不过一掬细沙  </p>
+<p>2、观念  </p>
 <ul>
-<li>方法不能独立定义，必须属于类或对象。</li>
-<li>永远不能独立执行方法，执行方法必须使用类或对象作为调用者。</li>
-<li>Java里方法的参数传递只有值传递这一种，无论是基本类型的值的复制，还是引用类型在栈内存中引用变量的地址的值的复制。</li>
-<li>静态方法中不能使用this关键字，不能直接调用非静态方法，以“类名.静态方法”的方式调用。     </li>
-<li>类的main主方法，是类的入口点，它定义了程序从何处开始，是静态的，调用其他方法也必须静态，且没有返回值。主方法的形参为数组，代表程序的n个参数。 </li>
-<li>类的构造方法：没有返回值，名称与类名称相同。Java类至少包含一个构造器，系统默认会提供一个无参数的构造器。构造器可重载。 </li>
+<li>无论自己做什么都无法得到幸福。  </li>
+<li>做忙碌奔波型的人不快乐，做享乐主义的人不开心，于是空虚、痛苦。  </li>
 </ul>
+<p>3、行为：  </p>
+<ul>
+<li>放弃追求幸福，不再相信生活的意义。  </li>
+<li>当失败或无助时，选择放弃，感到绝望。</li>
+</ul>
+<blockquote>
+<p>感悟幸福型  </p>
+</blockquote>
+<p>1、观念：  </p>
+<ul>
+<li>如何才能享受当下的快乐以及未来的幸福？  </li>
+<li>眼前和未来的收益有时是冲突的，有些情况下会顾此失彼，但多数情况下是可以平衡的。  </li>
+</ul>
+<p>2、行为<br>    为考试而学习、为未来而攒钱、为实现目标而超时工作，会带来些许不快，但重点是，就算我们必须牺牲一些眼前的快乐，也不要忘记我们仍然可以从生活的方方面面尽可能的发掘幸福。</p>
+<h2 id="三、为什么要追求幸福？"><a href="#三、为什么要追求幸福？" class="headerlink" title="三、为什么要追求幸福？"></a>三、<strong>为什么</strong>要追求幸福？</h2><p>1、幸福是生命本身的意图和意义，是人类存在的目标和终点。幸福的人生产性更高，更长寿。而金钱和健康是人生的重要基础。因此，衡量商业成就时，金钱是终极财富；而衡量人生成就的标准，应该是幸福。</p>
+<p>2、幸福和成功：成功可以带来幸福，而幸福可以帮助人们在生活的方方面面都非常成功，包括婚姻、友谊、收入、工作和健康。他们之间有着强烈的相互作用。但是幸福不是成功的结果，它比成功先行。 </p>
+<p>3、幸福和金钱：金钱是实现幸福这个目标的一种手段，而不是以牺牲幸福（目标）来换取金钱（手段）。除了一些极为贫困连基本生活都得不到满足的地区外，幸福和财富的关联性非常低。我们习惯性的先考虑物质，主要是物质容易计算，而感情和意义则难以衡量。除了金钱以外，还有很多能让人幸福的东西。 </p>
+<p>4、幸福和快乐：情感会产生动机，但光有情感是不够的，如果要幸福，必须体验积极的情感，可能会有情绪的起伏，但会在整体上保持一种积极的人生态度。他经常被积极的情绪推动着，比如欢乐和爱，很少被愤怒这些负面情绪所控制。快乐是常态，而痛苦是小插曲，我们都应该为活着本身而感到由衷的快乐并感恩。期盼无时无刻的快乐只会带来失望和不满，并导致负面情绪的产生。  </p>
+<p>5、幸福和意义：当想到有意义的生活时，我们经常谈到目标，但有目标或者实现目标并不能保证我们必然感受到生命的意义。好成绩、大房子，这些目标实现后我们可能仍然感到空虚。我们要过真正有意义的生活，目标必须是自发的，而不是为了满足社会标准，或是迎合他人的期望。这种目标感，可被称为使命感，这才是生命的喜悦。</p>
+<p>6、幸福与潜力：对自己最有意义的生活时，需要同时考虑如何充分的发挥自身的潜力，真正令人满意的幸福总是伴随着充分发挥自身的才能来改变世界。 </p>
+<p>7、真正的幸福，推崇以现实为基础的理想主义。它并不代表对不安情绪或生活困难的免疫，幸福的人一样要去面对困难，克服生活里的种种障碍。</p>
+<p>8、幸福大萧条，当负面情绪持续时间和强度压倒了正面情绪，情感也会破产，例如抑郁。</p>
+<h1 id="那么，怎么追求幸福呢？"><a href="#那么，怎么追求幸福呢？" class="headerlink" title="那么，怎么追求幸福呢？"></a>那么，怎么追求幸福呢？</h1><h2 id="四、设定幸福目标"><a href="#四、设定幸福目标" class="headerlink" title="四、设定幸福目标"></a>四、设定幸福目标</h2><blockquote>
+<p>为什么要设定目标？  </p>
+</blockquote>
+<p>1、要得到幸福，人生目标是不可或缺的。目标的责任，是“解放我们”，摆脱“我现在在哪”的不安和“我该去哪”的忧虑，才能享受“当下”。<br>2、目标与成功，有目标的人的成功概率要比没有目标的人大很多，目标向我们传达了一种克服困难的信念。优秀的目标通常会更容易带来成功。如果是将经济或社会上的成功当做目标本身的话，会造成奔波忙碌型的模式。  </p>
         
-          <a class="article-more-a" href="/2015/05/26/Java基础/#more">more >></a>
+          <a class="article-more-a" href="/2016/06/12/幸福的方法/#more">more >></a>
         
       
 
@@ -1623,7 +954,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/05/26/Java基础/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/06/12/幸福的方法/">展开全文 >></a>
         </p>
       
 
@@ -1653,101 +984,110 @@
 
 
   
-    <article id="post-HTML5基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-客户端屏幕适配方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/23/HTML5基础/">HTML5基础</a>
+      <a class="article-title" href="/2016/05/31/客户端屏幕适配方案/">客户端屏幕适配方案</a>
     </h1>
   
 
         
-        <a href="/2015/03/23/HTML5基础/" class="archive-article-date">
-  	<time datetime="2015-03-23T07:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-03-23</time>
+        <a href="/2016/05/31/客户端屏幕适配方案/" class="archive-article-date">
+  	<time datetime="2016-05-31T07:15:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、HTML5相关"><a href="#一、HTML5相关" class="headerlink" title="一、HTML5相关"></a>一、HTML5相关</h2><blockquote>
-<p>名词</p>
-</blockquote>
-<p>XML可拓展标记语言<br>HTML 超文本标记语言<br>XHTML 可拓展超文本标记语言<br>DOM 文档对象模型，浏览器内部模型<br>CSS 层叠样式表(Cascading Style Sheets)</p>
-<p>HTML5 =标记+JavaScript API+CSS<br>默认为JavaScript+CSS  </p>
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>随着苹果发布两种新尺寸的大屏iPhone 6，iOS平台尺寸适配问题终于还是来了，加之原有混乱的android平台尺寸，移动设计全面进入“杂屏”时代。</p>
+<p>了解主流手机分辨率<br>主流手机相关数据，可以参考<a href="http://www.umindex.com" target="_blank" rel="noopener">友盟指数</a>相关报告，由于设备更新换代，建议查找近期的指数报告。<br><img src="/2016/05/31/客户端屏幕适配方案/fenbianlv.jpg" alt=""></p>
+<h2 id="二、相关概念"><a href="#二、相关概念" class="headerlink" title="二、相关概念"></a>二、相关概念</h2><p>像素(Pixel)：屏幕的成像单位，像素点的简称。</p>
 <blockquote>
-<p>基本概念</p>
+<p>iOS的几个概念</p>
 </blockquote>
-<p>1、新特性：兼容、合理、效率、安全、分离、简化、通用、无插件 </p>
-<p>2、组织：WHATWG(浏览器厂商组成的Web Hypertext Applications Technology Working Group)、W3C、IETF（因特网工程任务组，下辖HTTP）</p>
-<p>3、HTML5构成：Canvas、Channel、Cross-document、Geolocation、WebSocket、Web Storage、XMLHttpRequest </p>
-<p>4、发展历程：HTML3.2–&gt;4.0–&gt;4.0.1–&gt;XHTML1.0–&gt;1.1–&gt;HTML5。<br>XHTML失败的原因：追求理论的完满，把用户放在链条的最底端，忍受严格错误处理带来的各种麻烦。    </p>
-<p>5、伯斯塔尔法则，发送时要保守、接收时要开放。像人类社会中的一个社交原则，“对自己严格，对他人宽容”。  </p>
-<p>6、设计理念：避免不必要的复杂性、支持已有的内容、解决现实的问题、求真务实、平稳退化、最终用户优先。</p>
-<blockquote>
-<p>HTML简介、特性、结构、语法、标签</p>
-</blockquote>
-<p>1、标签：文档结构标签、文本格式标签、字符格式标签、列表标签、链接标签、多媒体标签、表格标签、表单标签<br>2、属性：基本属性(class/id/style)、语言属性(lang/dir)、键盘属性(accesskey/tabindex)、内容属性(alt替换文本/title提示文本)    </p>
-<blockquote>
-<p>XHTML</p>
-</blockquote>
-<p>结构（定义文档类型、声明命名空间），语法（闭合、小写、属性引号、废除name属性等），类型（过渡型、严格型、框架型），DTD（关于标签的语法规则）    </p>
-<blockquote>
-<p>HTML5改动：（以HTML4为基础）</p>
-</blockquote>
-<p>1、语法：精简文档类型声明、字符编码（推荐UTF-8），版本兼容性（可以省略标记的元素、具有布尔值的属性、省略引号） </p>
-<p>2、元素：新增结构元素header、footer、nav（导航）、section（区域）、article（内容）、aside（相关内容）。新增功能元素：hgroup、figure、video、audio、embed、canvas等。废除元素frameset、frame、noframes，只支持iframe。 </p>
-<p>3、属性：新增表单属性、链接属性和其他属性。废除可用css替代的属性、新增全局属性（contentEditable、designMode、hidden、spellcheck、tabindex）。    </p>
-<p>4、其他功能：Selectors API，JS日志和调试（console.log替代alert()，Firebug、WebInspector等开发者工具），window.JSON（parse和stringify函数），DOM Level3，浏览器的JS引擎。</p>
-<p>5、css前缀：<br>－o－：以Presto为渲染引擎的浏览Opera的私有属性。<br>－moz－：以Gecko为渲染引擎的浏览器Mozilla　Firefox的私有属性　<br>－webkit－：以Webkit为渲染引擎的浏览器Safari、Google　Chrome的私有属性<br>－ms－：IE的私有属性的</p>
-<blockquote>
-<p>浏览器的内核引擎，基本上是四分天下</p>
-</blockquote>
-<ul>
-<li>Trident: IE 以Trident 作为内核引擎;  </li>
-<li>Gecko: Firefox 是基于 Gecko 开发;  </li>
-<li>WebKit: Safari, Google Chrome,傲游3,猎豹浏览器,百度浏览器 opera浏览器 基于 Webkit 开发。  </li>
-<li>Presto: Opera的内核，但由于市场选择问题，主要应用在手机平台–Opera mini</li>
-</ul>
-<p>注：2013年2月Opera宣布转向WebKit引擎<br>注：2013年4月Opera宣布放弃WEBKIT，跟随GOOGLE的新开发的blink引擎</p>
-<blockquote>
-<p>html5位置  </p>
-</blockquote>
-<p>navigator.geolocation包含3个方法，getCurrentPositon、watchPosition、clearWatch。  </p>
-<p>Position包含coords，Coordinates包含latitude, longitude, accuracy, altitude等  </p>
-<blockquote>
-<p>web交流</p>
-</blockquote>
-<p>XMLHttpRequest的open、onload(onreadystatechange)、send方法，和jsonp的区别<br>JSON的stringify和parse</p>
-<p>ajax和jsonp其实本质上是不同的东西。ajax的核心是通过XmlHttpRequest获取非本页内容，而jsonp的核心则是动态添加script标签来调用服务器提供的js脚本。</p>
-<p>一个众所周知的问题，Ajax直接请求普通文件存在跨域无权限访问的问题，甭管你是静态页面、动态网页、web服务、WCF，只要是跨域请求，一律不准；不过我们又发现，Web页面上调用js文件时则不受是否跨域的影响（不仅如此，我们还发现凡是拥有”src”这个属性的标签都拥有跨域的能力，比如script、img、iframe）；</p>
-<h2 id="二、HTML5表单"><a href="#二、HTML5表单" class="headerlink" title="二、HTML5表单"></a>二、HTML5表单</h2><blockquote>
-<p>input输入类型  </p>
-</blockquote>
-<p>1、原有：text、radio、checkbox、select option、password、button、submit、image、hidden、reset、file。  </p>
-<p>2、新增：email、url、number、range、date、month、week、time、datetime、datetime-local、search、tel、color等。  </p>
-<blockquote>
-<p>新增input属性<br>autocomplete、autofocus、form、表单重写（formaction、formmethod等） 、height与width（input的image类型）、list（配合datalist元素使用）、限值属性（min、max、step）、multiple、pattern、placeholder、require  </p>
-<p>新增form元素</p>
-</blockquote>
-<p>datalist、keygen、output。新增form属性：autocomplete、novalidate等</p>
-<h2 id="三、HTML5画布"><a href="#三、HTML5画布" class="headerlink" title="三、HTML5画布"></a>三、HTML5画布</h2><blockquote>
-<p>获取上下文</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c=<span class="built_in">document</span>.getElementById(<span class="string">"myCanvas"</span>);</span><br><span class="line"><span class="keyword">var</span> ctx=c.getContext(<span class="string">"2d"</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>绘制矩形</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始绘制矩形。</span></span><br><span class="line">ctx.fillStyle=<span class="string">"#ff00ff"</span>;</span><br><span class="line">ctx.strokeStyle=<span class="string">"blue"</span>;</span><br><span class="line">ctx.fillRect(<span class="number">20</span>,<span class="number">20</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">ctx.strokeRect(<span class="number">20</span>,<span class="number">20</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"><span class="comment">// 保存当前Canvas状态。</span></span><br><span class="line">ctx.save();</span><br><span class="line"><span class="comment">//绘制另外一个矩形。    </span></span><br><span class="line">ctx.fillStyle=<span class="string">"#ff0000"</span>;</span><br><span class="line">ctx.strokeStyle=<span class="string">"green"</span>;</span><br><span class="line">ctx.fillRect(<span class="number">140</span>,<span class="number">20</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">ctx.strokeRect(<span class="number">140</span>,<span class="number">20</span>,<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"><span class="comment">// 恢复第一个矩形的状态。</span></span><br><span class="line">ctx.restore();</span><br><span class="line"><span class="comment">// 绘制两个矩形。</span></span><br><span class="line">ctx.fillRect(<span class="number">20</span>,<span class="number">140</span>,<span class="number">50</span>,<span class="number">50</span>);</span><br><span class="line">ctx.strokeRect(<span class="number">80</span>,<span class="number">140</span>,<span class="number">50</span>,<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>绘制圆形</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.beginPath();</span><br><span class="line">ctx.arc(<span class="number">100</span>,<span class="number">75</span>,<span class="number">75</span>,<span class="number">0</span>,<span class="built_in">Math</span>.PI*<span class="number">1.5</span>,<span class="literal">false</span>);</span><br><span class="line">ctx.closePath();</span><br><span class="line">ctx.stroke();</span><br><span class="line"><span class="comment">//ctx.fill();</span></span><br></pre></td></tr></table></figure>
+<p>1、像素密度(ppi)：「Pixels Per Inch」,每英寸的像素点数。<br>以iphone3gs来计算，</p>
+<p><img src="http://latex.codecogs.com/gif.latex?ppi=\frac{\sqrt{X^2+Y^2}}{inch}=\frac{\sqrt{320^2+480^2}}{3.5}=163ppi" title="公式"></p>
+<p>2、point，是指独立于物理设备的逻辑坐标单位（逻辑分辨率），在3GS上，1point=1px。在4上，1point=2px。在6p上，1point=3px。数值也等于与标准ppi（163px/inc）的比例。对于开发者来说，iOS绘制图形的API依然沿袭point。</p>
+<p>3、scale，缩放因子，scale=point/pixel，根据scale，图片的倍图对应成@1x,@2x,@3x。<br><img src="/2016/05/31/客户端屏幕适配方案/pt.jpg" alt=""><br>3、pt,磅，需要和point的简称区分开，是国际通行的印刷单位，是绝对长度单位，为1/72英寸，可用于UIFont设置字体大小，和photoshop里的px的换算规则为，1pt=72/96=3/4px。</p>
+<table>
+<thead>
+<tr>
+<th>ios设备</th>
+<th>屏幕物理分辨率(px)</th>
+<th>逻辑分辨率(px)</th>
+<th>像素密度(ppi)</th>
+<th>scale</th>
+<th>屏幕尺寸(宽×高)(inch)</th>
+<th>状态栏高度</th>
+<th>导航栏高度</th>
+<th>标签栏高度 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iPhone6P、6SP、7P</td>
+<td>1242×2208</td>
+<td>414×736</td>
+<td>401</td>
+<td>@3x</td>
+<td>5.5(3.06×6.22 )</td>
+<td>60px</td>
+<td>132px</td>
+<td>146px</td>
+</tr>
+<tr>
+<td>iPhone6、6S、7</td>
+<td>750×1334</td>
+<td>375×667</td>
+<td>326</td>
+<td>@2x</td>
+<td>4.7(2.64×5.44)</td>
+<td>40px</td>
+<td>88px</td>
+<td>98px</td>
+</tr>
+<tr>
+<td>iPhone5、5C、5S</td>
+<td>640×1136</td>
+<td>320×568</td>
+<td>326</td>
+<td>@2x</td>
+<td>4.0(2.3×4.9)</td>
+<td>40px</td>
+<td>88px</td>
+<td>98px</td>
+</tr>
+<tr>
+<td>iPhone4、4S</td>
+<td>640×960</td>
+<td>320×480</td>
+<td>326</td>
+<td>@2x</td>
+<td>3.5(2.3×4.5)</td>
+<td>40px</td>
+<td>88px</td>
+<td>98px</td>
+</tr>
+<tr>
+<td>iPhone 3GS</td>
+<td>320×480</td>
+<td>320×480</td>
+<td>163</td>
+<td>@1x</td>
+<td>3.5(2.4×4.5)</td>
+<td>20px</td>
+<td>44px</td>
+<td>49px</td>
+</tr>
+</tbody>
+</table>
         
-          <a class="article-more-a" href="/2015/03/23/HTML5基础/#more">more >></a>
+          <a class="article-more-a" href="/2016/05/31/客户端屏幕适配方案/#more">more >></a>
         
       
 
@@ -1759,7 +1099,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/03/23/HTML5基础/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/31/客户端屏幕适配方案/">展开全文 >></a>
         </p>
       
 
@@ -1789,36 +1129,40 @@
 
 
   
-    <article id="post-初识Markdown" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Xcode的runsript案例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/19/初识Markdown/">初识Markdown</a>
+      <a class="article-title" href="/2016/05/20/Xcode的runsript案例/">Xcode的runscript案例</a>
     </h1>
   
 
         
-        <a href="/2014/10/19/初识Markdown/" class="archive-article-date">
-  	<time datetime="2014-10-19T10:22:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-10-19</time>
+        <a href="/2016/05/20/Xcode的runsript案例/" class="archive-article-date">
+  	<time datetime="2016-05-20T03:53:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、Markdown使用场景"><a href="#一、Markdown使用场景" class="headerlink" title="一、Markdown使用场景"></a>一、Markdown使用场景</h2><p>以前只在github上接触了下md文件，遇到倒是简单，也通用。如今自己搭建博客，便得系统的了解下Markdown了。</p>
-<p>说到使用场景，基本有以下几种：</p>
-<ul>
-<li>需维护型文档：文档需要在多平台使用，如邮件、wiki平台、同事传阅、网站发布等。一般文档常用Word来写，但是如果文档一需要在网上发布就麻烦了，格式没有跟过来。如果一开始就是markdown语法，可以通用解决。</li>
-<li>项目文档：项目文档一般都是用md来写的，github的项目的Readme.md就是markdown文档。</li>
-<li>创意简历、博客：还有一种装逼手段就是用markdown来编写博客和简历，那绝对是创意来着的，适合程序员。</li>
-</ul>
-<h2 id="二、Markdown语法"><a href="#二、Markdown语法" class="headerlink" title="二、Markdown语法"></a>二、Markdown语法</h2><p>语法这玩意，我也是现学，找到一篇Markdown的文章，可以参考<a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">『Markdown 语法说明』</a></p>
+        <h2 id="一、runscript介绍"><a href="#一、runscript介绍" class="headerlink" title="一、runscript介绍"></a>一、runscript介绍</h2><p>在我理解，runscript是在app编译时，通知Xcode额外做的事情，可以通过script编写脚本来实现。</p>
+<h2 id="二、runscript案例1-appledoc"><a href="#二、runscript案例1-appledoc" class="headerlink" title="二、runscript案例1-appledoc"></a>二、runscript案例1-appledoc</h2><p>appledoc是我们较为常用的文档生成工具，<a href="https://github.com/tomaz/appledoc" target="_blank" rel="noopener">『github地址传送门』</a></p>
+<p>安装方法请执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/tomaz/appledoc.git</span><br><span class="line">$ <span class="built_in">cd</span> appledoc</span><br><span class="line">$ sudo sh install-appledoc.sh</span><br></pre></td></tr></table></figure>
+<p>安装完成后，我们想着每次在编译ios app时，都能自动生成文档。</p>
+<p>在项目中新建一个target，选择如下图所示的类别。这样会在项目中多出一个target。</p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addtarget.jpg" alt=""></p>
+<p>对该target的Build Phases上添加run script phrase。</p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addrunscript.jpg" alt=""></p>
+<p>为了自动生成文档，需要使用appledoc的生成命令，可供粘贴。如果对命令不熟练，也可以使用appledoc –help进行查看。</p>
+<p><img src="/2016/05/20/Xcode的runsript案例/Xcode的runscript案例/addscript.jpg" alt=""></p>
+<p>script脚本如下，供copy。需要注意的是outputPath，为文档的输出路径。ignore，可以选择不生成某些路径下的文档。最后的参数，”{PROJECT_DIR}/runscript)”，需要根据自己需要生成的项目做调整。</p>
         
-          <a class="article-more-a" href="/2014/10/19/初识Markdown/#more">more >></a>
+          <a class="article-more-a" href="/2016/05/20/Xcode的runsript案例/#more">more >></a>
         
       
 
@@ -1830,7 +1174,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/10/19/初识Markdown/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/20/Xcode的runsript案例/">展开全文 >></a>
         </p>
       
 
@@ -1862,7 +1206,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 
@@ -1874,7 +1218,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1961,10 +1305,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -2029,15 +1369,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2049,11 +1389,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2061,19 +1405,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2085,15 +1425,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2105,11 +1453,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2122,6 +1470,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">

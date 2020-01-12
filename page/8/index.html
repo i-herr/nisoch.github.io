@@ -149,34 +149,131 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发证书技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/09/15/第一篇博客/">第一篇博客</a>
+      <a class="article-title" href="/2016/05/15/iOS开发证书技巧/">iOS开发证书技巧</a>
     </h1>
   
 
         
-        <a href="/2014/09/15/第一篇博客/" class="archive-article-date">
-  	<time datetime="2014-09-15T11:23:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2014-09-15</time>
+        <a href="/2016/05/15/iOS开发证书技巧/" class="archive-article-date">
+  	<time datetime="2016-05-15T05:04:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>终于用<a href="https://hexo.io/" target="_blank" rel="noopener">『Hexo』</a>搭建完博客，感谢Litten提供的Yilia主题，真是爱不释手。以后，这里就是我的小窝啦。</p>
-<p>先把整个流程梳理一遍，算是个hello world吧。</p>
-<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>安装可以参考如下命令，blog为文件夹目录，可自己定义。<br>如果提示npm没装，需要先安装npm。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br><span class="line">$ hexo init [FOLDER_NAME]</span><br><span class="line">$ <span class="built_in">cd</span> [FOLDER_NAME]</span><br><span class="line">$ npm install</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<h2 id="换个主题"><a href="#换个主题" class="headerlink" title="换个主题"></a>换个主题</h2><p>说实话，hexo默认给的主题，只能是凑活。如果要逼格高一点，那就得自己动手了。hexo官网有推荐一些<a href="https://hexo.io/themes/" target="_blank" rel="noopener">『Theme』</a>，可以链接到github上下载，现在使用的<a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">『Yilia主题』</a>的资源可以点击查看。把他clone到本地，保存在目录/themes下即可。下图是我自己目前保存的一些主题。</p>
-<p><img src="/2014/09/15/第一篇博客/yilia.jpg" alt=""></p>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>开发证书，其实挺简单的，但如果某处搞不好，也是很费时间的。且member center里的内容虽说万变不离其宗，但几年下来终归还是有变化的。完整的流程我就不写了，可以自行百度大把文章，这边谈谈证书使用的小技巧。</p>
+<h2 id="一、证书制作流程图"><a href="#一、证书制作流程图" class="headerlink" title="一、证书制作流程图"></a>一、证书制作流程图</h2><p><img src="/2016/05/15/iOS开发证书技巧/flow.png" alt=""></p>
+<p>对于概念不懂的同学，可以到这脑补下<a href="http://blog.csdn.net/phunxm/article/details/42685597" target="_blank" rel="noopener">『iOS Provisioning Profile(Certificate)与Code Signing详解』</a></p>
+<h2 id="二、关于Provisioning-Profile供应配置管理"><a href="#二、关于Provisioning-Profile供应配置管理" class="headerlink" title="二、关于Provisioning Profile供应配置管理"></a>二、关于Provisioning Profile供应配置管理</h2><p>我们在项目配置时，虽然经常将Code Signing的Provisioning Profile配置成”Automatic”，但还是需要去developer.apple.com上下载所有的mobileprovision文件。如果这些文件经常变化，可以这样：</p>
+<p>1、首先cd到这些mobileprovision文件的目录”~/Library/MobileDevice/Provisioning Profiles”，然后删除所有的文件。<br>可使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm *.mobileprovision</span><br></pre></td></tr></table></figure>
+<p>2、这样再看Xcode的时候，就找不到任何provisioning profile了。这个时候不需要一个一个的添加。而是访问XCode的Preferences&gt; Accounts，在Apple IDs里面找到你的帐号，右下角有个View Details，这时，你就可以download下所有网站上配置的文件了。一个按钮搞定。</p>
+<p><img src="/2016/05/15/iOS开发证书技巧/certificate.png" alt=""></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/15/iOS开发证书技巧/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
         
-          <a class="article-more-a" href="/2014/09/15/第一篇博客/#more">more >></a>
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CocoaPods使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/02/CocoaPods使用/">CocoaPods使用</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/02/CocoaPods使用/" class="archive-article-date">
+  	<time datetime="2016-05-02T03:22:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、关于ruby、gem和brew（如已安装可跳过）"><a href="#一、关于ruby、gem和brew（如已安装可跳过）" class="headerlink" title="一、关于ruby、gem和brew（如已安装可跳过）"></a>一、关于ruby、gem和brew（如已安装可跳过）</h2><p>ruby，一种脚本语言，和python类似。Mac OS X上自带。<br><br>gem，是个用ruby写的应用程序，用来安装软件包的程序。<br><br>brew，又叫Homebrew，是Mac OSX上的软件包管理工具，能使用命令在Mac中方便的安装软件或者卸载软件。</p>
+<blockquote>
+<p>安装和卸载brew</p>
+</blockquote>
+<p>install brew</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>remove brew（有时出问题需要卸载后再安装）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>额外装下node</p>
+</blockquote>
+<p>跑题了。可以顺带装下node。    </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>升级mac自带ruby（使用RVM,需要brew支持）</p>
+</blockquote>
+<p>1、系统自带ruby一般较老，可以使用RVM进行升级。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -L get.rvm.io | bash -s stable</span><br></pre></td></tr></table></figure>
+<p>2、载入 RVM 环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">source</span> ~/.rvm/scripts/rvm</span><br></pre></td></tr></table></figure>
+<p>3、检查一下是否安装正确</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm -v</span><br></pre></td></tr></table></figure>
+<p>4、列出已知的ruby版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm list known</span><br></pre></td></tr></table></figure>
+<p>5、安装目前最新的2.3版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm install 2.3</span><br></pre></td></tr></table></figure>
+<p>6、查看ruby和gem版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line">ruby 2.3.0p0 (2015-12-25 revision 53290) [x86_64-darwin15]</span><br><span class="line">$ gem -v</span><br><span class="line">2.5.1</span><br></pre></td></tr></table></figure>
+<p>7、如果需要单独更新gem</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem update --system</span><br></pre></td></tr></table></figure>
+<p>8、gem源更新，目前官方默认的地址被墙，使用淘宝镜像替换。<a href="https://ruby.taobao.org/" target="_blank" rel="noopener">https://ruby.taobao.org/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gem sources -a https://gems.ruby-china.org/  </span><br><span class="line">$ gem sources -r https://rubygems.org/</span><br><span class="line">$ gem sources -l</span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line">https://gems.ruby-china.org/</span><br></pre></td></tr></table></figure>
+<p>好啦。环境准备结束。</p>
+<h2 id="二、CocoaPods安装"><a href="#二、CocoaPods安装" class="headerlink" title="二、CocoaPods安装"></a>二、CocoaPods安装</h2><p><a href="https://www.cocoapods.org" target="_blank" rel="noopener">『官网传送门』</a>是比较权威的参考。</p>
+        
+          <a class="article-more-a" href="/2016/05/02/CocoaPods使用/#more">more >></a>
         
       
 
@@ -188,7 +285,1428 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2014/09/15/第一篇博客/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/02/CocoaPods使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript高级程序设计（4）引用类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/12/JavaScript高级程序设计（4）引用类型/">JavaScript高级程序设计（4）引用类型</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/12/JavaScript高级程序设计（4）引用类型/" class="archive-article-date">
+  	<time datetime="2016-03-12T12:40:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>在ECMAScript中，引用类型是一种<strong>数据结构</strong>，可以认为是类（两者概念不一致）。<strong>对象</strong>是某个特定引用类型的实例。新对象使用new操作符后跟一个<strong>构造函数</strong>来创建。</p>
+<h2 id="一、Object类型"><a href="#一、Object类型" class="headerlink" title="一、Object类型"></a>一、Object类型</h2><blockquote>
+<p>创建Object实例</p>
+</blockquote>
+<ol>
+<li>new加构造函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">person.name=<span class="string">"iherr"</span>;</span><br><span class="line">person.age=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>对象字面量</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person=&#123;<span class="attr">name</span>:<span class="string">"iherr"</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">var</span> person=&#123;&#125;;</span><br><span class="line">person.name=<span class="string">"iherr"</span>;</span><br><span class="line">person.age=<span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>访问Object对象属性</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alert(person[<span class="string">"name"</span>]);</span><br><span class="line">alert(person.name);</span><br></pre></td></tr></table></figure>
+<h2 id="二、Array类型"><a href="#二、Array类型" class="headerlink" title="二、Array类型"></a>二、Array类型</h2><p>Array可保存任何类型的数据，大小可动态调整。</p>
+<blockquote>
+<p>创建数组</p>
+</blockquote>
+<ol>
+<li>new加构造函数</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> colors=<span class="built_in">Array</span>(); <span class="comment">//可省略new</span></span><br><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">20</span>); <span class="comment">//创建length为20的数组</span></span><br><span class="line"><span class="keyword">var</span> colors=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>);<span class="comment">//创建包含3个字符串的数组</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>数组字面量</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[];<span class="comment">//创建空数组</span></span><br><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];<span class="comment">//创建包含3个字符串的数组</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>访问Array数组</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line">alert(colors[<span class="number">0</span>]);<span class="comment">//访问第1项</span></span><br><span class="line">colors[<span class="number">2</span>]=<span class="string">"black"</span>;<span class="comment">//修改第3项</span></span><br><span class="line">colors[<span class="number">3</span>]=<span class="string">"brown"</span>;<span class="comment">//新增第4项</span></span><br><span class="line">alert(colors.length)<span class="comment">//显示数组项数，该属性可写，用于重新设定数组长度</span></span><br><span class="line">colors[colors.length]=<span class="string">"gray"</span>;<span class="comment">//length也用于添加新项</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>检测是否为数组</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(value <span class="keyword">instanceof</span> <span class="built_in">Array</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(value))&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>转换方法</p>
+</blockquote>
+<p>对象都具有toLocaleString()、toString()和valueOf()方法，数组的toString()会返回数组中每个值的字符串拼接的以逗号分隔的字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line">alert(colors.toString()); <span class="comment">//red,blue,green</span></span><br><span class="line">alert(colors.valueOf());  <span class="comment">//red,blue,green</span></span><br><span class="line">alert(colors);  <span class="comment">//red,blue,green</span></span><br><span class="line">alert(colors.join(<span class="string">"|"</span>));<span class="comment">//red|blue|green</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>栈方法(LIFO)末端添加项，末端移除项</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors =<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count=colors.push(<span class="string">"red"</span>,<span class="string">"green"</span>);<span class="comment">//推入后返回数组长度</span></span><br><span class="line">alert(count);<span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> item=colors.pop(); <span class="comment">//弹出后返回移除的数组最后一项</span></span><br><span class="line">alert(item) <span class="comment">//green</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>队列方法(FIFO)末端添加项，前端移除项</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors =<span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="keyword">var</span> count=colors.push(<span class="string">"red"</span>,<span class="string">"green"</span>);<span class="comment">//推入后返回数组长度</span></span><br><span class="line">alert(count);<span class="comment">//2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> item=colors.shift(); <span class="comment">//弹出后返回移除的数组第一项</span></span><br><span class="line">alert(item) <span class="comment">//red</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>排序方法</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> values=[<span class="number">0</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>];</span><br><span class="line">values.reverse();<span class="comment">//顺序反转</span></span><br><span class="line">alert(values);<span class="comment">//15,10,5,1,0</span></span><br><span class="line"></span><br><span class="line">values.sort();<span class="comment">//按数组项toString后的排序</span></span><br><span class="line">alert(values);<span class="comment">//0,1,10,15,5</span></span><br><span class="line">	</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">compare</span>(<span class="params">value1,value2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(value1&lt;value2)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (value1&gt;value2)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">values.sort(compare);</span><br><span class="line">alert(values);<span class="comment">//0,1,5,10,15</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>操作方法</p>
+</blockquote>
+<ol>
+<li>concat，连接数组</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"blue"</span>,<span class="string">"green"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2=colors.concat(<span class="string">"yellow"</span>,[<span class="string">"black"</span>,<span class="string">"brown"</span>]);</span><br><span class="line">alert(colors); <span class="comment">//red,blue,green</span></span><br><span class="line">alert(colors2); <span class="comment">//red,blue,green,yellow,black,brown</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>slice，切片创建新数组，参数为起始和结束位置，结束位置可省略。返回起始和结束为止之间的项（不包含结束位置的项）</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> colors=[<span class="string">"red"</span>,<span class="string">"green"</span>,<span class="string">"blue"</span>,<span class="string">"yellow"</span>,<span class="string">"purple"</span>];</span><br><span class="line"><span class="keyword">var</span> colors2=colors.slice(<span class="number">1</span>);<span class="comment">//green,blue,yellow,purple </span></span><br><span class="line"><span class="keyword">var</span> colors3=colors.slice(<span class="number">1</span>,<span class="number">4</span>);<span class="comment">//green,blue,yellow</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/12/JavaScript高级程序设计（4）引用类型/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript高级程序设计（3）执行环境和作用域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/">JavaScript高级程序设计（3）执行环境和作用域</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/" class="archive-article-date">
+  	<time datetime="2016-03-09T14:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><p>Javascript 这门语言与其他的大部分语言相比，有很多特殊性，这是很多人喜欢它或者讨厌它的原因。其中变量的作用域问题，对很多初学者来说就是一个又一个「坑」。</p>
+<p>变量的作用域在编程技能中算是一个基本概念，而在 Javascript 中，这一基本概念往往挑战者初学者的常识。</p>
+<h2 id="一、几个概念"><a href="#一、几个概念" class="headerlink" title="一、几个概念."></a>一、几个概念.</h2><p>1、<strong>执行环境</strong>（execution context），定义了变量或函数有权访问的其他数据，决定了它们各自的行为，执行环境有全局执行环境和函数执行环境之分。</p>
+<p>2、<strong>变量对象</strong>（variable object），环境中定义的所有变量和函数都保存在这个对象中。如果该环境是函数，变量对象就是活动对象，活动对象最初只包含一个变量，即 arguments 对象。<br>每个执行环境都有一个与之关联的变量对象。</p>
+<p>3、某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁（全局执行环境直到应用程序退出，如关闭网页或浏览器，才被销毁）。也就是进行自动垃圾回收。</p>
+<p>4、<strong>作用域链</strong>（scope chain），当执行流进入一个函数时，函数环境就会被推入一个环境栈，在函数执行之后，栈将其环境弹出，把控权返回给之前的执行环境。作用域链就是环境栈。每次进入一个新执行环境，都会创建一个用于搜索变量和函数的作用域链。</p>
+<h2 id="二、理解作用域链"><a href="#二、理解作用域链" class="headerlink" title="二、理解作用域链"></a>二、理解作用域链</h2><p>有一段代码，放在全局作用域中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br><span class="line">func3();</span><br></pre></td></tr></table></figure>
+<p>这段代码的作用域可以这样理解，每个内部环境可以通过作用域链依次访问它外部环境，但外部环境不能访问内部环境中的任何变量和函数。</p>
+<ol>
+<li>开始时，作用域链（环境栈）只有 Global(Window)</li>
+<li>当执行 func1()，作用域链（环境栈）推入 func1，变成：func1, Global。查找任何变量，先在 func1 的执行环境中找，如果找不到，再在 Global 的执行环境中找。</li>
+<li>当执行到 func2()，作用域链（环境栈）推入 func1，变成：func2, func1, Global</li>
+<li>func2 执行完毕后，func2 的环境被销毁，内存释放，作用域链（环境栈）变为：func1, Global</li>
+<li>func1 执行完毕，作用域链（环境栈）变为：Global</li>
+<li>再执行 func3，作用域链（环境栈）变为：func3, Global</li>
+<li>func3 执行完毕，作用域链（环境栈）变为：Global</li>
+<li>当浏览器（或标签）关闭，Global 销毁。</li>
+</ol>
+<h2 id="三、理解变量的作用域"><a href="#三、理解变量的作用域" class="headerlink" title="三、理解变量的作用域"></a>三、理解变量的作用域</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">'global'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkScope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">'local'</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(scope); <span class="comment">// local</span></span><br><span class="line">&#125;</span><br><span class="line">checkScope();</span><br><span class="line"><span class="built_in">console</span>.log(scope); <span class="comment">// global</span></span><br></pre></td></tr></table></figure>
+<p>上面的例子中，声明了全局变量 scope 和函数体内的局部变量 scope。在函数体内部，局部变量的优先级比通明的全局变量要高，如果一个局部变量的名字与一个全局变量相同，那么，在声明局部变量的函数体范围内，局部变量将覆盖同名的全局变量。</p>
+<p>下面再看一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">scope = &apos;global&apos;;</span><br><span class="line">function checkScope()&#123;</span><br><span class="line">    scope = &apos;local&apos;; </span><br><span class="line">    console.log(scope); // local</span><br><span class="line">    myScope = &apos;local&apos;;</span><br><span class="line">    console.log(myScope); // local</span><br><span class="line">&#125;</span><br><span class="line">checkScope();</span><br><span class="line">console.log(scope); // local</span><br><span class="line">console.log(myScope); // local</span><br></pre></td></tr></table></figure>
+<p>对于初学者来说，可能会有两个疑问：为什么在函数体外，scope 的值也变成了 local ？为什么在函数体外可以访问 myScope 变量？</p>
+<p>这两个问题都源于一个特性。在全局作用域中声明变量可以省略 var 关键字，但是如果在函数体内声明变量时不使用 var 关键字，就会发生上面的现象。首先，函数体内的第一行语句，把全局变量中的 scope 变量的值改变了。而在声明 myScope 变量时，由于没有使用 var 关键字，Javascript 就会在全局范围内声明这个变量。因此，在声明局部变量时使用 var 关键字是个很好的习惯。</p>
+<h2 id="四、没有「块级作用域」"><a href="#四、没有「块级作用域」" class="headerlink" title="四、没有「块级作用域」"></a>四、没有「块级作用域」</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span><br><span class="line">	var color = &quot;blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">alert(color);    //&quot;blue&quot;</span><br></pre></td></tr></table></figure>
+<p>这里是在一个if语句中定义了变量color。如果是在C、C++或Java中，color会在if语句执行完毕后被销毁。但在JavaScript中，if语句中的变量声明会将变量添加到当前的执行环境（在这里是全局环境）中。</p>
+<p>如果要更加强调上文中 函数中声明的所有变量，无论是在哪里声明的，在整个函数中它们都是有定义的 这句话，那么还可以在后面跟一句话：函数中声明的所有变量，无论是在哪里声明的，在整个函数中它们都是有定义的，即使是在声明之前。对于这句话，有个经典的困扰初学者的「坑」。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">function test()&#123;</span><br><span class="line">    console.log(a);</span><br><span class="line">    var a = 10;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p>上面的例子中，控制台输出变量 a 的值为 undefined，既不是全局变量 a 的值 2,也不是局部变量 a 的值 10。首先，局部变量在整个函数体内都是有定义的，因此，局部变量 a 会在函数体内覆盖全局变量 a，而在函数体内，在 var 语句之前，它是不会被初始化的。如果要读取一个未被初始化的变量，将会得到一个默认值 undefined。</p>
+<p>所以，上面示例中的代码与下面的代码时等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a = 2;</span><br><span class="line">function test()&#123;</span><br><span class="line">    var a;</span><br><span class="line">    console.log(a);</span><br><span class="line">    a = 10;</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+<p>可见，把所有的函数声明集合起来放在函数的开头是个良好的习惯。</p>
+<h2 id="五、JS变量的本质"><a href="#五、JS变量的本质" class="headerlink" title="五、JS变量的本质"></a>五、JS变量的本质</h2><p>可能很多人已经注意到，在 Javascript 当中，一个变量与一个对象的一个属性，有很多相似的地方，实际上，它们并没有什么本质区别。在 Javascript 中，任何变量都是某个特定对象的属性。</p>
+<p>全局变量都是全局对象的属性。在 Javascript 解释器开始运行且没有执行 Javascript 代码之前，会有一个「全局对象」被创建，然后 Javascript 解释器会给它与定义一些属性，这些属性就是我们在 Javascript 代码中可以直接使用的内置的变量和方法。之后，每当我们定义一个全局变量，实际上是给全局对象定义了一个属性。</p>
+<p>在客户端的 Javascript 当中，这个全局变量就是 Window 对象，它有一个指向自己的属性 window ，这就是我们常用的全局变量。</p>
+<p>对于函数的局部变量，则是在函数开始执行时，会有一个对应的「调用对象」被创建，函数的局部变量都作为它的属性而存储。这样可以防止局部变量覆盖全局变量。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/09/JavaScript高级程序设计（3）执行环境和作用域/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript高级程序设计（2）函数参数传递" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">JavaScript高级程序设计（2）函数参数传递</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/" class="archive-article-date">
+  	<time datetime="2016-03-06T14:48:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、两种不同数据类型的值"><a href="#一、两种不同数据类型的值" class="headerlink" title="一、两种不同数据类型的值"></a>一、两种不同数据类型的值</h2><p>1、基本类型值，指简单的数据段，对于undefined、null、boolean、number、string这5种简单数据类型可以直接操作保存在变量中的实际值，也就是按值访问。</p>
+<p>2、引用类型值，指那些可能由多个值构成的对象，只能操作对象的引用而不是实际的对象，所以要得到引用类型这种值只能按引用访问。</p>
+<p>3、ECMAScript中所有函数的参数都是按值传递的。</p>
+<h2 id="二、声明变量时不同的内存分配"><a href="#二、声明变量时不同的内存分配" class="headerlink" title="二、声明变量时不同的内存分配"></a>二、声明变量时不同的内存分配</h2><p>1、基本类型值：存储在栈（stack）中的简单数据段，也就是说，它们的值直接存储在变量访问的位置。<br>这是因为这些原始类型占据的空间是固定的，所以可将他们存储在较小的内存区域 — 栈中，这样存储便于迅速查寻变量的值。</p>
+<p>2、引用类型值：存储在堆（heap）中的对象，也就是说，存储在变量处的值是一个指针（point），指向存储对象的内存地址。<br>这是因为：引用值的大小会改变，所以不能把它放在栈中，否则会降低变量查寻的速度。相反，放在变量的栈空间中的值是该对象存储在堆中的地址。地址的大小是固定的，所以把它存储在栈中对变量性能无任何负面影响。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/stack_heap.png" alt="内存分配差异"></p>
+<p>3、不同的内存分配机制也带来了不同的访问机制：</p>
+<p>在ECMAScript中是不允许直接访问保存在堆内存中的对象的，所以在访问一个对象时，首先得到的是这个对象在堆内存中的地址，然后再按照这个地址去获得这个对象中的值，这就是按引用访问。而基本类型的值则是可以直接访问到的。</p>
+<h2 id="三、复制变量时的不同"><a href="#三、复制变量时的不同" class="headerlink" title="三、复制变量时的不同"></a>三、复制变量时的不同</h2><p>1、基本类型值：在将一个保存着基本类型值的变量复制给另一个变量时，会将原始值的副本赋值给新变量，此后这两个变量是完全独立的，他们只是拥有相同的value而已。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy1.png" alt="基本类型值复制"></p>
+<p>2、引用类型值：在将一个保存着对象内存地址的变量复制给另一个变量时，会把这个内存地址赋值给新变量（因为这个引用值只能按引用访问得到），也就是说这两个变量都指向了堆内存中的同一个对象，他们中任何一个作出的改变都会反映在另一个身上。<br>这里要理解的一点就是，复制对象时并不会在堆内存中新生成一个一模一样的对象，只是多了一个保存指向这个对象指针的变量罢了。<br><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/copy2.png" alt="引用类型值复制"></p>
+<h2 id="四、函数参数的传递"><a href="#四、函数参数的传递" class="headerlink" title="四、函数参数的传递"></a>四、函数参数的传递</h2><p>现在是难理解的地方了，现在进入正题。<br>首先明确一点：ECMAScript中所有函数的参数都是按值来传递的。但是为什么涉及到基本数据类型与引用类型的值时仍然有区别呢，还不就是因为内存分配时的差别。</p>
+<p>1、基本类型值：只是把变量里的值传递给参数，之后参数和这个变量互不影响，这个很好理解，不再赘述。</p>
+<p>2、引用类型值：对象变量里面的值是这个对象在堆内存中的内存地址，因此它传递的值也就是这个内存地址，这也就是为什么函数内部对这个参数的修改会体现在外部的原因了，因为它们都指向同一个对象。</p>
+<p><img src="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/transmit.png" alt="函数参数的传递"></p>
+<p>用代码解释可能理解更形象：<br>注：代码范例来自JS高程P71。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    obj.name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    obj=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    obj.name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">setName(person); </span><br><span class="line"></span><br><span class="line"><span class="comment">//根据上述函数参数的特点，可以利用arguments对象来重写这个函数：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params"> </span>) </span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>( );</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将参数person传入setName函数，函数执行步骤入下：</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setName</span>(<span class="params">person</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=person; <span class="comment">//将arguments[0]和person指向同一个对象</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Nicholas"</span>; <span class="comment">//也即person.name="Nicholas"</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>]=<span class="keyword">new</span> <span class="built_in">Object</span>; <span class="comment">//重新定义arguments[0]。这时，arguments[0]已经跟 person“脱钩”</span></span><br><span class="line">    <span class="built_in">arguments</span>[<span class="number">0</span>].name=<span class="string">"Greg"</span>; <span class="comment">//这行代码跟person已经没有关系了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果自然很明朗，没悬念</span></span><br><span class="line">alert(person.name); <span class="comment">// "Nicholas";</span></span><br></pre></td></tr></table></figure>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p>在ECMAScript中，所谓参数按值传递就是，将形式参数初始化为实际参数的值。或者说将所传递的实际参数的值复制到函数内部的arguments数组中。对于基本类型值，就是在函数内部创建了一个该值的副本；对于引用类型值则复制了一个指向某个对象的指针。所传递的参数依次对应于arguments数组中的arguments[0],arguments[1]等元素。</p>
+<p>而按引用传递，则相当于将形式参数初始化为实际参数本身。</p>
+<p>注意：一个是只传递变量的值，一个是传递整个变量。这两者的内涵是完全不同的。<br>我们知道，ECMAScript中，每个变量都是一个用于保存值的占位符。如果参数是对像，则参数按值传递，意味着在函数内部，只能操作实际参数（对像）的属性和值，而不能操作实际参数（对像）本身。也就是说，你可以通过函数来改变函数外部所传入对像（参数）的属性和属性值；但你不能删除该变量，或改变此变量的引用对象。</p>
+<p>所以在对像参数传递时，最重要的是要理解，所谓的按值传递，意味着函数只能操作对像的属性和值，而不能操作对像本身。</p>
+<p>准确的说，JS中的基本类型按值传递，对象类型按<strong>共享传递</strong>的(call by sharing，也叫按对象传递、按对象共享传递)。最早由Barbara Liskov. 在1974年的GLU语言中提出。该求值策略被用于Python、Java、Ruby、JS等多种语言。<br>该策略的重点是：调用函数传参时，函数接受对象实参引用的副本(既不是按值传递的对象副本，也不是按引用传递的隐式引用)。它和按引用传递的不同在于：在共享传递中对函数形参的赋值，不会影响实参的值。如下面例子中，不可以通过修改形参o的值，来修改obj的值。虽然引用是副本，引用的对象是相同的。它们共享相同的对象，所以修改形参对象的属性值，也会影响到实参的属性值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/06/JavaScript高级程序设计（2）函数参数传递/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-JavaScript高级程序设计（1）基础语法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">JavaScript高级程序设计（1）基础语法</a>
+    </h1>
+  
+
+        
+        <a href="/2016/03/03/JavaScript高级程序设计（1）基础语法/" class="archive-article-date">
+  	<time datetime="2016-03-03T04:36:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><h2 id="一、JavaScript简介"><a href="#一、JavaScript简介" class="headerlink" title="一、JavaScript简介"></a>一、JavaScript简介</h2><p><img src="/2016/03/03/JavaScript高级程序设计（1）基础语法/js.png" alt="JS"></p>
+<p>1、产生：1995年由Netscape提出，从简单的输入验证器发展成强大的变成语言。随着微软和JScipt加入竞争，形成了ECMAScipt的标准。JS版本号不一，一般都以ECMAScript兼容性和对DOM支持情况为准。  </p>
+<p>2、JavaScript组成：ECMAScript（核心，包含语言的语法、类型、语句、关键字、保留字、操作符、对象）、DOM(文档对象模型)、BOM（浏览器对象模型，如navigator、location、screen对象、cookies支持等）   </p>
+<p>3、在HTML中，通过&lt;script&gt;元素来使用JS，且标签尽量放到&lt;/body&gt;前来加快解析。通过&lt;noscript&gt;平稳退化不支持JS的浏览器，使用[CData[JSCode]]来平稳退化XHTML。</p>
+<h2 id="二、JavaScript基础"><a href="#二、JavaScript基础" class="headerlink" title="二、JavaScript基础"></a>二、JavaScript基础</h2><blockquote>
+<p>语法</p>
+</blockquote>
+<ul>
+<li>动态类型，定义变量用var操作符</li>
+<li>undefined：变量未赋值，null：变量类型为Object的空值（空指针）  </li>
+<li>区分大小写  </li>
+<li>标识符（变量、函数、参数、属性等），驼峰</li>
+<li>单行多行注释</li>
+<li>语句分号结尾</li>
+</ul>
+<blockquote>
+<p>数据类型  </p>
+</blockquote>
+<p>Undefined、Null、Boolean、Number、String、Object  </p>
+<ul>
+<li>typeof操作符，返回多一个function。</li>
+<li>undefined派生自null值的，相等性测试返回true。  </li>
+<li>undefined、null、0/NaN、空字符串，转换成布尔为false。</li>
+<li>0代表八进制、0x代表十六进制，浮点计算会产生舍入误差。Number.MIN_VALUE和Number.MAX_VALUE为ECMAScript能保存的最大和最小值，超出了会转换成Infinity。isNaN用来判断是否是“非数值”。  </li>
+<li>数值转换，Number()用于任何类型、parseInt(string,进制)和parseFloat()用于字符串转换，进制默认为10进制。  </li>
+<li>string，可使用双引号或单引号表示，有些特殊字符字面量需要使用’\’转义。可使用 num.toString(进制)将其他类型转换为字符串，进制默认为10进制。  </li>
+<li>object，定义：var o =new Object();</li>
+</ul>
+<blockquote>
+<p>操作符</p>
+</blockquote>
+<p>1、一元操作符（递增和递减、加和减表示正负）</p>
+<p>2、位操作符，涉及补码，负数的补码=正数的二进制的反码加1。</p>
+<ul>
+<li>按位非 NOT（~）  </li>
+<li>按位与 AND（&amp;）  </li>
+<li>按位或 OR（|）  </li>
+<li>按位异或 XOR（^）  </li>
+<li>左移(&lt;&lt;)，不影响符号位  </li>
+<li>有符号的右移（&gt;&gt;），不影响符号位  </li>
+<li>无符号的右移（&gt;&gt;&gt;），如果是负数，会变成正数  </li>
+</ul>
+<p>3、布尔操作符  </p>
+<ul>
+<li>逻辑非（!）</li>
+<li>逻辑与（&amp;&amp;）</li>
+<li>逻辑或（||）</li>
+</ul>
+<p>4、相等操作符</p>
+<ul>
+<li>相等/不相等（==/!=），转换后比较</li>
+<li>全等/不全等(===/!==)，仅比较不转换</li>
+</ul>
+<blockquote>
+<p>流控制语句</p>
+</blockquote>
+<ul>
+<li>if</li>
+<li>do-while</li>
+<li>while</li>
+<li>for</li>
+<li>for-in</li>
+</ul>
+<blockquote>
+<p>函数：</p>
+</blockquote>
+<ul>
+<li>定义函数时指定形参，调用函数时提供实参。  </li>
+<li>基本类型，按值传递。数组或对象时，按指针传递。  </li>
+<li>函数外声明为全局变量，只要页面存在就活着。函数内声明为局部变量，函数结束就消失。</li>
+<li>构造函数，是创建对象的函数。首字母大写。</li>
+<li>赋给一个对象属性的函数成为方法。方法可以使用this来引用调用这个方法的对象。</li>
+<li>window对象、document对象，以及document.getElementById方法会返回一个元素对象。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/03/JavaScript高级程序设计（1）基础语法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-也谈金融" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/22/也谈金融/">也谈金融</a>
+    </h1>
+  
+
+        
+        <a href="/2016/02/22/也谈金融/" class="archive-article-date">
+  	<time datetime="2016-02-22T04:03:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-02-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
+<p>金融的本质</p>
+</blockquote>
+<ul>
+<li>货币的时间价值</li>
+<li>未来的不确定性</li>
+</ul>
+<blockquote>
+<p>股指</p>
+</blockquote>
+<p>指数本身永远是货币现象。GDP自然增长和物价的增长，会让名义利润趋势性增加。在一个很中庸的假设下，2020年的上证7000点市盈率大约与2015年初的4000点类似。所以，6124点会不会突破，是个伪命题，不确定仅在于时间。</p>
+<blockquote>
+<p>国家金融策略</p>
+</blockquote>
+<ul>
+<li>把过往中国投资过剩的生产能力，通过“一带一路”释放到国外去。</li>
+<li>把过往中国如饥似渴的消费能力，通过“自贸区”吸收到国内来。</li>
+<li>把过往中国盲目乱窜的巨量货币，通过“股票市场”转移到实体去。</li>
+<li>把过往中国无处可去的外汇储备，通过“亚投行”投资到同盟国去。</li>
+</ul>
+<blockquote>
+<p>选股原则</p>
+</blockquote>
+<ul>
+<li>行业有好的变革</li>
+<li>企业有好的变革</li>
+<li>有稳定的现金流</li>
+<li>资金放量</li>
+<li>不易出现信用危机</li>
+<li>被低估</li>
+</ul>
+<blockquote>
+<p>个人金融底线</p>
+</blockquote>
+<p>巴菲特说过那句话，过去238年来，从来没有人因为做空自己的祖国而发财的。但是巴菲特老先生可能不太了解我们这个神奇的国度，在这个号称5000年历史的国度，有过无数因为出卖自己的祖国自己的同胞自己的党派而发财而大富大贵的先例。</p>
+<p>技术分析就是扯淡。如果一个理论，不可证伪，那压根就没有任何科学价值。太多太多的技术分析流派，宣示的理论，连可证伪性都不具备。拥有的，不过是一大堆图形拼凑起来的迷信罢了。</p>
+<blockquote>
+<p>货币政策和财政政策</p>
+</blockquote>
+<p>年轻人，中长线<br>第一、中长期投资有利于你腾出精力好好工作<br>第二、中长线赚钱似乎更简单点<br>第三、中长线更有利于你提高生活质量</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/22/也谈金融/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-一生要做的事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/10/一生要做的事/">一生要做的事</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/10/一生要做的事/" class="archive-article-date">
+  	<time datetime="2016-01-10T11:21:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>我究竟要怎样过一生<br>设定那愿意消耗生命去做的事<br>努力去达成<br>保留你的体验<br>珍惜你的感悟</p>
+</blockquote>
+<h3 id="常回家看看"><a href="#常回家看看" class="headerlink" title="常回家看看"></a>常回家看看</h3><blockquote>
+<p>父母在<br>不言老<br>游必有方</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>每年给爸妈过生日/问候</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>帮爸妈完成梦想</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>带爸妈去旅游/自驾</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>给爸妈做可口的饭菜</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>给爸妈买保险</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>给爸妈安排体检</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>给爸妈过一次大寿</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>回家看望爸妈的次数</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>和爸妈一起吃年夜饭的次数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起浪漫"><a href="#一起浪漫" class="headerlink" title="一起浪漫"></a>一起浪漫</h3><blockquote>
+<p>浪漫<br>哪怕是小浪漫</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起坐摩天轮</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起看日出日落</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>一起看烟火</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起对着流星许愿</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起跳舞</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起数星星</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起在树下埋下约定</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起去海边放漂流瓶</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起露营</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td>一起坐邮轮</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起平淡"><a href="#一起平淡" class="headerlink" title="一起平淡"></a>一起平淡</h3><blockquote>
+<p>不够浪漫<br>那就陪伴 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起手牵手逛街</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起布置家</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>一起吃路边摊</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起骑脚踏车</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起堆雪人</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起养花种树</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起养动物</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起看场话剧</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起看场舞台剧</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td>一起看场舞蹈</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td>一起听场音乐会</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td>一起看场球赛</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td>一起听场相声</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td>一起参加电视节目</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td>一起晨练</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td>一起看书喝茶</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td>到站台送别</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td>一起学会游泳</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一起成长"><a href="#一起成长" class="headerlink" title="一起成长"></a>一起成长</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">序列</th>
+<th>成就</th>
+<th style="text-align:center">达成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>一起见对方的朋友</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>一起去趟博物馆</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>当一天陌生人</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>一起去养老院做义工</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>一起去孤儿院送礼物</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>一起为灾区募捐</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>一起做志愿者</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>一起到少数民族和外国人家中做客</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td>一起给亲人和朋友挑礼物</td>
+</tr>
+</tbody>
+</table>
+        
+          <a class="article-more-a" href="/2016/01/10/一生要做的事/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/10/一生要做的事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Mac常用软件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/20/Mac常用软件/">Mac常用软件</a>
+    </h1>
+  
+
+        
+        <a href="/2015/11/20/Mac常用软件/" class="archive-article-date">
+  	<time datetime="2015-11-20T07:21:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、常用软件快捷键"><a href="#一、常用软件快捷键" class="headerlink" title="一、常用软件快捷键"></a>一、常用软件快捷键</h2><blockquote>
+<p>系统</p>
+</blockquote>
+<ul>
+<li>Ctrl + 空格键，自定义为 Spotlight 搜索栏</li>
+</ul>
+<blockquote>
+<p>Terminal</p>
+</blockquote>
+<ul>
+<li>Ctrl + A/E，将光标移动到开头和结尾</li>
+<li>Alt + 左右箭头，光标向前/后移动一个单词</li>
+<li>Ctrl + W，删除光标前一个单词</li>
+<li>Ctrl + U，清空当前行</li>
+<li>Command + K，清屏</li>
+<li>Command + 加号/减号，字体大小调整</li>
+</ul>
+<blockquote>
+<p>Finder</p>
+</blockquote>
+<ul>
+<li>Shift + Command + D，打开桌面文件夹</li>
+<li>Command + W，关闭窗口</li>
+<li>Command + [，后退</li>
+<li>Command + ]，前进</li>
+<li>空格键，快速查看</li>
+<li>Alt + Command + 空格键，快速打开inder</li>
+</ul>
+<blockquote>
+<p>MacDown</p>
+</blockquote>
+<ul>
+<li>Shift + Command + I，插入图片</li>
+<li>Shift + Command + K，插入链接</li>
+</ul>
+<blockquote>
+<p>Xcode</p>
+</blockquote>
+<ul>
+<li>Alt + Command + [ 或 ]，上下移动该行</li>
+<li>Command+［ 或 ]，多行缩进</li>
+</ul>
+<blockquote>
+<p>JetBrain家族-idea、python、android studio等</p>
+</blockquote>
+<p>快捷键，使用Mac OS X10.5+模板</p>
+<p>建议所有操作系统不同的IDE都以此为模板。重要！重要！重要！</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Ctrl+C</td>
+<td style="text-align:right">复制</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+X</td>
+<td style="text-align:right">剪切</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+V</td>
+<td style="text-align:right">粘贴</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Z</td>
+<td style="text-align:right">撤销</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Shift+Z</td>
+<td style="text-align:right">取消撤销</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+F</td>
+<td style="text-align:right">当前文件查找</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+R</td>
+<td style="text-align:right">当前文件替换</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+shift+F</td>
+<td style="text-align:right">整个项目查找</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+shift+R</td>
+<td style="text-align:right">整个项目替换</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+D</td>
+<td style="text-align:right">复制所选内容行或当前行到下一行</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Y</td>
+<td style="text-align:right">删除所选内容行或当前行</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Shift+up</td>
+<td style="text-align:right">光标放在方法名上，将方法移动到上一个方法前面，调整方法排序，也可用于移动选中行的上下移动</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Shift+down</td>
+<td style="text-align:right">光标放在方法名上，将方法移动到下一个方法前面，调整方法排序</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Shift+plus</td>
+<td style="text-align:right">展开所有代码</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Shift+minus</td>
+<td style="text-align:right">折叠所有代码</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt+left</td>
+<td style="text-align:right">切换子视图，可用于切换打开的不同文件</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt+right</td>
+<td style="text-align:right">切换子视图</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+left</td>
+<td style="text-align:right">光标跳转到当前单词的左侧</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+right</td>
+<td style="text-align:right">光标跳转到当前单词右侧</td>
+</tr>
+<tr>
+<td style="text-align:left">Home</td>
+<td style="text-align:right">光标跳转行首</td>
+</tr>
+<tr>
+<td style="text-align:left">End</td>
+<td style="text-align:right">光标跳转到行尾</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+Backspace</td>
+<td style="text-align:right">按单词删除</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt+/</td>
+<td style="text-align:right">代码提示</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+ 减号</td>
+<td style="text-align:right">折叠代码</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl+ 加号</td>
+<td style="text-align:right">展开代码</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + enter</td>
+<td style="text-align:right">当光标在某行中间时，直接换行到下一行</td>
+</tr>
+<tr>
+<td style="text-align:left">两次Shift</td>
+<td style="text-align:right">搜索文件并打开</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Alfred</p>
+</blockquote>
+<ul>
+<li>Option + 空格，调出搜索框</li>
+<li>find 文件名</li>
+<li>open 文件名</li>
+<li>bd 搜索内容 #百度搜索，需要配置</li>
+</ul>
+<blockquote>
+<p>Jupyter Notebook</p>
+</blockquote>
+<p>Shift-Enter    运行本单元，选中下个单元<br>Ctrl-Enter    运行本单元<br>Alt-Enter    运行本单元，在其下插入新单元<br>Y    单元转入代码状态<br>M    单元转入 markdown 状态<br>D,D    删除选中的单元<br>Enter 进入编辑模式<br>Esc 退出编辑模式<br>A 添加一行<br>TAB 代码提示<br>L 显示行数</p>
+<h2 id="二、sublime-text"><a href="#二、sublime-text" class="headerlink" title="二、sublime text"></a>二、sublime text</h2><blockquote>
+<p>插件  </p>
+</blockquote>
+<p>如需要看插件安装详情，使用”ctrl + ~”打开。<br>（1）color highlighter显示颜色<br>（2）color picker拾取颜色，快捷键Command+Shift+C<br>（3）emmet，但需要pyv8插件。Tab键代码自动补全<br>（4）javascript completions，js代码补全<br>（5）ConvertToUTF8，字符集转换为UTF-8，避免汉字乱码，需要安装插件Codecs33<br>（6）LESS，用于支持LESS高亮显示<br>（7）Less2Css，用于支持LESS编译，需安装less(编译)和less-plugin-clean-css(压缩)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g less  </span><br><span class="line">$ npm install -g less-plugin-clean-css</span><br></pre></td></tr></table></figure>
+<p>（8）SASS，用于SASS高亮显示<br>（9）SASS Build，用于支持SASS编译</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install -n /usr/<span class="built_in">local</span>/bin sass</span><br></pre></td></tr></table></figure>
+<p>如报错Error: Invalid US-ASCII character “\xC2” ，可在scss文件添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">"UTF-8"</span>;</span><br></pre></td></tr></table></figure>
+<p>如需要使用watch自动编译，则需要保证路径上无中文，否则会报错：incompatible character encodings: ASCII-8BIT and UTF-8 Backtrace</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sass --watch style.scss:style.css</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中文无法open in browser </p>
+</blockquote>
+<p>安装插件SideBarEnhancements，绑定快捷键</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+1"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"safari"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+2"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"chrome"</span>&#125;  &#125;,</span><br><span class="line">&#123; <span class="string">"keys"</span>: [<span class="string">"command+3"</span>], <span class="string">"command"</span>: <span class="string">"side_bar_open_in_browser"</span>, <span class="string">"args"</span>: &#123; <span class="string">"paths"</span>: [], <span class="string">"type"</span>: <span class="string">"testing"</span>, <span class="string">"browser"</span>: <span class="string">"firefox"</span>&#125;  &#125;,</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2015/11/20/Mac常用软件/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/11/20/Mac常用软件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-正则表达式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/19/正则表达式/">正则表达式</a>
+    </h1>
+  
+
+        
+        <a href="/2015/09/19/正则表达式/" class="archive-article-date">
+  	<time datetime="2015-09-19T08:34:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2015-09-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css"><blockquote>
+<p>常用的元字符 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>匹配除换行符(\n)以外的任意单个字符</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>范围，字符集，对应字符集中的任意字符</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开始，注意如果放到方括号中表示排除。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结束</td>
+</tr>
+<tr>
+<td>\</td>
+<td></td>
+<td>选择字符，理解为“或”</td>
+</tr>
+<tr>
+<td>()</td>
+<td>分组，用于提取括号里的内容</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词的开始或结束</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配字母或数字或下划线，等价于[A-Za-Z0-9_]</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符，等价于[^A-Za-Z0-9_]</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意的空白符，等价于[\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意的非空白符，等价于[^\f\n\r\t\v]</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配数字字符，等价于[0-9]</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配非数字字符，等价于[^0-9]</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>常用的限定符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>重复0次或更多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>重复1次或更多次</td>
+</tr>
+<tr>
+<td>?</td>
+<td>重复0次或1次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>重复n次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>重复n次或更多次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>重复n到m次</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>分枝条件</p>
+</blockquote>
+<p>正则表达式里的分枝条件指的是有几种规则，如果满足其中任意一种规则都应该当成匹配，具体方法是用|把不同的规则分隔开。<br>使用分枝条件时，要注意各个条件的顺序。匹配分枝条件时，将会从左到右地测试每个条件，如果满足了某个分枝的话，就不会去再管其它的条件了。  </p>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\</td>
+<td></td>
+<td>分枝</td>
+</tr>
+<tr>
+<td>()</td>
+<td>分组</td>
+</tr>
+<tr>
+<td>#</td>
+<td>注释</td>
+</tr>
+<tr>
+<td>.*</td>
+<td>贪婪匹配</td>
+</tr>
+<tr>
+<td>.*?</td>
+<td>懒惰匹配（最小匹配）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>常用的反义代码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\W</td>
+<td>匹配任意不是字母，数字，下划线，汉字的字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意不是空白符的字符</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配不是单词开头或结束的位置</td>
+</tr>
+<tr>
+<td>[^x]</td>
+<td>匹配除了x以外的任意字符</td>
+</tr>
+<tr>
+<td>[^aeiou]</td>
+<td>匹配除了aeiou这几个字母以外的任意字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>懒惰限定符</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>代码/语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*?</td>
+<td>重复任意次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>+?</td>
+<td>重复1次或更多次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>??</td>
+<td>重复0次或1次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,m}?</td>
+<td>重复n到m次，但尽可能少重复</td>
+</tr>
+<tr>
+<td>{n,}?</td>
+<td>重复n次以上，但尽可能少重复</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/09/19/正则表达式/">展开全文 >></a>
         </p>
       
 
@@ -220,7 +1738,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 
@@ -232,7 +1750,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 iherr
+    		&copy; 2020 iherr
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -319,10 +1837,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -387,15 +1901,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -407,11 +1921,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">SpringCloud</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">源码</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -419,19 +1937,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color4">ElasticSearch</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -443,15 +1957,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">UI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">读书</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
+                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">ELK</a>
+                <a href="javascript:void(0)" class="js-tag color3">Jenkins</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,11 +1985,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">招聘</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -480,6 +2002,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">正则</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">音视频</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">FFmpeg</a>
               </li>
              
               <li class="article-tag-list-item">
